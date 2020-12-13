@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: begin-src-example
+# key: <x
+# --
+#+BEGIN_EXAMPLE
+$1
+#+END_EXAMPLE

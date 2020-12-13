@@ -1,0 +1,5 @@
+custom.el
+/elpa
+/var
+/straight/*
+!/straight/versions
