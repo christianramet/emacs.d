@@ -1083,6 +1083,8 @@ For ediff hooks usage"
   (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
   (define-key pdf-view-mode-map (kbd "d") 'pdf-annot-delete))
 
+(use-package php-mode)
+
 (use-package proced
   :straight nil
   :init (setq proced-auto-update-flag t
