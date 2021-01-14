@@ -9,7 +9,7 @@
 (defcustom cr-font-variable "DejaVu Sans" "Variable pitch font name.")
 
 (defun cr--load-theme (x)
-  "Load a new theme by first unloading all the current ones."
+  "Load X theme by first unloading all the current ones."
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme x t))
 
