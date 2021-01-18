@@ -398,8 +398,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package dired
   :straight nil
   :config
-  (setq dired-listing-switches "-lahv --group-directories-first"
-        dired-dwim-target t
+  (if (eq system-type 'darwin)
+      (setq dired-listing-switches "-lahv")
+    (setq dired-listing-switches "-lahv --group-directories-first"))
+
+  (setq dired-dwim-target t
         dired-recursive-copies 'always
         dired-recursive-deletes 'always
         delete-by-moving-to-trash t)
