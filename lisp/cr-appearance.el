@@ -38,11 +38,13 @@
                       :font (font-spec :family cr-font-variable :size cr-font-size)))
 
 (when (daemonp)
-  (add-hook 'after-make-frame-functions 'cr--set-font)
-  (add-hook 'after-make-frame-functions 'cr--set-theme))
+  (add-hook 'after-make-frame-functions 'cr--set-theme)
+  (unless (eq system-type 'darwin)
+    (add-hook 'after-make-frame-functions 'cr--set-font)))
 
 (when (display-graphic-p)
-  (cr--set-font)
-  (cr--set-theme))
+  (cr--set-theme)
+  (unless (eq system-type 'darwin)
+    (cr--set-font)))
 
 (provide 'cr-appearance)
