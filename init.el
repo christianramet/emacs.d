@@ -646,9 +646,9 @@ For ediff hooks usage"
   (defvar cr-dict-en "en_US")
   (defvar cr-dict-fr "fr_FR")
   (defvar cr-dict-multi "en_US,fr_FR")
-  (defvar cr-dict-default cr-dict-multi)
+  (defvar cr-dict-default cr-dict-en)
 
-  (setq ispell-program-name (executable-find "hunspell")
+  (setq ispell-program-name (executable-find "aspell")
         ispell-silently-savep t)
   (setq flyspell-issue-welcome-flag nil
         flyspell-issue-message-flag nil)
@@ -656,6 +656,7 @@ For ediff hooks usage"
   (defun cr-ispell-set-dict (dict)
     (setq ispell-dictionary dict)
     (when (string-match-p ",+" dict)
+      (setq ispell-program-name (executable-find "hunspell"))
       (ispell-set-spellchecker-params)
       (ispell-hunspell-add-multi-dic dict))
     (ispell-change-dictionary dict))
