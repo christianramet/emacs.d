@@ -51,6 +51,7 @@
 
 (use-package exec-path-from-shell
   :demand
+  :custom (exec-path-from-shell-variables '("PATH" "MANPATH"))
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
@@ -1237,8 +1238,8 @@ For ediff hooks usage"
   :after counsel
   :bind (:map cr-search-map
               ("a" . swiper-all)
+              ("b" . swiper-isearch)
               ("s" . swiper-isearch)
-              ("S" . swiper)
               ("." . swiper-isearch-thing-at-point)))
 
 (use-package terraform-mode
