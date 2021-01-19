@@ -49,6 +49,14 @@
 ;;;* Early packages
 (straight-use-package 'org)
 
+(use-package exec-path-from-shell
+  :demand
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
+
+(use-package diminish :demand)
+
 (use-package no-littering
   :demand
   :config
@@ -56,8 +64,6 @@
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
   (setq custom-file (no-littering-expand-var-file-name "custom.el")
         org-roam-db-location (no-littering-expand-var-file-name "org-roam.db")))
-
-(use-package diminish :demand)
 
 ;;;* Better defaults
 (prefer-coding-system 'utf-8)
