@@ -478,6 +478,12 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package dockerfile-mode
   :mode ("Dockerfile\\'"))
 
+(use-package doom-modeline
+  :demand
+  :config
+  (setq doom-modeline-vcs-max-length 18)
+  (doom-modeline-mode 1))
+
 (use-package ediff
   :commands (ediff ediff-buffers ediff-files magit-ediff-dwim)
   :config
