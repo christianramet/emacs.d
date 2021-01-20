@@ -113,6 +113,11 @@
       mouse-wheel-progressive-speed t
       next-screen-context-lines 5)
 
+(when (eq system-type 'darwin)
+  ;; Pass the right Alt/Option key to the OS which allows the
+  ;; insertion of special characters.
+  (setq ns-right-alternate-modifier 'none))
+
 ;;;* Personal prefix maps keybinds
 (define-prefix-command 'cr-app-map)
 (define-prefix-command 'cr-buffer-map)
