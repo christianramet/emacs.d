@@ -649,35 +649,22 @@ For ediff hooks usage"
 
 (use-package flyspell
   :config
-  (defvar cr-dict-en "en_US")
-  (defvar cr-dict-fr "fr_FR")
-  (defvar cr-dict-multi "en_US,fr_FR")
-  (defvar cr-dict-default cr-dict-en)
-
   (setq ispell-program-name (executable-find "aspell")
-        ispell-silently-savep t)
-  (setq flyspell-issue-welcome-flag nil
+        ispell-dictionary "en_US"
+        ispell-silently-savep t
+        flyspell-issue-welcome-flag nil
         flyspell-issue-message-flag nil)
 
   (defun cr-ispell-set-dict (dict)
     (setq ispell-dictionary dict)
-    (when (string-match-p ",+" dict)
-      (setq ispell-program-name (executable-find "hunspell"))
-      (ispell-set-spellchecker-params)
-      (ispell-hunspell-add-multi-dic dict))
     (ispell-change-dictionary dict))
-
-  (cr-ispell-set-dict cr-dict-default)
 
   (defun cr-ispell-set-FR () "Set ispell dict language to FR"
          (interactive)
-         (cr-ispell-set-dict cr-dict-fr))
+         (cr-ispell-set-dict "fr_FR"))
   (defun cr-ispell-set-EN () "Set ispell dict language to EN"
          (interactive)
-         (cr-ispell-set-dict cr-dict-en))
-  (defun cr-ispell-set-MULTI () "Set ispell dict language to EN+FR"
-         (interactive)
-         (cr-ispell-set-dict cr-dict-multi))
+         (cr-ispell-set-dict "en_US"))
 
   (defun cr-save-word-to-pdict ()
     "Save word at point to the currently active personal dictionary"
@@ -695,7 +682,6 @@ For ediff hooks usage"
                ("b" . flyspell-buffer)
                ("e" . cr-ispell-set-EN)
                ("f" . cr-ispell-set-FR)
-               ("m" . cr-ispell-set-MULTI)
                ("r" . flyspell-region)
                ("s" . cr-save-word-to-pdict)
                ("z" . flyspell-correct-wrapper))))
