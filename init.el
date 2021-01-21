@@ -114,6 +114,8 @@
       next-screen-context-lines 5)
 
 (when (eq system-type 'darwin)
+  (setq mac-option-modifier 'meta)
+  (setq mac-command-modifier 'hyper)
   ;; Pass the right Alt/Option key to the OS which allows the
   ;; insertion of special characters.
   (setq ns-right-alternate-modifier 'none))
