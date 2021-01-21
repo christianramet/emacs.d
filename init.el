@@ -222,7 +222,7 @@
         avy-timeout-seconds 0.3
         avy-all-windows t
         avy-all-windows-alt nil)
-  :bind* ("C-'"     . avy-goto-char-timer))
+  :bind* ("C-'" . avy-goto-char-timer))
 
 (use-package battery
   :straight nil
