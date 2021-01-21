@@ -1083,7 +1083,8 @@ For ediff hooks usage"
   :config
   (pdf-tools-install :no-query)
   (setq-default pdf-view-display-size 'fit-page)
-  (setq TeX-view-program-selection '((output-pdf "pdf-tools"))
+  (setq pdf-view-use-scaling t
+        TeX-view-program-selection '((output-pdf "pdf-tools"))
         TeX-view-program-list '(("pdf-tools" "TeX-pdf-tools-sync-view")))
 
   (add-hook 'pdf-view-mode-hook 'pdf-annot-minor-mode)
