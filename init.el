@@ -490,10 +490,13 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :mode ("Dockerfile\\'"))
 
 (use-package doom-modeline
+  :straight doom-modeline
+  :straight all-the-icons
   :demand
-  :config
-  (setq doom-modeline-vcs-max-length 18)
-  (doom-modeline-mode 1))
+  :custom
+  (doom-modeline-vcs-max-length 18)
+  (doom-modeline-icon t)
+  :init (doom-modeline-mode 1))
 
 (use-package ediff
   :commands (ediff ediff-buffers ediff-files magit-ediff-dwim)
