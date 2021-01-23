@@ -742,7 +742,6 @@ For ediff hooks usage"
                ("SPC" . git-gutter:mark-hunk))))
 
 (use-package helpful
-  :demand
   :after counsel
   :commands (helpful-callable
              helpful-variable)
