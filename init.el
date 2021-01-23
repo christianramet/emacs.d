@@ -62,8 +62,7 @@
   :demand
   :custom
   (custom-file (no-littering-expand-var-file-name "custom.el"))
-  (auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-  (org-roam-db-location (no-littering-expand-var-file-name "org-roam.db")))
+  (auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 ;;;* Better defaults
 (prefer-coding-system 'utf-8)
