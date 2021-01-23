@@ -60,11 +60,10 @@
 
 (use-package no-littering
   :demand
-  :config
-  (setq auto-save-file-name-transforms
-        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-  (setq custom-file (no-littering-expand-var-file-name "custom.el")
-        org-roam-db-location (no-littering-expand-var-file-name "org-roam.db")))
+  :custom
+  (custom-file (no-littering-expand-var-file-name "custom.el"))
+  (auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+  (org-roam-db-location (no-littering-expand-var-file-name "org-roam.db")))
 
 ;;;* Better defaults
 (prefer-coding-system 'utf-8)
@@ -853,10 +852,10 @@ For ediff hooks usage"
 
 (use-package magit
   :commands magit-status
-  :config
-  (setq magit-auto-revert-immediately t
-        magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1
-        magit-diff-refine-hunk nil)
+  :custom
+  (magit-auto-revert-immediately t)
+  (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
+  (magit-diff-refine-hunk nil)
   :bind (:map cr-git-map
               ("b" . magit-branch-checkout)
               ("B" . magit-blame)
@@ -894,8 +893,8 @@ For ediff hooks usage"
 
 (use-package nov
   :commands nov-mode
+  :custom (nov-text-width fill-column)
   :config
-  (setq nov-text-width fill-column)
   (defun cr-nov-settings ()
     (setq-local left-margin-width 2)
     (setq-local line-spacing 0.2))
@@ -1064,7 +1063,7 @@ For ediff hooks usage"
 
 (use-package org-superstar
   :after org
-  :config (setq org-superstar-prettify-item-bullets nil)
+  :custom (org-superstar-prettify-item-bullets nil)
   :hook (org-mode-hook . org-superstar-mode))
 
 (use-package org-ql
@@ -1076,8 +1075,7 @@ For ediff hooks usage"
   :custom (org-reveal-root "~/js/reveal.js"))
 
 (use-package pass
-  :config
-  (setq pass-show-keybindings nil)
+  :custom (pass-show-keybindings nil)
   :bind ("C-c Q" . pass))
 
 (use-package password-cache
@@ -1105,8 +1103,9 @@ For ediff hooks usage"
 
 (use-package proced
   :straight nil
-  :init (setq proced-auto-update-flag t
-              proced-auto-update-interval 5)
+  :custom
+  (proced-auto-update-flag t)
+  (proced-auto-update-interval 5)
   :bind (:map cr-app-map ("x" . proced)))
 
 (use-package prog-mode
@@ -1121,21 +1120,19 @@ For ediff hooks usage"
   :commands (projectile-find-file
              projectile-ripgrep
              projectile-switch-project)
+  :custom
+  (projectile-indexing-method 'alien)
+  (projectile-enable-caching nil)
+  (projectile-verbose t)
+  (projectile-switch-project-action (lambda ()
+                                      (dired (projectile-project-root))))
   :config
-  (setq projectile-completion-system 'ivy
-        projectile-indexing-method 'alien
-        projectile-enable-caching nil
-        projectile-verbose t
-        projectile-switch-project-action (lambda ()
-                                           (dired (projectile-project-root))))
   (projectile-mode 1)
-
   (defun cr-projectile-refresh ()
     (interactive)
     (projectile-cleanup-known-projects)
     (projectile-discover-projects-in-search-path)
     (message "Projectile refresh: done"))
-
   :bind-keymap ("C-c p" . projectile-command-map)
   :bind (:map projectile-command-map ("." . cr-projectile-refresh)))
 
@@ -1256,21 +1253,18 @@ For ediff hooks usage"
 
 (use-package time
   :straight nil
-  :demand
   :commands (display-time-world display-time-mode)
+  :custom
+  (display-time-24hr-format t)
+  (display-time-default-load-average nil)
+  (display-time-world-list '(("America/Los_Angeles" "Seattle")
+                             ("America/New_York" "New York")
+                             ("Europe/London" "London")
+                             ("Europe/Paris" "Paris")
+                             ("Asia/Kolkata" "Calcutta")
+                             ("Asia/Shanghai" "Beijing")
+                             ("Asia/Tokyo" "Tokyo")))
   :config
-  (setq  display-time-24hr-format t
-         display-time-default-load-average nil
-         display-time-world-list '(("America/Los_Angeles" "Seattle")
-                                   ("America/New_York" "New York")
-                                   ("Europe/London" "London")
-                                   ("Europe/Paris" "Paris")
-                                   ("Asia/Kolkata" "Calcutta")
-                                   ("Asia/Shanghai" "Beijing")
-                                   ("Asia/Tokyo" "Tokyo")))
-
-  (display-time-mode 1)
-
   (defun cr-display-time-world ()
     (interactive)
     (display-time-world)
@@ -1290,9 +1284,8 @@ For ediff hooks usage"
 (use-package vterm
   :commands vterm
   :init (setq vterm-always-compile-module t)
+  :custom (vterm-max-scrollback (* 20 1000))
   :config
-  (setq vterm-max-scrollback (* 20 1000))
-
   (defun cr-vterm-yank-pop ()
     "Call my version of vterm-yank-pop and insert into vterm.
 Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
@@ -1326,11 +1319,11 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :commands which-key-mode
   :defer 2
   :diminish
-  :config
-  (setq which-key-idle-delay 0.5
-        which-key-idle-secondary-delay 0.2
-        which-key-allow-imprecise-window-fit t)
-  (which-key-mode 1)
+  :custom
+  (which-key-idle-delay 0.5)
+  (which-key-idle-secondary-delay 0.2)
+  (which-key-allow-imprecise-window-fit t)
+  :config (which-key-mode 1)
   :bind (:map cr-toggle-map ("?" . which-key-mode)))
 
 (use-package whitespace
@@ -1340,16 +1333,15 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :bind (:map cr-app-map ("m" . woman)))
 
 (use-package writeroom-mode
+  :custom
+  (writeroom-restore-window-config t)
+  (writeroom-fringes-outside-margins t)
+  (writeroom-width (+ fill-column 10))
+  (writeroom-major-modes-exceptions nil)
+  (writeroom-major-modes '(text-mode org-mode elfeed-show-mode))
   :config
-  (setq writeroom-restore-window-config t
-        writeroom-fringes-outside-margins t
-        writeroom-width (+ fill-column 10)
-        writeroom-major-modes-exceptions nil
-        writeroom-major-modes '(text-mode org-mode elfeed-show-mode))
-
   (advice-add 'text-scale-adjust :after
               #'visual-fill-column-adjust)
-
   :bind ((:map writeroom-mode-map
                ("C-M-<" . writeroom-decrease-width)
                ("C-M->" . writeroom-increase-width)
