@@ -218,10 +218,11 @@
 
 (use-package avy
   :config
-  (setq avy-keys '(?a ?s ?d ?f ?g ?h ?k ?l)
-        avy-timeout-seconds 0.3
-        avy-all-windows t
-        avy-all-windows-alt nil)
+  :custom
+  (avy-keys '(?a ?s ?d ?f ?g ?h ?k ?l))
+  (avy-timeout-seconds .3)
+  (avy-all-windows t)
+  (avy-all-windows-alt nil)
   :bind* ("C-'" . avy-goto-char-timer))
 
 (use-package battery
@@ -1072,8 +1073,7 @@ For ediff hooks usage"
 (use-package ox-reveal
   :demand
   :after org
-  ;; :init org-reveal-root "~/js/reveal.js")
-  :config (require 'ox-reveal))
+  :custom (org-reveal-root "~/js/reveal.js"))
 
 (use-package pass
   :config
@@ -1083,19 +1083,19 @@ For ediff hooks usage"
 (use-package password-cache
   :straight nil
   :demand
-  :config
-  (setq password-cache t
-        password-cache-expiry 600))
+  :custom
+  (password-cache 5)
+  (password-cache-expiry 600))
 
 (use-package pdf-tools
   :magic ("%PDF" . pdf-view-mode)
+  :custom
+  (pdf-view-use-scaling t)
+  (TeX-view-program-selection '((output-pdf "pdf-tools")))
+  (TeX-view-program-list '(("pdf-tools" "TeX-pdf-tools-sync-view")))
   :config
   (pdf-tools-install :no-query)
   (setq-default pdf-view-display-size 'fit-page)
-  (setq pdf-view-use-scaling t
-        TeX-view-program-selection '((output-pdf "pdf-tools"))
-        TeX-view-program-list '(("pdf-tools" "TeX-pdf-tools-sync-view")))
-
   (add-hook 'pdf-view-mode-hook 'pdf-annot-minor-mode)
   (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
   (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
@@ -1143,9 +1143,10 @@ For ediff hooks usage"
   :straight nil
   :demand
   :commands recentf-mode
+  :custom
+  (recentf-max-saved-items 50)
+  (recentf-keep '(file-remote-p file-readable-p))
   :config
-  (setq recentf-max-saved-items 50
-        recentf-keep '(file-remote-p file-readable-p))
   (add-to-list 'recentf-exclude "COMMIT_MSG")
   (add-to-list 'recentf-exclude "COMMIT_EDITMSG")
   (when (featurep 'no-littering)
@@ -1174,10 +1175,10 @@ For ediff hooks usage"
 (use-package simple
   :straight nil
   :diminish visual-line-mode
-  :config
-  (setq delete-trailing-lines t
-        save-interprogram-paste-before-kill t
-        kill-do-not-save-duplicates t)
+  :custom
+  (delete-trailing-lines t)
+  (save-interprogram-paste-before-kill t)
+  (kill-do-not-save-duplicates t)
   :bind (([remap just-one-space]  . cycle-spacing)
          ([remap zap-to-char]     . zap-up-to-char)
          ([remap upcase-word]     . upcase-dwim)
