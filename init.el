@@ -186,8 +186,7 @@
   :init (dired-async-mode 1))
 
 (use-package auth-source-pass
-  :demand
-  :config (auth-source-pass-enable))
+  :hook (after-init-hook . auth-source-pass-enable))
 
 (use-package autorevert
   :straight nil
@@ -492,11 +491,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package doom-modeline
   :straight doom-modeline
   :straight all-the-icons
-  :demand
   :custom
   (doom-modeline-vcs-max-length 18)
   (doom-modeline-icon t)
-  :init (doom-modeline-mode 1))
+  :hook (after-init-hook . doom-modeline-mode))
 
 (use-package ediff
   :commands (ediff ediff-buffers ediff-files magit-ediff-dwim)
@@ -790,8 +788,7 @@ For ediff hooks usage"
   (ivy-use-virtual-buffers t)
   (ivy-virtual-abbreviate 'full)
   (ivy-wrap nil)
-  :config (ivy-mode 1)
-
+  :config
   ;; Temporary fix, waiting for
   ;; https://github.com/abo-abo/swiper/issues/2681 to be resolved
   (with-eval-after-load 'grep
@@ -801,7 +798,8 @@ For ediff hooks usage"
   :bind ("C-c r" . ivy-resume))
 
 (use-package ivy-pass
-  :bind ("C-c q" . ivy-pass))
+  :bind ("C-c q" . ivy-pass)
+  :hook (after-init-hook . ivy-mode))
 
 (use-package ivy-rich
   :after ivy
@@ -1166,8 +1164,7 @@ For ediff hooks usage"
 
 (use-package saveplace
   :straight nil
-  :demand
-  :config (save-place-mode 1))
+  :hook (after-init-hook . save-place-mode))
 
 (use-package simple
   :straight nil
@@ -1272,7 +1269,7 @@ For ediff hooks usage"
     (search-forward "Paris")
     (move-beginning-of-line nil)
     (hl-line-mode 1))
-
+  :hook (after-init-hook . display-time-mode)
   :bind ((:map cr-toggle-map
                ("." . display-time-mode))
          (:map cr-app-map
@@ -1301,17 +1298,16 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
 (use-package wdired
   :after dired
-  :config
-  (setq wdired-allow-to-change-permissions t
-        wdired-allow-to-redirect-links t
-        wdired-create-parent-directories t))
+  :custom
+  (wdired-allow-to-change-permissions t)
+  (wdired-allow-to-redirect-links t)
+  (wdired-create-parent-directories t))
 
 (use-package wgrep)
 
 (use-package winner
   :straight nil
-  :demand
-  :config (winner-mode 1)
+  :hook (after-init-hook . winner-mode)
   :bind (("C-x u" . winner-undo)
          ("C-x U" . winner-redo)))
 
