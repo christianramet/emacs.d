@@ -60,11 +60,9 @@
 
 (use-package no-littering
   :demand
-  :config
-  (setq auto-save-file-name-transforms
-        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-  (setq custom-file (no-littering-expand-var-file-name "custom.el")
-        org-roam-db-location (no-littering-expand-var-file-name "org-roam.db")))
+  :custom
+  (custom-file (no-littering-expand-var-file-name "custom.el"))
+  (auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 ;;;* Better defaults
 (prefer-coding-system 'utf-8)
@@ -187,8 +185,7 @@
   :init (dired-async-mode 1))
 
 (use-package auth-source-pass
-  :demand
-  :config (auth-source-pass-enable))
+  :hook (after-init-hook . auth-source-pass-enable))
 
 (use-package autorevert
   :straight nil
@@ -218,10 +215,11 @@
 
 (use-package avy
   :config
-  (setq avy-keys '(?a ?s ?d ?f ?g ?h ?k ?l)
-        avy-timeout-seconds 0.3
-        avy-all-windows t
-        avy-all-windows-alt nil)
+  :custom
+  (avy-keys '(?a ?s ?d ?f ?g ?h ?k ?l))
+  (avy-timeout-seconds .3)
+  (avy-all-windows t)
+  (avy-all-windows-alt nil)
   :bind* ("C-'" . avy-goto-char-timer))
 
 (use-package battery
@@ -490,10 +488,12 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :mode ("Dockerfile\\'"))
 
 (use-package doom-modeline
-  :demand
-  :config
-  (setq doom-modeline-vcs-max-length 18)
-  (doom-modeline-mode 1))
+  :straight doom-modeline
+  :straight all-the-icons
+  :custom
+  (doom-modeline-vcs-max-length 18)
+  (doom-modeline-icon t)
+  :hook (after-init-hook . doom-modeline-mode))
 
 (use-package ediff
   :commands (ediff ediff-buffers ediff-files magit-ediff-dwim)
@@ -741,7 +741,6 @@ For ediff hooks usage"
                ("SPC" . git-gutter:mark-hunk))))
 
 (use-package helpful
-  :demand
   :after counsel
   :commands (helpful-callable
              helpful-variable)
@@ -787,8 +786,7 @@ For ediff hooks usage"
   (ivy-use-virtual-buffers t)
   (ivy-virtual-abbreviate 'full)
   (ivy-wrap nil)
-  :config (ivy-mode 1)
-
+  :config
   ;; Temporary fix, waiting for
   ;; https://github.com/abo-abo/swiper/issues/2681 to be resolved
   (with-eval-after-load 'grep
@@ -798,7 +796,8 @@ For ediff hooks usage"
   :bind ("C-c r" . ivy-resume))
 
 (use-package ivy-pass
-  :bind ("C-c q" . ivy-pass))
+  :bind ("C-c q" . ivy-pass)
+  :hook (after-init-hook . ivy-mode))
 
 (use-package ivy-rich
   :after ivy
@@ -849,10 +848,10 @@ For ediff hooks usage"
 
 (use-package magit
   :commands magit-status
-  :config
-  (setq magit-auto-revert-immediately t
-        magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1
-        magit-diff-refine-hunk nil)
+  :custom
+  (magit-auto-revert-immediately t)
+  (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
+  (magit-diff-refine-hunk nil)
   :bind (:map cr-git-map
               ("b" . magit-branch-checkout)
               ("B" . magit-blame)
@@ -890,8 +889,8 @@ For ediff hooks usage"
 
 (use-package nov
   :commands nov-mode
+  :custom (nov-text-width fill-column)
   :config
-  (setq nov-text-width fill-column)
   (defun cr-nov-settings ()
     (setq-local left-margin-width 2)
     (setq-local line-spacing 0.2))
@@ -1060,7 +1059,7 @@ For ediff hooks usage"
 
 (use-package org-superstar
   :after org
-  :config (setq org-superstar-prettify-item-bullets nil)
+  :custom (org-superstar-prettify-item-bullets nil)
   :hook (org-mode-hook . org-superstar-mode))
 
 (use-package org-ql
@@ -1069,30 +1068,28 @@ For ediff hooks usage"
 (use-package ox-reveal
   :demand
   :after org
-  ;; :init org-reveal-root "~/js/reveal.js")
-  :config (require 'ox-reveal))
+  :custom (org-reveal-root "~/js/reveal.js"))
 
 (use-package pass
-  :config
-  (setq pass-show-keybindings nil)
+  :custom (pass-show-keybindings nil)
   :bind ("C-c Q" . pass))
 
 (use-package password-cache
   :straight nil
   :demand
-  :config
-  (setq password-cache t
-        password-cache-expiry 600))
+  :custom
+  (password-cache 5)
+  (password-cache-expiry 600))
 
 (use-package pdf-tools
   :magic ("%PDF" . pdf-view-mode)
+  :custom
+  (pdf-view-use-scaling t)
+  (TeX-view-program-selection '((output-pdf "pdf-tools")))
+  (TeX-view-program-list '(("pdf-tools" "TeX-pdf-tools-sync-view")))
   :config
   (pdf-tools-install :no-query)
   (setq-default pdf-view-display-size 'fit-page)
-  (setq pdf-view-use-scaling t
-        TeX-view-program-selection '((output-pdf "pdf-tools"))
-        TeX-view-program-list '(("pdf-tools" "TeX-pdf-tools-sync-view")))
-
   (add-hook 'pdf-view-mode-hook 'pdf-annot-minor-mode)
   (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
   (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
@@ -1102,8 +1099,9 @@ For ediff hooks usage"
 
 (use-package proced
   :straight nil
-  :init (setq proced-auto-update-flag t
-              proced-auto-update-interval 5)
+  :custom
+  (proced-auto-update-flag t)
+  (proced-auto-update-interval 5)
   :bind (:map cr-app-map ("x" . proced)))
 
 (use-package prog-mode
@@ -1118,21 +1116,19 @@ For ediff hooks usage"
   :commands (projectile-find-file
              projectile-ripgrep
              projectile-switch-project)
+  :custom
+  (projectile-indexing-method 'alien)
+  (projectile-enable-caching nil)
+  (projectile-verbose t)
+  (projectile-switch-project-action (lambda ()
+                                      (dired (projectile-project-root))))
   :config
-  (setq projectile-completion-system 'ivy
-        projectile-indexing-method 'alien
-        projectile-enable-caching nil
-        projectile-verbose t
-        projectile-switch-project-action (lambda ()
-                                           (dired (projectile-project-root))))
   (projectile-mode 1)
-
   (defun cr-projectile-refresh ()
     (interactive)
     (projectile-cleanup-known-projects)
     (projectile-discover-projects-in-search-path)
     (message "Projectile refresh: done"))
-
   :bind-keymap ("C-c p" . projectile-command-map)
   :bind (:map projectile-command-map ("." . cr-projectile-refresh)))
 
@@ -1140,9 +1136,10 @@ For ediff hooks usage"
   :straight nil
   :demand
   :commands recentf-mode
+  :custom
+  (recentf-max-saved-items 50)
+  (recentf-keep '(file-remote-p file-readable-p))
   :config
-  (setq recentf-max-saved-items 50
-        recentf-keep '(file-remote-p file-readable-p))
   (add-to-list 'recentf-exclude "COMMIT_MSG")
   (add-to-list 'recentf-exclude "COMMIT_EDITMSG")
   (when (featurep 'no-littering)
@@ -1165,16 +1162,15 @@ For ediff hooks usage"
 
 (use-package saveplace
   :straight nil
-  :demand
-  :config (save-place-mode 1))
+  :hook (after-init-hook . save-place-mode))
 
 (use-package simple
   :straight nil
   :diminish visual-line-mode
-  :config
-  (setq delete-trailing-lines t
-        save-interprogram-paste-before-kill t
-        kill-do-not-save-duplicates t)
+  :custom
+  (delete-trailing-lines t)
+  (save-interprogram-paste-before-kill t)
+  (kill-do-not-save-duplicates t)
   :bind (([remap just-one-space]  . cycle-spacing)
          ([remap zap-to-char]     . zap-up-to-char)
          ([remap upcase-word]     . upcase-dwim)
@@ -1252,21 +1248,18 @@ For ediff hooks usage"
 
 (use-package time
   :straight nil
-  :demand
   :commands (display-time-world display-time-mode)
+  :custom
+  (display-time-24hr-format t)
+  (display-time-default-load-average nil)
+  (display-time-world-list '(("America/Los_Angeles" "Seattle")
+                             ("America/New_York" "New York")
+                             ("Europe/London" "London")
+                             ("Europe/Paris" "Paris")
+                             ("Asia/Kolkata" "Calcutta")
+                             ("Asia/Shanghai" "Beijing")
+                             ("Asia/Tokyo" "Tokyo")))
   :config
-  (setq  display-time-24hr-format t
-         display-time-default-load-average nil
-         display-time-world-list '(("America/Los_Angeles" "Seattle")
-                                   ("America/New_York" "New York")
-                                   ("Europe/London" "London")
-                                   ("Europe/Paris" "Paris")
-                                   ("Asia/Kolkata" "Calcutta")
-                                   ("Asia/Shanghai" "Beijing")
-                                   ("Asia/Tokyo" "Tokyo")))
-
-  (display-time-mode 1)
-
   (defun cr-display-time-world ()
     (interactive)
     (display-time-world)
@@ -1274,7 +1267,7 @@ For ediff hooks usage"
     (search-forward "Paris")
     (move-beginning-of-line nil)
     (hl-line-mode 1))
-
+  :hook (after-init-hook . display-time-mode)
   :bind ((:map cr-toggle-map
                ("." . display-time-mode))
          (:map cr-app-map
@@ -1286,9 +1279,8 @@ For ediff hooks usage"
 (use-package vterm
   :commands vterm
   :init (setq vterm-always-compile-module t)
+  :custom (vterm-max-scrollback (* 20 1000))
   :config
-  (setq vterm-max-scrollback (* 20 1000))
-
   (defun cr-vterm-yank-pop ()
     "Call my version of vterm-yank-pop and insert into vterm.
 Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
@@ -1304,17 +1296,16 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
 (use-package wdired
   :after dired
-  :config
-  (setq wdired-allow-to-change-permissions t
-        wdired-allow-to-redirect-links t
-        wdired-create-parent-directories t))
+  :custom
+  (wdired-allow-to-change-permissions t)
+  (wdired-allow-to-redirect-links t)
+  (wdired-create-parent-directories t))
 
 (use-package wgrep)
 
 (use-package winner
   :straight nil
-  :demand
-  :config (winner-mode 1)
+  :hook (after-init-hook . winner-mode)
   :bind (("C-x u" . winner-undo)
          ("C-x U" . winner-redo)))
 
@@ -1322,11 +1313,11 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :commands which-key-mode
   :defer 2
   :diminish
-  :config
-  (setq which-key-idle-delay 0.5
-        which-key-idle-secondary-delay 0.2
-        which-key-allow-imprecise-window-fit t)
-  (which-key-mode 1)
+  :custom
+  (which-key-idle-delay 0.5)
+  (which-key-idle-secondary-delay 0.2)
+  (which-key-allow-imprecise-window-fit t)
+  :config (which-key-mode 1)
   :bind (:map cr-toggle-map ("?" . which-key-mode)))
 
 (use-package whitespace
@@ -1336,16 +1327,15 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :bind (:map cr-app-map ("m" . woman)))
 
 (use-package writeroom-mode
+  :custom
+  (writeroom-restore-window-config t)
+  (writeroom-fringes-outside-margins t)
+  (writeroom-width (+ fill-column 10))
+  (writeroom-major-modes-exceptions nil)
+  (writeroom-major-modes '(text-mode org-mode elfeed-show-mode))
   :config
-  (setq writeroom-restore-window-config t
-        writeroom-fringes-outside-margins t
-        writeroom-width (+ fill-column 10)
-        writeroom-major-modes-exceptions nil
-        writeroom-major-modes '(text-mode org-mode elfeed-show-mode))
-
   (advice-add 'text-scale-adjust :after
               #'visual-fill-column-adjust)
-
   :bind ((:map writeroom-mode-map
                ("C-M-<" . writeroom-decrease-width)
                ("C-M->" . writeroom-increase-width)
