@@ -117,8 +117,8 @@
   ;; Modifier keys behaviors on MacOS (mac/ns prefix depending on Emacs provisioner)
   (setq mac-option-modifier 'meta
         ns-alternate-modifier 'meta
-        mac-command-modifier 'super
-        ns-command-modifier 'super
+        mac-command-modifier 'none
+        ns-command-modifier 'none
         ;; Pass the right Alt/Option key to the OS which allows the
         ;; insertion of special characters.
         mac-right-option-modifier 'none
