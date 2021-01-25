@@ -147,6 +147,9 @@
            ("C-c x" . cr-text-map)
            ("C-c z" . cr-spell-map))
 
+(bind-keys ("M-[" . previous-buffer)
+           ("M-]" . next-buffer))
+
 ;;;* Packages
 (use-package ace-link
   :config (ace-link-setup-default)
@@ -334,7 +337,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package cr-counsel-terms
   :straight nil
   :commands (cr-counsel-vterm cr-counsel-eshell)
-  :bind ("M-]" . cr-counsel-vterm))
+  :bind (:map cr-app-map
+              ("e" . cr-counsel-eshell)
+              ("t" . cr-counsel-vterm)))
 
 (use-package cr-functions
   :straight nil
