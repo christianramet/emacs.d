@@ -324,7 +324,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                               (left-fringe . 8)
                               (right-fringe . 8)))
 
-  (add-to-list 'initial-frame-alist '(fullscreen . fullboth))
+  ;; (add-to-list 'initial-frame-alist '(fullscreen . fullboth)))
 
   ;; (custom-theme-set-faces
   ;;  'user
