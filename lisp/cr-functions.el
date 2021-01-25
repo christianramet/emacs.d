@@ -24,6 +24,11 @@
       (comment-or-uncomment-region (region-beginning) (region-end))
     (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
 
+(defun cr-goto-scratch ()
+  "Jump to the *scratch* buffer."
+  (interactive)
+  (switch-to-buffer "*scratch*"))
+
 (defun cr-new-empty-buffer ()
   "Create a new buffer called untitled(<n>)"
   (interactive)
@@ -31,41 +36,13 @@
     (switch-to-buffer newbuf)))
 
 (defun cr-rename-buffer (new-buffer-name)
-  "Prompts for a new buffer name using the current buffer name as an
-initial value, renames the current buffer to the value entered."
+  "Prompts for a new buffer name using the current buffer name as
+initial value."
   (interactive
    (let ((current-buffer-name (buffer-name)))
      (list (read-string "Rename buffer (to new name): "
                         current-buffer-name 'buffer-name-history current-buffer-name t))))
   (rename-buffer new-buffer-name))
-
-(defun cr-goto-scratch ()
-  "Jump to the *scratch* buffer."
-  (interactive)
-  (switch-to-buffer "*scratch*"))
-
-(defun cr-copy-this-file ()
-  "Copy current file to destination."
-  (interactive)
-  (let ((dest (read-file-name "Destination: " nil nil nil (file-name-nondirectory (buffer-file-name)))))
-    (copy-file (buffer-file-name) dest 1)))
-
-(defun cr-delete-current-buffer-file ()
-  "Removes file connected to current buffer and kills buffer.
-Source: Spacemacs"
-  (interactive)
-  (let ((filename (buffer-file-name))
-        (buffer (current-buffer))
-        (name (buffer-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (ido-kill-buffer)
-      (when (yes-or-no-p "Are you sure you want to delete this file? ")
-        (delete-file filename t)
-        (kill-buffer buffer)
-        (when (and (featurep 'projectile)
-                   (projectile-project-p))
-          (call-interactively #'projectile-invalidate-cache))
-        (message "File '%s' successfully removed" filename)))))
 
 (defun cr-rename-current-buffer-file ()
   "Renames current buffer and file it is visiting.
@@ -94,6 +71,28 @@ Source: spacemacs"
                  (call-interactively #'projectile-invalidate-cache))
                (message "File '%s' successfully renamed to '%s'" name (file-name-nondirectory new-name))))))))
 
+(defun cr-copy-this-file ()
+  "Copy current file to destination."
+  (interactive)
+  (let ((dest (read-file-name "Destination: " nil nil nil (file-name-nondirectory (buffer-file-name)))))
+    (copy-file (buffer-file-name) dest 1)))
+
+(defun cr-delete-current-buffer-file ()
+  "Removes file connected to current buffer and kills buffer.
+Source: Spacemacs"
+  (interactive)
+  (let ((filename (buffer-file-name))
+        (buffer (current-buffer))
+        (name (buffer-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (ido-kill-buffer)
+      (when (yes-or-no-p "Are you sure you want to delete this file? ")
+        (delete-file filename t)
+        (kill-buffer buffer)
+        (when (and (featurep 'projectile)
+                   (projectile-project-p))
+          (call-interactively #'projectile-invalidate-cache))
+        (message "File '%s' successfully removed" filename)))))
 
 (defun cr-yank-filename ()
   "Show and copy the name of the current file or buffer."
