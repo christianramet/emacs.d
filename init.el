@@ -334,20 +334,18 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package cr-counsel-terms
   :straight nil
   :commands (cr-counsel-vterm cr-counsel-eshell)
-  :bind (("M-[" . cr-counsel-vterm)
-         ("M-]" . cr-counsel-eshell)))
+  :bind ("M-]" . cr-counsel-vterm))
 
 (use-package cr-functions
   :straight nil
   :bind (([remap kill-region]    . cr-backward-kill-word-or-region)
          ([remap comment-dwim]   . cr-comment-or-uncomment-line-or-region)
          ([remap fill-paragraph] . cr-fill-or-unfill-paragraph)
+         ("M-[" . cr-switch-to-last-buffer)
          (:map cr-buffer-map
-               ("TAB" . cr-switch-to-last-buffer)
                ("n" . cr-new-empty-buffer)
                ("r" . cr-rename-buffer)
-               ("x" . cr-goto-scratch)
-               ("y" . cr-yank-filename))
+               ("x" . cr-goto-scratch))
          (:map cr-file-map
                ("c" . cr-copy-this-file)
                ("D" . cr-delete-current-buffer-file)
