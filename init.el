@@ -548,8 +548,9 @@ For ediff hooks usage"
   :commands elfeed
   :init
   (require 'cr-private-feeds nil 'noerror)
-  (setq elfeed-search-filter "@2-weeks-ago +unread ")
-  :custom (elfeed-search-date-format '("%m-%d" 5 :left))
+  :custom
+  (elfeed-search-filter "@2-weeks-ago +unread ")
+  (elfeed-search-date-format '("%m-%d" 5 :left))
   :config
   (defun cr-elfeed-show-settings ()
     (setq-local shr-width fill-column)
@@ -564,7 +565,6 @@ For ediff hooks usage"
     (call-interactively #'elfeed-search-show-entry)
     (switch-to-buffer-other-window "*elfeed-search*")
     (forward-line))
-
   :hook (elfeed-show-mode-hook . cr-elfeed-show-settings)
   :bind ((:map cr-app-map ("f" . elfeed))
          (:map elfeed-search-mode-map
