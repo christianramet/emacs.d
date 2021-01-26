@@ -692,7 +692,6 @@ For ediff hooks usage"
 
   :hook ((org-mode-hook . flyspell-mode)
          (prog-mode-hook . flyspell-prog-mode))
-
   :bind ((:map cr-toggle-map ("z" . flyspell-mode))
          (:map cr-spell-map
                ("b" . flyspell-buffer)
@@ -852,6 +851,7 @@ For ediff hooks usage"
   :bind (:map cr-toggle-map ("u" . lsp)))
 
 (use-package magit
+  :defer 10
   :commands magit-status
   :custom
   (magit-auto-revert-immediately t)
@@ -1118,7 +1118,7 @@ For ediff hooks usage"
 
 (use-package projectile
   :diminish
-  :defer 5
+  :defer 10
   :commands (projectile-find-file
              projectile-ripgrep
              projectile-switch-project)
