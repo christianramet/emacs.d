@@ -688,7 +688,9 @@ For ediff hooks usage"
     (let ((current-location (point))
           (word (flyspell-get-word)))
       (when (consp word)
-        (flyspell-do-correct 'save nil (car word) current-location (cadr word) (caddr word) current-location))))
+        (flyspell-do-correct 'save nil (car word)
+        current-location (cadr word) (caddr word)
+        current-location))))
 
   :hook ((org-mode-hook . flyspell-mode)
          (prog-mode-hook . flyspell-prog-mode))
