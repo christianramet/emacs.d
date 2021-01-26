@@ -274,6 +274,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map company-active-map ("M-/" . company-other-backend))
          (:map cr-toggle-map ("c" . company-mode))))
 
+(use-package compile
+  :straight nil
+  :bind ("C-c m" . compile))
+
 (use-package counsel
   :after ivy
   :demand
