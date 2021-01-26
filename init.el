@@ -229,7 +229,7 @@
   :straight nil
   :commands (battery display-battery-mode)
   :custom (battery-mode-line-limit 85)
-  :hook (after-init-hook . display-battery-mode)
+  ;; :hook (after-init-hook . display-battery-mode)
   :bind (:map cr-toggle-map
               ("b" . display-battery-mode)))
 
@@ -1270,7 +1270,7 @@ For ediff hooks usage"
     (search-forward "Paris")
     (move-beginning-of-line nil)
     (hl-line-mode 1))
-  :hook (after-init-hook . display-time-mode)
+  ;; :hook (after-init-hook . display-time-mode)
   :bind ((:map cr-toggle-map
                ("." . display-time-mode))
          (:map cr-app-map
