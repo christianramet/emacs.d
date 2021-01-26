@@ -712,6 +712,10 @@ For ediff hooks usage"
   :after magit
   :commands forge-pull-notifications)
 
+(use-package frame
+  :straight nil
+  :bind (:map cr-toggle-map ("RET" . toggle-frame-fullscreen)))
+
 (use-package go-mode
   :straight t
   :straight company-go
