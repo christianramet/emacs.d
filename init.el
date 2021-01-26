@@ -496,6 +496,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (doom-modeline-vcs-max-length 18)
   (doom-modeline-icon t)
+  (doom-modeline-buffer-encoding nil)
+  (doom-modeline-project-detection 'projectile)
   :hook (after-init-hook . doom-modeline-mode))
 
 (use-package ediff
@@ -1116,6 +1118,7 @@ For ediff hooks usage"
 
 (use-package projectile
   :diminish
+  :defer 5
   :commands (projectile-find-file
              projectile-ripgrep
              projectile-switch-project)
