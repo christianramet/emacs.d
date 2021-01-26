@@ -724,6 +724,7 @@ For ediff hooks usage"
     (go-eldoc-setup)
     (eldoc-mode 1)
     (set (make-local-variable 'company-backends) '(company-go))
+    (set (make-local-variable 'compile-command) "go generate && go build -v && go test -v && go vet")
     (company-mode 1))
   :hook (go-mode-hook . cr-go-mode-settings))
 
