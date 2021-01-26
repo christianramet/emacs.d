@@ -227,10 +227,9 @@
 
 (use-package battery
   :straight nil
-  :demand
   :commands (battery display-battery-mode)
-  :config (setq battery-mode-line-limit 85)
-  (display-battery-mode 1)
+  :custom (battery-mode-line-limit 85)
+  :hook (after-init-hook . display-battery-mode)
   :bind (:map cr-toggle-map
               ("b" . display-battery-mode)))
 
