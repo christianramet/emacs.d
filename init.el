@@ -664,13 +664,13 @@ For ediff hooks usage"
   :hook (flycheck-mode-hook . flycheck-popup-tip-mode))
 
 (use-package flyspell
+  :custom
+  (ispell-program-name (executable-find "aspell"))
+  (ispell-dictionary "en_US")
+  (ispell-silently-savep t)
+  (flyspell-issue-welcome-flag nil)
+  (flyspell-issue-message-flag nil)
   :config
-  (setq ispell-program-name (executable-find "aspell")
-        ispell-dictionary "en_US"
-        ispell-silently-savep t
-        flyspell-issue-welcome-flag nil
-        flyspell-issue-message-flag nil)
-
   (defun cr-ispell-set-dict (dict)
     (setq ispell-dictionary dict)
     (ispell-change-dictionary dict))
