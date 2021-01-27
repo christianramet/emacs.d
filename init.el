@@ -649,6 +649,10 @@ For ediff hooks usage"
    '(org-verbatim              ((t (:inherit fixed-pitch)))))
   :bind (:map cr-toggle-map ("p" . variable-pitch-mode)))
 
+(use-package ffap
+  :straight nil
+  :bind ("M-g f" . find-file-at-point))
+
 (use-package flycheck
   :commands (flycheck-mode global-flycheck-mode)
   :config
