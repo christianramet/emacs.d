@@ -1263,7 +1263,6 @@ For ediff hooks usage"
   :after counsel
   :bind (:map cr-search-map
               ("a" . swiper-all)
-              ("b" . swiper-isearch)
               ("s" . swiper-isearch)
               ("." . swiper-isearch-thing-at-point)))
 
