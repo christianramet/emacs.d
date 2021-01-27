@@ -368,7 +368,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map cr-emacs-map
                ("e" . cr-edit-emacs-init-config)
                ("q" . cr-emacs-quit)
-               ("R" . cr-reload-emacs)
+               ("r" . cr-reload-emacs)
                ("t" . cr-test-emacs-config))
          (:map cr-search-map
                ("h" . cr-github-search)
