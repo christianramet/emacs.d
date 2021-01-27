@@ -203,4 +203,12 @@ Requires wkhtmltopdf"
       (error "No number at point"))
   (replace-match (number-to-string (1- (string-to-number (match-string 0))))))
 
+(defun cr-switch-to-last-buffer ()
+  "Switch to last open buffer in current window.
+Source: `windower.el' by Ambrevar."
+  (interactive)
+  (if (window-dedicated-p)
+      (message "Window is dedicated to its buffer")
+    (switch-to-buffer (other-buffer (current-buffer) 1))))
+
 (provide 'cr-functions)
