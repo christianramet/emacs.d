@@ -341,10 +341,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package cr-counsel-terms
   :straight nil
   :commands (cr-counsel-vterm cr-counsel-eshell)
-  :bind (("M-]" . cr-counsel-vterm)
-         (:map cr-app-map
+  :bind (:map cr-app-map
               ("e" . cr-counsel-eshell)
-              ("t" . cr-counsel-vterm))))
+              ("t" . cr-counsel-vterm)))
 
 (use-package cr-functions
   :straight nil
