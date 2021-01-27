@@ -1174,7 +1174,9 @@ For ediff hooks usage"
                ("p" . previous-line))
          (:map cr-text-map
               ("f" . flush-lines)
-              ("k" . keep-lines))))
+              ("k" . keep-lines)
+              ("r" . query-replace)
+              ("R" . query-replace-regexp))))
 
 (use-package ripgrep
   :bind (:map cr-search-map ("g" . ripgrep-regexp)))
