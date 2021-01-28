@@ -1259,6 +1259,8 @@ For ediff hooks usage"
   (add-hook 'sql-interactive-mode-hook 'cr-isql-config)
   :bind ((:map cr-app-map ("s" . sql-connect))))
 
+(use-package ssh-config-mode)
+
 (use-package swiper
   :after counsel
   :bind (:map cr-search-map
