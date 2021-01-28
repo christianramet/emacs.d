@@ -153,6 +153,7 @@
   :bind ("M-g o" . ace-link))
 
 (use-package ace-window
+  :disabled
   :diminish
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
@@ -1348,6 +1349,11 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
 (use-package whitespace
   :bind (:map cr-toggle-map ("SPC" . whitespace-mode)))
+
+(use-package window
+  :if (not (featurep 'ace-window))
+  :straight nil
+  :bind ("M-o" . other-window))
 
 (use-package woman
   :bind (:map cr-app-map ("m" . woman)))
