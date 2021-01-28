@@ -657,11 +657,11 @@ For ediff hooks usage"
 
 (use-package flycheck
   :commands (flycheck-mode global-flycheck-mode)
-  :config
-  (setq flycheck-idle-change-delay 0.5
-        flycheck-standard-error-navigation t
-        flycheck-indication-mode 'left-fringe
-        flycheck-global-modes t)
+  :custom
+  (flycheck-idle-change-delay 0.5)
+  (lycheck-standard-error-navigation t)
+  (flycheck-indication-mode 'left-fringe)
+  (flycheck-global-modes t)
   :hook (prog-mode-hook . flycheck-mode)
   :bind (:map cr-toggle-map
               ("f" . flycheck-mode)
