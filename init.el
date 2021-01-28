@@ -877,7 +877,8 @@ For ediff hooks usage"
               ("b" . magit-branch-checkout)
               ("B" . magit-blame)
               ("c" . magit-clone)
-              ("g" . magit-status)))
+              ("g" . magit-status)
+              ("p" . magit-pull-from-upstream)))
 
 (use-package markdown-mode
   :commands markdown-mode
