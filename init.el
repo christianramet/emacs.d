@@ -75,7 +75,9 @@
               indent-tabs-mode nil
               tab-width 4)
 
-(setq initial-major-mode 'lisp-interaction-mode
+
+(setq default-directory "~/"
+      initial-major-mode 'lisp-interaction-mode
       initial-scratch-message nil
       inhibit-startup-screen t
       disabled-command-function nil
