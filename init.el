@@ -74,7 +74,7 @@
                             (vertical-scroll-bars . nil)
                             (left-fringe . 8)
                             (right-fringe . 8)
-                            (fullscreen . fullboth)))
+                            (fullscreen . maximized)))
 
 (setq-default fill-column 70
               indicate-empty-lines nil
