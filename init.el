@@ -657,7 +657,6 @@ For ediff hooks usage"
   :hook (flycheck-mode-hook . flycheck-popup-tip-mode))
 
 (use-package flyspell
-  :disabled
   :custom
   (ispell-program-name (executable-find "aspell"))
   (ispell-dictionary "en_US")
