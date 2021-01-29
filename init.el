@@ -307,11 +307,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t)
   :config
-  (defvar cr-theme-dark 'doom-one)
   (defvar cr-theme-light 'doom-one-light)
+  (defvar cr-theme-dark 'doom-one)
 
   (defvar cr-theme-default cr-theme-light)
-  (defvar cr-theme-pair `(,cr-theme-dark ,cr-theme-light))
+  (defvar cr-theme-pair `(,cr-theme-light ,cr-theme-dark))
 
   (load-theme cr-theme-default t)
   (doom-themes-org-config)
