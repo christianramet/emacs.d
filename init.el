@@ -69,12 +69,18 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(setq default-frame-alist '((menu-bar-lines . 0)
+                            (tool-bar-lines . 0)
+                            (vertical-scroll-bars . nil)
+                            (left-fringe . 8)
+                            (right-fringe . 8)
+                            (fullscreen . fullboth)))
+
 (setq-default fill-column 70
               indicate-empty-lines nil
               indicate-buffer-boundaries nil
               indent-tabs-mode nil
               tab-width 4)
-
 
 (setq default-directory "~/"
       initial-major-mode 'lisp-interaction-mode
@@ -307,26 +313,14 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map cr-git-map
                ("l" . counsel-git-log))))
 
-(use-package cr-appearance
-  :straight modus-operandi-theme
-  :straight modus-vivendi-theme
-  :straight leuven-theme
-  :straight doom-themes
+(use-package doom-themes
   :demand
   :custom
-  (cr-theme-default 'doom-one-light)
-  (cr-font-size 15)
-  (cr-font-default "DejaVu Sans Mono")
-  (cr-font-fixed "DejaVu Sans Mono")
-  (cr-font-variable "DejaVu Sans")
-  (default-frame-alist '((menu-bar-lines . 0)
-                         (tool-bar-lines . 0)
-                         (vertical-scroll-bars . nil)
-                         (left-fringe . 8)
-                         (right-fringe . 8)))
+  (doom-themes-enable-bold t)
+  (doom-themes-enable-italic t)
   :config
-  (blink-cursor-mode 0)
-  (global-hl-line-mode 1))
+  (load-theme 'doom-one-light t)
+  (doom-themes-org-config))
 
 (use-package cr-counsel-terms
   :straight nil
@@ -762,7 +756,7 @@ For ediff hooks usage"
 
 (use-package hl-line
   :straight nil
-  :hook (ibuffer-mode-hook . hl-line-mode)
+  :hook (after-init-hook . global-hl-line-mode)
   :bind (:map cr-toggle-map
               ("h" . hl-line-mode)
               ("H" . global-hl-line-mode)))
