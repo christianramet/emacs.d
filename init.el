@@ -393,15 +393,13 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package dired
   :straight nil
+  :custom
+  (dired-dwim-target t)
+  (dired-recursive-copies 'always)
+  (dired-recursive-deletes 'always)
+  (delete-by-moving-to-trash t)
+  (dired-listing-switches "-lahv --group-directories-first") ;; requires ls from coreutils on MacOS
   :config
-  (if (eq system-type 'darwin)
-      (setq dired-listing-switches "-lahv")
-    (setq dired-listing-switches "-lahv --group-directories-first"))
-
-  (setq dired-dwim-target t
-        dired-recursive-copies 'always
-        dired-recursive-deletes 'always
-        delete-by-moving-to-trash t)
   (put 'dired-find-alternate-file 'disabled nil)
 
   (defvar cr-dired-sort-base "-lahv")
@@ -428,7 +426,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (define-key dired-mode-map (kbd "e") 'ediff-files)
   (define-key dired-mode-map (kbd "s") 'cr-dired-sort-map)
 
-  ;; (add-hook 'dired-mode-hook 'dired-hide-details-mode)
+  (add-hook 'dired-mode-hook 'dired-hide-details-mode)
   (add-hook 'dired-mode-hook 'hl-line-mode)
   :bind (:map dired-mode-map ("K" . dired-kill-subdir)))
 
@@ -744,13 +742,13 @@ For ediff hooks usage"
 
 (use-package hl-line
   :straight nil
-  :hook (after-init-hook . global-hl-line-mode)
   :bind (:map cr-toggle-map
               ("h" . hl-line-mode)
               ("H" . global-hl-line-mode)))
 
 (use-package ibuffer
   :straight nil
+  :config (add-hook 'ibuffer-mode-hook 'hl-line-mode)
   :bind (("C-x C-b" . ibuffer)
          (:map ibuffer-mode-map
                ("M-o")
