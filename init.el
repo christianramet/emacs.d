@@ -326,14 +326,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                          (right-fringe . 8)))
   :config
   (blink-cursor-mode 0)
-  (global-hl-line-mode 1)
-  ;; (custom-theme-set-faces
-  ;;  'user
-  ;;  '(flycheck-warning ((t (:background nil :weight normal :underline (:style line :color "orange")))))
-  ;;  '(flycheck-error ((t (:background nil :weight normal :underline (:style line :color "red")))))
-  ;;  '(flyspell-incorrect ((t (:background nil :underline (:style wave :color "red")))))
-  ;;  '(flyspell-duplicate ((t (:background nil :underline (:style wave :color "blue"))))))
-  )
+  (global-hl-line-mode 1))
 
 (use-package cr-counsel-terms
   :straight nil
