@@ -1,26 +1,12 @@
-(defcustom cr-theme-dark 'wombat "Dark theme.")
-(defcustom cr-theme-light 'leuven "Light theme.")
-(defcustom cr-theme-default cr-theme-light "Default theme.")
+(defcustom cr-theme-default nil "Default theme.")
 (defcustom cr-theme-fallback 'leuven "Theme to use when `cr-theme-default' is unavailable.")
-
 (defcustom cr-font-size 14 "Default font size.")
 (defcustom cr-font-default "DejaVu Sans Mono" "Default font name.")
 (defcustom cr-font-fixed "DejaVu Sans Mono" "Fixed pitch font name.")
 (defcustom cr-font-variable "DejaVu Sans" "Variable pitch font name.")
 
-(defun cr--load-theme (x)
-  "Load X theme by first unloading all the current ones."
-  (mapc #'disable-theme custom-enabled-themes)
-  (load-theme x t))
+;;; Force consistency accross Emacs terminal, Emacs GUI, and Emacs daemon.
 
-(defun cr-toggle-themes-light-dark ()
-  "Toggle between 2 preset themes: a light and a dark one."
-  (interactive)
-  (if (eq (car custom-enabled-themes) cr-theme-light)
-      (cr--load-theme cr-theme-dark)
-    (cr--load-theme cr-theme-light)))
-
-;;; Allows consistency accross Emacs terminal, Emacs GUI, and Emacs daemon.
 (defun cr--set-theme (&optional frame)
   (when frame
     (select-frame frame))

@@ -298,7 +298,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("C-c i"   . counsel-imenu)
          ([remap jump-to-register]   . counsel-register)
          (:map cr-toggle-map
-               ("T" . counsel-load-theme))
+               ("t" . counsel-load-theme))
          (:map cr-search-map
                ("f" . counsel-file-jump)
                ("l" . counsel-locate)
@@ -314,32 +314,26 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight doom-themes
   :demand
   :custom
-  (cr-theme-dark 'doom-one)
-  (cr-theme-light 'doom-one-light)
-  (cr-theme-default cr-theme-light)
+  (cr-theme-default 'doom-one-light)
   (cr-font-size 15)
   (cr-font-default "DejaVu Sans Mono")
   (cr-font-fixed "DejaVu Sans Mono")
   (cr-font-variable "DejaVu Sans")
+  (default-frame-alist '((menu-bar-lines . 0)
+                         (tool-bar-lines . 0)
+                         (vertical-scroll-bars . nil)
+                         (left-fringe . 8)
+                         (right-fringe . 8)))
   :config
   (blink-cursor-mode 0)
   (global-hl-line-mode 1)
-
-  (setq default-frame-alist '((menu-bar-lines . 0)
-                              (tool-bar-lines . 0)
-                              (vertical-scroll-bars . nil)
-                              (left-fringe . 8)
-                              (right-fringe . 8)))
-
-  ;; (add-to-list 'initial-frame-alist '(fullscreen . fullboth)))
-
   ;; (custom-theme-set-faces
   ;;  'user
   ;;  '(flycheck-warning ((t (:background nil :weight normal :underline (:style line :color "orange")))))
   ;;  '(flycheck-error ((t (:background nil :weight normal :underline (:style line :color "red")))))
   ;;  '(flyspell-incorrect ((t (:background nil :underline (:style wave :color "red")))))
   ;;  '(flyspell-duplicate ((t (:background nil :underline (:style wave :color "blue"))))))
-  :bind (:map cr-toggle-map ("t" . cr-toggle-themes-light-dark)))
+  )
 
 (use-package cr-counsel-terms
   :straight nil
@@ -676,6 +670,7 @@ For ediff hooks usage"
   :hook (flycheck-mode-hook . flycheck-popup-tip-mode))
 
 (use-package flyspell
+  :disabled
   :custom
   (ispell-program-name (executable-find "aspell"))
   (ispell-dictionary "en_US")
