@@ -309,7 +309,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :config
   (defvar cr-theme-light 'doom-one-light)
   (defvar cr-theme-dark 'doom-one)
-
   (defvar cr-theme-default cr-theme-light)
   (defvar cr-theme-pair `(,cr-theme-light ,cr-theme-dark))
 
@@ -317,6 +316,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (doom-themes-org-config)
 
   (defun cr-theme-toggle ()
+    "Toggle between 2 themes defined in `cr-theme-pair'"
     (interactive)
     (let ((new-theme (car (remove (car custom-enabled-themes) cr-theme-pair))))
       (mapcar #'disable-theme custom-enabled-themes)
