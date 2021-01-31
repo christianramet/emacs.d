@@ -676,14 +676,14 @@ For ediff hooks usage"
          (cr-ispell-set-dict "en_US"))
 
   (defun cr-save-word-to-pdict ()
-    "Save word at point to the currently active personal dictionary"
+    "Save word at point to the personal dictionary"
     (interactive)
     (let ((current-location (point))
           (word (flyspell-get-word)))
       (when (consp word)
         (flyspell-do-correct 'save nil (car word)
-        current-location (cadr word) (caddr word)
-        current-location))))
+                             current-location (cadr word) (caddr word)
+                             current-location))))
 
   :hook ((org-mode-hook . flyspell-mode)
          (prog-mode-hook . flyspell-prog-mode))
@@ -796,7 +796,6 @@ For ediff hooks usage"
   (with-eval-after-load 'grep
     (define-key ivy-occur-grep-mode-map (kbd "n") 'next-error)
     (define-key ivy-occur-grep-mode-map (kbd "p") 'previous-error))
-
   :bind ("C-c r" . ivy-resume))
 
 (use-package ivy-pass
@@ -1165,10 +1164,10 @@ For ediff hooks usage"
                ("n" . next-line)
                ("p" . previous-line))
          (:map cr-text-map
-              ("f" . flush-lines)
-              ("k" . keep-lines)
-              ("r" . query-replace)
-              ("R" . query-replace-regexp))))
+               ("f" . flush-lines)
+               ("k" . keep-lines)
+               ("r" . query-replace)
+               ("R" . query-replace-regexp))))
 
 (use-package ripgrep
   :bind (:map cr-search-map ("g" . ripgrep-regexp)))
