@@ -820,6 +820,7 @@ For ediff hooks usage"
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 (use-package kubernetes
+  :if (executable-find "kubectl")
   :bind (:map cr-app-map ("k" . kubernetes-overview)))
 
 (use-package langtool
