@@ -823,12 +823,11 @@ For ediff hooks usage"
   :bind (:map cr-app-map ("k" . kubernetes-overview)))
 
 (use-package langtool
-  :config
-  (setq langtool-language-tool-jar "~/opt/languagetool.org/languagetool-commandline.jar")
-  (setq langtool-disabled-rules '("DASH_RULE" "WHITESPACE_RULE" "EN_UNPAIRED_BRACKETS"
-                                  "COMMA_PARENTHESIS_WHITESPACE" "EN_QUOTES"
-                                  "MORFOLOGIK_RULE_EN_GB" "MORFOLOGIK_RULE_US"))
-
+  :custom
+  (langtool-default-language 'auto)
+  (langtool-disabled-rules '("DASH_RULE" "WHITESPACE_RULE" "EN_UNPAIRED_BRACKETS"
+                             "COMMA_PARENTHESIS_WHITESPACE" "EN_QUOTES"
+                             "MORFOLOGIK_RULE_EN_GB" "MORFOLOGIK_RULE_US"))
   :bind (:map cr-grammar-map
               ("v" . langtool-check)
               ("b" . langtool-correct-buffer)
@@ -836,6 +835,10 @@ For ediff hooks usage"
               ("n" . langtool-goto-next-error)
               ("p" . langtool-goto-previous-error)
               ("q" . langtool-check-done)))
+
+(use-package langtool
+  :if (eq system-name "t460")
+  :custom (langtool-language-tool-jar "~/opt/languagetool.org/languagetool-commandline.jar"))
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
