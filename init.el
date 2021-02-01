@@ -440,7 +440,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (define-key dired-mode-map (kbd "e") 'ediff-files)
   (define-key dired-mode-map (kbd "s") 'cr-dired-sort-map)
 
-  (add-hook 'dired-mode-hook 'dired-hide-details-mode)
+  ;; (add-hook 'dired-mode-hook 'dired-hide-details-mode)
   (add-hook 'dired-mode-hook 'hl-line-mode)
   :bind (:map dired-mode-map ("K" . dired-kill-subdir)))
 
