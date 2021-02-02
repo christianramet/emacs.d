@@ -392,7 +392,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :mode "\\.csv\\'")
 
 (use-package deft
-  :disabled
   :custom
   (deft-recursive nil)
   (deft-use-filter-string-for-filename t)
