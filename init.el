@@ -575,28 +575,28 @@ For ediff hooks usage"
 (use-package eshell
   :straight nil
   :commands (eshell eshell-command)
+  :custom
+  (eshell-ls-use-colors t)
+  (eshell-history-size 1024)
+  (eshell-hist-ignoredups t)
+  (eshell-destroy-buffer-when-process-dies t)
+  (eshell-visual-commands '("crontab" "tmux" "htop" "tail" "vi" "screen" "top" "less" "more"))
+  (eshell-modules-list '(eshell-alias
+                         ;; eshell-banner
+                         eshell-basic
+                         eshell-cmpl
+                         eshell-dirs
+                         eshell-glob
+                         eshell-hist
+                         eshell-ls
+                         eshell-pred
+                         eshell-prompt
+                         eshell-script
+                         eshell-smart
+                         eshell-term
+                         eshell-tramp
+                         eshell-unix))
   :config
-  (setq eshell-ls-use-colors t
-        eshell-history-size 1024
-        eshell-hist-ignoredups t
-        eshell-modules-list '(eshell-alias
-                              ;; eshell-banner
-                              eshell-basic
-                              eshell-cmpl
-                              eshell-dirs
-                              eshell-glob
-                              eshell-hist
-                              eshell-ls
-                              eshell-pred
-                              eshell-prompt
-                              eshell-script
-                              eshell-smart
-                              eshell-term
-                              eshell-tramp
-                              eshell-unix)
-        eshell-visual-commands '("crontab" "tmux" "htop" "tail" "vi" "screen" "top" "less" "more")
-        eshell-destroy-buffer-when-process-dies t)
-
   (defalias 'v 'eshell-exec-visual)
 
   (defun cr-eshell-settings ()
