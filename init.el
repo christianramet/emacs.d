@@ -798,7 +798,7 @@ For ediff hooks usage"
 
 (use-package ivy-rich
   :after ivy
-  :defer 2
+  :defer 10
   :config
   (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
   (setq ivy-rich-parse-remote-buffer nil
@@ -1336,7 +1336,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
 (use-package which-key
   :commands which-key-mode
-  :defer 2
+  :defer 10
   :diminish
   :custom
   (which-key-idle-delay 0.5)
@@ -1378,7 +1378,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
 (use-package yasnippet
   :commands (yas-expand company-yasnippet)
-  :defer 2
+  :defer 5
   :diminish yas-minor-mode
   :config
   (setq yas-verbosity 2)
