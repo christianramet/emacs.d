@@ -481,7 +481,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight all-the-icons
   :custom
   (doom-modeline-icon nil)
-  (doom-modeline-height 1)
+  (doom-modeline-height 1) ;; respects the actual char height
   (doom-modeline-vcs-max-length 18)
   (doom-modeline-buffer-encoding nil)
   (doom-modeline-project-detection 'projectile)
