@@ -1155,9 +1155,8 @@ For ediff hooks usage"
   :config
   (add-to-list 'recentf-exclude "COMMIT_MSG")
   (add-to-list 'recentf-exclude "COMMIT_EDITMSG")
-  (when (featurep 'no-littering)
-    (add-to-list 'recentf-exclude no-littering-var-directory)
-    (add-to-list 'recentf-exclude no-littering-etc-directory)))
+  (with-eval-after-load 'no-littering
+    (add-to-list 'recentf-exclude no-littering-var-directory)))
 
 (use-package replace
   :straight nil
