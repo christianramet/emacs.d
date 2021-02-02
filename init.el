@@ -188,14 +188,14 @@
   :straight nil
   :diminish (auto-revert-mode global-auto-revert-mode)
   :defer 2
+  :custom
+  (auto-revert-verbose t)
+  (auto-revert-use-notify t)
+  (revert-without-query (list "."))
+  (auto-revert-stop-on-user-input nil)
+  (global-auto-revert-non-file-buffers t)
+  (auto-revert-remote-files nil)
   :config
-  (setq auto-revert-verbose t
-        auto-revert-use-notify t
-        revert-without-query (list ".")
-        auto-revert-stop-on-user-input nil
-        global-auto-revert-non-file-buffers t
-        auto-revert-remote-files nil)
-
   ;; Prevent showing buffer reversion message while working in the minibuffer
   ;; Source: https://emacs.stackexchange.com/questions/46690
   (advice-add
