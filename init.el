@@ -350,6 +350,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map cr-text-map
                ("DEL" . cr-flush-blank-lines)
                ("c"   . cr-collapse-blank-lines)
+               ("u"   . cr-uniquify-lines)
                ("+"   . cr-increment-number-at-point)
                ("-"   . cr-decrement-number-at-point))
          (:map cr-emacs-map
