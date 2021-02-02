@@ -297,28 +297,32 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map cr-git-map
                ("l" . counsel-git-log))))
 
-(use-package doom-themes
+(use-package cr-themes
+  :straight nil
   :demand
   :custom
-  (doom-themes-enable-bold t)
-  (doom-themes-enable-italic t)
+  (cr-themes-light 'doom-one-light)
+  (cr-themes-dark 'doom-one)
+  (cr-themes-default cr-themes-light)
+  :bind (:map cr-toggle-map ("t" . cr-themes-toggle))
   :config
-  (defvar cr-theme-light 'doom-one-light)
-  (defvar cr-theme-dark 'doom-one)
-  (defvar cr-theme-default cr-theme-light)
-  (defvar cr-theme-pair `(,cr-theme-light ,cr-theme-dark))
-
-  (load-theme cr-theme-default t)
-  (doom-themes-org-config)
-
-  (defun cr-theme-toggle ()
-    "Toggle between 2 themes defined in `cr-theme-pair'"
-    (interactive)
-    (let ((new-theme (car (remove (car custom-enabled-themes) cr-theme-pair))))
-      (mapcar #'disable-theme custom-enabled-themes)
-      (load-theme new-theme t)))
-
-  :bind (:map cr-toggle-map ("t" . cr-theme-toggle)))
+  (use-package doom-themes
+    :custom
+    (doom-themes-enable-bold t)
+    (doom-themes-enable-italic t))
+  (use-package modus-operandi-theme
+    :custom
+    (modus-operandi-theme-scale-headings nil)
+    (modus-operandi-theme-org-blocks 'rainbow)
+    (modus-operandi-theme-slanted-constructs t)
+    (modus-operandi-theme-bold-constructs t))
+  (use-package modus-vivendi-theme
+    :custom
+    (modus-vivendi-theme-scale-headings nil)
+    (modus-vivendi-theme-org-blocks 'rainbow)
+    (modus-vivendi-theme-slanted-constructs t)
+    (modus-vivendi-theme-bold-constructs t))
+  (load-theme cr-themes-default t))
 
 (use-package cr-counsel-terms
   :straight nil
@@ -866,20 +870,6 @@ For ediff hooks usage"
 (use-package markdown-mode
   :commands markdown-mode
   :mode ("\\.md\\'" "\\.markdown\\'"))
-
-(use-package modus-operandi-theme
-  :custom
-  (modus-operandi-theme-scale-headings nil)
-  (modus-operandi-theme-org-blocks 'rainbow)
-  (modus-operandi-theme-slanted-constructs t)
-  (modus-operandi-theme-bold-constructs t))
-
-(use-package modus-vivendi-theme
-  :custom
-  (modus-vivendi-theme-scale-headings nil)
-  (modus-vivendi-theme-org-blocks 'rainbow)
-  (modus-vivendi-theme-slanted-constructs t)
-  (modus-vivendi-theme-bold-constructs t))
 
 (use-package multiple-cursors
   :bind (("C-c C-SPC"     . mc/edit-lines)
