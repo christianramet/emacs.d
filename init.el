@@ -480,8 +480,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight doom-modeline
   :straight all-the-icons
   :custom
+  (doom-modeline-icon nil)
+  (doom-modeline-height 1)
   (doom-modeline-vcs-max-length 18)
-  (doom-modeline-icon t)
   (doom-modeline-buffer-encoding nil)
   (doom-modeline-project-detection 'projectile)
   :hook (after-init-hook . doom-modeline-mode))
