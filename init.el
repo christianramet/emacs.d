@@ -1168,6 +1168,12 @@ For ediff hooks usage"
                ("r" . query-replace)
                ("R" . query-replace-regexp))))
 
+(use-package restclient
+  :straight restclient
+  :straight ob-restclient
+  :mode ("\\.http\\'" . restclient-mode)
+  :bind (:map restclient-mode-map ("C-c n n" . nil)))
+
 (use-package ripgrep
   :bind (:map cr-search-map ("g" . ripgrep-regexp)))
 
