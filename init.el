@@ -188,14 +188,14 @@
   :straight nil
   :diminish (auto-revert-mode global-auto-revert-mode)
   :defer 2
+  :custom
+  (auto-revert-verbose t)
+  (auto-revert-use-notify t)
+  (revert-without-query (list "."))
+  (auto-revert-stop-on-user-input nil)
+  (global-auto-revert-non-file-buffers t)
+  (auto-revert-remote-files nil)
   :config
-  (setq auto-revert-verbose t
-        auto-revert-use-notify t
-        revert-without-query (list ".")
-        auto-revert-stop-on-user-input nil
-        global-auto-revert-non-file-buffers t
-        auto-revert-remote-files nil)
-
   ;; Prevent showing buffer reversion message while working in the minibuffer
   ;; Source: https://emacs.stackexchange.com/questions/46690
   (advice-add
@@ -226,10 +226,6 @@
   ;; :hook (after-init-hook . display-battery-mode)
   :bind (:map cr-toggle-map
               ("b" . display-battery-mode)))
-
-(use-package bindings
-  :straight nil
-  :bind ("M-[" . mode-line-other-buffer))
 
 (use-package browse-url
   :config
@@ -301,28 +297,32 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map cr-git-map
                ("l" . counsel-git-log))))
 
-(use-package doom-themes
+(use-package cr-themes
+  :straight nil
   :demand
   :custom
-  (doom-themes-enable-bold t)
-  (doom-themes-enable-italic t)
+  (cr-themes-light 'doom-one-light)
+  (cr-themes-dark 'doom-one)
+  (cr-themes-default cr-themes-light)
+  :bind (:map cr-toggle-map ("t" . cr-themes-toggle))
   :config
-  (defvar cr-theme-light 'doom-one-light)
-  (defvar cr-theme-dark 'doom-one)
-  (defvar cr-theme-default cr-theme-light)
-  (defvar cr-theme-pair `(,cr-theme-light ,cr-theme-dark))
-
-  (load-theme cr-theme-default t)
-  (doom-themes-org-config)
-
-  (defun cr-theme-toggle ()
-    "Toggle between 2 themes defined in `cr-theme-pair'"
-    (interactive)
-    (let ((new-theme (car (remove (car custom-enabled-themes) cr-theme-pair))))
-      (mapcar #'disable-theme custom-enabled-themes)
-      (load-theme new-theme t)))
-
-  :bind (:map cr-toggle-map ("t" . cr-theme-toggle)))
+  (use-package doom-themes
+    :custom
+    (doom-themes-enable-bold t)
+    (doom-themes-enable-italic t))
+  (use-package modus-operandi-theme
+    :custom
+    (modus-operandi-theme-scale-headings nil)
+    (modus-operandi-theme-org-blocks 'rainbow)
+    (modus-operandi-theme-slanted-constructs t)
+    (modus-operandi-theme-bold-constructs t))
+  (use-package modus-vivendi-theme
+    :custom
+    (modus-vivendi-theme-scale-headings nil)
+    (modus-vivendi-theme-org-blocks 'rainbow)
+    (modus-vivendi-theme-slanted-constructs t)
+    (modus-vivendi-theme-bold-constructs t))
+  (load-theme cr-themes-default t))
 
 (use-package cr-counsel-terms
   :straight nil
@@ -336,7 +336,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (([remap kill-region]    . cr-backward-kill-word-or-region)
          ([remap comment-dwim]   . cr-comment-or-uncomment-line-or-region)
          ([remap fill-paragraph] . cr-fill-or-unfill-paragraph)
-         ("M-[" . cr-switch-to-last-buffer)
+         ("C-c [" . cr-switch-to-last-buffer)
          (:map cr-buffer-map
                ("n" . cr-new-empty-buffer)
                ("r" . cr-rename-buffer)
@@ -350,6 +350,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map cr-text-map
                ("DEL" . cr-flush-blank-lines)
                ("c"   . cr-collapse-blank-lines)
+               ("u"   . cr-uniquify-lines)
                ("+"   . cr-increment-number-at-point)
                ("-"   . cr-decrement-number-at-point))
          (:map cr-emacs-map
@@ -364,9 +365,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package cr-immortal-buffers
   :straight nil
   :demand
-  :config
-  (setq cr--immortal-buffers-list '("*scratch*"
-                                    "*Messages")))
+  :custom (cr--immortal-buffers-list '("*scratch*" "*Messages")))
 
 (use-package cr-open-external
   :straight nil
@@ -393,7 +392,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :mode "\\.csv\\'")
 
 (use-package deft
-  :disabled
   :custom
   (deft-recursive nil)
   (deft-use-filter-string-for-filename t)
@@ -576,36 +574,36 @@ For ediff hooks usage"
 (use-package eshell
   :straight nil
   :commands (eshell eshell-command)
+  :custom
+  (eshell-ls-use-colors t)
+  (eshell-history-size 1024)
+  (eshell-hist-ignoredups t)
+  (eshell-destroy-buffer-when-process-dies t)
+  (eshell-visual-commands '("crontab" "tmux" "htop" "tail" "vi" "screen" "top" "less" "more"))
+  (eshell-modules-list '(eshell-alias
+                         ;; eshell-banner
+                         eshell-basic
+                         eshell-cmpl
+                         eshell-dirs
+                         eshell-glob
+                         eshell-hist
+                         eshell-ls
+                         eshell-pred
+                         eshell-prompt
+                         eshell-script
+                         eshell-smart
+                         eshell-term
+                         eshell-tramp
+                         eshell-unix))
   :config
-  (setq eshell-ls-use-colors t
-        eshell-history-size 1024
-        eshell-hist-ignoredups t
-        eshell-modules-list '(eshell-alias
-                              ;; eshell-banner
-                              eshell-basic
-                              eshell-cmpl
-                              eshell-dirs
-                              eshell-glob
-                              eshell-hist
-                              eshell-ls
-                              eshell-pred
-                              eshell-prompt
-                              eshell-script
-                              eshell-smart
-                              eshell-term
-                              eshell-tramp
-                              eshell-unix)
-        eshell-visual-commands '("crontab" "tmux" "htop" "tail" "vi" "screen" "top" "less" "more")
-        eshell-destroy-buffer-when-process-dies t)
-
   (defalias 'v 'eshell-exec-visual)
 
   (defun cr-eshell-settings ()
     (company-mode -1)
     (setenv "PAGER""cat")
     (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)
-    (when (featurep 'counsel)
-      (define-key eshell-mode-map (kbd "C-r") 'counsel-esh-history)))
+    (with-eval-after-load 'counsel)
+      (define-key eshell-mode-map (kbd "C-r") 'counsel-esh-history))
 
   (add-hook 'eshell-mode-hook 'cr-eshell-settings))
 
@@ -658,22 +656,17 @@ For ediff hooks usage"
 
 (use-package flyspell
   :custom
-  (ispell-program-name (executable-find "aspell"))
-  (ispell-dictionary "en_US")
   (ispell-silently-savep t)
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil)
   :config
-  (defun cr-ispell-set-dict (dict)
-    (setq ispell-dictionary dict)
-    (ispell-change-dictionary dict))
+  (defun cr-ispell-set-FR ()
+    (interactive)
+    (ispell-change-dictionary "francais"))
 
-  (defun cr-ispell-set-FR () "Set ispell dict language to FR"
-         (interactive)
-         (cr-ispell-set-dict "fr_FR"))
-  (defun cr-ispell-set-EN () "Set ispell dict language to EN"
-         (interactive)
-         (cr-ispell-set-dict "en_US"))
+  (defun cr-ispell-set-EN ()
+    (interactive)
+    (ispell-change-dictionary "english"))
 
   (defun cr-save-word-to-pdict ()
     "Save word at point to the personal dictionary"
@@ -690,6 +683,7 @@ For ediff hooks usage"
   :bind ((:map cr-toggle-map ("z" . flyspell-mode))
          (:map cr-spell-map
                ("b" . flyspell-buffer)
+               ("d" . ispell-change-dictionary)
                ("e" . cr-ispell-set-EN)
                ("f" . cr-ispell-set-FR)
                ("r" . flyspell-region)
@@ -804,7 +798,7 @@ For ediff hooks usage"
 
 (use-package ivy-rich
   :after ivy
-  :defer 2
+  :defer 10
   :config
   (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
   (setq ivy-rich-parse-remote-buffer nil
@@ -876,20 +870,6 @@ For ediff hooks usage"
 (use-package markdown-mode
   :commands markdown-mode
   :mode ("\\.md\\'" "\\.markdown\\'"))
-
-(use-package modus-operandi-theme
-  :custom
-  (modus-operandi-theme-scale-headings nil)
-  (modus-operandi-theme-org-blocks 'rainbow)
-  (modus-operandi-theme-slanted-constructs t)
-  (modus-operandi-theme-bold-constructs t))
-
-(use-package modus-vivendi-theme
-  :custom
-  (modus-vivendi-theme-scale-headings nil)
-  (modus-vivendi-theme-org-blocks 'rainbow)
-  (modus-vivendi-theme-slanted-constructs t)
-  (modus-vivendi-theme-bold-constructs t))
 
 (use-package multiple-cursors
   :bind (("C-c C-SPC"     . mc/edit-lines)
@@ -1028,17 +1008,14 @@ For ediff hooks usage"
     (push '("#+END_EXAMPLE"    . ?⇤) prettify-symbols-alist)
     (prettify-symbols-mode t))
 
-  (when (featurep 'diminish)
-    (eval-after-load 'org-indent '(diminish 'org-indent-mode)))
-
-  (add-hook 'org-mode-hook 'cr-org-settings)
   (defun cr-org-settings ()
     (setq-local delete-trailing-lines nil)
     (setq-local indicate-empty-lines nil)
     (setq-local indicate-buffer-boundaries nil)
     (cr-org-pretty-symbols)
-    (auto-fill-mode -1)
-    (org-indent-mode 1))
+    (auto-fill-mode -1))
+
+  (add-hook 'org-mode-hook 'cr-org-settings)
 
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
@@ -1048,6 +1025,12 @@ For ediff hooks usage"
   :after org
   :commands (org-cliplink org-cliplink-capture)
   :bind (:map org-mode-map ("C-c C-S-L" . org-cliplink)))
+
+(use-package org-indent
+  :straight nil
+  :after org
+  :diminish
+  :hook (org-mode-hook . org-indent-mode))
 
 (use-package org-noter
   :after org
@@ -1158,9 +1141,8 @@ For ediff hooks usage"
   :config
   (add-to-list 'recentf-exclude "COMMIT_MSG")
   (add-to-list 'recentf-exclude "COMMIT_EDITMSG")
-  (when (featurep 'no-littering)
-    (add-to-list 'recentf-exclude no-littering-var-directory)
-    (add-to-list 'recentf-exclude no-littering-etc-directory)))
+  (with-eval-after-load 'no-littering
+    (add-to-list 'recentf-exclude no-littering-var-directory)))
 
 (use-package replace
   :straight nil
@@ -1172,6 +1154,12 @@ For ediff hooks usage"
                ("k" . keep-lines)
                ("r" . query-replace)
                ("R" . query-replace-regexp))))
+
+(use-package restclient
+  :straight restclient
+  :straight ob-restclient
+  :mode ("\\.http\\'" . restclient-mode)
+  :bind (:map restclient-mode-map ("C-c n n" . nil)))
 
 (use-package ripgrep
   :bind (:map cr-search-map ("g" . ripgrep-regexp)))
@@ -1309,7 +1297,6 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
   (defun cr-vterm-settings ()
     (setq-local global-hl-line-mode nil))
-
   :hook (vterm-mode-hook . cr-vterm-settings)
   :bind (:map vterm-mode-map ("M-y" . cr-vterm-yank-pop)))
 
@@ -1334,7 +1321,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
 (use-package which-key
   :commands which-key-mode
-  :defer 2
+  :defer 10
   :diminish
   :custom
   (which-key-idle-delay 0.5)
@@ -1376,7 +1363,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
 (use-package yasnippet
   :commands (yas-expand company-yasnippet)
-  :defer 2
+  :defer 5
   :diminish yas-minor-mode
   :config
   (setq yas-verbosity 2)

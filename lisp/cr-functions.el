@@ -114,6 +114,11 @@ Source: Spacemacs"
   (interactive "r")
   (replace-regexp "^\n\\{2,\\}" "\n" nil start end))
 
+(defun cr-uniquify-lines (beg end)
+  "Delete duplicate consecutive lines in region."
+  (interactive "r")
+  (shell-command-on-region beg end "uniq" nil t))
+
 (defun cr-reload-emacs ()
   "Reload the main emacs configuration file."
   (interactive)
