@@ -174,22 +174,24 @@ Requires wkhtmltopdf"
 (defun cr-github-search ()
   "GitHub Search a query or region if any."
   (interactive)
+  (require 's)
   (browse-url
    (concat
     "https://github.com/search?q="
     (if mark-active
-        (buffer-substring (region-beginning) (region-end))
+        (s-replace " " "+" (buffer-substring (region-beginning) (region-end)))
       (read-string "Query: "))
     "&type=Code")))
 
 (defun cr-duckduckgo-search ()
   "DuckDuckGO a query or region if any."
   (interactive)
+  (require 's)
   (browse-url
    (concat
     "https://duckduckgo.com/?q="
     (if mark-active
-        (buffer-substring (region-beginning) (region-end))
+        (s-replace " " "+" (buffer-substring (region-beginning) (region-end)))
       (read-string "Query: ")))))
 
 (defun cr-increment-number-at-point ()
