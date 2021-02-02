@@ -658,22 +658,19 @@ For ediff hooks usage"
 
 (use-package flyspell
   :custom
-  (ispell-program-name (executable-find "aspell"))
+  ;; (ispell-program-name (executable-find "aspell"))
   (ispell-dictionary "en_US")
   (ispell-silently-savep t)
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil)
   :config
-  (defun cr-ispell-set-dict (dict)
-    (setq ispell-dictionary dict)
-    (ispell-change-dictionary dict))
+  (defun cr-ispell-set-FR ()
+    (interactive)
+    (ispell-change-dictionary "francais"))
 
-  (defun cr-ispell-set-FR () "Set ispell dict language to FR"
-         (interactive)
-         (cr-ispell-set-dict "fr_FR"))
-  (defun cr-ispell-set-EN () "Set ispell dict language to EN"
-         (interactive)
-         (cr-ispell-set-dict "en_US"))
+  (defun cr-ispell-set-EN ()
+    (interactive)
+    (ispell-change-dictionary "english"))
 
   (defun cr-save-word-to-pdict ()
     "Save word at point to the personal dictionary"
@@ -690,6 +687,7 @@ For ediff hooks usage"
   :bind ((:map cr-toggle-map ("z" . flyspell-mode))
          (:map cr-spell-map
                ("b" . flyspell-buffer)
+               ("d" . ispell-change-dictionary)
                ("e" . cr-ispell-set-EN)
                ("f" . cr-ispell-set-FR)
                ("r" . flyspell-region)
