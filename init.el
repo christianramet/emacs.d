@@ -1022,17 +1022,14 @@ For ediff hooks usage"
     (push '("#+END_EXAMPLE"    . ?⇤) prettify-symbols-alist)
     (prettify-symbols-mode t))
 
-  (when (featurep 'diminish)
-    (eval-after-load 'org-indent '(diminish 'org-indent-mode)))
-
-  (add-hook 'org-mode-hook 'cr-org-settings)
   (defun cr-org-settings ()
     (setq-local delete-trailing-lines nil)
     (setq-local indicate-empty-lines nil)
     (setq-local indicate-buffer-boundaries nil)
     (cr-org-pretty-symbols)
-    (auto-fill-mode -1)
-    (org-indent-mode 1))
+    (auto-fill-mode -1))
+
+  (add-hook 'org-mode-hook 'cr-org-settings)
 
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
@@ -1042,6 +1039,12 @@ For ediff hooks usage"
   :after org
   :commands (org-cliplink org-cliplink-capture)
   :bind (:map org-mode-map ("C-c C-S-L" . org-cliplink)))
+
+(use-package org-indent
+  :straight nil
+  :after org
+  :diminish
+  :hook (org-mode-hook . org-indent-mode))
 
 (use-package org-noter
   :after org
