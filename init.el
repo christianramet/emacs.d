@@ -365,9 +365,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package cr-immortal-buffers
   :straight nil
   :demand
-  :config
-  (setq cr--immortal-buffers-list '("*scratch*"
-                                    "*Messages")))
+  :custom (cr--immortal-buffers-list '("*scratch*" "*Messages")))
 
 (use-package cr-open-external
   :straight nil
