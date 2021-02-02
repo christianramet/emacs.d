@@ -658,8 +658,6 @@ For ediff hooks usage"
 
 (use-package flyspell
   :custom
-  ;; (ispell-program-name (executable-find "aspell"))
-  (ispell-dictionary "en_US")
   (ispell-silently-savep t)
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil)
@@ -1307,7 +1305,6 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
   (defun cr-vterm-settings ()
     (setq-local global-hl-line-mode nil))
-
   :hook (vterm-mode-hook . cr-vterm-settings)
   :bind (:map vterm-mode-map ("M-y" . cr-vterm-yank-pop)))
 
