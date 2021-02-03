@@ -32,7 +32,7 @@
  '(straight-use-package-by-default t)
  '(straight-cache-autoloads t)
  '(straight-current-profile nil)
- '(straight-vc-git-default-clone-depth 'full))
+ '(straight-vc-git-default-clone-depth 1))
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -47,9 +47,7 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(eval-when-compile
-  (straight-use-package 'use-package)
-  (require 'use-package))
+(straight-use-package 'use-package)
 
 ;;;* Early packages
 (straight-use-package 'org)
