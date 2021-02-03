@@ -160,15 +160,13 @@
   :bind ("M-g o" . ace-link))
 
 (use-package ace-window
-  :disabled
   :diminish
-  :config
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
-        aw-dispatch-always nil
-        aw-background nil
-        aw-minibuffer-flag t
-        aw-display-mode-overlay t)
-  ;; (ace-window-display-mode)
+  :custom
+  (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  (aw-dispatch-always nil)
+  (aw-background nil)
+  (aw-minibuffer-flag t)
+  (aw-display-mode-overlay t)
   :bind ("M-o" . ace-window))
 
 (use-package ag)
