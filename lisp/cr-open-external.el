@@ -2,10 +2,12 @@
 
 (defun cr--open-in-external-app (file-path)
   "Open `file-path' in external application."
-  (let ((process-connection-type nil))
-    (if (eq system-type 'darwin)
-        (start-process "" nil "open" file-path)
-      (start-process "" nil "xdg-open" file-path))))
+  (cond
+   ((eq system-type 'windows-nt)
+    (w32-shell-execute "open" (replace-regexp-in-string "/" "\\\\" file-path)))
+   ((eq system-type 'darwin) (shell-command (format "open \"%s\"" file-path)))
+   ((eq system-type 'gnu/linux) (let ((process-connection-type nil))
+                                  (start-process "" nil "xdg-open" file-path)))))
 
 (defun cr-open-file-or-directory-in-external-app (arg)
   "Open current file in external application.

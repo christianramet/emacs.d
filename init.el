@@ -1,3 +1,8 @@
+;;;* Variables
+(defvar system-is-osx-p (eq system-type 'darwin))
+(defvar system-is-linux-p (eq system-type 'gnu/linux))
+(defvar system-is-windows-p (eq system-type 'windows-nt))
+
 ;;;* Garbage collection
 (setq gc-cons-threshold (* 100 1024 1024))
 (defun cr-set-gc () (setq gc-cons-threshold (* 5 1024 1024)))
@@ -118,7 +123,7 @@
       mouse-wheel-progressive-speed t
       next-screen-context-lines 5)
 
-(when (eq system-type 'darwin)
+(when system-is-osx-p
   ;; Modifier keys behaviors on MacOS (mac/ns prefix depending on Emacs provisioner)
   (setq mac-option-modifier 'meta
         ns-alternate-modifier 'meta
