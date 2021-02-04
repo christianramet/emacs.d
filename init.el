@@ -123,14 +123,15 @@
 
 (when system-is-osx-p
   ;; Modifier keys behaviors on MacOS (mac/ns prefix depending on Emacs provisioner)
-  (setq mac-option-modifier 'meta
-        ns-alternate-modifier 'meta
-        mac-command-modifier 'none
-        ns-command-modifier 'none
-        ;; Pass the right Alt/Option key to the OS which allows the
-        ;; insertion of special characters.
-        mac-right-option-modifier 'none
-        ns-right-alternate-modifier 'none))
+  (custom-set-variables
+   '(mac-option-modifier 'meta)
+   '(ns-alternate-modifier 'meta)
+   '(mac-command-modifier 'none)
+   '(ns-command-modifier 'none)
+   ;; Pass the right Alt/Option key to the OS which allows the
+   ;; insertion of special characters.
+   '(mac-right-option-modifier 'none)
+   '(ns-right-alternate-modifier 'none)))
 
 ;;;* Personal prefix maps keybinds
 (define-prefix-command 'cr-app-map)
