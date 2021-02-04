@@ -892,6 +892,7 @@ For ediff hooks usage"
   :mode ("\\.md\\'" "\\.markdown\\'"))
 
 (use-package disable-mouse
+  :diminish disable-mouse-global-mode
   :hook (after-init-hook . global-disable-mouse-mode)
   :bind (:map cr-toggle-map ("m" . global-disable-mouse-mode)))
 
