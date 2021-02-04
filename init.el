@@ -882,6 +882,10 @@ For ediff hooks usage"
   :commands markdown-mode
   :mode ("\\.md\\'" "\\.markdown\\'"))
 
+(use-package disable-mouse
+  :hook (after-init-hook . global-disable-mouse-mode)
+  :bind (:map cr-toggle-map ("m" . global-disable-mouse-mode)))
+
 (use-package multiple-cursors
   :bind (("C-c C-SPC"     . mc/edit-lines)
          ("C-c C-a"       . mc/mark-all-like-this-dwim)
