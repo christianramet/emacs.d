@@ -964,9 +964,6 @@ For ediff hooks usage"
   (when (require 'french-holidays nil 'noerror)
     (setq calendar-holidays holiday-french-holidays))
 
-  (when (version< org-version "9.2")
-    (setq org-structure-template-alist nil))
-
   (add-to-list 'org-speed-commands-user '("N" call-interactively 'org-metadown))
   (add-to-list 'org-speed-commands-user '("P" call-interactively 'org-metaup))
   (add-to-list 'org-speed-commands-user '("d" call-interactively 'org-deadline))
