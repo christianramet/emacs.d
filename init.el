@@ -47,7 +47,9 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(straight-use-package 'use-package)
+(eval-when-compile
+  (straight-use-package 'use-package)
+  (require 'use-package))
 
 ;;;* Early packages
 (straight-use-package 'org)
