@@ -391,7 +391,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package cr-open-external
   :straight nil
-  :bind (:map cr-file-map ("e" . cr-open-file-or-directory-in-external-app)))
+  :bind (:map cr-file-map ("x" . cr-open-file-or-directory-in-external-app)))
 
 (use-package cr-org-gtd
   :straight nil
