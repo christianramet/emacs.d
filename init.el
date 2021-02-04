@@ -675,6 +675,7 @@ For ediff hooks usage"
   :hook (flycheck-mode-hook . flycheck-popup-tip-mode))
 
 (use-package flyspell
+  :diminish
   :custom
   (ispell-silently-savep t)
   (flyspell-issue-welcome-flag nil)
