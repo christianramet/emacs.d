@@ -264,6 +264,12 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight nil
   :bind (:map cr-app-map ("c" . calc)))
 
+(use-package calendar
+  :custom
+  (calendar-weekend-days '(6 0))
+  (calendar-week-start-day 1)
+  :bind (:map cr-app-map ("!" . calendar)))
+
 (use-package company
   :commands (company-mode company-indent-or-complete-common)
   :demand
@@ -913,29 +919,54 @@ For ediff hooks usage"
 
 (use-package org
   :commands (org-agenda org-capture)
+  :custom
+  (org-startup-folded t)
+  (org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+  (org-ctrl-k-protect-subtree t)
+  (org-ellipsis " ▼")
+  (org-fontify-done-headline t)
+  (org-hide-emphasis-markers t)
+  (org-link-file-path-type 'adaptive)
+  (org-hide-leading-stars t)
+  (org-use-tag-inheritance t)
+  (org-indent-indentation-per-level 1)
+  (org-deadline-warning-days 14)
+  (org-use-speed-commands t)
+  (org-src-fontify-natively t)
+  (org-src-tab-acts-natively t)
+  (org-src-preserve-indentation t)
+  (org-src-window-setup 'current-window)
+  (org-confirm-babel-evaluate nil)
+  (org-agenda-window-setup 'current-window)
+  (org-agenda-follow-indirect nil)
+  (org-agenda-show-outline-path nil)
+  (org-agenda-restore-windows-after-quit t)
+  (org-agenda-log-mode-items '(closed clock state))
+  (org-agenda-todo-ignore-scheduled 'future)
+  (org-agenda-tags-todo-honor-ignore-options t)
+  (org-agenda-skip-scheduled-if-done nil)
+  (org-agenda-skip-deadline-if-done nil)
+  (org-agenda-skip-deadline-prewarning-if-scheduled nil)
+  (org-clock-idle-time nil)
+  (org-clock-continuously nil)
+  (org-clock-persist t)
+  (org-clock-in-switch-to-state nil)
+  (org-clock-in-resume nil)
+  (org-clock-report-include-clocking-task t)
+  (org-show-notification-handler 'message)
+  (org-log-done 'time)
+  (org-log-into-drawer t)
+  (org-log-state-notes-insert-after-drawers nil)
+  (org-refile-allow-creating-parent-nodes 'confirm)
+  (org-outline-path-complete-in-steps nil)
+  (org-refile-use-outline-path 'file)
   :config
-  (setq org-startup-folded t
-        org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
-        org-ctrl-k-protect-subtree t
-        org-ellipsis " ▼"
-        org-fontify-done-headline t
-        org-hide-emphasis-markers t
-        org-link-file-path-type 'adaptive
-        org-hide-leading-stars t
-        org-use-tag-inheritance t
-        org-indent-indentation-per-level 1
-        org-deadline-warning-days 14)
-
-  (setq calendar-weekend-days '(6 0)
-        calendar-week-start-day 1)
-
   (when (require 'french-holidays nil 'noerror)
     (setq calendar-holidays holiday-french-holidays))
 
   (when (version< org-version "9.2")
     (setq org-structure-template-alist nil))
 
-  (setq org-use-speed-commands t)
   (add-to-list 'org-speed-commands-user '("N" call-interactively 'org-metadown))
   (add-to-list 'org-speed-commands-user '("P" call-interactively 'org-metaup))
   (add-to-list 'org-speed-commands-user '("d" call-interactively 'org-deadline))
@@ -943,12 +974,6 @@ For ediff hooks usage"
   (add-to-list 'org-speed-commands-user '("q" call-interactively 'org-set-tags-command))
   (add-to-list 'org-speed-commands-user '("w" call-interactively 'cr-org-refile-in-current-buffer))
   (add-to-list 'org-speed-commands-user '("W" call-interactively 'cr-org-refile-in-any-buffer))
-
-  (setq org-src-fontify-natively t
-        org-src-tab-acts-natively t
-        org-src-preserve-indentation t
-        org-src-window-setup 'current-window
-        org-confirm-babel-evaluate nil)
 
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -958,38 +983,10 @@ For ediff hooks usage"
      (sql . t)
      (C . t)))
 
-  (setq org-babel-default-header-args:sh
+  (setq org-babel-default-header-args
         '((:results  . "output")))
 
-  (require 'org-agenda)
-  (setq org-agenda-window-setup 'current-window
-        org-agenda-follow-indirect nil
-        org-agenda-show-outline-path nil
-        org-agenda-restore-windows-after-quit t
-        org-agenda-log-mode-items '(closed clock state)
-        org-agenda-todo-ignore-scheduled 'future
-        org-agenda-tags-todo-honor-ignore-options t
-        org-agenda-skip-scheduled-if-done nil
-        org-agenda-skip-deadline-if-done nil
-        org-agenda-skip-deadline-prewarning-if-scheduled nil)
-
-  (setq org-clock-idle-time nil
-        org-clock-continuously nil
-        org-clock-persist t
-        org-clock-in-switch-to-state nil
-        org-clock-in-resume nil
-        org-clock-report-include-clocking-task t
-        org-show-notification-handler 'message)
-
   (org-clock-persistence-insinuate)
-
-  (setq org-log-done 'time
-        org-log-into-drawer t
-        org-log-state-notes-insert-after-drawers nil)
-
-  (setq org-refile-allow-creating-parent-nodes 'confirm
-        org-outline-path-complete-in-steps nil
-        org-refile-use-outline-path 'file)
 
   (defun cr-org-refile-in-current-buffer ()
     (interactive)
