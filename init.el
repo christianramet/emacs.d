@@ -1,7 +1,7 @@
 ;;;* Variables
-(defvar system-is-osx-p (eq system-type 'darwin))
-(defvar system-is-linux-p (eq system-type 'gnu/linux))
-(defvar system-is-windows-p (eq system-type 'windows-nt))
+(defconst system-is-osx-p (eq system-type 'darwin))
+(defconst system-is-linux-p (eq system-type 'gnu/linux))
+(defconst system-is-windows-p (eq system-type 'windows-nt))
 
 ;;;* Garbage collection
 (setq gc-cons-threshold (* 100 1024 1024))
