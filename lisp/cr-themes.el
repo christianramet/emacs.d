@@ -36,7 +36,6 @@
 (with-eval-after-load 'pdf-view
   (defun cr-themes-pdf-view-sync ()
     "Synchronize Emacs light/dark themes with pdf-view midnight mode."
-
     (when (eq (cr-themes-current) cr-themes-light)
       (pdf-view-midnight-minor-mode -1))
     (when (eq (cr-themes-current) cr-themes-dark)
