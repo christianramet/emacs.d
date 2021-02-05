@@ -1195,7 +1195,6 @@ For ediff hooks usage"
   (save-interprogram-paste-before-kill t)
   (kill-do-not-save-duplicates t)
   :bind (([remap just-one-space]  . cycle-spacing)
-         ([remap zap-to-char]     . zap-up-to-char)
          ([remap upcase-word]     . upcase-dwim)
          ([remap downcase-word]   . downcase-dwim)
          ([remap capitalize-word] . capitalize-dwim)
