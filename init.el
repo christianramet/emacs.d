@@ -125,7 +125,7 @@
       next-screen-context-lines 5)
 
 (when system-is-osx-p
-  ;; Modifier keys behaviors on MacOS (mac/ns prefix depending on Emacs provisioner)
+  ;; Modifier keys behaviors on MacOS (mac/ns prefix depends on Emacs provisioner)
   (custom-set-variables
    '(mac-option-modifier 'meta)
    '(ns-alternate-modifier 'meta)
@@ -136,7 +136,7 @@
    '(mac-right-option-modifier 'none)
    '(ns-right-alternate-modifier 'none)))
 
-;;;* Personal prefix maps keybinds
+;;;* Personal prefix maps key bindings
 (define-prefix-command 'cr-app-map)
 (define-prefix-command 'cr-buffer-map)
 (define-prefix-command 'cr-emacs-map)
