@@ -1187,6 +1187,10 @@ For ediff hooks usage"
   :straight nil
   :hook (after-init-hook . save-place-mode))
 
+(use-package server
+  :straight nil
+  :hook (after-init-hook . server-start))
+
 (use-package simple
   :straight nil
   :diminish visual-line-mode
