@@ -358,7 +358,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (([remap kill-region]    . cr-backward-kill-word-or-region)
          ([remap comment-dwim]   . cr-comment-or-uncomment-line-or-region)
          ([remap fill-paragraph] . cr-fill-or-unfill-paragraph)
-         ("C-c [" . cr-switch-to-last-buffer)
+         ("M-]" . cr-switch-to-last-buffer)
          (:map cr-buffer-map
                ("n" . cr-new-empty-buffer)
                ("r" . cr-rename-buffer)
