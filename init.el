@@ -55,6 +55,8 @@
 (straight-use-package 'org)
 
 (use-package exec-path-from-shell
+  ;; tip: EXPORT env vars in ~/.profile instead of ~/.{bash,zsh}rc
+  ;; then source ~/.profile from ~/.{bash,zsh}rc
   :demand
   :custom (exec-path-from-shell-variables '("PATH" "MANPATH"))
   :config
