@@ -1189,7 +1189,10 @@ For ediff hooks usage"
 
 (use-package server
   :straight nil
-  :hook (after-init-hook . server-start))
+  :demand
+  :config
+  (unless (server-running-p)
+	(server-start)))
 
 (use-package simple
   :straight nil
