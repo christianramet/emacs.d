@@ -401,12 +401,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :demand
   :after org)
 
-(use-package cr-sudo-utils
-  :straight nil
-  :bind (:map cr-file-map
-              ("u" . doom/sudo-this-file)
-              ("U" . doom/sudo-save-buffer)))
-
 (use-package css-mode
   :mode "\\.css\\'")
 
@@ -511,6 +505,12 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (doom-modeline-project-detection 'projectile)
   ;; (doom-modeline-height 1) ;; Respect default char height, requires `doom-modeline-icon' set to nil.
   :hook (after-init-hook . doom-modeline-mode))
+
+(use-package doom-sudo-utils
+  :straight nil
+  :bind (:map cr-file-map
+              ("u" . doom/sudo-this-file)
+              ("U" . doom/sudo-save-buffer)))
 
 (use-package ediff
   :commands (ediff ediff-buffers ediff-files magit-ediff-dwim)
