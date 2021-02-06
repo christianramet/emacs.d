@@ -429,13 +429,14 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (dired-recursive-copies 'always)
   (dired-recursive-deletes 'always)
   (delete-by-moving-to-trash t)
-  (dired-listing-switches "-lahv --group-directories-first") ;; requires ls from coreutils on MacOS
+  (dired-listing-switches "-lahv")
   :config
   (put 'dired-find-alternate-file 'disabled nil)
 
   (defvar cr-dired-sort-base "-lahv")
   (defun cr-dired-sort-by-group ()
     (interactive)
+    ;; Note: default ls from MacOS does not have this option (use ls from coreutils)
     (dired-sort-other (concat cr-dired-sort-base " --group-directories-first")))
   (defun cr-dired-sort-by-name ()
     (interactive)
