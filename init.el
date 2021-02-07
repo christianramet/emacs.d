@@ -120,7 +120,7 @@
 (setq scroll-margin 2
       scroll-step 1
       scroll-conservatively 101
-      scroll-preserve-screen-position t
+      scroll-preserve-screen-position 1
       mouse-wheel-follow-mouse t
       mouse-wheel-scroll-amount '(1 ((shift) . 1))
       mouse-wheel-progressive-speed t
