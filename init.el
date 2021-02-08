@@ -868,7 +868,7 @@ For ediff hooks usage"
   (lsp-ui-doc-enable nil)
   (lsp-ui-doc-position 'at-point)
   (lsp-ui-peek-enable t)
-  (lsp-ui-sideline-enable t)
+  (lsp-ui-sideline-enable nil)
   (lsp-ui-imenu-enable t)
   (lsp-ui-flycheck-enable t))
 
