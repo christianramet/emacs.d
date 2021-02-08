@@ -849,11 +849,9 @@ For ediff hooks usage"
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :custom
-  (lsp-enable-symbol-highlighting t)
-  (lsp-enable-snippet t)
+  (lsp-keymap-prefix "C-c u")
+  (lsp-auto-configure t)
   :hook (lsp-mode-hook . lsp-enable-which-key-integration)
-  :custom (lsp-keymap-prefix "C-c u")
-  :bind-keymap ("C-c u" . lsp-command-map)
   :bind (:map cr-toggle-map ("u" . lsp)))
 
 (use-package lsp-mode
@@ -863,6 +861,16 @@ For ediff hooks usage"
 (use-package lsp-mode
   :if (executable-find "gopls")
   :hook (go-mode-hook . lsp-deferred))
+
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-doc-enable nil)
+  (lsp-ui-doc-position 'at-point)
+  (lsp-ui-peek-enable t)
+  (lsp-ui-sideline-enable t)
+  (lsp-ui-imenu-enable t)
+  (lsp-ui-flycheck-enable t))
 
 (use-package magit
   :defer 10
