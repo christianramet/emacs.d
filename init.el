@@ -496,13 +496,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :mode ("Dockerfile\\'"))
 
 (use-package doom-modeline
-  :disabled
   :custom
-  (doom-modeline-icon t)
-  (doom-modeline-vcs-max-length 18)
+  (doom-modeline-icon nil)
   (doom-modeline-buffer-encoding nil)
-  (doom-modeline-project-detection 'projectile)
-  ;; (doom-modeline-height 1) ;; Respect default char height, requires `doom-modeline-icon' set to nil.
+  (doom-modeline-height 1) ;; Requires `doom-modeline-icon' set to nil.
   :hook (after-init-hook . doom-modeline-mode))
 
 (use-package doom-sudo-utils
