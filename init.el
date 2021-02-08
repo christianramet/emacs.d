@@ -83,7 +83,7 @@
                             (right-fringe . 8)
                             (fullscreen . maximized)))
 
-(setq-default fill-column 70
+(setq-default fill-column 80
               indicate-empty-lines nil
               indicate-buffer-boundaries nil
               indent-tabs-mode nil
