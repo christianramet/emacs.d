@@ -1231,7 +1231,6 @@ For ediff hooks usage"
                ("C-M-e"           . sp-end-of-sexp)
                ("C-M-u"           . sp-backward-up-sexp)
                ("C-M-d"           . sp-down-sexp)
-               ("C-k"             . sp-kill-hybrid-sexp)
                ("C-M-k"           . sp-kill-sexp)
                ("C-M-w"           . sp-copy-sexp)
                ("C-M-t"           . sp-transpose-sexp)
