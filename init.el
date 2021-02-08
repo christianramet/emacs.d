@@ -1344,13 +1344,12 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
 (use-package which-key
   :commands which-key-mode
-  :defer 10
   :diminish
   :custom
   (which-key-idle-delay 0.5)
   (which-key-idle-secondary-delay 0.2)
   (which-key-allow-imprecise-window-fit t)
-  :config (which-key-mode 1)
+  :hook (after-init-hook . which-key-mode)
   :bind (:map cr-toggle-map ("?" . which-key-mode)))
 
 (use-package whitespace
