@@ -730,21 +730,7 @@ For ediff hooks usage"
   :straight nil
   :bind (:map cr-toggle-map ("RET" . toggle-frame-fullscreen)))
 
-(use-package go-mode
-  :straight t
-  :straight company-go
-  :straight go-eldoc
-  :straight gorepl-mode
-  :mode "\\.go\\'"
-  :config
-  (defun cr-go-mode-settings ()
-    "Basic go-mode settings to be used when lsp-mode is not desired."
-    (go-eldoc-setup)
-    (eldoc-mode 1)
-    (set (make-local-variable 'company-backends) '(company-go))
-    (set (make-local-variable 'compile-command) "go build -v")
-    (company-mode 1))
-  :hook (go-mode-hook . cr-go-mode-settings))
+(use-package go-mode :mode "\\.go\\'")
 
 (use-package git-gutter
   :diminish
