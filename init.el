@@ -299,13 +299,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package counsel
   :after ivy
-  :demand
   :diminish
-  :config
-  (setq counsel-grep-base-command "grep -i -E -n -e %s %s"
-        ivy-initial-inputs-alist nil) ;; `counsel' overwrites this setting even if customized
-
-  (counsel-mode 1)
+  :custom
+  (ivy-initial-inputs-alist nil)
+  (counsel-grep-base-command "grep -i -E -n -e %s %s")
+  :hook (after-init-hook . counsel-mode)
   :bind (("C-c SPC" . counsel-mark-ring)
          ("C-c j"   . counsel-git-grep)
          ("C-c k"   . counsel-rg)
