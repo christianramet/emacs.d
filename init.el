@@ -405,8 +405,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :demand
   :after org)
 
-(use-package css-mode
-  :mode "\\.css\\'")
+(use-package css-mode :mode "\\.css\\'")
 
 (use-package csv-mode
   :init
@@ -498,8 +497,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :commands docker
   :bind (:map cr-app-map ("d" . docker)))
 
-(use-package dockerfile-mode
-  :mode ("Dockerfile\\'"))
+(use-package dockerfile-mode :mode ("Dockerfile\\'"))
 
 (use-package doom-modeline
   :custom
@@ -892,9 +890,7 @@ For ediff hooks usage"
 (use-package man
   :bind (:map cr-app-map ("m" . man)))
 
-(use-package markdown-mode
-  :commands markdown-mode
-  :mode ("\\.md\\'" "\\.markdown\\'"))
+(use-package markdown-mode :mode ("\\.md\\'" "\\.markdown\\'"))
 
 (use-package disable-mouse
   :diminish disable-mouse-global-mode
@@ -1273,8 +1269,7 @@ For ediff hooks usage"
               ("s" . swiper-isearch)
               ("." . swiper-isearch-thing-at-point)))
 
-(use-package terraform-mode
-  :mode "\.tf\\'")
+(use-package terraform-mode :mode "\.tf\\'")
 
 (use-package time
   :straight nil
@@ -1373,8 +1368,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :diminish
   :hook (prog-mode-hook . ws-butler-mode))
 
-(use-package yaml-mode
-  :mode ("\\.ya?ml\\'"))
+(use-package yaml-mode :mode ("\\.ya?ml\\'"))
 
 (use-package yasnippet
   :commands (yas-expand company-yasnippet)
