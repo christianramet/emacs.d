@@ -306,9 +306,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package counsel
   :after ivy
   :diminish
-  :custom
-  (ivy-initial-inputs-alist nil)
-  (counsel-grep-base-command "grep -i -E -n -e %s %s")
+  :custom (counsel-grep-base-command "grep -i -E -n -e %s %s")
   :hook (after-init-hook . counsel-mode)
   :bind (("C-c SPC" . counsel-mark-ring)
          ("C-c j"   . counsel-git-grep)
@@ -789,6 +787,7 @@ For ediff hooks usage"
   :demand
   :diminish
   :custom
+  (ivy-initial-inputs-alist nil)
   (ivy-count-format "(%d/%d) ")
   (ivy-magic-tilde t)
   (ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
