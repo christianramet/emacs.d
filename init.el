@@ -203,8 +203,7 @@
     (all-the-icons-install-fonts t)))
 
 (use-package async
-  :after dired
-  :init (dired-async-mode 1))
+  :hook (dired-mode-hook . dired-async-mode))
 
 (use-package auth-source-pass
   :hook (after-init-hook . auth-source-pass-enable))
