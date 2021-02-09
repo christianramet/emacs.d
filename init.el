@@ -197,6 +197,7 @@
               ("A" . align-regexp)))
 
 (use-package all-the-icons
+  :if (display-graphic-p)
   :init
   (unless (member "all-the-icons" (font-family-list))
     (all-the-icons-install-fonts t)))
