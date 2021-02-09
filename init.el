@@ -196,6 +196,11 @@
               ("a" . align-code)
               ("A" . align-regexp)))
 
+(use-package all-the-icons
+  :init
+  (unless (member "all-the-icons" (font-family-list))
+    (all-the-icons-install-fonts t)))
+
 (use-package async
   :after dired
   :init (dired-async-mode 1))
