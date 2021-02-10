@@ -870,6 +870,7 @@ For ediff hooks usage"
   (lsp-ui-flycheck-enable t))
 
 (use-package magit
+  :if (executable-find "git")
   :defer 10
   :commands magit-status
   :custom
