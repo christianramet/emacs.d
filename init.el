@@ -179,7 +179,7 @@
   (aw-scope 'frame)
   :bind ("M-o" . ace-window))
 
-(use-package ag)
+(use-package ag :if (executable-find "ag"))
 
 (use-package align
   :straight nil
