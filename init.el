@@ -1171,6 +1171,7 @@ For ediff hooks usage"
   :bind (:map restclient-mode-map ("C-c n n" . nil)))
 
 (use-package ripgrep
+  :if (executable-find "rg")
   :bind (:map cr-search-map ("g" . ripgrep-regexp)))
 
 (use-package rust-mode)
