@@ -279,6 +279,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (calendar-weekend-days '(6 0))
   (calendar-week-start-day 1)
+  :config
+  (when (require 'french-holidays nil 'noerror)
+    (customize-set-variable 'calendar-holidays holiday-french-holidays))
   :bind (:map cr-app-map ("!" . calendar)))
 
 (use-package company
@@ -396,11 +399,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package cr-open-external
   :straight nil
   :bind (:map cr-file-map ("x" . cr-open-file-or-directory-in-external-app)))
-
-(use-package cr-org-gtd
-  :straight nil
-  :demand
-  :after org)
 
 (use-package css-mode :mode "\\.css\\'")
 
@@ -963,8 +961,7 @@ For ediff hooks usage"
   (org-outline-path-complete-in-steps nil)
   (org-refile-use-outline-path 'file)
   :config
-  (when (require 'french-holidays nil 'noerror)
-    (setq calendar-holidays holiday-french-holidays))
+  (require 'cr-private-org nil 'noerror)
 
   (add-to-list 'org-speed-commands-user '("N" call-interactively 'org-metadown))
   (add-to-list 'org-speed-commands-user '("P" call-interactively 'org-metaup))
@@ -1253,6 +1250,7 @@ For ediff hooks usage"
 
 (use-package sql
   :config
+  (require 'cr-private-sql nil 'noerror)
   (defun cr-isql-config ()
     (setq-local truncate-lines t))
   (add-hook 'sql-interactive-mode-hook 'cr-isql-config)
