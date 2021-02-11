@@ -1,4 +1,5 @@
 ;;;* Variables
+(setq default-directory "~/")
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
 (defconst system-is-windows-p (eq system-type 'windows-nt))
@@ -76,55 +77,59 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(setq default-frame-alist '((menu-bar-lines . 0)
-                            (tool-bar-lines . 0)
-                            (vertical-scroll-bars . nil)
-                            (left-fringe . 8)
-                            (right-fringe . 8)
-                            (fullscreen . maximized)))
-
 (setq-default fill-column 80
               indicate-empty-lines nil
               indicate-buffer-boundaries nil
               indent-tabs-mode nil
               tab-width 4)
 
-(setq default-directory "~/"
-      initial-major-mode 'lisp-interaction-mode
-      initial-scratch-message nil
-      inhibit-startup-screen t
-      disabled-command-function nil
-      ring-bell-function 'ignore
-      sentence-end-double-space nil
-      vc-follow-symlinks t
-      create-lockfiles nil
-      uniquify-buffer-name-style 'forward
-      use-dialog-box nil)
+(customize-set-variable
+ 'default-frame-alist '((menu-bar-lines . 0)
+                        (tool-bar-lines . 0)
+                        (vertical-scroll-bars . nil)
+                        (left-fringe . 8)
+                        (right-fringe . 8)
+                        (fullscreen . maximized)))
 
-(setq find-file-visit-truename t
-      confirm-kill-emacs 'y-or-n-p
-      save-abbrevs 'silently
-      auto-save-default t
-      auto-save-timeout 600
-      auto-save-interval 300
-      delete-auto-save-files t
-      version-control t
-      backup-by-copying t
-      delete-old-versions t
-      kept-old-versions 2
-      kept-new-versions 5)
+(custom-set-variables
+ '(initial-major-mode 'lisp-interaction-mode)
+ '(initial-scratch-message nil)
+ '(inhibit-startup-screen t)
+ '(disabled-command-function nil)
+ '(ring-bell-function 'ignore)
+ '(sentence-end-double-space nil)
+ '(vc-follow-symlinks t)
+ '(create-lockfiles nil)
+ '(uniquify-buffer-name-style 'forward)
+ '(use-dialog-box nil))
 
-(setq select-enable-clipboard t
-      select-enable-primary nil)
+(custom-set-variables
+ '(find-file-visit-truename t)
+ '(confirm-kill-emacs 'y-or-n-p)
+ '(save-abbrevs 'silently)
+ '(auto-save-default t)
+ '(auto-save-timeout 600)
+ '(auto-save-interval 300)
+ '(delete-auto-save-files t)
+ '(version-control t)
+ '(backup-by-copying t)
+ '(delete-old-versions t)
+ '(kept-old-versions 2)
+ '(kept-new-versions 5))
 
-(setq scroll-margin 2
-      scroll-step 1
-      scroll-conservatively 101
-      scroll-preserve-screen-position t
-      mouse-wheel-follow-mouse t
-      mouse-wheel-scroll-amount '(1 ((shift) . 1))
-      mouse-wheel-progressive-speed t
-      next-screen-context-lines 5)
+(custom-set-variables
+ '(select-enable-clipboard t)
+ '(select-enable-primary nil))
+
+(custom-set-variables
+ '(scroll-margin 2)
+ '(scroll-step 1)
+ '(scroll-conservatively 101)
+ '(scroll-preserve-screen-position t)
+ '(mouse-wheel-follow-mouse t)
+ '(mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+ '(mouse-wheel-progressive-speed t)
+ '(next-screen-context-lines 5))
 
 (when system-is-osx-p
   ;; Modifier keys behaviors on MacOS (mac/ns prefix depends on Emacs provisioner)
