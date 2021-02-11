@@ -405,10 +405,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package css-mode :mode "\\.css\\'")
 
 (use-package csv-mode
-  :init
-  (setq csv-separators '("," ";" "|" " "))
-  (add-hook 'csv-mode-hook 'csv-header-line)
-  :mode "\\.csv\\'")
+  :mode "\\.csv\\'"
+  :custom (csv-separators '("," ";" "|" " "))
+  :config (add-hook 'csv-mode-hook 'csv-header-line))
 
 (use-package deft
   :custom
