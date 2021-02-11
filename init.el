@@ -796,11 +796,11 @@ For ediff hooks usage"
   (with-eval-after-load 'grep
     (define-key ivy-occur-grep-mode-map (kbd "n") 'next-error)
     (define-key ivy-occur-grep-mode-map (kbd "p") 'previous-error))
+  :hook (after-init-hook . ivy-mode)
   :bind ("C-c r" . ivy-resume))
 
 (use-package ivy-pass
-  :bind ("C-c q" . ivy-pass)
-  :hook (after-init-hook . ivy-mode))
+  :bind ("C-c q" . ivy-pass))
 
 (use-package ivy-rich
   :after ivy
