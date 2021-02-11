@@ -255,11 +255,11 @@
               ("b" . display-battery-mode)))
 
 (use-package browse-url
+  :custom
+  (browse-url-browser-function
+   '(("\\(youtube\\.com\\)\\|\\(youtu\\.be\\)" . browse-url-youtube-mpv)
+     ("." . browse-url-default-browser)))
   :config
-  (setq browse-url-browser-function
-        '(("\\(youtube\\.com\\)\\|\\(youtu\\.be\\)" . browse-url-youtube-mpv)
-          ("." . browse-url-default-browser)))
-
   (defun browse-url-youtube-mpv (url &rest e)
     "Use `mpv' with `youtube-dl' to open URLs, asking for desired quality
 Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
@@ -271,7 +271,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
       (when (< 0 quality-val)
         (setq quality-arg (format "--ytdl-format=bestvideo[height<=?%s]+bestaudio" quality-val)))
       (start-process "mpv" nil "mpv" quality-arg url)))
-
   :bind ("M-g w" . browse-url-at-point))
 
 (use-package calc
