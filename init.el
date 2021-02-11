@@ -981,8 +981,7 @@ For ediff hooks usage"
      (sql . t)
      (C . t)))
 
-  (setq org-babel-default-header-args
-        '((:results  . "output")))
+  (setq org-babel-default-header-args '((:results  . "output")))
 
   (org-clock-persistence-insinuate)
 
