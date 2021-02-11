@@ -625,8 +625,8 @@ For ediff hooks usage"
     (company-mode -1)
     (setenv "PAGER""cat")
     (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)
-    (with-eval-after-load 'counsel)
-      (define-key eshell-mode-map (kbd "C-r") 'counsel-esh-history))
+    (with-eval-after-load 'counsel
+      (define-key eshell-mode-map (kbd "C-r") 'counsel-esh-history)))
 
   (add-hook 'eshell-mode-hook 'cr-eshell-settings))
 
