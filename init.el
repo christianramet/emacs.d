@@ -211,7 +211,6 @@
 (use-package autorevert
   :straight nil
   :diminish (auto-revert-mode global-auto-revert-mode)
-  :defer 2
   :custom
   (auto-revert-verbose t)
   (auto-revert-use-notify t)
@@ -227,8 +226,7 @@
    :around (lambda (orig-fun &rest args)
              (let ((auto-revert-verbose (not (minibufferp (window-buffer)))))
                (apply orig-fun args))))
-
-  (global-auto-revert-mode 1)
+  :hook (after-init-hook . global-auto-revert-mode)
   :bind ((:map cr-buffer-map ("g". revert-buffer))
          (:map cr-toggle-map
                ("a" . auto-revert-mode)
