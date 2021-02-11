@@ -804,12 +804,11 @@ For ediff hooks usage"
 
 (use-package ivy-rich
   :after ivy
-  :defer 10
-  :config
-  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
-  (setq ivy-rich-parse-remote-buffer nil
-        ivy-rich-parse-remote-file-path nil)
-  (ivy-rich-mode 1))
+  :custom
+  (ivy-rich-parse-remote-buffer nil)
+  (ivy-rich-parse-remote-file-path nil)
+  :config (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
+  :hook (after-init-hook . ivy-rich-mode))
 
 (use-package ivy-xref
   :demand
