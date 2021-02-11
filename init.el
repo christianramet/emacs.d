@@ -1370,8 +1370,5 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
 (use-package yasnippet
   :commands (yas-expand company-yasnippet)
-  :defer 5
   :diminish yas-minor-mode
-  :config
-  (setq yas-verbosity 2)
-  (yas-global-mode 1))
+  :hook (after-init-hook . yas-global-mode))
