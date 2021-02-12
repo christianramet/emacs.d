@@ -465,6 +465,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :after dired
   :bind (:map dired-mode-map (")" . dired-git-info-mode)))
 
+(use-package dired-hide-dotfiles
+  :after dired
+  :bind (:map dired-mode-map ("H" . dired-hide-dotfiles-mode)))
+
 (use-package dired-narrow
   :disabled
   :after dired
