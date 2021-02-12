@@ -88,8 +88,7 @@
                         (tool-bar-lines . 0)
                         (vertical-scroll-bars . nil)
                         (left-fringe . 8)
-                        (right-fringe . 8)
-                        (fullscreen . maximized)))
+                        (right-fringe . 8)))
 
 (custom-set-variables
  '(initial-major-mode 'lisp-interaction-mode)
@@ -132,8 +131,8 @@
  '(next-screen-context-lines 5))
 
 (when system-is-osx-p
-  ;; Modifier keys behaviors on MacOS (mac/ns prefix depends on Emacs provisioner)
   (custom-set-variables
+   '(ns-use-native-fullscreen t)
    '(mac-option-modifier 'meta)
    '(ns-alternate-modifier 'meta)
    '(mac-command-modifier 'none)
