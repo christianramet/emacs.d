@@ -187,7 +187,6 @@
 (use-package ag :if (executable-find "ag"))
 
 (use-package align
-  :straight nil
   :commands (align align-regexp)
   :preface
   (defun align-code (beg end &optional arg)
@@ -1273,7 +1272,6 @@ For ediff hooks usage"
 (use-package terraform-mode :mode "\.tf\\'")
 
 (use-package time
-  :straight nil
   :commands (display-time-world display-time-mode)
   :custom
   (display-time-24hr-format t)
@@ -1293,7 +1291,6 @@ For ediff hooks usage"
     (search-forward "Paris")
     (move-beginning-of-line nil)
     (hl-line-mode 1))
-  ;; :hook (after-init-hook . display-time-mode)
   :bind ((:map cr-toggle-map
                ("." . display-time-mode))
          (:map cr-app-map
