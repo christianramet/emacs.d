@@ -177,7 +177,7 @@
   :custom
   (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (aw-dispatch-always nil)
-  (aw-background nil)
+  (aw-background t)
   (aw-minibuffer-flag t)
   (aw-display-mode-overlay t)
   (aw-scope 'frame)
