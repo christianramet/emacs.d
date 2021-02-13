@@ -88,7 +88,8 @@
                         (tool-bar-lines . 0)
                         (vertical-scroll-bars . nil)
                         (left-fringe . 8)
-                        (right-fringe . 8)))
+                        (right-fringe . 8)
+                        (fullscreen . fullboth)))
 
 (custom-set-variables
  '(initial-major-mode 'lisp-interaction-mode)
