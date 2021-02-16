@@ -132,14 +132,11 @@
  '(next-screen-context-lines 5))
 
 (when system-is-osx-p
-  ;; Modifier keys behaviors on MacOS (mac/ns prefix depends on Emacs provisioner)
   (custom-set-variables
    '(mac-option-modifier 'meta)
    '(ns-alternate-modifier 'meta)
    '(mac-command-modifier 'none)
    '(ns-command-modifier 'none)
-   ;; Pass the right Alt/Option key to the OS which allows the
-   ;; insertion of special characters.
    '(mac-right-option-modifier 'none)
    '(ns-right-alternate-modifier 'none)))
 
@@ -223,8 +220,7 @@
   (global-auto-revert-non-file-buffers t)
   (auto-revert-remote-files nil)
   :config
-  ;; Prevent showing buffer reversion message while working in the minibuffer
-  ;; Source: https://emacs.stackexchange.com/questions/46690
+  ;; https://emacs.stackexchange.com/questions/46690
   (advice-add
    'auto-revert-handler
    :around (lambda (orig-fun &rest args)
@@ -249,7 +245,6 @@
   :straight nil
   :commands (battery display-battery-mode)
   :custom (battery-mode-line-limit 85)
-  ;; :hook (after-init-hook . display-battery-mode)
   :bind (:map cr-toggle-map
               ("b" . display-battery-mode)))
 
@@ -452,12 +447,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (define-key cr-dired-sort-map (kbd "t") 'cr-dired-sort-by-time)
   (define-key cr-dired-sort-map (kbd "s") 'cr-dired-sort-by-size)
 
+  (define-key dired-mode-map (kbd "s") 'cr-dired-sort-map)
   (define-key dired-mode-map (kbd "[") 'dired-up-directory)
   (define-key dired-mode-map (kbd "e") 'ediff-files)
-  (define-key dired-mode-map (kbd "s") 'cr-dired-sort-map)
 
-  ;; (add-hook 'dired-mode-hook 'dired-hide-details-mode)
-  (add-hook 'dired-mode-hook 'hl-line-mode)
   :bind (:map dired-mode-map ("K" . dired-kill-subdir)))
 
 (use-package dired-git-info
@@ -760,6 +753,7 @@ For ediff hooks usage"
 
 (use-package hl-line
   :straight nil
+  :hook (dired-mode-hook . hl-line-mode)
   :bind (:map cr-toggle-map
               ("h" . hl-line-mode)
               ("H" . global-hl-line-mode)))
@@ -797,8 +791,7 @@ For ediff hooks usage"
   (ivy-virtual-abbreviate 'full)
   (ivy-wrap nil)
   :config
-  ;; Temporary fix, waiting for
-  ;; https://github.com/abo-abo/swiper/issues/2681 to be resolved
+  ;; https://github.com/abo-abo/swiper/issues/2681 (waiting for resolution)
   (with-eval-after-load 'grep
     (define-key ivy-occur-grep-mode-map (kbd "n") 'next-error)
     (define-key ivy-occur-grep-mode-map (kbd "p") 'previous-error))
