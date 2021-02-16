@@ -89,7 +89,7 @@
                         (vertical-scroll-bars . nil)
                         (left-fringe . 8)
                         (right-fringe . 8)
-                        (fullscreen . maximized)))
+                        (fullscreen . fullboth)))
 
 (custom-set-variables
  '(initial-major-mode 'lisp-interaction-mode)
@@ -133,6 +133,7 @@
 
 (when system-is-osx-p
   (custom-set-variables
+   '(ns-use-native-fullscreen t)
    '(mac-option-modifier 'meta)
    '(ns-alternate-modifier 'meta)
    '(mac-command-modifier 'none)
@@ -175,7 +176,7 @@
   :custom
   (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (aw-dispatch-always nil)
-  (aw-background nil)
+  (aw-background t)
   (aw-minibuffer-flag t)
   (aw-display-mode-overlay t)
   (aw-scope 'frame)
