@@ -101,7 +101,8 @@
  '(vc-follow-symlinks t)
  '(create-lockfiles nil)
  '(uniquify-buffer-name-style 'forward)
- '(use-dialog-box nil))
+ '(use-dialog-box nil)
+ '(frame-title-format "Emacs"))
 
 (custom-set-variables
  '(find-file-visit-truename t)
@@ -133,6 +134,7 @@
 
 (when system-is-osx-p
   (custom-set-variables
+   '(ns-use-proxy-icon nil)
    '(ns-use-native-fullscreen t)
    '(mac-option-modifier 'meta)
    '(ns-alternate-modifier 'meta)
