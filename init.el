@@ -309,11 +309,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :diminish
   :custom (counsel-grep-base-command "grep -i -E -n -e %s %s")
   :hook (after-init-hook . counsel-mode)
-  :bind (("C-c SPC" . counsel-mark-ring)
-         ("C-c j"   . counsel-git-grep)
-         ("C-c k"   . counsel-rg)
-         ("C-c o"   . counsel-outline)
-         ("C-c i"   . counsel-imenu)
+  :bind (("C-x j" . counsel-mark-ring)
+         ("C-c j" . counsel-git-grep)
+         ("C-c k" . counsel-rg)
+         ("C-c o" . counsel-outline)
+         ("C-c i" . counsel-imenu)
          ([remap jump-to-register]   . counsel-register)
          (:map cr-toggle-map
                ("T" . counsel-load-theme))
@@ -802,7 +802,7 @@ For ediff hooks usage"
   :bind ("C-c r" . ivy-resume))
 
 (use-package ivy-pass
-  :bind ("C-c q" . ivy-pass))
+  :bind (:map cr-app-map ("p" . ivy-pass)))
 
 (use-package ivy-rich
   :after ivy
@@ -1078,7 +1078,7 @@ For ediff hooks usage"
 
 (use-package pass
   :custom (pass-show-keybindings nil)
-  :bind ("C-c Q" . pass))
+  :bind (:map cr-app-map ("P" . pass)))
 
 (use-package password-cache
   :straight nil
