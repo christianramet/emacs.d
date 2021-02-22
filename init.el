@@ -302,18 +302,18 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package compile
   :straight nil
-  :bind ("C-c m" . compile))
+  :bind (:map cr-file-map ("m" . compile)))
 
 (use-package counsel
   :after ivy
   :diminish
   :custom (counsel-grep-base-command "grep -i -E -n -e %s %s")
   :hook (after-init-hook . counsel-mode)
-  :bind (("C-x j" . counsel-mark-ring)
+  :bind (("C-c i" . counsel-imenu)
          ("C-c j" . counsel-git-grep)
          ("C-c k" . counsel-rg)
          ("C-c o" . counsel-outline)
-         ("C-c i" . counsel-imenu)
+         ("C-c m" . counsel-mark-ring)
          ([remap jump-to-register]   . counsel-register)
          (:map cr-toggle-map
                ("T" . counsel-load-theme))
