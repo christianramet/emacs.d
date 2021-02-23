@@ -914,6 +914,10 @@ For ediff hooks usage"
   (add-hook 'nov-mode-hook 'cr-nov-settings)
   :mode ("\\.epub\\'" . nov-mode))
 
+(use-package ob-async
+  :after org
+  :demand)
+
 (use-package olivetti
   :bind (:map cr-toggle-map ("o" . olivetti-mode)))
 
