@@ -487,7 +487,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package disable-mouse
   :diminish disable-mouse-global-mode
-  :hook (after-init-hook . global-disable-mouse-mode)
   :bind (:map cr-toggle-map ("m" . global-disable-mouse-mode)))
 
 (use-package display-line-numbers
