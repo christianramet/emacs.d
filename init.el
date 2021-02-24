@@ -888,6 +888,10 @@ For ediff hooks usage"
               ("g" . magit-status)
               ("p" . magit-pull-from-upstream)))
 
+(use-package man
+  :if system-is-osx-p
+  :bind (:map cr-app-map ("m" . man)))
+
 (use-package markdown-mode :mode ("\\.md\\'" "\\.markdown\\'"))
 
 (use-package multiple-cursors
@@ -1342,6 +1346,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :bind (:map cr-toggle-map ("SPC" . whitespace-mode)))
 
 (use-package woman
+  :if (not system-is-osx-p)
   :bind (:map cr-app-map ("m" . woman)))
 
 (use-package writeroom-mode
