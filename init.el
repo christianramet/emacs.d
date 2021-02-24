@@ -884,9 +884,6 @@ For ediff hooks usage"
               ("g" . magit-status)
               ("p" . magit-pull-from-upstream)))
 
-(use-package man
-  :bind (:map cr-app-map ("m" . man)))
-
 (use-package markdown-mode :mode ("\\.md\\'" "\\.markdown\\'"))
 
 (use-package disable-mouse
@@ -1344,6 +1341,9 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
 (use-package whitespace
   :bind (:map cr-toggle-map ("SPC" . whitespace-mode)))
+
+(use-package woman
+  :bind (:map cr-app-map ("m" . woman)))
 
 (use-package writeroom-mode
   :custom
