@@ -485,6 +485,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :demand
   :after dired)
 
+(use-package disable-mouse
+  :diminish disable-mouse-global-mode
+  :hook (after-init-hook . global-disable-mouse-mode)
+  :bind (:map cr-toggle-map ("m" . global-disable-mouse-mode)))
+
 (use-package display-line-numbers
   :bind (:map cr-toggle-map ("l" . display-line-numbers-mode)))
 
@@ -885,11 +890,6 @@ For ediff hooks usage"
               ("p" . magit-pull-from-upstream)))
 
 (use-package markdown-mode :mode ("\\.md\\'" "\\.markdown\\'"))
-
-(use-package disable-mouse
-  :diminish disable-mouse-global-mode
-  :hook (after-init-hook . global-disable-mouse-mode)
-  :bind (:map cr-toggle-map ("m" . global-disable-mouse-mode)))
 
 (use-package multiple-cursors
   :bind (("C-c C-SPC"     . mc/edit-lines)
