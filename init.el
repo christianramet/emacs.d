@@ -535,8 +535,9 @@ For ediff hooks usage"
          (ediff-before-setup-hook   . cr--ediff-save-window-config)
          (ediff-quit-hook           . cr--ediff-restore-window-config)
          (ediff-suspend-hook        . cr--ediff-restore-window-config))
-  :bind (("C-c w d" . ediff-buffers)
-         ("C-c w D" . ediff-show-registry)))
+  :bind (:map cr-buffer-map
+              ("d" . ediff-buffers)
+              ("D" . ediff-show-registry)))
 
 (use-package eldoc
   :straight nil
