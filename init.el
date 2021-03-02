@@ -603,7 +603,7 @@ For ediff hooks usage"
   (eshell-ls-use-colors t)
   (eshell-history-size 1024)
   (eshell-hist-ignoredups t)
-  (eshell-destroy-buffer-when-process-dies t)
+  (eshell-destroy-buffer-when-process-dies nil)
   (eshell-visual-commands '("crontab" "tmux" "htop" "tail" "vi" "screen" "top" "less" "more"))
   (eshell-modules-list '(eshell-alias
                          ;; eshell-banner
