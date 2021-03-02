@@ -1,11 +1,11 @@
-alias yum yum -q
-alias pwgen-strong pwgen -scn 20 1
-alias pwgen-simple pwgen -scn 8 1
-alias pwgen-paranoid pwgen -scny 24 1
-alias psbymem ps -Ao user,uid,pid,pcpu,pmem,start,time,comm --sort=-pmem
-alias psbycpu ps -Ao user,uid,pid,pcpu,pmem,start,time,comm --sort=-pcpu
-alias ll ls -lah
-alias find-empty-dirs find . -depth -empty -type d
+alias apt {apt-get -q $*}
+alias dnf {dnf -q $*}
 alias ff {find-file $1}
-alias dnf dnf -q
-alias apt apt -q
+alias find-empty-dirs {find $1 -depth -empty -type d}
+alias ll ls -lah
+alias psbycpu ps -Ao user,uid,pid,pcpu,pmem,start,time,comm --sort=-pcpu
+alias psbymem ps -Ao user,uid,pid,pcpu,pmem,start,time,comm --sort=-pmem
+alias pwgen-paranoid pwgen -scny 24 1
+alias pwgen-simple pwgen -scn 8 1
+alias pwgen-strong pwgen -scn 20 1
+alias yum {yum -q $*}
