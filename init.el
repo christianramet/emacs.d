@@ -621,8 +621,6 @@ For ediff hooks usage"
                          eshell-tramp
                          eshell-unix))
   :config
-  (defalias 'v 'eshell-exec-visual)
-
   (defun cr-eshell-settings ()
     (company-mode -1)
     (setenv "PAGER""cat")
