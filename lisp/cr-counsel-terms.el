@@ -45,4 +45,26 @@
                             (reusable-frames . visible)))
     (vterm (format "*vterm*-%s" name))))
 
+(defun cr-counsel-shell ()
+  "Switch to a shell buffer, or create one."
+  (interactive)
+  (ivy-read "Shell buffer: " (counsel--buffers-with-mode #'shell-mode)
+            :action '(1
+                      ("o" cr-counsel--switch-to-shell "default")
+                      ("k" ivy--kill-buffer-action "kill")
+                      ("r" ivy--rename-buffer-action "rename"))
+            :caller 'cr-counsel-shell))
+
+(defun cr-counsel--switch-to-shell (name)
+  "Display shell buffer with NAME and select its window.
+    Reuse any existing window already displaying the named buffer.
+    If there is no such buffer, start a new `shell' with NAME."
+  (if (and (get-buffer name)
+           (string= "shell-mode" (buffer-local-value 'major-mode (get-buffer name))))
+      (pop-to-buffer name '((display-buffer-reuse-window
+                             display-buffer-same-window)
+                            (inhibit-same-window . nil)
+                            (reusable-frames . visible)))
+    (shell (format "*shell*-%s" name))))
+
 (provide 'cr-counsel-terms)
