@@ -1297,6 +1297,11 @@ For ediff hooks usage"
                ("n" . next-line)
                ("p" . previous-line))))
 
+(use-package tramp
+  :straight nil
+  :custom (tramp-shell-prompt-pattern ;; adjusted for vterm dir-tracking
+           "\\(?:^\\|\r\\)[^]#$%>\n]*#?[]#$%>].* *\\(^[\\[[0-9;]*[a-zA-Z] *\\)*"))
+
 (use-package vterm
   :commands vterm
   :init (setq vterm-always-compile-module t)
