@@ -354,9 +354,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package cr-counsel-terms
   :straight nil
-  :commands (cr-counsel-vterm cr-counsel-eshell)
+  :commands (cr-counsel-eshell cr-counsel-shell cr-counsel-vterm)
   :bind (:map cr-app-map
               ("e" . cr-counsel-eshell)
+              ("s" . cr-counsel-shell)
               ("t" . cr-counsel-vterm)))
 
 (use-package cr-functions
@@ -1256,7 +1257,7 @@ For ediff hooks usage"
   (defun cr-isql-config ()
     (setq-local truncate-lines t))
   (add-hook 'sql-interactive-mode-hook 'cr-isql-config)
-  :bind ((:map cr-app-map ("s" . sql-connect))))
+  :bind ((:map cr-app-map ("S" . sql-connect))))
 
 (use-package ssh-config-mode)
 
@@ -1297,10 +1298,18 @@ For ediff hooks usage"
                ("n" . next-line)
                ("p" . previous-line))))
 
+(use-package tramp
+  :straight nil
+  :custom
+  ;; https://github.com/akermu/emacs-libvterm/issues/369
+  (tramp-shell-prompt-pattern
+           "\\(?:^\\|\r\\)[^]#$%>\n]*#?[]#$%>].* *\\(^[\\[[0-9;]*[a-zA-Z] *\\)*"))
+
 (use-package vterm
   :commands vterm
   :init (setq vterm-always-compile-module t)
   :custom (vterm-max-scrollback (* 20 1000))
+  :commands vterm
   :config
   (defun cr-vterm-yank-pop ()
     "Call my version of vterm-yank-pop and insert into vterm.
@@ -1309,9 +1318,6 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
     (let ((inhibit-read-only t))
       (vterm-send-string (counsel-yank-pop))))
 
-  (defun cr-vterm-settings ()
-    (setq-local global-hl-line-mode nil))
-  :hook (vterm-mode-hook . cr-vterm-settings)
   :bind (:map vterm-mode-map ("M-y" . cr-vterm-yank-pop)))
 
 (use-package wdired

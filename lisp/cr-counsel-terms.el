@@ -1,4 +1,7 @@
 (require 'counsel)
+(require 'eshell)
+(require 'shell)
+(require 'vterm)
 
 (defun cr-counsel-eshell ()
   "Switch to an eshell buffer, or create one."
@@ -23,6 +26,19 @@
     (eshell 99)
     (rename-buffer (format "*eshell*-%s" name))))
 
+(defun vterm-with-name (name)
+  (vterm (format "*vterm*-%s" name)))
+
+(defun vterm-ssh (name host)
+  (vterm-with-name name)
+  (vterm-send-string (concat "ssh " host "\n")))
+
+(defun vterm-try-tramp (name)
+  (let ((host (file-remote-p default-directory 'host)))
+    (if host
+        (vterm-ssh name host)
+      (vterm-with-name name))))
+
 (defun cr-counsel-vterm ()
   "Switch to a vterm buffer, or create one."
   (interactive)
@@ -42,8 +58,8 @@
       (pop-to-buffer name '((display-buffer-reuse-window
                              display-buffer-same-window)
                             (inhibit-same-window . nil)
-                            (reusable-frames . visible)))
-    (vterm (format "*vterm*-%s" name))))
+                            (reusable-frames . visible))))
+  (vterm-try-tramp name))
 
 (defun cr-counsel-shell ()
   "Switch to a shell buffer, or create one."
