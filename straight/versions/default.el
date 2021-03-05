@@ -69,7 +69,7 @@
  ("ob-async" . "de1cd6c93242a4cb8773bbe115b7be3d4dd6b97e")
  ("ob-restclient.el" . "0ebfc7c5ebf96d2fe1a476439831363a5a43b9b6")
  ("olivetti" . "61d26644fd9dd2d45b80b9b82f5f930ed17530d0")
- ("org" . "d726503251e3e608275fc5bfa7070d501d34f48c")
+ ("org" . "26773a404e359c7cde994956f5749d92dd470430")
  ("org-cliplink" . "13e0940b65d22bec34e2de4bc8cba1412a7abfbc")
  ("org-noter" . "9ead81d42dd4dd5074782d239b2efddf9b8b7b3d")
  ("org-ql" . "208e103ecc146db71d878df3bd09c6eb60c2797d")
