@@ -1285,13 +1285,6 @@ For ediff hooks usage"
                ("n" . next-line)
                ("p" . previous-line))))
 
-(use-package tramp
-  :straight nil
-  :custom
-  ;; https://github.com/akermu/emacs-libvterm/issues/369
-  (tramp-shell-prompt-pattern
-           "\\(?:^\\|\r\\)[^]#$%>\n]*#?[]#$%>].* *\\(^[\\[[0-9;]*[a-zA-Z] *\\)*"))
-
 (use-package vterm
   :commands vterm
   :init (setq vterm-always-compile-module t)
