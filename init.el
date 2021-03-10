@@ -500,6 +500,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package dockerfile-mode :mode ("Dockerfile\\'"))
 
 (use-package doom-modeline
+  :disabled
   :custom
   (doom-modeline-icon nil)
   (doom-modeline-buffer-encoding nil)
