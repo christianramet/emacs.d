@@ -1345,7 +1345,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :custom
   (writeroom-restore-window-config t)
   (writeroom-fringes-outside-margins t)
-  (writeroom-width (+ fill-column 10))
+  (writeroom-width fill-column)
   (writeroom-major-modes-exceptions nil)
   (writeroom-major-modes '(text-mode org-mode elfeed-show-mode))
   :config
