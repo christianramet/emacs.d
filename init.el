@@ -572,7 +572,7 @@ For ediff hooks usage"
     (setq-local line-spacing 0.2))
   :hook (elfeed-show-mode-hook . cr-elfeed-show-settings)
   :bind ((:map cr-app-map ("f" . elfeed))
-         (:map elfeed-search-mode-map ("a" . elfeed-search-show-entry)
+         (:map elfeed-search-mode-map ("a" . elfeed-search-show-entry))
                (:map elfeed-show-mode-map
                      ("n" . next-line)
                      ("p" . previous-line)
