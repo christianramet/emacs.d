@@ -915,9 +915,6 @@ For ediff hooks usage"
   :after org
   :demand)
 
-(use-package olivetti
-  :bind (:map cr-toggle-map ("o" . olivetti-mode)))
-
 (use-package org
   :commands (org-agenda org-capture)
   :custom
