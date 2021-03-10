@@ -1102,7 +1102,6 @@ For ediff hooks usage"
 
 (use-package prog-mode
   :straight nil
-  :demand
   :custom (prettify-symbols-unprettify-at-point 'right-edge)
   :config
   (defun cr-prog-mode-settings ()
