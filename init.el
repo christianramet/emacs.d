@@ -974,10 +974,9 @@ For ediff hooks usage"
    '((emacs-lisp . t)
      (python . t)
      (shell . t)
-     (sql . t)
      (C . t)))
 
-  (setq org-babel-default-header-args '((:results  . "output")))
+  (setq org-babel-default-header-args '((:results  . "replace output")))
 
   (org-clock-persistence-insinuate)
 
