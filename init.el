@@ -326,11 +326,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                ("l" . counsel-git-log))))
 
 (use-package cr-themes
-  :straight nil
+  :straight leuven-theme
   :demand
   :custom
-  (cr-themes-light 'doom-one-light)
-  (cr-themes-dark 'doom-one)
+  (cr-themes-light 'leuven)
+  (cr-themes-dark 'leuven-dark)
   (cr-themes-default cr-themes-light)
   :bind (:map cr-toggle-map ("t" . cr-themes-toggle))
   :config
