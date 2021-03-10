@@ -570,25 +570,14 @@ For ediff hooks usage"
     (setq-local shr-width fill-column)
     (setq-local shr-max-image-proportion 0.7)
     (setq-local line-spacing 0.2))
-
-  (defun elfeed-entry-other-window ()
-    "In Elfeed search, display the entry at point in another window."
-    (interactive)
-    (split-window-sensibly (selected-window))
-    (switch-to-buffer-other-window "*elfeed-search*")
-    (call-interactively #'elfeed-search-show-entry)
-    (switch-to-buffer-other-window "*elfeed-search*")
-    (forward-line))
   :hook (elfeed-show-mode-hook . cr-elfeed-show-settings)
   :bind ((:map cr-app-map ("f" . elfeed))
-         (:map elfeed-search-mode-map
-               ("a" . elfeed-search-show-entry)
-               ("o" . elfeed-entry-other-window))
-         (:map elfeed-show-mode-map
-               ("n" . next-line)
-               ("p" . previous-line)
-               ("[" . elfeed-show-prev)
-               ("]" . elfeed-show-next))))
+         (:map elfeed-search-mode-map ("a" . elfeed-search-show-entry)
+               (:map elfeed-show-mode-map
+                     ("n" . next-line)
+                     ("p" . previous-line)
+                     ("[" . elfeed-show-prev)
+                     ("]" . elfeed-show-next))))
 
 (use-package elisp-mode
   :straight nil
