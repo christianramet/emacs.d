@@ -993,21 +993,13 @@ For ediff hooks usage"
                   (org-buffer-list 'files t))))
 
   (defun cr-org-pretty-symbols ()
-    ;; (push '(":PROPERTIES:"     . ?:) prettify-symbols-alist)
-    (push '("#+begin_src"      . ?↦) prettify-symbols-alist)
     (push '("#+BEGIN_SRC"      . ?↦) prettify-symbols-alist)
-    (push '("#+end_src"        . ?⇤) prettify-symbols-alist)
     (push '("#+END_SRC"        . ?⇤) prettify-symbols-alist)
-    ;; (push '("#+RESULTS:"       . ?↩) prettify-symbols-alist)
-    (push '("#+begin_quote"    . ?↦) prettify-symbols-alist)
     (push '("#+BEGIN_QUOTE"    . ?↦) prettify-symbols-alist)
-    (push '("#+end_quote"      . ?⇤) prettify-symbols-alist)
     (push '("#+END_QUOTE"      . ?⇤) prettify-symbols-alist)
-    (push '("#+begin_example"  . ?↦) prettify-symbols-alist)
     (push '("#+BEGIN_EXAMPLE"  . ?↦) prettify-symbols-alist)
-    (push '("#+end_example"    . ?⇤) prettify-symbols-alist)
     (push '("#+END_EXAMPLE"    . ?⇤) prettify-symbols-alist)
-    (prettify-symbols-mode t))
+    (prettify-symbols-mode 1))
 
   (defun cr-org-settings ()
     (setq-local delete-trailing-lines nil)
@@ -1105,6 +1097,8 @@ For ediff hooks usage"
 
 (use-package prog-mode
   :straight nil
+  :demand
+  :custom (prettify-symbols-unprettify-at-point 'right-edge)
   :config
   (defun cr-prog-mode-settings ()
     (setq-local indicate-empty-lines t))
