@@ -10,7 +10,8 @@
 (add-hook 'after-init-hook 'cr-set-gc)
 
 ;;;* Path
-(defconst cr-user-emacs-directory-lisp (expand-file-name "lisp" user-emacs-directory)
+(defconst cr-user-emacs-directory-lisp
+  (expand-file-name "lisp" user-emacs-directory)
   "My Emacs configuration base directory.")
 
 (let ((default-directory cr-user-emacs-directory-lisp))
@@ -37,7 +38,8 @@
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+       (expand-file-name "straight/repos/straight.el/bootstrap.el"
+       user-emacs-directory))
       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
@@ -70,7 +72,8 @@
   :demand
   :custom
   (custom-file (no-littering-expand-var-file-name "custom.el"))
-  (auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+  (auto-save-file-name-transforms
+   `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 ;;;* Better defaults
 (prefer-coding-system 'utf-8)
@@ -266,7 +269,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
       (setq quality-val (string-to-number quality-val))
       (message "Opening %s with height≤%s with mpv..." url quality-val)
       (when (< 0 quality-val)
-        (setq quality-arg (format "--ytdl-format=bestvideo[height<=?%s]+bestaudio" quality-val)))
+        (setq quality-arg
+              (format "--ytdl-format=bestvideo[height<=?%s]+bestaudio" quality-val)))
       (start-process "mpv" nil "mpv" quality-arg url)))
   :bind ("M-g w" . browse-url-at-point))
 
@@ -290,10 +294,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :config
   (setq company-minimum-prefix-length 3
         company-idle-delay 0.2
-        company-backends '(company-capf
-                           (company-dabbrev-code company-gtags company-etags company-keywords)
-                           company-files
-                           company-dabbrev))
+        company-backends
+        '(company-capf
+          (company-dabbrev-code company-gtagscompany-etags company-keywords)
+          company-files
+          company-dabbrev))
   (global-company-mode 1)
   :bind (("M-/"   . company-complete)
          ("C-c y" . company-yasnippet)
@@ -595,7 +600,8 @@ For ediff hooks usage"
   (eshell-history-size 1024)
   (eshell-hist-ignoredups t)
   (eshell-destroy-buffer-when-process-dies nil)
-  (eshell-visual-commands '("crontab" "tmux" "htop" "tail" "vi" "screen" "top" "less" "more"))
+  (eshell-visual-commands
+  '("crontab" "tmux" "htop" "tail" "vi" "screen" "top" "less" "more"))
   (eshell-modules-list '(eshell-alias
                          ;; eshell-banner
                          eshell-basic
@@ -664,7 +670,8 @@ For ediff hooks usage"
 (use-package flycheck-popup-tip
   :disabled
   :after flycheck
-  :config (setq flycheck-pos-tip-display-errors-tty-function #'flycheck-popup-tip-show-popup)
+  :config (setq flycheck-pos-tip-display-errors-tty-function
+                #'flycheck-popup-tip-show-popup)
   :hook (flycheck-mode-hook . flycheck-popup-tip-mode))
 
 (use-package flyspell
@@ -833,7 +840,8 @@ For ediff hooks usage"
 
 (use-package langtool
   :if (eq system-name "t460")
-  :custom (langtool-language-tool-jar "~/opt/languagetool.org/languagetool-commandline.jar"))
+  :custom (langtool-language-tool-jar
+           "~/opt/languagetool.org/languagetool-commandline.jar"))
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
