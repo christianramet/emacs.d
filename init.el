@@ -206,6 +206,7 @@
     (all-the-icons-install-fonts t)))
 
 (use-package async
+  :diminish dired-async-mode
   :hook (dired-mode-hook . dired-async-mode))
 
 (use-package auth-source-pass
