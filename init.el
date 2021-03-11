@@ -1174,6 +1174,24 @@ For ediff hooks usage"
 
 (use-package rust-mode)
 
+(use-package savehist
+  :straight nil
+  :demand
+  :custom
+  (history-length 1000)
+  (savehist-save-minibuffer-history t)
+  (savehist-additional-variables
+   '(Info-history-list
+     kill-ring
+     kmacro-ring
+     last-kbd-macro
+     regexp-search-ring
+     register-alist
+     search-ring
+     shell-command-history
+     compilation-command))
+  :hook (after-init-hook . savehist-mode))
+
 (use-package saveplace
   :straight nil
   :hook (after-init-hook . save-place-mode))
