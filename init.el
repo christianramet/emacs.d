@@ -203,6 +203,7 @@
               ("A" . align-regexp)))
 
 (use-package all-the-icons
+  :disabled
   :if (display-graphic-p)
   :init
   (unless (member "all-the-icons" (font-family-list))
@@ -331,7 +332,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                ("l" . counsel-git-log))))
 
 (use-package cr-themes
-  :straight leuven-theme
+  :straight nil
   :demand
   :custom
   (cr-themes-light 'leuven)
@@ -339,17 +340,25 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (cr-themes-default cr-themes-light)
   :bind (:map cr-toggle-map ("t" . cr-themes-toggle))
   :config
+  (use-package leuven-theme
+    :custom
+    (leuven-scale-outline-headlines nil)
+    (leuven-scale-org-agenda-structure nil)
+    (leuven-scale-volatile-highlight nil))
   (use-package doom-themes
     :custom
     (doom-themes-enable-bold t)
-    (doom-themes-enable-italic t))
+    (doom-themes-enable-italic t)
+    :config (doom-themes-org-config))
   (use-package modus-operandi-theme
+    :disabled
     :custom
     (modus-operandi-theme-scale-headings nil)
     (modus-operandi-theme-org-blocks 'rainbow)
     (modus-operandi-theme-slanted-constructs t)
     (modus-operandi-theme-bold-constructs t))
   (use-package modus-vivendi-theme
+    :disabled
     :custom
     (modus-vivendi-theme-scale-headings nil)
     (modus-vivendi-theme-org-blocks 'rainbow)
