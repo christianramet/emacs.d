@@ -1302,6 +1302,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :bind (:map vterm-mode-map ("M-y" . cr-vterm-yank-pop)))
 
 (use-package wdired
+  :straight nil
   :after dired
   :custom
   (wdired-allow-to-change-permissions t)
