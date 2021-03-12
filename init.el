@@ -445,7 +445,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (put 'dired-find-alternate-file 'disabled nil)
 
   (defvar cr-dired-sort-base "-lahv")
-  (defun cr-dired-sort-by-group ()
+  (defun cr-dired-sort-by-dir ()
     (interactive)
     ;; Note: default ls from MacOS does not have this option (use ls from coreutils)
     (dired-sort-other (concat cr-dired-sort-base " --group-directories-first")))
@@ -460,40 +460,14 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (dired-sort-other (concat cr-dired-sort-base " -t")))
 
   (define-prefix-command 'cr-dired-sort-map)
-  (define-key cr-dired-sort-map (kbd "g") 'cr-dired-sort-by-group)
+  (define-key cr-dired-sort-map (kbd "d") 'cr-dired-sort-by-dir)
   (define-key cr-dired-sort-map (kbd "n") 'cr-dired-sort-by-name)
   (define-key cr-dired-sort-map (kbd "t") 'cr-dired-sort-by-time)
   (define-key cr-dired-sort-map (kbd "s") 'cr-dired-sort-by-size)
 
   (define-key dired-mode-map (kbd "s") 'cr-dired-sort-map)
   (define-key dired-mode-map (kbd "[") 'dired-up-directory)
-  (define-key dired-mode-map (kbd "e") 'ediff-files)
-
-  :bind (:map dired-mode-map ("K" . dired-kill-subdir)))
-
-(use-package dired-git-info
-  :after dired
-  :bind (:map dired-mode-map (")" . dired-git-info-mode)))
-
-(use-package dired-hide-dotfiles
-  :after dired
-  :bind (:map dired-mode-map ("H" . dired-hide-dotfiles-mode)))
-
-(use-package dired-narrow
-  :disabled
-  :after dired
-  :bind (:map dired-mode-map
-              ("/" . dired-narrow-regexp)))
-
-(use-package dired-rsync
-  :after dired
-  :bind (:map dired-mode-map ("r" . dired-rsync)))
-
-(use-package dired-subtree
-  :disabled
-  :bind (:map dired-mode-map
-              ("i" . dired-subtree-insert)
-              (";" . dired-subtree-remove)))
+  (define-key dired-mode-map (kbd "e") 'ediff-files))
 
 (use-package dired-x
   :straight nil
