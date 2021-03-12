@@ -1317,13 +1317,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
          ("C-x U" . winner-redo)))
 
 (use-package which-key
-  :commands which-key-mode
   :diminish
-  :custom
-  (which-key-idle-delay 0.5)
-  (which-key-idle-secondary-delay 0.2)
-  (which-key-allow-imprecise-window-fit t)
-  :hook (after-init-hook . which-key-mode)
   :bind (:map cr-toggle-map ("?" . which-key-mode)))
 
 (use-package whitespace
