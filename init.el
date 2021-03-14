@@ -640,22 +640,13 @@ For ediff hooks usage"
 
 (use-package flycheck
   :commands (flycheck-mode global-flycheck-mode)
-  :custom
-  (flycheck-idle-change-delay 0.5)
-  (lycheck-standard-error-navigation t)
-  (flycheck-indication-mode 'left-fringe)
-  (flycheck-global-modes t)
   :hook (prog-mode-hook . flycheck-mode)
-  :bind (:map cr-toggle-map
-              ("f" . flycheck-mode)
-              ("F" . global-flycheck-mode)))
-
-(use-package flycheck-popup-tip
-  :disabled
-  :after flycheck
-  :config (setq flycheck-pos-tip-display-errors-tty-function
-                #'flycheck-popup-tip-show-popup)
-  :hook (flycheck-mode-hook . flycheck-popup-tip-mode))
+  :bind ((:map flycheck-mode-map
+               ("M-n" . flycheck-next-error)
+               ("M-p" . flycheck-previous-error))
+         (:map cr-toggle-map
+               ("f" . flycheck-mode)
+               ("F" . global-flycheck-mode))))
 
 (use-package flyspell
   :diminish
