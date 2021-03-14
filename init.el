@@ -690,6 +690,7 @@ For ediff hooks usage"
   :bind (:map cr-toggle-map ("=" . follow-delete-other-windows-and-split)))
 
 (use-package forge
+  :disabled
   :after magit
   :commands forge-pull-notifications)
 
@@ -815,7 +816,6 @@ For ediff hooks usage"
            "~/opt/languagetool.org/languagetool-commandline.jar"))
 
 (use-package lsp-mode
-  :disabled
   :commands (lsp lsp-deferred)
   :custom
   (lsp-keymap-prefix "C-c u")
@@ -824,21 +824,17 @@ For ediff hooks usage"
   :bind (:map cr-toggle-map ("u" . lsp)))
 
 (use-package lsp-mode
-  :disabled
   :if (executable-find "clang")
   :hook (c-mode-common-hook . lsp-deferred))
 
 (use-package lsp-mode
-  :disabled
   :if (executable-find "gopls")
   :hook (go-mode-hook . lsp-deferred))
 
 (use-package lsp-ui
-  :disabled
   :commands lsp-ui-mode
   :custom
   (lsp-ui-doc-enable nil)
-  (lsp-ui-doc-position 'at-point)
   (lsp-ui-flycheck-enable t)
   (lsp-ui-imenu-enable t)
   (lsp-ui-peek-enable nil)
