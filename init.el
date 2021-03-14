@@ -641,12 +641,9 @@ For ediff hooks usage"
 (use-package flycheck
   :commands (flycheck-mode global-flycheck-mode)
   :hook (prog-mode-hook . flycheck-mode)
-  :bind ((:map flycheck-mode-map
-               ("M-n" . flycheck-next-error)
-               ("M-p" . flycheck-previous-error))
-         (:map cr-toggle-map
-               ("f" . flycheck-mode)
-               ("F" . global-flycheck-mode))))
+  :bind (:map cr-toggle-map
+              ("f" . flycheck-mode)
+              ("F" . global-flycheck-mode)))
 
 (use-package flyspell
   :diminish
@@ -818,6 +815,7 @@ For ediff hooks usage"
            "~/opt/languagetool.org/languagetool-commandline.jar"))
 
 (use-package lsp-mode
+  :disabled
   :commands (lsp lsp-deferred)
   :custom
   (lsp-keymap-prefix "C-c u")
@@ -826,14 +824,17 @@ For ediff hooks usage"
   :bind (:map cr-toggle-map ("u" . lsp)))
 
 (use-package lsp-mode
+  :disabled
   :if (executable-find "clang")
   :hook (c-mode-common-hook . lsp-deferred))
 
 (use-package lsp-mode
+  :disabled
   :if (executable-find "gopls")
   :hook (go-mode-hook . lsp-deferred))
 
 (use-package lsp-ui
+  :disabled
   :commands lsp-ui-mode
   :custom
   (lsp-ui-doc-enable nil)
