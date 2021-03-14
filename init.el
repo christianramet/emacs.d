@@ -847,10 +847,10 @@ For ediff hooks usage"
   :custom
   (lsp-ui-doc-enable nil)
   (lsp-ui-doc-position 'at-point)
-  (lsp-ui-peek-enable t)
-  (lsp-ui-sideline-enable nil)
+  (lsp-ui-flycheck-enable t)
   (lsp-ui-imenu-enable t)
-  (lsp-ui-flycheck-enable t))
+  (lsp-ui-peek-enable nil)
+  (lsp-ui-sideline-enable nil))
 
 (use-package magit
   :if (executable-find "git")
