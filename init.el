@@ -1036,6 +1036,7 @@ For ediff hooks usage"
               ("I" . org-roam-insert-immediate)))
 
 (use-package org-superstar
+  :disabled
   :after org
   :custom (org-superstar-prettify-item-bullets nil)
   :hook (org-mode-hook . org-superstar-mode))
