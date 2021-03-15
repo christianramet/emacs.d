@@ -843,13 +843,7 @@ For ediff hooks usage"
   (lsp-ui-sideline-enable nil))
 
 (use-package magit
-  :if (executable-find "git")
-  :defer 10
   :commands magit-status
-  :custom
-  (magit-auto-revert-immediately t)
-  (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
-  (magit-diff-refine-hunk nil)
   :bind (:map cr-git-map
               ("b" . magit-branch-checkout)
               ("B" . magit-blame)
