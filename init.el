@@ -1064,9 +1064,10 @@ For ediff hooks usage"
 (use-package proced
   :straight nil
   :custom
-  (proced-auto-update-flag t)
+  (proced-auto-update-flag nil)
   (proced-auto-update-interval 5)
-  :bind (:map cr-app-map ("x" . proced)))
+  :bind ((:map cr-app-map ("x" . proced))
+         (:map proced-mode-map ("a" . proced-toggle-auto-update))))
 
 (use-package prog-mode
   :straight nil
