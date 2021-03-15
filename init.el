@@ -1029,6 +1029,7 @@ For ediff hooks usage"
   :bind (:map cr-search-map ("o" . org-ql-search)))
 
 (use-package ox-reveal
+  :disabled
   :demand
   :after org
   :custom (org-reveal-root "~/js/reveal.js"))
