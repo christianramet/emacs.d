@@ -104,7 +104,8 @@
  '(create-lockfiles nil)
  '(uniquify-buffer-name-style 'forward)
  '(use-dialog-box nil)
- '(frame-title-format "Emacs"))
+ '(frame-title-format "Emacs")
+ '(enable-local-variables nil))
 
 (custom-set-variables
  '(find-file-visit-truename t)
