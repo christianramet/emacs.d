@@ -821,6 +821,7 @@ For ediff hooks usage"
   :custom
   (lsp-keymap-prefix "C-c u")
   (lsp-auto-configure t)
+  (read-process-output-max (* 1024 1024 5)) ;; 5mb
   :hook (lsp-mode-hook . lsp-enable-which-key-integration)
   :bind (:map cr-toggle-map ("u" . lsp)))
 
