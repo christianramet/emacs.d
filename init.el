@@ -641,6 +641,7 @@ For ediff hooks usage"
 
 (use-package flycheck
   :commands (flycheck-mode global-flycheck-mode)
+  :custom (flycheck-idle-change-delay 0.5)
   :hook (prog-mode-hook . flycheck-mode)
   :bind (:map cr-toggle-map
               ("f" . flycheck-mode)
