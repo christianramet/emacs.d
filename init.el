@@ -1026,6 +1026,11 @@ For ediff hooks usage"
   :custom (org-superstar-prettify-item-bullets nil)
   :hook (org-mode-hook . org-superstar-mode))
 
+(use-package org-variable-pitch
+  :diminish org-variable-pitch-minor-mode
+  :config (org-variable-pitch-setup)
+  :hook (org-mode-hook . org-variable-pitch-minor-mode))
+
 (use-package org-ql
   :bind (:map cr-search-map ("o" . org-ql-search)))
 
