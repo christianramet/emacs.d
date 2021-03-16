@@ -819,9 +819,11 @@ For ediff hooks usage"
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :custom
-  (lsp-keymap-prefix "C-c u")
   (lsp-auto-configure t)
-  (read-process-output-max (* 1024 1024 5)) ;; 5mb
+  (lsp-headerline-breadcrumb-enable nil)
+  (lsp-idle-delay 0.5)
+  (lsp-keymap-prefix "C-c u")
+  (read-process-output-max (* 1024 1024)) ;; 1mb
   :hook (lsp-mode-hook . lsp-enable-which-key-integration)
   :bind (:map cr-toggle-map ("u" . lsp)))
 
@@ -837,7 +839,6 @@ For ediff hooks usage"
   :commands lsp-ui-mode
   :custom
   (lsp-ui-doc-enable nil)
-  (lsp-ui-flycheck-enable t)
   (lsp-ui-imenu-enable t)
   (lsp-ui-peek-enable nil)
   (lsp-ui-sideline-enable nil))
