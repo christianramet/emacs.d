@@ -253,8 +253,7 @@
   :straight nil
   :commands (battery display-battery-mode)
   :custom (battery-mode-line-limit 85)
-  :bind (:map cr-toggle-map
-              ("b" . display-battery-mode)))
+  :bind (:map cr-toggle-map ("b" . display-battery-mode)))
 
 (use-package browse-url
   :custom
