@@ -977,6 +977,7 @@ For ediff hooks usage"
     (setq-local delete-trailing-lines nil)
     (setq-local indicate-empty-lines nil)
     (setq-local indicate-buffer-boundaries nil)
+    (setq-local company-idle-delay nil)
     (cr-org-pretty-symbols)
     (auto-fill-mode -1))
 
