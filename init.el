@@ -293,15 +293,15 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :commands (company-mode company-indent-or-complete-common)
   :demand
   :diminish
-  :config
-  (setq company-minimum-prefix-length 3
-        company-idle-delay 0.2
-        company-backends
-        '(company-capf
-          (company-dabbrev-code company-gtagscompany-etags company-keywords)
-          company-files
-          company-dabbrev))
-  (global-company-mode 1)
+  :custom
+  (company-idle-delay 0.5)
+  (company-minimu-prefix-length 3)
+  (company-backends
+   '(company-capf
+     (company-dabbrev-code company-gtags company-etags company-keywords)
+     company-files
+     company-dabbrev))
+  :hook (after-init-hook . global-company-mode)
   :bind (("M-/"   . company-complete)
          ("C-c y" . company-yasnippet)
          (:map company-active-map ("M-/" . company-other-backend))
