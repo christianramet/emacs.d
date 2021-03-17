@@ -607,32 +607,6 @@ For ediff hooks usage"
 (use-package eww
   :bind (:map cr-app-map ("w" . eww)))
 
-(use-package face-remap
-  :diminish buffer-face-mode
-  :config
-  (custom-theme-set-faces
-   'user
-   '(org-block                 ((t (:inherit fixed-pitch))))
-   '(org-block-begin-line      ((t (:inherit fixed-pitch))))
-   '(org-block-end-line        ((t (:inherit fixed-pitch))))
-   '(org-checkbox              ((t (:inherit fixed-pitch))))
-   '(org-code                  ((t (:inherit (shadow fixed-pitch)))))
-   '(org-date                  ((t (:inherit fixed-pitch))))
-   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
-   '(org-done                  ((t (:inherit fixed-pitch))))
-   '(org-formula               ((t (:inherit fixed-pitch))))
-   '(org-indent                ((t (:inherit (org-hide fixed-pitch)))))
-   '(org-link                  ((t (:inherit (fixed-pitch) :underline t))))
-   '(org-meta-line             ((t (:inherit fixed-pitch))))
-   '(org-property-value        ((t (:inherit fixed-pitch))))
-   '(org-special-keyword       ((t (:inherit fixed-pitch))))
-   '(org-table                 ((t (:inherit fixed-pitch))))
-   '(org-tag                   ((t (:inherit (shadow fixed-pitch) :weight bold))))
-   '(org-todo                  ((t (:inherit fixed-pitch))))
-   '(org-verbatim              ((t (:inherit fixed-pitch)))))
-  :hook (org-mode-hook . variable-pitch-mode)
-  :bind (:map cr-toggle-map ("P" . variable-pitch-mode)))
-
 (use-package ffap
   :straight nil
   :bind ("M-g f" . find-file-at-point))
@@ -856,6 +830,11 @@ For ediff hooks usage"
   :bind (:map cr-app-map ("m" . man)))
 
 (use-package markdown-mode :mode ("\\.md\\'" "\\.markdown\\'"))
+
+(use-package mixed-pitch
+  :diminish
+  :hook (text-mode-hook . mixed-pitch-mode)
+  :bind (:map cr-toggle-map ("P" . mixed-pitch-mode)))
 
 (use-package multiple-cursors
   :bind (("C-c C-SPC"     . mc/edit-lines)
