@@ -618,10 +618,13 @@ For ediff hooks usage"
   (custom-theme-set-faces
    'user
    '(org-block                 ((t (:inherit fixed-pitch))))
+   '(org-block-begin-line      ((t (:inherit fixed-pitch))))
+   '(org-block-end-line        ((t (:inherit fixed-pitch))))
    '(org-checkbox              ((t (:inherit fixed-pitch))))
    '(org-code                  ((t (:inherit (shadow fixed-pitch)))))
    '(org-date                  ((t (:inherit fixed-pitch))))
    '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+   '(org-done                  ((t (:inherit fixed-pitch))))
    '(org-formula               ((t (:inherit fixed-pitch))))
    '(org-indent                ((t (:inherit (org-hide fixed-pitch)))))
    '(org-link                  ((t (:inherit (fixed-pitch) :underline t))))
@@ -632,6 +635,7 @@ For ediff hooks usage"
    '(org-tag                   ((t (:inherit (shadow fixed-pitch) :weight bold))))
    '(org-todo                  ((t (:inherit fixed-pitch))))
    '(org-verbatim              ((t (:inherit fixed-pitch)))))
+  :hook (org-mode-hook . variable-pitch-mode)
   :bind (:map cr-toggle-map ("p" . variable-pitch-mode)))
 
 (use-package ffap
@@ -1026,11 +1030,6 @@ For ediff hooks usage"
   :after org
   :custom (org-superstar-prettify-item-bullets nil)
   :hook (org-mode-hook . org-superstar-mode))
-
-(use-package org-variable-pitch
-  :diminish org-variable-pitch-minor-mode
-  :config (org-variable-pitch-setup)
-  :hook (org-mode-hook . org-variable-pitch-minor-mode))
 
 (use-package org-ql
   :bind (:map cr-search-map ("o" . org-ql-search)))
