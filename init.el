@@ -351,18 +351,14 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (doom-themes-enable-bold t)
     (doom-themes-enable-italic t)
     :config (doom-themes-org-config))
-  (use-package modus-operandi-theme
-    :init (custom-set-variables
-           '(modus-operandi-theme-scale-headings t)
-           '(modus-operandi-theme-slanted-constructs t)
-           '(modus-operandi-theme-bold-constructs t)
-           '(modus-operandi-theme-org-blocks 'rainbow)))
-  (use-package modus-vivendi-theme
-    :init (custom-set-variables
-           '(modus-vivendi-theme-scale-headings t)
-           '(modus-vivendi-theme-slanted-constructs t)
-           '(modus-vivendi-theme-bold-constructs t)
-           '(modus-vivendi-theme-org-blocks 'rainbow)))
+  (use-package modus-themes
+    :init
+    (custom-set-variables
+     '(modus-themes-scale-headings t)
+     '(modus-themes-slanted-constructs t)
+     '(modus-themes-bold-constructs t)
+     '(modus-themes-org-blocks 'rainbow))
+    (modus-themes-load-themes))
   (load-theme cr-themes-default t))
 
 (use-package cr-counsel-terms
