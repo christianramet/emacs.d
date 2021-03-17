@@ -335,35 +335,34 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight nil
   :demand
   :custom
-  (cr-themes-light 'doom-one-light)
-  (cr-themes-dark 'doom-one)
+  (cr-themes-light 'modus-operandi)
+  (cr-themes-dark 'modus-vivendi)
   (cr-themes-default cr-themes-light)
   :bind (:map cr-toggle-map ("t" . cr-themes-toggle))
   :config
   (use-package leuven-theme
     :custom
-    (leuven-scale-outline-headlines nil)
-    (leuven-scale-org-agenda-structure nil)
-    (leuven-scale-volatile-highlight nil))
+    (leuven-scale-outline-headlines t)
+    (leuven-scale-org-agenda-structure t)
+    (leuven-scale-volatile-highlight t))
   (use-package doom-themes
+    :disabled
     :custom
     (doom-themes-enable-bold t)
     (doom-themes-enable-italic t)
     :config (doom-themes-org-config))
   (use-package modus-operandi-theme
-    :disabled
-    :custom
-    (modus-operandi-theme-scale-headings nil)
-    (modus-operandi-theme-org-blocks 'rainbow)
-    (modus-operandi-theme-slanted-constructs t)
-    (modus-operandi-theme-bold-constructs t))
+    :init (custom-set-variables
+           '(modus-operandi-theme-scale-headings t)
+           '(modus-operandi-theme-slanted-constructs t)
+           '(modus-operandi-theme-bold-constructs t)
+           '(modus-operandi-theme-org-blocks 'rainbow)))
   (use-package modus-vivendi-theme
-    :disabled
-    :custom
-    (modus-vivendi-theme-scale-headings nil)
-    (modus-vivendi-theme-org-blocks 'rainbow)
-    (modus-vivendi-theme-slanted-constructs t)
-    (modus-vivendi-theme-bold-constructs t))
+    :init (custom-set-variables
+           '(modus-vivendi-theme-scale-headings t)
+           '(modus-vivendi-theme-slanted-constructs t)
+           '(modus-vivendi-theme-bold-constructs t)
+           '(modus-vivendi-theme-org-blocks 'rainbow)))
   (load-theme cr-themes-default t))
 
 (use-package cr-counsel-terms
