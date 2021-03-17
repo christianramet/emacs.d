@@ -635,7 +635,7 @@ For ediff hooks usage"
    '(org-todo                  ((t (:inherit fixed-pitch))))
    '(org-verbatim              ((t (:inherit fixed-pitch)))))
   :hook (org-mode-hook . variable-pitch-mode)
-  :bind (:map cr-toggle-map ("p" . variable-pitch-mode)))
+  :bind (:map cr-toggle-map ("P" . variable-pitch-mode)))
 
 (use-package ffap
   :straight nil
