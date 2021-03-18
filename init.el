@@ -416,6 +416,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom (csv-separators '("," ";" "|" " "))
   :config (add-hook 'csv-mode-hook 'csv-header-line))
 
+(use-package dart-mode)
+
 (use-package deft
   :custom
   (deft-recursive nil)
