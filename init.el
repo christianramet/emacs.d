@@ -185,7 +185,7 @@
   (aw-minibuffer-flag t)
   (aw-display-mode-overlay t)
   (aw-scope 'frame)
-  :bind ("M-o" . ace-window))
+  :bind* ("M-o" . ace-window))
 
 (use-package ag :if (executable-find "ag"))
 
