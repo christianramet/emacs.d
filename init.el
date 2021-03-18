@@ -670,6 +670,7 @@ For ediff hooks usage"
 
 (use-package frame
   :straight nil
+  :hook (after-init-hook . blink-cursor-mode)
   :bind (:map cr-toggle-map ("RET" . toggle-frame-fullscreen)))
 
 (use-package go-mode :mode "\\.go\\'")
