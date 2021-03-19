@@ -662,6 +662,12 @@ For ediff hooks usage"
 
 (use-package go-mode :mode "\\.go\\'")
 
+(use-package gitattributes-mode)
+
+(use-package gitconfig-mode)
+
+(use-package gitignore-mode)
+
 (use-package git-gutter
   :diminish
   :commands git-gutter-mode
