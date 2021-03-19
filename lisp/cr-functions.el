@@ -143,18 +143,6 @@ chemacs."
   (save-some-buffers)
   (kill-emacs))
 
-(defun cr-url-to-pdf-with-wkhtmltopdf ()
-  "Produce a pdf from the URL at point and ask where to save it.
-Requires wkhtmltopdf"
-  (interactive)
-  (require 'url-util)
-  (let (url filename)
-    (setq url (url-get-url-at-point))
-    (if (string= url nil)
-        (message "No URL at point.")
-      (setq filename (read-file-name "Save as:" nil nil))
-      (async-shell-command (format "wkhtmltopdf %s %s " url filename)))))
-
 (defun cr-github-search ()
   "GitHub Search a query or region if any."
   (interactive)
