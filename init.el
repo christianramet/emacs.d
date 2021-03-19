@@ -1252,6 +1252,8 @@ For ediff hooks usage"
                ("n" . next-line)
                ("p" . previous-line))))
 
+(use-package toml-mode)
+
 (use-package vterm
   :commands vterm
   :init (setq vterm-always-compile-module t)
