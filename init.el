@@ -787,6 +787,8 @@ For ediff hooks usage"
   :custom (langtool-language-tool-jar
            "~/opt/languagetool.org/languagetool-commandline.jar"))
 
+(use-package lorem-ipsum)
+
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :custom
