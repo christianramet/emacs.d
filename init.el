@@ -1276,7 +1276,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 (use-package which-key
   :diminish
   :hook (after-init-hook . which-key-mode)
-  :bind (:map cr-toggle-map ("?" . which-key-mode))) hello
+  :bind (:map cr-toggle-map ("?" . which-key-mode)))
 
 (use-package whitespace
   :bind (:map cr-toggle-map ("SPC" . whitespace-mode)))
