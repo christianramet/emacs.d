@@ -7,23 +7,6 @@
       (call-interactively #'kill-region)
     (backward-kill-word arg)))
 
-(defun cr-fill-or-unfill-paragraph ()
-  "Like `fill-paragraph', but unfill if used twice."
-  (interactive)
-  (let ((fill-column
-         (if (eq last-command 'cr-fill-or-unfill-paragraph)
-             (progn (setq this-command nil)
-                    (point-max))
-           fill-column)))
-    (call-interactively #'fill-paragraph)))
-
-(defun cr-comment-or-uncomment-line-or-region ()
-  "Comments or uncomments the current line or region."
-  (interactive)
-  (if (region-active-p)
-      (comment-or-uncomment-region (region-beginning) (region-end))
-    (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
-
 (defun cr-goto-scratch ()
   "Jump to the *scratch* buffer."
   (interactive)
