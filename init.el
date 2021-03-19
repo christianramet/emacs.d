@@ -686,7 +686,7 @@ For ediff hooks usage"
                ("SPC" . git-gutter:mark-hunk))))
 
 (use-package git-link
-  :bind (:map cr-git-map ("L" . git-link)))
+  :bind (:map cr-git-map ("y" . git-link)))
 
 (use-package helpful
   :after counsel
