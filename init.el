@@ -862,7 +862,7 @@ For ediff hooks usage"
   (org-agenda-tags-todo-honor-ignore-options t)
   (org-agenda-todo-ignore-scheduled 'future)
   (org-agenda-window-setup 'current-window)
-  (org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+  (org-blank-before-new-entry '((heading . auto) (plain-list-item . auto)))
   (org-clock-continuously nil)
   (org-clock-idle-time nil)
   (org-clock-in-resume nil)
