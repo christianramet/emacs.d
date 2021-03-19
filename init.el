@@ -58,13 +58,9 @@
 (straight-use-package 'org)
 
 (use-package exec-path-from-shell
-  ;; tip: EXPORT env vars in ~/.profile instead of ~/.{bash,zsh}rc
-  ;; then source ~/.profile from ~/.{bash,zsh}rc
   :demand
-  :custom (exec-path-from-shell-variables '("PATH" "MANPATH"))
-  :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
+  :if (or (daemonp) (display-graphic-p))
+  :config (exec-path-from-shell-initialize))
 
 (use-package diminish :demand)
 
