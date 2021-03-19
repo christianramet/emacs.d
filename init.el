@@ -822,7 +822,7 @@ For ediff hooks usage"
 
 (use-package mixed-pitch
   :diminish
-  :hook (text-mode-hook . mixed-pitch-mode)
+  :hook (org-mode-hook . mixed-pitch-mode)
   :bind (:map cr-toggle-map ("P" . mixed-pitch-mode)))
 
 (use-package multiple-cursors
