@@ -1153,6 +1153,7 @@ For ediff hooks usage"
   (delete-trailing-lines t)
   (save-interprogram-paste-before-kill t)
   (kill-do-not-save-duplicates t)
+  (set-mark-command-repeat-pop t)
   :bind (([remap just-one-space]  . cycle-spacing)
          ([remap upcase-word]     . upcase-dwim)
          ([remap downcase-word]   . downcase-dwim)
