@@ -824,7 +824,10 @@ For ediff hooks usage"
   :if system-is-osx-p
   :bind (:map cr-app-map ("m" . man)))
 
-(use-package markdown-mode :mode ("\\.md\\'" "\\.markdown\\'"))
+(use-package markdown-mode
+  :mode ("\\.md\\'" "\\.markdown\\'")
+  :custom (markdown-fontify-code-blocks-natively t)
+  :config (add-hook 'markdown-mode-hook 'turn-on-auto-fill))
 
 (use-package mixed-pitch
   :diminish
@@ -952,7 +955,7 @@ For ediff hooks usage"
     (setq-local indicate-buffer-boundaries nil)
     (setq-local company-idle-delay nil)
     (cr-org-pretty-symbols)
-    (auto-fill-mode -1))
+    (auto-fill-mode 1))
 
   (add-hook 'org-mode-hook 'cr-org-settings)
 
