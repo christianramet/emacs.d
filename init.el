@@ -172,21 +172,6 @@
            ("C-c z" . cr-spell-map))
 
 ;;;* Packages
-(use-package ace-link
-  :config (ace-link-setup-default)
-  :bind ("M-g o" . ace-link))
-
-(use-package ace-window
-  :diminish
-  :custom
-  (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-  (aw-dispatch-always nil)
-  (aw-background t)
-  (aw-minibuffer-flag t)
-  (aw-display-mode-overlay t)
-  (aw-scope 'frame)
-  :bind* ("M-o" . ace-window))
-
 (use-package ag :if (executable-find "ag"))
 
 (use-package align
@@ -1289,10 +1274,15 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
 (use-package which-key
   :diminish
-  :bind (:map cr-toggle-map ("?" . which-key-mode)))
+  :hook (after-init-hook . which-key-mode)
+  :bind (:map cr-toggle-map ("?" . which-key-mode))) hello
 
 (use-package whitespace
   :bind (:map cr-toggle-map ("SPC" . whitespace-mode)))
+
+(use-package window
+  :straight nil
+  :bind ("M-o" . other-window))
 
 (use-package woman
   :if (not system-is-osx-p)
