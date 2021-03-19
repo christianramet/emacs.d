@@ -103,7 +103,8 @@ Source: Spacemacs"
   (shell-command-on-region beg end "uniq" nil t))
 
 (defun cr-reload-emacs ()
-  "Reload the main emacs configuration file."
+  "Reload the main emacs configuration file. Compatible with
+chemacs."
   (interactive)
   (if (boundp 'chemacs-emacs-profiles)
       (load-file (expand-file-name "init.el" user-emacs-directory))
