@@ -1123,6 +1123,7 @@ For ediff hooks usage"
   :demand
   :custom
   (history-length 1000)
+  (history-delete-duplicates t)
   (savehist-save-minibuffer-history t)
   (savehist-additional-variables
    '(Info-history-list
