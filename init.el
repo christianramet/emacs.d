@@ -733,8 +733,6 @@ For ediff hooks usage"
   :custom
   (ivy-initial-inputs-alist nil)
   (ivy-count-format "(%d/%d) ")
-  (ivy-magic-tilde t)
-  (ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
   (ivy-use-selectable-prompt t)
   (ivy-use-virtual-buffers t)
   (ivy-virtual-abbreviate 'full)
