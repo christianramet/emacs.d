@@ -845,6 +845,8 @@ For ediff hooks usage"
          ("C-c C->"       . mc/mark-all-like-this)
          ("<C-M-mouse-1>" . mc/add-cursor-on-click)))
 
+(use-package nginx-mode)
+
 (use-package nov
   :commands nov-mode
   :custom (nov-text-width fill-column)
