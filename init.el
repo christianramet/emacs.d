@@ -1168,9 +1168,8 @@ For ediff hooks usage"
   (defun cr-smartparens-settings ()
     (electric-pair-mode -1)
     (show-smartparens-mode 1))
-  :hook ((prog-mode-hook               . smartparens-mode)
-         (smartparens-mode-hook        . cr-smartparens-settings)
-         (smartparens-strict-mode-hook . cr-smartparens-settings))
+  (add-hook 'smartparens-mode-hook 'cr-smartparens-settings)
+  :hook (prog-mode-hook . smartparens-mode)
   :bind ((:map smartparens-mode-map
                ([remap forward-sexp]   . sp-forward-sexp)
                ([remap backward-sexp]  . sp-backward-sexp)
