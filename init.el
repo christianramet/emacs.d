@@ -690,7 +690,8 @@ For ediff hooks usage"
 
 (use-package hl-line
   :straight nil
-  :hook (dired-mode-hook . hl-line-mode)
+  :hook ((dired-mode-hook
+          occur-mode-hook) . hl-line-mode)
   :bind (:map cr-toggle-map
               ("h" . hl-line-mode)
               ("H" . global-hl-line-mode)))
