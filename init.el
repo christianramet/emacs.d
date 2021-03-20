@@ -1108,9 +1108,9 @@ For ediff hooks usage"
   :mode ("\\.http\\'" . restclient-mode)
   :bind (:map restclient-mode-map ("C-c n n" . nil)))
 
-(use-package ripgrep
+(use-package rg
   :if (executable-find "rg")
-  :bind (:map cr-search-map ("g" . ripgrep-regexp)))
+  :bind (:map cr-search-map ("g" . rg-menu)))
 
 (use-package rust-mode)
 
