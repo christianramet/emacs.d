@@ -781,7 +781,8 @@ For ediff hooks usage"
   :custom (langtool-language-tool-jar
            "~/opt/languagetool.org/languagetool-commandline.jar"))
 
-(use-package lorem-ipsum)
+(use-package lorem-ipsum
+  :custom (lorem-ipsum-sentence-separator " "))
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
