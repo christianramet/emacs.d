@@ -190,4 +190,11 @@ Source: `windower.el' by Ambrevar."
       (message "Window is dedicated to its buffer")
     (switch-to-buffer (other-buffer (current-buffer) 1))))
 
+(defun cr-comment-dwim ()
+  "Comments or uncomments the current line or region."
+  (interactive)
+  (if (region-active-p)
+      (comment-or-uncomment-region (region-beginning) (region-end))
+    (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
+
 (provide 'cr-functions)
