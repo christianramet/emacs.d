@@ -454,7 +454,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package disable-mouse
   :diminish disable-mouse-global-mode
-  :bind (:map cr-toggle-map ("m" . global-disable-mouse-mode)))
+  :bind (:map cr-toggle-map ("M" . global-disable-mouse-mode)))
 
 (use-package display-line-numbers
   :bind (:map cr-toggle-map ("l" . display-line-numbers-mode)))
@@ -823,6 +823,10 @@ For ediff hooks usage"
 (use-package man
   :if system-is-osx-p
   :bind (:map cr-app-map ("m" . man)))
+
+(use-package manage-minor-mode
+  :bind ((:map cr-toggle-map ("m" . manage-minor-mode))
+         (:map manage-minor-mode-map("q" . bury-buffer))))
 
 (use-package markdown-mode
   :mode ("\\.md\\'" "\\.markdown\\'")
