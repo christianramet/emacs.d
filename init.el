@@ -6,7 +6,7 @@
 
 ;;;* Garbage collection
 (setq gc-cons-threshold (* 100 1024 1024))
-(defun cr-set-gc () (setq gc-cons-threshold (* 5 1024 1024)))
+(defun cr-set-gc () (setq gc-cons-threshold (* 10 1024 1024)))
 (add-hook 'after-init-hook 'cr-set-gc)
 
 ;;;* Path
