@@ -594,6 +594,10 @@ For ediff hooks usage"
 (use-package eww
   :bind (:map cr-app-map ("w" . eww)))
 
+(use-package explain-pause-mode
+  :bind ((:map cr-toggle-map ("#" . explain-pause-mode))
+         (:map cr-app-map ("#" . explain-pause-top))))
+
 (use-package ffap
   :straight nil
   :bind ("M-g f" . find-file-at-point))
