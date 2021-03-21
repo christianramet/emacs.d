@@ -826,12 +826,16 @@ For ediff hooks usage"
 
 (use-package markdown-mode
   :mode ("\\.md\\'" "\\.markdown\\'")
-  :custom (markdown-fontify-code-blocks-natively t)
-  :config (add-hook 'markdown-mode-hook 'turn-on-auto-fill))
+  :custom (markdown-fontify-code-blocks-natively t))
 
 (use-package mixed-pitch
   :diminish
-  :hook (org-mode-hook . mixed-pitch-mode)
+  :config
+  (defun mixed-pitch-settings ()
+    (when (featurep 'company)
+      (setq-local company-idle-delay nil)))
+  (add-hook 'mixed-pitch-mode-hook 'mixed-pitch-settings)
+  :hook ((org-mode-hook markdown-mode-hook) . mixed-pitch-mode)
   :bind (:map cr-toggle-map ("P" . mixed-pitch-mode)))
 
 (use-package multiple-cursors
@@ -955,9 +959,7 @@ For ediff hooks usage"
     (setq-local delete-trailing-lines nil)
     (setq-local indicate-empty-lines nil)
     (setq-local indicate-buffer-boundaries nil)
-    (setq-local company-idle-delay nil)
-    (cr-org-pretty-symbols)
-    (auto-fill-mode 1))
+    (cr-org-pretty-symbols))
 
   (add-hook 'org-mode-hook 'cr-org-settings)
 
@@ -1147,7 +1149,7 @@ For ediff hooks usage"
 
 (use-package simple
   :straight nil
-  :diminish visual-line-mode
+  :diminish (visual-line-mode auto-fill-function)
   :custom
   (delete-trailing-lines t)
   (save-interprogram-paste-before-kill t)
@@ -1161,8 +1163,10 @@ For ediff hooks usage"
          (:map cr-text-map ("d"   . delete-trailing-whitespace))
          (:map cr-toggle-map
                ("v" . visual-line-mode)
-               ("V" . toggle-truncate-lines)))
-  :hook (org-mode-hook . visual-line-mode))
+               ("V" . toggle-truncate-lines)
+               ("q" . auto-fill-mode)))
+  :hook ((org-mode-hook markdown-mode-hook) . visual-line-mode)
+  :hook ((org-mode-hook markdown-mode-hook) . auto-fill-mode))
 
 (use-package smartparens
   :commands (smartparens-mode smartparens-scrict-mode)
