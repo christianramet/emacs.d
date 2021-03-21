@@ -1167,6 +1167,7 @@ For ediff hooks usage"
          ([remap upcase-word]     . upcase-dwim)
          ([remap downcase-word]   . downcase-dwim)
          ([remap capitalize-word] . capitalize-dwim)
+         ([remap zap-to-char]     . zap-up-to-char)
          (:map cr-emacs-map ("x"  . list-processes))
          (:map cr-text-map ("d"   . delete-trailing-whitespace))
          (:map cr-toggle-map
