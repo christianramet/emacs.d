@@ -168,6 +168,10 @@
            ("C-c z" . cr-spell-map))
 
 ;;;* Packages
+(use-package ace-link
+  :config (ace-link-setup-default)
+  :bind ("M-g o" . ace-link))
+
 (use-package ag :if (executable-find "ag"))
 
 (use-package align
