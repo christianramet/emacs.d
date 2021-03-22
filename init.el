@@ -1253,6 +1253,9 @@ For ediff hooks usage"
 
 (use-package toml-mode)
 
+(use-package vlf
+  :init (require 'vlf-setup))
+
 (use-package vterm
   :commands vterm
   :init (setq vterm-always-compile-module t)
