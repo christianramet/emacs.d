@@ -189,13 +189,6 @@
               ("a" . align-code)
               ("A" . align-regexp)))
 
-(use-package all-the-icons
-  :disabled
-  :if (display-graphic-p)
-  :init
-  (unless (member "all-the-icons" (font-family-list))
-    (all-the-icons-install-fonts t)))
-
 (use-package async
   :diminish dired-async-mode
   :hook (dired-mode-hook . dired-async-mode))
@@ -471,14 +464,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map cr-app-map ("d" . docker)))
 
 (use-package dockerfile-mode :mode ("Dockerfile\\'"))
-
-(use-package doom-modeline
-  :disabled
-  :custom
-  (doom-modeline-icon nil)
-  (doom-modeline-buffer-encoding nil)
-  (doom-modeline-height 1) ;; Requires `doom-modeline-icon' set to nil.
-  :hook (after-init-hook . doom-modeline-mode))
 
 (use-package doom-sudo-utils
   :straight nil
@@ -1008,12 +993,6 @@ For ediff hooks usage"
               ("g" . org-roam-graph)
               ("i" . org-roam-insert)
               ("I" . org-roam-insert-immediate)))
-
-(use-package org-superstar
-  :disabled
-  :after org
-  :custom (org-superstar-prettify-item-bullets nil)
-  :hook (org-mode-hook . org-superstar-mode))
 
 (use-package org-ql
   :bind (:map cr-search-map ("o" . org-ql-search)))
