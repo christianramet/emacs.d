@@ -411,8 +411,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (deft-recursive nil)
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
-  (deft-directory "~/zet/")
-  (deft-archive-directory "archives/")
   :bind (:map cr-notes-map ("d" . deft)))
 
 (use-package diff
@@ -1009,9 +1007,9 @@ For ediff hooks usage"
   :bind ("C-c w n" . org-noter))
 
 (use-package org-roam
-  :custom
-  (org-roam-directory "~/zet/")
-  (org-roam-db-gc-threshold (* 50 1024 1024))
+  :after org
+  :custom (org-roam-db-gc-threshold (* 4 gc-cons-threshold))
+  :hook (after-init-hook . org-roam-mode)
   :bind (:map cr-notes-map
               ("." . org-roam-jump-to-index)
               ("b" . org-roam-switch-to-buffer)
