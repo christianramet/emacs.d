@@ -857,17 +857,6 @@ For ediff hooks usage"
   :hook ((org-mode-hook markdown-mode-hook) . mixed-pitch-mode)
   :bind (:map cr-toggle-map ("P" . mixed-pitch-mode)))
 
-(use-package multiple-cursors
-  :bind (("C-c C-SPC"     . mc/edit-lines)
-         ("C-c C-a"       . mc/mark-all-like-this-dwim)
-         ("C-c C-A"       . mc/mark-all-dwim)
-         ("C->"           . mc/mark-next-like-this)
-         ("C-<"           . mc/mark-previous-like-this)
-         ("C-M->"         . mc/unmark-previous-like-this)
-         ("C-M-<"         . mc/unmark-next-like-this)
-         ("C-c C->"       . mc/mark-all-like-this)
-         ("<C-M-mouse-1>" . mc/add-cursor-on-click)))
-
 (use-package nginx-mode)
 
 (use-package nov
