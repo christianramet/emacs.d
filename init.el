@@ -1253,6 +1253,12 @@ For ediff hooks usage"
 
 (use-package toml-mode)
 
+(use-package tramp
+  :straight (:type built-in)
+  :custom
+  (tramp-shell-prompt-pattern
+   "\\(?:^\\|\r\\)[^]#$%>\n]*#?[]#$%>].* *\\(^[\\[[0-9;]*[a-zA-Z] *\\)*"))
+
 (use-package vlf
   :init (require 'vlf-setup))
 
