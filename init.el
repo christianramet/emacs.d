@@ -1186,8 +1186,10 @@ For ediff hooks usage"
                ("v" . visual-line-mode)
                ("V" . toggle-truncate-lines)
                ("q" . auto-fill-mode)))
-  :hook ((org-mode-hook markdown-mode-hook) . visual-line-mode)
-  :hook ((org-mode-hook markdown-mode-hook) . auto-fill-mode))
+  :hook ((org-mode-hook
+          markdown-mode-hook) . visual-line-mode)
+  :hook ((org-mode-hook
+          markdown-mode-hook) . auto-fill-mode))
 
 (use-package smartparens
   :commands (smartparens-mode smartparens-scrict-mode)
