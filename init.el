@@ -712,7 +712,8 @@ For ediff hooks usage"
 (use-package hl-line
   :straight (:type built-in)
   :hook ((dired-mode-hook
-          occur-mode-hook) . hl-line-mode)
+          occur-mode-hook
+          display-time-world-mode-hook) . hl-line-mode)
   :bind (:map cr-toggle-map
               ("h" . hl-line-mode)
               ("H" . global-hl-line-mode)))
@@ -1260,28 +1261,8 @@ For ediff hooks usage"
   :custom
   (display-time-24hr-format t)
   (display-time-default-load-average nil)
-  (display-time-world-list '(("America/Los_Angeles" "Seattle")
-                             ("America/New_York" "New York")
-                             ("Europe/London" "London")
-                             ("Europe/Paris" "Paris")
-                             ("Asia/Kolkata" "Calcutta")
-                             ("Asia/Shanghai" "Beijing")
-                             ("Asia/Tokyo" "Tokyo")))
-  :config
-  (defun cr-display-time-world ()
-    (interactive)
-    (display-time-world)
-    (switch-to-buffer-other-window "*wclock*")
-    (search-forward "Paris")
-    (move-beginning-of-line nil)
-    (hl-line-mode 1))
-  :bind ((:map cr-toggle-map
-               ("." . display-time-mode))
-         (:map cr-app-map
-               ("." . cr-display-time-world))
-         (:map display-time-world-mode-map
-               ("n" . next-line)
-               ("p" . previous-line))))
+  :bind ((:map cr-toggle-map ("." . display-time-mode))
+         (:map cr-app-map ("." . display-time-world))))
 
 (use-package toml-mode)
 
