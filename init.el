@@ -175,6 +175,7 @@
 (use-package ag :if (executable-find "ag"))
 
 (use-package align
+  :straight (:type built-in)
   :commands (align align-regexp)
   :preface
   (defun align-code (beg end &optional arg)
@@ -203,7 +204,7 @@
   :hook (after-init-hook . auth-source-pass-enable))
 
 (use-package autorevert
-  :straight nil
+  :straight (:type built-in)
   :diminish (auto-revert-mode global-auto-revert-mode)
   :custom
   (auto-revert-verbose t)
@@ -235,12 +236,13 @@
   :bind* ("C-'" . avy-goto-char-timer))
 
 (use-package battery
-  :straight nil
+  :straight (:type built-in)
   :commands (battery display-battery-mode)
   :custom (battery-mode-line-limit 85)
   :bind (:map cr-toggle-map ("b" . display-battery-mode)))
 
 (use-package browse-url
+  :straight (:type built-in)
   :custom
   (browse-url-browser-function
    '(("\\(youtube\\.com\\)\\|\\(youtu\\.be\\)" . browse-url-youtube-mpv)
@@ -261,10 +263,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind ("M-g w" . browse-url-at-point))
 
 (use-package calc
-  :straight nil
+  :straight (:type built-in)
   :bind (:map cr-app-map ("c" . calc)))
 
 (use-package calendar
+  :straight (:type built-in)
   :custom
   (calendar-weekend-days '(6 0))
   (calendar-week-start-day 1)
@@ -292,7 +295,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map cr-toggle-map ("c" . company-mode))))
 
 (use-package compile
-  :straight nil
+  :straight (:type built-in)
   :bind (:map cr-file-map ("m" . compile)))
 
 (use-package copy-as-format)
@@ -413,10 +416,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map cr-notes-map ("d" . deft)))
 
 (use-package diff
+  :straight (:type built-in)
   :bind (:map cr-file-map ("d" . diff-buffer-with-file)))
 
 (use-package dired
-  :straight nil
+  :straight (:type built-in)
   :custom
   (dired-dwim-target t)
   (dired-recursive-copies 'always)
@@ -452,7 +456,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (define-key dired-mode-map (kbd "e") 'ediff-files))
 
 (use-package dired-x
-  :straight nil
+  :straight (:type built-in)
   :demand
   :after dired)
 
@@ -461,6 +465,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map cr-toggle-map ("M" . global-disable-mouse-mode)))
 
 (use-package display-line-numbers
+  :straight (:type built-in)
   :bind (:map cr-toggle-map ("l" . display-line-numbers-mode)))
 
 (use-package docker
@@ -484,6 +489,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
               ("U" . doom/sudo-save-buffer)))
 
 (use-package ediff
+  :straight (:type built-in)
   :commands (ediff ediff-buffers ediff-files magit-ediff-dwim)
   :config
   (setq ediff-window-setup-function 'ediff-setup-windows-plain
@@ -516,7 +522,7 @@ For ediff hooks usage"
               ("D" . ediff-show-registry)))
 
 (use-package eldoc
-  :straight nil
+  :straight (:type built-in)
   :diminish
   :commands (eldoc-mode global-eldoc-mode)
   :config
@@ -525,7 +531,7 @@ For ediff hooks usage"
   :hook ((emacs-lisp-mode-hook c-mode-common) . eldoc-mode))
 
 (use-package electric-pair
-  :straight nil
+  :straight (:type built-in)
   :bind (:map cr-toggle-map ("e" . electric-pair-local-mode)))
 
 (use-package elfeed
@@ -550,7 +556,7 @@ For ediff hooks usage"
                      ("]" . elfeed-show-next))))
 
 (use-package elisp-mode
-  :straight nil
+  :straight (:type built-in)
   :commands emacs-lisp-mode
   :config
   (defun cr-emacs-lisp-settings ()
@@ -558,7 +564,7 @@ For ediff hooks usage"
   (add-hook 'emacs-lisp-mode-hook 'cr-emacs-lisp-settings))
 
 (use-package eshell
-  :straight nil
+  :straight (:type built-in)
   :commands (eshell eshell-command)
   :custom
   (eshell-ls-use-colors t)
@@ -592,6 +598,7 @@ For ediff hooks usage"
   (add-hook 'eshell-mode-hook 'cr-eshell-settings))
 
 (use-package eww
+  :straight (:type built-in)
   :bind (:map cr-app-map ("w" . eww)))
 
 (use-package explain-pause-mode
@@ -599,7 +606,7 @@ For ediff hooks usage"
          (:map cr-app-map ("#" . explain-pause-top))))
 
 (use-package ffap
-  :straight nil
+  :straight (:type built-in)
   :bind ("M-g f" . find-file-at-point))
 
 (use-package flycheck
@@ -652,6 +659,7 @@ For ediff hooks usage"
   :config (setq flyspell-correct-interface 'flyspell-correct-ivy))
 
 (use-package follow
+  :straight (:type built-in)
   :bind (:map cr-toggle-map ("=" . follow-delete-other-windows-and-split)))
 
 (use-package forge
@@ -660,7 +668,7 @@ For ediff hooks usage"
   :commands forge-pull-notifications)
 
 (use-package frame
-  :straight nil
+  :straight (:type built-in)
   :hook (after-init-hook . blink-cursor-mode)
   :bind (:map cr-toggle-map ("RET" . toggle-frame-fullscreen)))
 
@@ -702,7 +710,7 @@ For ediff hooks usage"
   :bind ("C-h k" . helpful-key))
 
 (use-package hl-line
-  :straight nil
+  :straight (:type built-in)
   :hook ((dired-mode-hook
           occur-mode-hook) . hl-line-mode)
   :bind (:map cr-toggle-map
@@ -710,7 +718,7 @@ For ediff hooks usage"
               ("H" . global-hl-line-mode)))
 
 (use-package ibuffer
-  :straight nil
+  :straight (:type built-in)
   :config (add-hook 'ibuffer-mode-hook 'hl-line-mode)
   :bind (("C-x C-b" . ibuffer)
          (:map ibuffer-mode-map
@@ -722,7 +730,7 @@ For ediff hooks usage"
   :bind ("M-i" . iedit-mode))
 
 (use-package indent
-  :straight nil
+  :straight (:type built-in)
   :bind (:map indent-rigidly-map
               (">" . indent-rigidly-right)
               ("<" . indent-rigidly-left)
@@ -1033,7 +1041,7 @@ For ediff hooks usage"
   :bind (:map cr-app-map ("P" . pass)))
 
 (use-package password-cache
-  :straight nil
+  :straight (:type built-in)
   :demand
   :custom
   (password-cache 5)
@@ -1056,7 +1064,7 @@ For ediff hooks usage"
 (use-package php-mode)
 
 (use-package proced
-  :straight nil
+  :straight (:type built-in)
   :custom
   (proced-auto-update-flag nil)
   (proced-auto-update-interval 5)
@@ -1064,7 +1072,7 @@ For ediff hooks usage"
          (:map proced-mode-map ("a" . proced-toggle-auto-update))))
 
 (use-package prog-mode
-  :straight nil
+  :straight (:type built-in)
   :custom (prettify-symbols-unprettify-at-point 'right-edge)
   :config
   (defun cr-prog-mode-settings ()
@@ -1094,7 +1102,7 @@ For ediff hooks usage"
   :bind (:map projectile-command-map ("." . cr-projectile-refresh)))
 
 (use-package recentf
-  :straight nil
+  :straight (:type built-in)
   :demand
   :commands recentf-mode
   :custom
@@ -1107,7 +1115,7 @@ For ediff hooks usage"
     (add-to-list 'recentf-exclude no-littering-var-directory)))
 
 (use-package replace
-  :straight nil
+  :straight (:type built-in)
   :bind ((:map occur-mode-map
                ("n" . next-line)
                ("p" . previous-line))
@@ -1130,7 +1138,7 @@ For ediff hooks usage"
 (use-package rust-mode)
 
 (use-package savehist
-  :straight nil
+  :straight (:type built-in)
   :demand
   :custom
   (history-length 1000)
@@ -1149,18 +1157,18 @@ For ediff hooks usage"
   :hook (after-init-hook . savehist-mode))
 
 (use-package saveplace
-  :straight nil
+  :straight (:type built-in)
   :hook (after-init-hook . save-place-mode))
 
 (use-package server
-  :straight nil
+  :straight (:type built-in)
   :demand
   :config
   (unless (server-running-p)
 	(server-start)))
 
 (use-package simple
-  :straight nil
+  :straight (:type built-in)
   :diminish (visual-line-mode auto-fill-function)
   :custom
   (delete-trailing-lines t)
@@ -1222,6 +1230,7 @@ For ediff hooks usage"
                ("S" . smartparens-strict-mode))))
 
 (use-package sort
+  :straight (:type built-in)
   :bind (:map cr-text-map ("s" . sort-lines)))
 
 (use-package sql
@@ -1244,6 +1253,7 @@ For ediff hooks usage"
 (use-package terraform-mode :mode "\.tf\\'")
 
 (use-package time
+  :straight (:type built-in)
   :commands (display-time-world display-time-mode)
   :custom
   (display-time-24hr-format t)
@@ -1289,7 +1299,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :bind (:map vterm-mode-map ("M-y" . cr-vterm-yank-pop)))
 
 (use-package wdired
-  :straight nil
+  :straight (:type built-in)
   :after dired
   :custom
   (wdired-allow-to-change-permissions t)
@@ -1299,7 +1309,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 (use-package wgrep)
 
 (use-package winner
-  :straight nil
+  :straight (:type built-in)
   :hook (after-init-hook . winner-mode)
   :bind (("C-x u" . winner-undo)
          ("C-x U" . winner-redo)))
@@ -1310,10 +1320,11 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :bind (:map cr-toggle-map ("?" . which-key-mode)))
 
 (use-package whitespace
+  :straight (:type built-in)
   :bind (:map cr-toggle-map ("SPC" . whitespace-mode)))
 
 (use-package window
-  :straight nil
+  :straight (:type built-in)
   :bind ("M-o" . other-window))
 
 (use-package woman
