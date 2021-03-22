@@ -1276,8 +1276,6 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   (wdired-allow-to-redirect-links t)
   (wdired-create-parent-directories t))
 
-(use-package wgrep)
-
 (use-package winner
   :straight (:type built-in)
   :hook (after-init-hook . winner-mode)
