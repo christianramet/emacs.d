@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
-# name: begin-src-elisp
+# name: begin_src elisp
 # key: <e
+# type: snippet
 # --
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 $1
-#+END_SRC
+#+end_src

@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
-# name: begin-src-example
+# name: begin_example
 # key: <x
+# type: snippet
 # --
-#+BEGIN_EXAMPLE
+#+begin_example
 $1
-#+END_EXAMPLE
+#+end_example

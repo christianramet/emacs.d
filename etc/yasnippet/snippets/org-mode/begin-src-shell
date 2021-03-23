@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
-# name: begin-src-shell
+# name: begin_src sh
 # key: <sh
+# type: snippet
 # --
-#+BEGIN_SRC sh
+#+begin_src sh
 $1
-#+END_SRC
+#+end_src

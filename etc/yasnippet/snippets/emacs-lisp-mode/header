@@ -1,6 +1,7 @@
 # -*- mode: snippet; -*-
 # contributor: kchenphy <https://www.github.com/kchenphy>
 # name: package header
+# type: snippet
 # key: header
 # --
 ;;; ${1:name}.el --- ${2:summary} -*- lexical-binding: t -*-
