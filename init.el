@@ -1258,7 +1258,9 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   (wdired-allow-to-redirect-links t)
   (wdired-create-parent-directories t))
 
-(use-package web-mode :commands web-mode)
+(use-package web-mode
+  :commands web-mode
+  :mode ("\\.php\\'"))
 
 (use-package winner
   :straight (:type built-in)
