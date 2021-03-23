@@ -1,26 +1,59 @@
-#+Title: My Emacs configuration
+#+title: My Emacs configuration
 
 This repository contains my personal Emacs configuration.
 
 * Technical choices
-- [[https://github.com/raxod502/straight.el][straight.el]]
-- [[https://github.com/jwiegley/use-package][use-package]]
-- no org-babel/literate config
-- [[https://github.com/abo-abo/swiper][ivy/counsel]] as much as possible (no [[https://emacs-helm.github.io/helm/][helm]])
-- C-c (x) as maps and function keys as much as possible
+
+- no literate configuration
+- =use-package.el=[fn:1]
+- =straight.el=[fn:2]
+- =ivy= and =counsel=[fn:3]
+- respects the Emacs reserved keys[fn:4] for the user as much as possible
+- single /huge/ init file
+- hooks defined preferably in the most commons/general packages
 
 * Installation
-This repo is not meant for clone and use without any modification. It should work without any configuration from your part, but it will more likely benefit from a few customization.
 
-Also, please note that I use a git sub module for my private variables and config. They are auto-loaded by this config if available. Not having access to those variables and libraries should not make this config unusable.
+This repo can be cloned and used as it is. Either clone and =make=, or clone and
+simply launch Emacs.
+
+Please note that I use a git sub module for my private variables and config.
+They are auto-loaded by this config if available, and not mandatory.
 
 * A bit of history
-After 3 or 4 [[https://www.emacswiki.org/emacs/DotEmacsBankruptcy][Emacs bankruptcy]] over the course of 8 or so years (Emacs user since 2011-2012), I have decided to reset my git once more today [2020-12-13 Sun]. Not because I've rewritten it again, but because it has been stable for almost 2 years, and it is time for it to being clean from any personal/sensitive variables, and to be publicly available.
 
-I went through many configuration "paradigms", in the following order:
-- The copy and paste snippets chaos config
-- An Org-babel tangled config (literate programming)
-- A [[https://github.com/jwiegley/use-package][use-package]] centered config + Org-babel
-- A [[https://www.spacemacs.org/][Spacemacs]] inspired config (evil, which-key, leader-key, etc...) + use-package + Org-babel
-- A vanilla/plain config, heavily inspired by [[https://github.com/abo-abo/oremacs][Oremacs]] from Oleh Krehel (Abo-Abo), and [[https://gitlab.com/ambrevar/dotfiles][Ambrevar's config]].
-- A use-package + [[https://github.com/raxod502/straight.el][straight]] config (without org-babel)
+After 3 or 4 [[https://www.emacswiki.org/emacs/DotEmacsBankruptcy][Emacs bankruptcy]] over the course of 8 or so years, I have decided
+to reset my git once more today [2020-12-13 Sun]. Not because I've rewritten it
+again, but because it has been stable for almost 2 years, and it is time for it
+to being clean from any personal and sensitive variables, and can therefore be
+publicly shared.
+
+I went through many configuration paradigms, in the following order:
+- A copy and paste snippets 'chaos' configuration,
+- A literate configuration,
+- A literate configuration with =use-package=[fn:1],
+- A literate, Spacemacs[fn:5] inspired, configuration with =use-package=, =evil=,
+  =which-key=, =leader-key=, etc...
+- A plain vanilla config, heavily inspired by Oremacs[fn:6], by Oleh Krehel,
+  (Abo-Abo), and Ambrevar's configuration[fn:7], using the built-in =package.el=,
+  with =evil= bindings, and then back to classic bindings,
+- A =use-package= + =straight=[fn:2] configuration, centered on a single init file.
+
+And every combination in-between which are not worth mentioning as they were
+either small iterations, or short lived.
+
+* Footnotes
+
+[fn:1] https://github.com/jwiegley/use-package
+
+[fn:2] https://github.com/raxod502/straight.el
+
+[fn:3] https://github.com/abo-abo/swiper
+
+[fn:4] https://www.masteringemacs.org/article/mastering-key-bindings-emacs
+
+[fn:5] https://www.spacemacs.org/
+
+[fn:6] https://github.com/abo-abo/oremacs
+
+[fn:7] https://gitlab.com/ambrevar/dotfiles
