@@ -22,20 +22,20 @@ They are auto-loaded by this config if available, and not mandatory.
 
 * A bit of history
 
-After 3 or 4 [[https://www.emacswiki.org/emacs/DotEmacsBankruptcy][Emacs bankruptcy]] over the course of 8 or so years, I have decided
-to reset my git once more today [2020-12-13 Sun]. Not because I've rewritten it
-again, but because it has been stable for almost 2 years, and it is time for it
-to being clean from any personal and sensitive variables, and can therefore be
-publicly shared.
+After 3 or 4 Emacs bankruptcy[fn:5] over the course of 8 or so years, I have
+decided to reset my git once more today [2020-12-13 Sun]. Not because I've
+rewritten it again, but because it has been stable for almost 2 years, and it is
+time for it to being clean from any personal and sensitive variables, and can
+therefore be publicly shared.
 
 I went through many configuration paradigms, in the following order:
 - A copy and paste snippets 'chaos' configuration,
 - A literate configuration,
 - A literate configuration with =use-package=[fn:1],
-- A literate, Spacemacs[fn:5] inspired, configuration with =use-package=, =evil=,
+- A literate, Spacemacs[fn:6] inspired, configuration with =use-package=, =evil=,
   =which-key=, =leader-key=, etc...
-- A plain vanilla config, heavily inspired by Oremacs[fn:6], by Oleh Krehel,
-  (Abo-Abo), and Ambrevar's configuration[fn:7], using the built-in =package.el=,
+- A plain vanilla config, heavily inspired by Oremacs[fn:7], by Oleh Krehel,
+  (Abo-Abo), and Ambrevar's configuration[fn:8], using the built-in =package.el=,
   with =evil= bindings, and then back to classic bindings,
 - A =use-package= + =straight=[fn:2] configuration, centered on a single init file.
 
@@ -52,8 +52,10 @@ either small iterations, or short lived.
 
 [fn:4] https://www.masteringemacs.org/article/mastering-key-bindings-emacs
 
-[fn:5] https://www.spacemacs.org/
+[fn:5] https://www.emacswiki.org/emacs/DotEmacsBankruptcy
 
-[fn:6] https://github.com/abo-abo/oremacs
+[fn:6] https://www.spacemacs.org/
 
-[fn:7] https://gitlab.com/ambrevar/dotfiles
+[fn:7] https://github.com/abo-abo/oremacs
+
+[fn:8] https://gitlab.com/ambrevar/dotfiles

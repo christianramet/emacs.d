@@ -898,6 +898,7 @@ For ediff hooks usage"
   (org-use-tag-inheritance t)
   :config
   (require 'cr-private-org nil 'noerror)
+  (require 'ox-md nil 'noerror)
 
   (add-to-list 'org-speed-commands-user '("N" call-interactively 'org-metadown))
   (add-to-list 'org-speed-commands-user '("P" call-interactively 'org-metaup))
