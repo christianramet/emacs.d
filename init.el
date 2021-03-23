@@ -354,6 +354,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package cr-functions
   :straight nil
+  :demand
   :bind (([remap kill-region] . cr-backward-kill-word-or-region)
          ("M-]" . cr-switch-to-last-buffer)
          (:map cr-buffer-map
@@ -941,17 +942,11 @@ For ediff hooks usage"
 
   (defun cr-org-pretty-symbols ()
     (push '("#+begin_src"      . ?↦) prettify-symbols-alist)
-    (push '("#+BEGIN_SRC"      . ?↦) prettify-symbols-alist)
     (push '("#+end_src"        . ?⇤) prettify-symbols-alist)
-    (push '("#+END_SRC"        . ?⇤) prettify-symbols-alist)
     (push '("#+begin_quote"    . ?↦) prettify-symbols-alist)
-    (push '("#+BEGIN_QUOTE"    . ?↦) prettify-symbols-alist)
     (push '("#+end_quote"      . ?⇤) prettify-symbols-alist)
-    (push '("#+END_QUOTE"      . ?⇤) prettify-symbols-alist)
     (push '("#+begin_example"  . ?↦) prettify-symbols-alist)
-    (push '("#+BEGIN_EXAMPLE"  . ?↦) prettify-symbols-alist)
     (push '("#+end_example"    . ?⇤) prettify-symbols-alist)
-    (push '("#+END_EXAMPLE"    . ?⇤) prettify-symbols-alist)
     (prettify-symbols-mode 1))
 
   (defun cr-org-settings ()
