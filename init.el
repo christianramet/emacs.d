@@ -1024,8 +1024,6 @@ For ediff hooks usage"
   (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
   (define-key pdf-view-mode-map (kbd "d") 'pdf-annot-delete))
 
-(use-package php-mode)
-
 (use-package proced
   :straight (:type built-in)
   :custom
@@ -1259,6 +1257,8 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   (wdired-allow-to-change-permissions t)
   (wdired-allow-to-redirect-links t)
   (wdired-create-parent-directories t))
+
+(use-package web-mode :commands web-mode)
 
 (use-package winner
   :straight (:type built-in)
