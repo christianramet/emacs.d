@@ -328,12 +328,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (leuven-scale-outline-headlines t)
     (leuven-scale-org-agenda-structure t)
     (leuven-scale-volatile-highlight t))
-  (use-package doom-themes
-    :disabled
-    :custom
-    (doom-themes-enable-bold t)
-    (doom-themes-enable-italic t)
-    :config (doom-themes-org-config))
   (use-package modus-themes
     :init
     (custom-set-variables
