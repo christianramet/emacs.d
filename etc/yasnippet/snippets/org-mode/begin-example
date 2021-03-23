@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: begin_example
-# key: <x
-# type: snippet
-# --
-#+begin_example
-$1
-#+end_example

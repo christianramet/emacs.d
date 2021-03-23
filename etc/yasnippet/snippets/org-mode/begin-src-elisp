@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: begin_src elisp
-# key: <e
-# type: snippet
-# --
-#+begin_src emacs-lisp
-$1
-#+end_src
