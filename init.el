@@ -1,13 +1,12 @@
+;;;* System tuning
+(setq gc-cons-threshold (* 20 1024 1024)
+      read-process-output-max (* 3 1024 1024))
+
 ;;;* Variables
 (setq default-directory "~/")
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
 (defconst system-is-windows-p (eq system-type 'windows-nt))
-
-;;;* Garbage collection
-(setq gc-cons-threshold (* 100 1024 1024))
-(defun cr-set-gc () (setq gc-cons-threshold (* 10 1024 1024)))
-(add-hook 'after-init-hook 'cr-set-gc)
 
 ;;;* Path
 (defconst cr-user-emacs-directory-lisp
@@ -786,7 +785,6 @@ For ediff hooks usage"
   (lsp-headerline-breadcrumb-enable nil)
   (lsp-idle-delay 0.5)
   (lsp-keymap-prefix "C-c u")
-  (read-process-output-max (* 1024 1024)) ;; 1mb
   :hook (lsp-mode-hook . lsp-enable-which-key-integration)
   :bind (:map cr-toggle-map ("u" . lsp)))
 
