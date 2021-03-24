@@ -290,8 +290,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight (:type built-in)
   :bind (:map cr-file-map ("m" . compile)))
 
-(use-package copy-as-format)
-
 (use-package counsel
   :after ivy
   :diminish
