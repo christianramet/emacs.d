@@ -407,7 +407,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (dired-dwim-target t)
   (dired-recursive-copies 'always)
-  (dired-recursive-deletes 'always)
+  (dired-recursive-deletes 'top)
   (delete-by-moving-to-trash t)
   (dired-listing-switches "-lahv")
   :config
