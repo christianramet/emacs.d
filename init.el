@@ -660,11 +660,6 @@ For ediff hooks usage"
 (use-package git-gutter
   :diminish
   :commands git-gutter-mode
-  :custom
-  (git-gutter:visual-line t)
-  (git-gutter:update-interval 0)
-  (git-gutter:window-width 1)
-  (git-gutter:hide-gutter t)
   :bind ((:map cr-toggle-map
                ("g" . git-gutter-mode))
          (:map cr-git-map
