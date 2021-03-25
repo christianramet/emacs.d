@@ -789,10 +789,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :if system-is-osx-p
   :bind (:map cr-app-map ("m" . man)))
 
-(use-package manage-minor-mode
-  :bind ((:map cr-toggle-map ("m" . manage-minor-mode))
-         (:map manage-minor-mode-map("q" . bury-buffer))))
-
 (use-package markdown-mode
   :mode ("\\.md\\'" "\\.markdown\\'")
   :custom (markdown-fontify-code-blocks-natively t))
