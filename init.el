@@ -199,20 +199,7 @@
 (use-package autorevert
   :straight (:type built-in)
   :diminish (auto-revert-mode global-auto-revert-mode)
-  :custom
-  (auto-revert-verbose t)
-  (auto-revert-use-notify t)
-  (revert-without-query (list "."))
-  (auto-revert-stop-on-user-input nil)
-  (global-auto-revert-non-file-buffers t)
-  (auto-revert-remote-files nil)
-  :config
-  ;; https://emacs.stackexchange.com/questions/46690
-  (advice-add
-   'auto-revert-handler
-   :around (lambda (orig-fun &rest args)
-             (let ((auto-revert-verbose (not (minibufferp (window-buffer)))))
-               (apply orig-fun args))))
+  :custom (auto-revert-avoid-polling t)
   :hook (after-init-hook . global-auto-revert-mode)
   :bind ((:map cr-buffer-map ("g". revert-buffer))
          (:map cr-toggle-map
