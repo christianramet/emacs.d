@@ -467,32 +467,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package ediff
   :straight (:type built-in)
   :commands (ediff ediff-buffers ediff-files magit-ediff-dwim)
-  :config
-  (setq ediff-window-setup-function 'ediff-setup-windows-plain
-        ediff-split-window-function 'split-window-horizontally)
-
-  (defvar cr--ediff-saved-window-configuration nil
-    "Window configuration to restore after exiting an Ediff session.")
-
-  (defun cr--ediff-save-window-config ()
-    "Save current window configuration.
-For ediff hooks usage"
-    (setq cr--ediff-saved-window-configuration (current-window-configuration)))
-
-  (defun cr--ediff-restore-window-config ()
-    "Restore previous window configuration.
-For ediff hooks usage"
-    (when cr--ediff-saved-window-configuration
-      (set-window-configuration cr--ediff-saved-window-configuration)))
-
-  (defun cr--ediff-prepare-buffer ()
-    (when (memq major-mode '(org-mode))
-      (outline-show-all)))
-
-  :hook ((ediff-prepare-buffer-hook . cr--ediff-prepare-buffer)
-         (ediff-before-setup-hook   . cr--ediff-save-window-config)
-         (ediff-quit-hook           . cr--ediff-restore-window-config)
-         (ediff-suspend-hook        . cr--ediff-restore-window-config))
+  :custom
+  (ediff-window-setup-function 'ediff-setup-windows-plain)
+  (ediff-split-window-function 'split-window-horizontally)
   :bind (:map cr-buffer-map
               ("d" . ediff-buffers)
               ("D" . ediff-show-registry)))
