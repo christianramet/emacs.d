@@ -1141,6 +1141,7 @@ For ediff hooks usage"
          (:map cr-emacs-map ("x"  . list-processes))
          (:map cr-text-map ("d"   . delete-trailing-whitespace))
          (:map cr-toggle-map
+               ("C" . column-number-mode)
                ("v" . visual-line-mode)
                ("V" . toggle-truncate-lines)
                ("q" . auto-fill-mode)))
