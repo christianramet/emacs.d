@@ -530,6 +530,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :config
   (defun cr-eshell-settings ()
     (company-mode -1)
+    (hl-line-mode -1)
     (setenv "PAGER""cat")
     (with-eval-after-load 'counsel
       (define-key eshell-mode-map (kbd "M-r") 'counsel-esh-history)))
@@ -642,7 +643,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package hl-line
   :straight (:type built-in)
-  :hook ((dired-mode-hook
+  :hook ((text-mode-hook
+          prog-mode-hook
+          dired-mode-hook
           occur-mode-hook
           display-time-world-mode-hook) . hl-line-mode)
   :bind (:map cr-toggle-map
