@@ -166,6 +166,17 @@ chemacs."
         (s-replace " " "+" (buffer-substring (region-beginning) (region-end)))
       (read-string "Query: ")))))
 
+(defun cr-grep-app-search ()
+  "grep.app a query or region if any."
+  (interactive)
+  (require 's)
+  (browse-url
+   (concat
+    "https://grep.app/search?q="
+    (if mark-active
+        (s-replace " " "%20" (buffer-substring (region-beginning) (region-end)))
+      (read-string "Query: ")))))
+
 (defun cr-increment-number-at-point ()
   "Increment the number at point by 1."
   (interactive)

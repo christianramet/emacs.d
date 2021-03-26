@@ -359,6 +359,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                ("t" . cr-test-emacs-config))
          (:map cr-search-map
                ("h" . cr-github-search)
+               ("H" . cr-grep-app-search)
                ("w" . cr-duckduckgo-search))))
 
 (use-package cr-immortal-buffers
