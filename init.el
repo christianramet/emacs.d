@@ -378,8 +378,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom (csv-separators '("," ";" "|" " "))
   :config (add-hook 'csv-mode-hook 'csv-header-line))
 
-(use-package dart-mode)
-
 (use-package deft
   :custom
   (deft-recursive nil)
@@ -541,10 +539,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package eww
   :straight (:type built-in)
   :bind (:map cr-app-map ("w" . eww)))
-
-(use-package explain-pause-mode
-  :bind ((:map cr-toggle-map ("#" . explain-pause-mode))
-         (:map cr-app-map ("#" . explain-pause-top))))
 
 (use-package ffap
   :straight (:type built-in)
