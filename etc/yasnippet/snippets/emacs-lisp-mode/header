@@ -36,8 +36,6 @@ ${9:
 
 ;;; Code:
 
-${11:(message "Hello World!")}
-
 (provide '$1)
 
 ;;; $1.el ends here

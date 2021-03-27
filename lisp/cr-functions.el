@@ -1,3 +1,35 @@
+;;; cr-functions.el --- CR's main lib -*- lexical-binding: t -*-
+
+;; Author: Christian Ramet
+;; Maintainer: Christian Ramet
+;; Version: 1.0
+;; Package-Requires:
+;; Homepage:
+;; Keywords: lib
+
+
+;; This file is not part of GNU Emacs
+
+;; This file is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; For a full copy of the GNU General Public License
+;; see <http://www.gnu.org/licenses/>.
+
+
+;;; Commentary:
+
+;; Miscellaneous functions
+
+;;; Code:
+
 (defun cr-backward-kill-word-or-region (&optional arg)
   "Calls `kill-region' when a region is active and
 `backward-kill-word' otherwise. ARG is passed to
@@ -230,3 +262,5 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
       (message "Lower-cased %d matches" count))))
 
 (provide 'cr-functions)
+
+;;; cr-functions.el ends here
