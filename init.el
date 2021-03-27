@@ -199,7 +199,9 @@
 (use-package autorevert
   :straight (:type built-in)
   :diminish (auto-revert-mode global-auto-revert-mode)
-  :custom (auto-revert-avoid-polling t)
+  :custom
+  (auto-revert-avoid-polling t)
+  (revert-without-query (list "."))
   :hook (after-init-hook . global-auto-revert-mode)
   :bind ((:map cr-buffer-map ("g". revert-buffer))
          (:map cr-toggle-map
