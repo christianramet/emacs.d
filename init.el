@@ -369,7 +369,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package cr-open-external
   :straight nil
-  :bind (:map cr-file-map ("x" . cr-open-file-or-directory-in-external-app)))
+  :bind ((:map cr-file-map
+               ("x" . cr-open-file-or-directory-in-external-app))
+         (:map dired-mode-map
+               ("M-RET" . cr-open-file-or-directory-in-external-app))))
 
 (use-package css-mode :mode "\\.css\\'")
 
