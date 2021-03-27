@@ -325,14 +325,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (modus-themes-load-themes))
   (load-theme cr-themes-default t))
 
-(use-package cr-counsel-terms
-  :straight nil
-  :commands (cr-counsel-eshell cr-counsel-shell cr-counsel-vterm)
-  :bind (:map cr-app-map
-              ("e" . cr-counsel-eshell)
-              ("s" . cr-counsel-shell)
-              ("t" . cr-counsel-vterm)))
-
 (use-package cr-functions
   :straight nil
   :demand
@@ -540,7 +532,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (with-eval-after-load 'counsel
       (define-key eshell-mode-map (kbd "M-r") 'counsel-esh-history)))
 
-  (add-hook 'eshell-mode-hook 'cr-eshell-settings))
+  (add-hook 'eshell-mode-hook 'cr-eshell-settings)
+  :bind (:map cr-app-map ("e" . eshell)))
 
 (use-package eww
   :straight (:type built-in)
@@ -1204,8 +1197,8 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
     (interactive)
     (let ((inhibit-read-only t))
       (vterm-send-string (counsel-yank-pop))))
-
-  :bind (:map vterm-mode-map ("M-y" . cr-vterm-yank-pop)))
+  :bind ((:map cr-app-map ("v" . vterm))
+         (:map vterm-mode-map ("M-y" . cr-vterm-yank-pop))))
 
 (use-package wdired
   :straight (:type built-in)
