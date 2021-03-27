@@ -235,7 +235,7 @@
 Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (let ((quality-arg "")
           (quality-val (completing-read "Max height resolution (0 for unlimited): "
-                                        '("0" "480" "720" "1080") nil nil)))
+                                        '("480" "720" "1080" "0") nil nil)))
       (setq quality-val (string-to-number quality-val))
       (message "Opening %s with height≤%s with mpv..." url quality-val)
       (when (< 0 quality-val)
