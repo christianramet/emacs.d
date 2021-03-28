@@ -81,7 +81,7 @@
  ("rg.el" . "10e64887c224002572e1f1e19c74453cba606c3f")
  ("rust-mode" . "e9e9e32c4f82a9b895543c120b327ab5536ec42b")
  ("s.el" . "43ba8b563bee3426cead0e6d4ddc09398e1a349d")
- ("smartparens" . "fb1ce4b4013fe6f86dde9dd5bd5d4c032ab0d45b")
+ ("smartparens" . "f54116c93144cedb6f13a8fdfbf73f48fa89fcc7")
  ("spinner" . "e19f3cfc0646c0e23c10c22df219fcf427054621")
  ("ssh-config-mode-el" . "820f60af17e71898303f4f3c2576f0619528a492")
  ("straight.el" . "e1390a933b6f5a15079d6dec91eac97a17aad10c")
