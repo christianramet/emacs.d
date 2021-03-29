@@ -790,13 +790,18 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package nov
   :commands nov-mode
-  :custom (nov-text-width fill-column)
+  :custom (nov-text-width 80)
   :config
   (defun cr-nov-settings ()
+    (face-remap-add-relative 'variable-pitch :height 1.3)
     (setq-local left-margin-width 2)
-    (setq-local line-spacing 0.2))
+    (setq-local line-spacing 0.4)
+    (hl-line-mode 1))
   (add-hook 'nov-mode-hook 'cr-nov-settings)
-  :mode ("\\.epub\\'" . nov-mode))
+  :mode ("\\.epub\\'" . nov-mode)
+  :bind (:map nov-mode-map
+              ("n" . next-line)
+              ("p" . previous-line)))
 
 (use-package ob-async
   :after org
