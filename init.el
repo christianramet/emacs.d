@@ -918,6 +918,15 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :commands (org-cliplink org-cliplink-capture)
   :bind (:map org-mode-map ("C-c C-S-L" . org-cliplink)))
 
+(use-package org-download
+  :after org
+  :custom (org-download-method 'attach)
+  :hook (dired-mode-hook . org-download-enable)
+  :bind (:map cr-notes-map
+              (("C-d" . org-download-delete)
+               ("C-s" . org-download-screenshot)
+               ("C-y" . org-download-yank))))
+
 (use-package org-indent
   :straight nil
   :after org
