@@ -630,6 +630,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package git-link
   :bind (:map cr-git-map ("y" . git-link)))
 
+(use-package git-timemachine
+  :bind (:map cr-git-map ("t" . git-timemachine)))
+
 (use-package helpful
   :after counsel
   :commands (helpful-callable
