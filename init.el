@@ -943,7 +943,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind ("C-c w n" . org-noter))
 
 (use-package org-roam
-  :diminish "Roam"
+  :diminish
   :bind (:map cr-notes-map
               ("." . org-roam-jump-to-index)
               ("b" . org-roam-switch-to-buffer)
