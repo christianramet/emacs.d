@@ -1011,9 +1011,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (projectile-indexing-method 'alien)
   (projectile-enable-caching nil)
-  (projectile-verbose t)
-  (projectile-switch-project-action (lambda ()
-                                      (dired (projectile-project-root))))
+  (projectile-switch-project-action 'projectile-dired)
   :config
   (projectile-mode 1)
   (defun cr-projectile-refresh ()
