@@ -1193,6 +1193,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (tramp-shell-prompt-pattern
    "\\(?:^\\|\r\\)[^]#$%>\n]*#?[]#$%>].* *\\(^[\\[[0-9;]*[a-zA-Z] *\\)*"))
 
+(use-package visual-regexp
+  :bind ([remap query-replace-regexp] . 'vr/replace))
+
 (use-package vlf
   :init (require 'vlf-setup))
 
