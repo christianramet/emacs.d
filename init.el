@@ -920,12 +920,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package org-download
   :after org
-  :custom (org-download-method 'attach)
-  :hook (dired-mode-hook . org-download-enable)
-  :bind (:map cr-notes-map
-              (("C-d" . org-download-delete)
-               ("C-s" . org-download-screenshot)
-               ("C-y" . org-download-yank))))
+  :custom
+  (org-download-method 'directory) ;; org-download-delete bug with 'attach
+  (org-download-image-org-width 400)
+  :hook ((org-mode-hook dired-mode-hook) . org-download-enable))
 
 (use-package org-indent
   :straight nil
