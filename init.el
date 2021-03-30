@@ -942,11 +942,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package org-roam
   :diminish
+  :hook (org-load-hook . org-roam-mode)
   :bind (:map cr-notes-map
               ("." . org-roam-jump-to-index)
               ("b" . org-roam-switch-to-buffer)
               ("c" . org-roam-capture)
-              ("l" . org-roam)
               ("f" . org-roam-find-file)
               ("g" . org-roam-graph)
               ("i" . org-roam-insert)
