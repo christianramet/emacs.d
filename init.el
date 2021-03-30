@@ -377,8 +377,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package deft
   :custom
-  (deft-recursive nil)
   (deft-use-filter-string-for-filename t)
+  (deft-extensions '("org" "md" "txt"))
   (deft-default-extension "org")
   :bind (:map cr-notes-map ("d" . deft)))
 
