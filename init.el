@@ -951,7 +951,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package org-roam
   :if (executable-find "sqlite3")
-  :straight (:host github :repo "jethrokuan/org-roam" :branch "v2")
+  :straight (:host github :repo "org-roam/org-roam" :branch "v2")
   :hook (after-init-hook . org-roam-setup)
 
   :config
