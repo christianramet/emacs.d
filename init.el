@@ -566,6 +566,12 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (interactive)
     (ispell-change-dictionary "english"))
 
+  (defun cr-ispell-set-MULTI ()
+    (interactive)
+    (when (executable-find "hunspell")
+      (ispell-hunspell-add-multi-dic "english,francais")
+      (ispell-change-dictionary "english,francais")))
+
   (defun cr-save-word-to-pdict ()
     "Save word at point to the personal dictionary"
     (interactive)
@@ -584,6 +590,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                ("d" . ispell-change-dictionary)
                ("e" . cr-ispell-set-EN)
                ("f" . cr-ispell-set-FR)
+               ("m" . cr-ispell-set-MULTI)
                ("r" . flyspell-region)
                ("s" . cr-save-word-to-pdict)
                ("z" . flyspell-correct-wrapper))))
