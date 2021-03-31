@@ -941,16 +941,21 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind ("C-c w n" . org-noter))
 
 (use-package org-roam
+  :if (executable-find "sqlite3")
   :diminish
+  :custom (org-roam-verbose t)
   :hook (org-load-hook . org-roam-mode)
   :bind (:map cr-notes-map
               ("." . org-roam-jump-to-index)
               ("b" . org-roam-switch-to-buffer)
-              ("c" . org-roam-capture)
               ("f" . org-roam-find-file)
               ("g" . org-roam-graph)
               ("i" . org-roam-insert)
-              ("I" . org-roam-insert-immediate)))
+              ("I" . org-roam-insert-immediate)
+              ("n" . org-roam-capture)
+              ("t" . org-roam-buffer-toggle-display)
+              ("q" . org-roam-tag-add)
+              ("Q" . org-roam-tag-delete)))
 
 (use-package org-ql
   :bind (:map cr-search-map ("o" . org-ql-search)))
