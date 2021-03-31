@@ -951,20 +951,23 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package org-roam
   :if (executable-find "sqlite3")
-  :diminish
-  :custom (org-roam-verbose t)
-  :hook (org-load-hook . org-roam-mode)
+  :straight (:host github :repo "jethrokuan/org-roam" :branch "v2")
+  :hook (after-init-hook . org-roam-setup)
+
+  :config
+  ;; https://org-roam.discourse.group/t/org-roam-major-redesign/1198/99
+  ;; https://github.com/jethrokuan/dots/blob/master/.doom.d/config.el#L326
+  (setq org-roam-mode-sections
+        (list #'org-roam-backlinks-insert-section
+              #'org-roam-reflinks-insert-section
+              #'org-roam-unlinked-references-insert-section))
+
   :bind (:map cr-notes-map
-              ("." . org-roam-jump-to-index)
-              ("b" . org-roam-switch-to-buffer)
-              ("f" . org-roam-find-file)
-              ("g" . org-roam-graph)
-              ("i" . org-roam-insert)
-              ("I" . org-roam-insert-immediate)
+              ("f" . org-roam-node-find)
+              ("i" . org-roam-node-insert)
               ("n" . org-roam-capture)
-              ("t" . org-roam-buffer-toggle-display)
-              ("q" . org-roam-tag-add)
-              ("Q" . org-roam-tag-delete)))
+              ("r" . org-roam-node-random)
+              ("t" . org-roam-buffer-toggle)))
 
 (use-package org-ql
   :bind (:map cr-search-map ("o" . org-ql-search)))
