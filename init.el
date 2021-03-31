@@ -568,9 +568,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
   (defun cr-ispell-set-MULTI ()
     (interactive)
-    (when (executable-find "hunspell")
-      (ispell-hunspell-add-multi-dic "english,francais")
-      (ispell-change-dictionary "english,francais")))
+    (if (executable-find "hunspell")
+        (progn (ispell-hunspell-add-multi-dic "english,francais")
+               (ispell-change-dictionary "english,francais"))
+      (message "Hunspell is not available.")))
 
   (defun cr-save-word-to-pdict ()
     "Save word at point to the personal dictionary"
