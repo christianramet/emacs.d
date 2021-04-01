@@ -356,11 +356,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                ("H" . cr-grep-app-search)
                ("w" . cr-duckduckgo-search))))
 
-(use-package cr-immortal-buffers-mode
-  :straight nil
-  :custom (cr-immortal-buffers-list '("*scratch*" "*Messages*"))
-  :hook (after-init-hook . cr-immortal-buffers-mode))
-
 (use-package cr-open-external
   :straight nil
   :bind ((:map cr-file-map
