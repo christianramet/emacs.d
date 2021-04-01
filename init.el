@@ -952,8 +952,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package org-roam
   :if (executable-find "sqlite3")
   :straight (:host github :repo "org-roam/org-roam" :branch "v2")
-  :hook (after-init-hook . org-roam-setup)
-
+  :custom
+  (org-roam-db-gc-threshold (* 100 1024 1024))
+  ;; (org-id-link-to-org-use-id t)
   :config
   ;; https://org-roam.discourse.group/t/org-roam-major-redesign/1198/99
   ;; https://github.com/jethrokuan/dots/blob/master/.doom.d/config.el#L326
@@ -961,8 +962,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
         (list #'org-roam-backlinks-insert-section
               #'org-roam-reflinks-insert-section
               #'org-roam-unlinked-references-insert-section))
-
+  :hook (after-init-hook . org-roam-setup)
   :bind (:map cr-notes-map
+              ("b" . org-roam-buffer)
               ("f" . org-roam-node-find)
               ("i" . org-roam-node-insert)
               ("n" . org-roam-capture)
