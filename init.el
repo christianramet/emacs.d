@@ -101,7 +101,8 @@
  '(uniquify-buffer-name-style 'forward)
  '(use-dialog-box nil)
  '(frame-title-format "Emacs")
- '(enable-local-variables nil))
+ '(enable-local-variables nil)
+ '(visible-bell nil))
 
 (custom-set-variables
  '(find-file-visit-truename t)
