@@ -930,11 +930,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :hook (org-mode-hook . org-indent-mode))
 
 (use-package org-noter
-  :after org
+  :after (:any org pdf-view)
   :commands org-noter
   :custom
   (org-noter-default-notes-file-names '("notes.org" "main.org"))
-  (org-noter-notes-search-path (list org-directory))
+  (org-noter-notes-search-path '("~/d/org/notes/"))
   (org-noter-always-create-frame nil)
   :bind ("C-c w n" . org-noter))
 
