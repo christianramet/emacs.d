@@ -921,6 +921,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (org-download-method 'directory) ;; org-download-delete bug with 'attach
   (org-download-image-org-width 400)
+  :bind (:map cr-notes-map
+              ("y" . org-download-yank)
+              ("Y" . org-download-screenshot))
   :hook ((org-mode-hook dired-mode-hook) . org-download-enable))
 
 (use-package org-indent
