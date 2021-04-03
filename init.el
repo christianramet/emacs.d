@@ -811,6 +811,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package org
   :commands (org-agenda org-capture)
   :custom
+  (org-adapt-indentation nil)
   (org-agenda-follow-indirect nil)
   (org-agenda-log-mode-items '(closed clock state))
   (org-agenda-restore-windows-after-quit t)
@@ -822,6 +823,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (org-agenda-todo-ignore-scheduled 'future)
   (org-agenda-window-setup 'current-window)
   (org-blank-before-new-entry '((heading . auto) (plain-list-item . auto)))
+  (org-catch-invisible-edits 'show)
   (org-clock-continuously nil)
   (org-clock-idle-time nil)
   (org-clock-in-resume nil)
