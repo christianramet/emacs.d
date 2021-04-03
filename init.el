@@ -727,7 +727,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
               ("q" . langtool-check-done)))
 
 (use-package langtool
-  :if (eq system-name "t460")
+  :if (string= (system-name) "t460")
   :custom (langtool-language-tool-jar
            "~/opt/languagetool.org/languagetool-commandline.jar"))
 
