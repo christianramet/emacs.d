@@ -799,7 +799,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (setq-local line-spacing 0.4)
     (hl-line-mode 1))
   (add-hook 'nov-mode-hook 'cr-nov-settings)
-  :mode ("\\.epub\\'" . nov-mode)
+  :mode ("\\.\\(epub\\|mobi\\)\\'" . nov-mode)
   :bind (:map nov-mode-map
               ("n" . next-line)
               ("p" . previous-line)))
