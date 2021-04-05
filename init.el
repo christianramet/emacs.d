@@ -311,11 +311,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (cr-themes-default cr-themes-light)
   :bind (:map cr-toggle-map ("t" . cr-themes-toggle))
   :config
-  (use-package leuven-theme
-    :custom
-    (leuven-scale-outline-headlines t)
-    (leuven-scale-org-agenda-structure t)
-    (leuven-scale-volatile-highlight t))
   (use-package modus-themes
     :init
     (custom-set-variables
