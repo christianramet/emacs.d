@@ -909,6 +909,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
   (add-hook 'org-mode-hook 'cr-org-settings)
 
+  :mode ("\\.org_archive\\'" . org-mode)
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          ("C-c l" . org-store-link)))
