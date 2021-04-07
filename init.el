@@ -194,6 +194,8 @@
   :hook (dired-mode-hook . dired-async-mode))
 
 (use-package auth-source-pass
+  :if (executable-find "pass")
+  :straight (:type built-in)
   :hook (after-init-hook . auth-source-pass-enable))
 
 (use-package autorevert
