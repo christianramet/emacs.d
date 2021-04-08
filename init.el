@@ -700,14 +700,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (after-init-hook . ivy-rich-mode)
   (ivy-rich-mode-hook . ivy-rich-project-root-cache-mode ))
 
-(use-package ivy-xref
-  :demand
-  :after ivy
-  :init
-  (when (>= emacs-major-version 27)
-    (setq xref-show-definitions-function #'ivy-xref-show-defs))
-  (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
-
 (use-package kubernetes
   :if (executable-find "kubectl")
   :bind (:map cr-app-map ("k" . kubernetes-overview)))
