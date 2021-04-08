@@ -823,8 +823,8 @@ window configuration when called again."
         (setq olivetti-window-snapshot (current-window-configuration))
         (delete-other-windows)
         (olivetti-mode 1))))
-  :bind (("M-O" . olivetti-one-window-toggle)
-         (:map cr-toggle-map ("o" . olivetti-mode))))
+  :bind (:map cr-toggle-map ("o" . olivetti-mode))
+  :bind* ("M-O" . olivetti-one-window-toggle))
 
 (use-package org
   :commands (org-agenda org-capture)
