@@ -912,7 +912,7 @@ window configuration when called again."
     (push '("#+end_example"    . ?⇤) prettify-symbols-alist)
     (prettify-symbols-mode 1))
 
-  (add-hook 'org-mode-hook 'prettify-symbols-mode)
+  (add-hook 'org-mode-hook 'cr-org-pretty-symbols)
 
   :mode ("\\.org_archive\\'" . org-mode)
   :bind (("C-c a" . org-agenda)
