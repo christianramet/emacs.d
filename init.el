@@ -805,6 +805,14 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :after org
   :demand)
 
+(use-package olivetti
+  :custom (olivetti-body-width (+ fill-column 5))
+  :config
+  (defun cr-olivetti-settings ()
+    (setq-local indicate-empty-lines nil))
+  (add-hook 'olivetti-mode-hook 'cr-olivetti-settings)
+  :bind (:map cr-toggle-map ("o" . olivetti-mode)))
+
 (use-package org
   :commands (org-agenda org-capture)
   :custom
@@ -1260,24 +1268,6 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 (use-package woman
   :if (not system-is-osx-p)
   :bind (:map cr-app-map ("m" . woman)))
-
-(use-package writeroom-mode
-  :custom
-  (writeroom-restore-window-config t)
-  (writeroom-fringes-outside-margins t)
-  (writeroom-width fill-column)
-  (writeroom-major-modes-exceptions nil)
-  (writeroom-major-modes '(text-mode org-mode elfeed-show-mode))
-  :config
-  (advice-add 'text-scale-adjust :after
-              #'visual-fill-column-adjust)
-  :bind ((:map writeroom-mode-map
-               ("C-M-<" . writeroom-decrease-width)
-               ("C-M->" . writeroom-increase-width)
-               ("C-M-=" . writeroom-adjust-width))
-         (:map cr-toggle-map
-               ("w" . writeroom-mode)
-               ("W" . global-writeroom-mode))))
 
 (use-package ws-butler
   :diminish
