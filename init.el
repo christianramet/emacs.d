@@ -1212,6 +1212,10 @@ window configuration when called again."
   :bind ((:map cr-toggle-map ("." . display-time-mode))
          (:map cr-app-map ("." . display-time-world))))
 
+(use-package timer-list
+  :straight (:type built-in)
+  :bind (:map cr-emacs-map ("l" . list-timers)))
+
 (use-package toml-mode)
 
 (use-package tramp
