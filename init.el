@@ -806,12 +806,22 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :demand)
 
 (use-package olivetti
-  :custom (olivetti-body-width (+ fill-column 5))
+  :custom (olivetti-body-width (+ fill-column 20))
   :config
-  (defun cr-olivetti-settings ()
-    (setq-local indicate-empty-lines nil))
-  (add-hook 'olivetti-mode-hook 'cr-olivetti-settings)
-  :bind (:map cr-toggle-map ("o" . olivetti-mode)))
+  (defun olivetti-one-window-toggle ()
+    "Olivetti focus on the current window, and revert the
+window configuration when called again."
+    (interactive)
+    (if olivetti-mode
+        (progn
+          (olivetti-mode 0)
+          (set-window-configuration olivetti-window-snapshot))
+      (progn
+        (setq olivetti-window-snapshot (current-window-configuration))
+        (delete-other-windows)
+        (olivetti-mode 1))))
+  :bind (("M-O" . olivetti-one-window-toggle)
+         (:map cr-toggle-map ("o" . olivetti-mode))))
 
 (use-package org
   :commands (org-agenda org-capture)
