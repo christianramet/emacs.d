@@ -797,8 +797,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
               ("p" . previous-line)))
 
 (use-package ob-async
-  :after org
-  :demand)
+  :after org)
 
 (use-package olivetti
   :custom (olivetti-body-width (+ fill-column 20))
@@ -866,6 +865,8 @@ window configuration when called again."
   :config
   (require 'cr-private-org nil 'noerror)
   (with-eval-after-load 'ox (require 'ox-md nil 'noerror))
+  (require 'ob-async nil 'noerror)
+  (require 'ox-reveal nil 'noerror)
 
   (add-to-list 'org-speed-commands-user '("N" call-interactively 'org-metadown))
   (add-to-list 'org-speed-commands-user '("P" call-interactively 'org-metaup))
@@ -975,8 +976,6 @@ window configuration when called again."
   :bind (:map cr-search-map ("o" . org-ql-search)))
 
 (use-package ox-reveal
-  :disabled
-  :demand
   :after org
   :custom (org-reveal-root "~/js/reveal.js"))
 
