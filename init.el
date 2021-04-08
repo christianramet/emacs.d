@@ -906,13 +906,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (push '("#+end_example"    . ?⇤) prettify-symbols-alist)
     (prettify-symbols-mode 1))
 
-  (defun cr-org-settings ()
-    (setq-local delete-trailing-lines nil)
-    (setq-local indicate-empty-lines nil)
-    (setq-local indicate-buffer-boundaries nil)
-    (cr-org-pretty-symbols))
-
-  (add-hook 'org-mode-hook 'cr-org-settings)
+  (add-hook 'org-mode-hook 'prettify-symbols-mode)
 
   :mode ("\\.org_archive\\'" . org-mode)
   :bind (("C-c a" . org-agenda)
