@@ -634,7 +634,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (counsel-describe-function-function #'helpful-callable)
   (counsel-describe-variable-function #'helpful-variable)
-  :bind ("C-h k" . helpful-key))
+  :bind (("C-h k" . helpful-key)
+         ("C-h ." . helpful-at-point)))
 
 (use-package hl-line
   :straight (:type built-in)
