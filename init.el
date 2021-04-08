@@ -694,8 +694,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (ivy-rich-parse-remote-buffer nil)
   (ivy-rich-parse-remote-file-path nil)
+  (ivy-rich-project-root-cache-mode +1)
   :config (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
-  :hook (after-init-hook . ivy-rich-mode))
+  :hook
+  (after-init-hook . ivy-rich-mode)
+  (ivy-rich-mode-hook . ivy-rich-project-root-cache-mode ))
 
 (use-package ivy-xref
   :demand
