@@ -543,6 +543,14 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil)
   :config
+  (if (executable-find "hunspell")
+      (progn
+        (setq ispell-program-name "hunspell")
+        (setq ispell-dictionary "english,francais")
+        (ispell-set-spellchecker-params)
+        (ispell-hunspell-add-multi-dic "english,francais"))
+    (setq ispell-dictionary "english"))
+
   (defun cr-ispell-set-FR ()
     (interactive)
     (ispell-change-dictionary "francais"))
