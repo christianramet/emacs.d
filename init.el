@@ -966,13 +966,13 @@ window configuration when called again."
   (org-roam-db-gc-threshold (* 100 1024 1024))
   ;; (org-id-link-to-org-use-id t)
   :config
+  (org-roam-setup)
   ;; https://org-roam.discourse.group/t/org-roam-major-redesign/1198/99
   ;; https://github.com/jethrokuan/dots/blob/master/.doom.d/config.el#L326
   (setq org-roam-mode-sections
         (list #'org-roam-backlinks-insert-section
               #'org-roam-reflinks-insert-section
               #'org-roam-unlinked-references-insert-section))
-  :hook (after-init-hook . org-roam-setup)
   :bind (:map cr-notes-map
               ("b" . org-roam-buffer)
               ("f" . org-roam-node-find)
