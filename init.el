@@ -1035,8 +1035,9 @@ window configuration when called again."
              projectile-ripgrep
              projectile-switch-project)
   :custom
-  (projectile-indexing-method 'alien)
   (projectile-enable-caching nil)
+  (projectile-indexing-method 'alien)
+  (projectile-mode-line nil)
   (projectile-switch-project-action 'projectile-dired)
   :config
   (projectile-mode 1)
