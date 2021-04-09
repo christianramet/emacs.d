@@ -543,7 +543,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil)
   :config
-  (if (executable-find "hunspell")
+  (if (and (executable-find "hunspell") system-is-linux-p)
       (progn
         (setq ispell-program-name "hunspell")
         (setq ispell-dictionary "english,francais")
