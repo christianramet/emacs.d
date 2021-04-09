@@ -807,6 +807,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :after org)
 
 (use-package olivetti
+  :diminish
   :custom (olivetti-body-width (+ fill-column 20))
   :config
   (defun olivetti-one-window-toggle ()
