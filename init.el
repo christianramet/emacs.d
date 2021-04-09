@@ -1006,7 +1006,7 @@ window configuration when called again."
   (TeX-view-program-selection '((output-pdf "pdf-tools")))
   (TeX-view-program-list '(("pdf-tools" "TeX-pdf-tools-sync-view")))
   :config
-  (pdf-tools-install :no-query)
+  (pdf-tools-install :no-query t)
   (setq-default pdf-view-display-size 'fit-page)
   (add-hook 'pdf-view-mode-hook 'pdf-annot-minor-mode)
   (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
