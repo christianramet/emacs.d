@@ -852,6 +852,7 @@ window configuration when called again."
   (org-log-state-notes-insert-after-drawers nil)
   (org-outline-path-complete-in-steps nil)
   (org-refile-allow-creating-parent-nodes 'confirm)
+  (org-refile-use-cache t)
   (org-refile-use-outline-path 'file)
   (org-show-notification-handler 'message)
   (org-src-fontify-natively t)
