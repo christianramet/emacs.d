@@ -1181,6 +1181,10 @@ window configuration when called again."
                ("s" . smartparens-mode)
                ("S" . smartparens-strict-mode))))
 
+(use-package so-long
+  :straight (:type built-in)
+  :hook (after-init-hook . global-so-long-mode))
+
 (use-package sort
   :straight (:type built-in)
   :bind (:map cr-text-map ("s" . sort-lines)))
