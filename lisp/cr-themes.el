@@ -74,13 +74,21 @@
 
 (with-eval-after-load 'pdf-view
   (defun pdf-view-update-midnight-mode ()
-    "Update pdf-view’s colour theme."
+    "Flip every opened pdf-view buffers colour theme."
     (dolist (buffer (buffer-list))
       (with-current-buffer buffer
         (when (and (derived-mode-p 'pdf-view-mode)
                    (buffer-file-name buffer))
           (pdf-view-midnight-minor-mode)))))
   (add-hook 'cr-themes-toggle-hook 'pdf-view-update-midnight-mode))
+
+(defun cr-pdf-view-theme-sync ()
+  "Match pdf-view theme with `cr-themes-current'."
+  (if (eq (cr-themes-current) cr-themes-dark)
+      (pdf-view-midnight-minor-mode 1)
+    (pdf-view-midnight-minor-mode -1)))
+
+(add-hook 'pdf-view-mode-hook 'cr-pdf-view-theme-sync)
 
 (when (string= (getenv "DESKTOP_SESSION") "ubuntu")
   (defun cr-ubuntu-themes-toggle ()
