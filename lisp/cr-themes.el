@@ -55,6 +55,11 @@
   :type 'list
   :group 'cr-themes)
 
+(defcustom cr-themes-toggle-hook nil
+  "Hooks run when Emacs theme is changed with `cr-themes-toggle'."
+  :group 'cr-themes
+  :type 'hook)
+
 (defun cr-themes-current ()
   (car custom-enabled-themes))
 
@@ -64,16 +69,27 @@
   (interactive)
   (let ((new-theme (car (remove (cr-themes-current) cr-themes-pair))))
     (mapc #'disable-theme custom-enabled-themes)
-    (load-theme new-theme t)))
+    (load-theme new-theme t)
+    (run-hooks 'cr-themes-toggle-hook)))
 
 (with-eval-after-load 'pdf-view
-  (defun cr-themes-pdf-view-sync ()
-    "Synchronize Emacs light/dark themes with pdf-view midnight mode."
-    (when (eq (cr-themes-current) cr-themes-light)
-      (pdf-view-midnight-minor-mode -1))
-    (when (eq (cr-themes-current) cr-themes-dark)
-      (pdf-view-midnight-minor-mode 1)))
-  (add-hook 'pdf-view-mode-hook 'cr-themes-pdf-view-sync))
+  (defun pdf-view-update-midnight-mode ()
+    "Update pdf-view’s colour theme."
+    (dolist (buffer (buffer-list))
+      (with-current-buffer buffer
+        (when (and (derived-mode-p 'pdf-view-mode)
+                   (buffer-file-name buffer))
+          (pdf-view-midnight-minor-mode)))))
+  (add-hook 'cr-themes-toggle-hook 'pdf-view-update-midnight-mode))
+
+(when (string= (getenv "DESKTOP_SESSION") "ubuntu")
+  (defun cr-ubuntu-themes-toggle ()
+    (if (eq (cr-themes-current) cr-themes-light)
+        (call-process-shell-command
+         "gsettings set org.gnome.desktop.interface gtk-theme Yaru")
+      (call-process-shell-command
+       "gsettings set org.gnome.desktop.interface gtk-theme Yaru-dark")))
+  (add-hook 'cr-themes-toggle-hook 'cr-ubuntu-themes-toggle))
 
 (provide 'cr-themes)
 
