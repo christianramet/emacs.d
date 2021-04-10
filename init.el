@@ -926,7 +926,10 @@ window configuration when called again."
   :mode ("\\.org_archive\\'" . org-mode)
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
-         ("C-c l" . org-store-link)))
+         ("C-c l" . org-store-link)
+         ("C-c C-x C-o" . org-clock-out)
+         ("C-c C-x C-x" . org-clock-in-last)
+         ("C-c C-x C-j" . org-clock-goto)))
 
 (use-package org-cliplink
   :after org
