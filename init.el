@@ -929,7 +929,8 @@ window configuration when called again."
          ("C-c l" . org-store-link)
          ("C-c C-x C-o" . org-clock-out)
          ("C-c C-x C-x" . org-clock-in-last)
-         ("C-c C-x C-j" . org-clock-goto)))
+         ("C-c C-x C-j" . org-clock-goto)
+         ("C-c C-x C-q" . org-clock-cancel)))
 
 (use-package org-cliplink
   :after org
