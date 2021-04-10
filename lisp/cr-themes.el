@@ -90,15 +90,6 @@
 
 (add-hook 'pdf-view-mode-hook 'cr-pdf-view-theme-sync)
 
-(when (string= (getenv "DESKTOP_SESSION") "ubuntu")
-  (defun cr-ubuntu-themes-toggle ()
-    (if (eq (cr-themes-current) cr-themes-light)
-        (call-process-shell-command
-         "gsettings set org.gnome.desktop.interface gtk-theme Yaru")
-      (call-process-shell-command
-       "gsettings set org.gnome.desktop.interface gtk-theme Yaru-dark")))
-  (add-hook 'cr-themes-toggle-hook 'cr-ubuntu-themes-toggle))
-
 (provide 'cr-themes)
 
 ;;; cr-themes.el ends here
