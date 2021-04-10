@@ -56,7 +56,8 @@
   :group 'cr-themes)
 
 (defcustom cr-themes-toggle-hook nil
-  "Hooks run when Emacs theme is changed with `cr-themes-toggle'."
+  "Hooks run when Emacs theme is changed with
+`cr-themes-toggle'."
   :group 'cr-themes
   :type 'hook)
 
@@ -67,28 +68,29 @@
 (defun cr-themes-toggle ()
   "Interchange between the 2 themes defined in `cr-themes-pair'"
   (interactive)
-  (let ((new-theme (car (remove (cr-themes-current) cr-themes-pair))))
+  (let ((new-theme
+         (car (remove (cr-themes-current) cr-themes-pair))))
     (mapc #'disable-theme custom-enabled-themes)
     (load-theme new-theme t)
     (run-hooks 'cr-themes-toggle-hook)))
 
-(with-eval-after-load 'pdf-view
-  (defun pdf-view-update-midnight-mode ()
-    "Flip every opened pdf-view buffers colour theme."
-    (dolist (buffer (buffer-list))
-      (with-current-buffer buffer
-        (when (and (derived-mode-p 'pdf-view-mode)
-                   (buffer-file-name buffer))
-          (pdf-view-midnight-minor-mode)))))
-  (add-hook 'cr-themes-toggle-hook 'pdf-view-update-midnight-mode))
+(defun cr-themes-pdf-view-sync-current-buffers ()
+  "Toggle theme of every pdf-view buffers which are already
+opened."
+  (dolist (buffer (buffer-list))
+    (with-current-buffer buffer
+      (when (and (derived-mode-p 'pdf-view-mode)
+                 (buffer-file-name buffer))
+        (pdf-view-midnight-minor-mode)))))
 
-(defun cr-pdf-view-theme-sync ()
-  "Match pdf-view theme with `cr-themes-current'."
+(defun cr-themes-pdf-view-sync-new-buffers ()
+  "Toggle theme of newly opened pdf-view buffers."
   (if (eq (cr-themes-current) cr-themes-dark)
       (pdf-view-midnight-minor-mode 1)
     (pdf-view-midnight-minor-mode -1)))
 
-(add-hook 'pdf-view-mode-hook 'cr-pdf-view-theme-sync)
+(add-hook 'cr-themes-toggle-hook 'cr-themes-pdf-view-sync-current-buffers)
+(add-hook 'pdf-view-mode-hook 'cr-themes-pdf-view-sync-new-buffers)
 
 (provide 'cr-themes)
 
