@@ -854,6 +854,7 @@ window configuration when called again."
   (org-fontify-done-headline t)
   (org-hide-emphasis-markers t)
   (org-hide-leading-stars t)
+  (org-imenu-depth 3)
   (org-indent-indentation-per-level 1)
   (org-link-file-path-type 'adaptive)
   (org-log-done 'time)
