@@ -780,20 +780,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package mixed-pitch
   :diminish
   :config
-  (defun mixed-pitch-company-settings ()
+  (defun mixed-pitch-settings ()
     (when (featurep 'company)
       (setq-local company-idle-delay nil)))
-
-  (add-hook 'mixed-pitch-mode-hook 'mixed-pitch-company-settings)
-
-  (defun mixed-pitch-avoid-org-agenda-files ()
-    (unless (and (string= major-mode "org-mode")
-                 (member buffer-file-name org-agenda-files))
-      (mixed-pitch-mode)))
-
-  :hook
-  (markdown-mode-hook . mixed-pitch-mode)
-  (org-mode-hook . mixed-pitch-avoid-org-agenda-files)
+  (add-hook 'mixed-pitch-mode-hook 'mixed-pitch-settings)
+  :hook ((org-mode-hook markdown-mode-hook) . mixed-pitch-mode)
   :bind (:map cr-toggle-map ("P" . mixed-pitch-mode)))
 
 (use-package nginx-mode)
