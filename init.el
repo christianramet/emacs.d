@@ -650,6 +650,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
           prog-mode-hook
           dired-mode-hook
           occur-mode-hook
+          org-agenda-mode-hook
           display-time-world-mode-hook) . hl-line-mode)
   :bind (:map cr-toggle-map
               ("h" . hl-line-mode)
