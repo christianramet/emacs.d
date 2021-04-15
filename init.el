@@ -840,7 +840,7 @@ window configuration when called again."
   :custom
   (org-adapt-indentation nil)
   (org-agenda-follow-indirect nil)
-  (org-agenda-log-mode-items '(closed clock state))
+  (org-agenda-log-mode-items '(closed clock))
   (org-agenda-restore-windows-after-quit t)
   (org-agenda-show-outline-path nil)
   (org-agenda-skip-deadline-if-done nil)
@@ -880,7 +880,6 @@ window configuration when called again."
   (org-src-window-setup 'current-window)
   (org-startup-folded t)
   (org-use-speed-commands t)
-  (org-use-tag-inheritance t)
   :config
   (require 'cr-private-org nil 'noerror)
   (with-eval-after-load 'ox (require 'ox-md nil 'noerror))
