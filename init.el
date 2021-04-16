@@ -790,11 +790,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (unless (and (string= major-mode "org-mode")
                  (member buffer-file-name org-agenda-files))
       (mixed-pitch-mode)))
-
   :hook
   (markdown-mode-hook . mixed-pitch-mode)
   (org-mode-hook . mixed-pitch-avoid-org-agenda-files)
-  :bind (:map cr-toggle-map ("P" . mixed-pitch-mode)))
+  :bind (:map cr-toggle-map ("p" . mixed-pitch-mode)))
 
 (use-package nginx-mode)
 
