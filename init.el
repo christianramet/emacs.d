@@ -520,6 +520,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map cr-app-map ("w" . eww)))
 
 (use-package face-remap
+  :straight (:type built-in)
   :diminish buffer-face-mode
   :config
   (custom-theme-set-faces
