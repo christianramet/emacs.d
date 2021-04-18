@@ -571,6 +571,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (add-hook 'buffer-face-mode-hook 'variable-pitch-settings)
 
   (defun variable-pitch-mode-avoid-org-agenda-files ()
+    "Enable `variable-pitch-mode' in Org buffers, but not in the
+main agenda files, which contains many tags. I want those to
+remain in fixed pitch for the tags to be aligned."
     (when buffer-file-name
       (unless (or (and (member buffer-file-name (org-agenda-files))
                        (not (string-match ".*journal.*.org$" buffer-file-name)))
