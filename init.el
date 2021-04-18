@@ -315,7 +315,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (use-package modus-themes
     :init
     (custom-set-variables
-     '(modus-themes-scale-headings t)
+     '(modus-themes-scale-headings nil)
      '(modus-themes-slanted-constructs t)
      '(modus-themes-bold-constructs t)
      '(modus-themes-org-blocks 'rainbow))
