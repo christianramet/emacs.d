@@ -38,7 +38,7 @@
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el"
-       user-emacs-directory))
+                         user-emacs-directory))
       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
@@ -470,11 +470,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :hook (elfeed-show-mode-hook . cr-elfeed-show-settings)
   :bind ((:map cr-app-map ("f" . elfeed))
          (:map elfeed-search-mode-map ("a" . elfeed-search-show-entry))
-               (:map elfeed-show-mode-map
-                     ("n" . next-line)
-                     ("p" . previous-line)
-                     ("[" . elfeed-show-prev)
-                     ("]" . elfeed-show-next))))
+         (:map elfeed-show-mode-map
+               ("n" . next-line)
+               ("p" . previous-line)
+               ("[" . elfeed-show-prev)
+               ("]" . elfeed-show-next))))
 
 (use-package elisp-mode
   :straight (:type built-in)
@@ -493,7 +493,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (eshell-hist-ignoredups t)
   (eshell-destroy-buffer-when-process-dies nil)
   (eshell-visual-commands
-  '("crontab" "tmux" "htop" "tail" "vi" "screen" "top" "less" "more"))
+   '("crontab" "tmux" "htop" "tail" "vi" "screen" "top" "less" "more"))
   (eshell-modules-list '(eshell-alias
                          ;; eshell-banner
                          eshell-basic
