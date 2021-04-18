@@ -665,6 +665,7 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package frame
   :straight (:type built-in)
+  :hook (after-init-hook . blink-cursor-mode)
   :bind (:map cr-toggle-map
               ("B" . blink-cursor-mode)
               ("RET" . toggle-frame-fullscreen)))
