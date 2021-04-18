@@ -859,8 +859,12 @@ remain in fixed pitch for the tags to be aligned."
   :after org)
 
 (use-package olivetti
+  :straight olivetti
+  :straight hide-mode-line
   :diminish
-  :custom (olivetti-body-width (+ fill-column 20))
+  :custom
+  (olivetti-body-width 0.5)
+  (olivetti-minimum-body-width fill-column)
   :config
   (defun olivetti-one-window-toggle ()
     "Olivetti focus on the current window, and revert the
@@ -869,11 +873,13 @@ window configuration when called again."
     (if olivetti-mode
         (progn
           (olivetti-mode 0)
+          (hide-mode-line-mode 0)
           (set-window-configuration olivetti-window-snapshot))
       (progn
         (setq olivetti-window-snapshot (current-window-configuration))
         (delete-other-windows)
-        (olivetti-mode 1))))
+        (olivetti-mode 1)
+        (hide-mode-line-mode 1))))
   :bind (:map cr-toggle-map ("o" . olivetti-mode))
   :bind* ("M-O" . olivetti-one-window-toggle))
 
