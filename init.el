@@ -290,7 +290,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (("C-c i" . counsel-imenu)
          ("C-c j" . counsel-git-grep)
          ("C-c k" . counsel-rg)
-         ("C-c o" . counsel-outline)
          ("C-c m" . counsel-mark-ring)
          ([remap jump-to-register]   . counsel-register)
          (:map cr-toggle-map
