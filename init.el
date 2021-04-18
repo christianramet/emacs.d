@@ -315,7 +315,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (use-package modus-themes
     :init
     (custom-set-variables
-     '(modus-themes-scale-headings nil)
+     '(modus-themes-scale-headings t)
      '(modus-themes-slanted-constructs t)
      '(modus-themes-bold-constructs t)
      '(modus-themes-org-blocks 'rainbow))
@@ -546,13 +546,26 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
    '(org-table                 ((t (:inherit fixed-pitch))))
    '(org-tag                   ((t (:inherit (shadow fixed-pitch) :weight bold))))
    '(org-todo                  ((t (:inherit fixed-pitch))))
-   '(org-verbatim              ((t (:inherit fixed-pitch)))))
+   '(org-verbatim              ((t (:inherit fixed-pitch))))
 
-  (defun variable-pitch-company-settings ()
+   '(markdown-code-face               ((t (:inherit fixed-pitch))))
+   '(markdown-html-attr-name-face     ((t (:inherit fixed-pitch))))
+   '(markdown-html-attr-value-face    ((t (:inherit fixed-pitch))))
+   '(markdown-html-entity-face        ((t (:inherit fixed-pitch))))
+   '(markdown-html-tag-delimiter-face ((t (:inherit fixed-pitch))))
+   '(markdown-html-tag-name-face      ((t (:inherit fixed-pitch))))
+   '(markdown-inline-code-face        ((t (:inherit fixed-pitch))))
+   '(markdown-language-info-face      ((t (:inherit fixed-pitch))))
+   '(markdown-language-keyword-face   ((t (:inherit fixed-pitch))))
+   '(markdown-pre-face                ((t (:inherit fixed-pitch))))
+   '(markdown-table-face              ((t (:inherit fixed-pitch)))))
+
+  (defun variable-pitch-settings ()
     (when (featurep 'company)
-      (setq-local company-idle-delay nil)))
+      (setq-local company-idle-delay nil))
+    (setq-local cursor-type 'bar))
 
-  (add-hook 'variable-pitch-mode-hook 'variable-pitch-company-settings)
+  (add-hook 'buffer-face-mode-hook 'variable-pitch-settings)
 
   (defun variable-pitch-mode-avoid-org-agenda-files ()
     (unless (or (and (member buffer-file-name (org-agenda-files))
@@ -560,7 +573,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                 (string-match ".*.org_archive$" buffer-file-name))
       (variable-pitch-mode 1)))
 
-  :hook (org-mode-hook . variable-pitch-mode-avoid-org-agenda-files)
+  :hook
+  (markdown-mode-hook . variable-pitch-mode)
+  (org-mode-hook . variable-pitch-mode-avoid-org-agenda-files)
   :bind (:map cr-toggle-map ("p" . variable-pitch-mode)))
 
 (use-package ffap
