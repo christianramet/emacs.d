@@ -571,10 +571,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (add-hook 'buffer-face-mode-hook 'variable-pitch-settings)
 
   (defun variable-pitch-mode-avoid-org-agenda-files ()
-    (unless (or (and (member buffer-file-name (org-agenda-files))
-                     (not (string-match ".*journal.*.org$" buffer-file-name)))
-                (string-match ".*.org_archive$" buffer-file-name))
-      (variable-pitch-mode 1)))
+    (when buffer-file-name
+      (unless (or (and (member buffer-file-name (org-agenda-files))
+                       (not (string-match ".*journal.*.org$" buffer-file-name)))
+                  (string-match ".*.org_archive$" buffer-file-name))
+        (variable-pitch-mode 1))))
 
   :hook
   (markdown-mode-hook . variable-pitch-mode)
