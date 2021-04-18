@@ -412,10 +412,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :demand
   :after dired)
 
-(use-package disable-mouse
-  :diminish disable-mouse-global-mode
-  :bind (:map cr-toggle-map ("M" . global-disable-mouse-mode)))
-
 (use-package display-line-numbers
   :straight (:type built-in)
   :bind (:map cr-toggle-map ("l" . display-line-numbers-mode)))
