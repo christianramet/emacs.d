@@ -524,6 +524,37 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight (:type built-in)
   :bind (:map cr-app-map ("w" . eww)))
 
+(use-package face-remap
+  :diminish buffer-face-mode
+  :config
+  (custom-theme-set-faces
+   'user
+   '(org-block                 ((t (:inherit fixed-pitch))))
+   '(org-block-begin-line      ((t (:inherit fixed-pitch))))
+   '(org-block-end-line        ((t (:inherit fixed-pitch))))
+   '(org-checkbox              ((t (:inherit fixed-pitch))))
+   '(org-code                  ((t (:inherit (shadow fixed-pitch)))))
+   '(org-date                  ((t (:inherit fixed-pitch))))
+   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+   '(org-done                  ((t (:inherit fixed-pitch))))
+   '(org-formula               ((t (:inherit fixed-pitch))))
+   '(org-indent                ((t (:inherit (org-hide fixed-pitch)))))
+   '(org-link                  ((t (:inherit (fixed-pitch) :underline t))))
+   '(org-meta-line             ((t (:inherit fixed-pitch))))
+   '(org-property-value        ((t (:inherit fixed-pitch))))
+   '(org-special-keyword       ((t (:inherit fixed-pitch))))
+   '(org-table                 ((t (:inherit fixed-pitch))))
+   '(org-tag                   ((t (:inherit (shadow fixed-pitch) :weight bold))))
+   '(org-todo                  ((t (:inherit fixed-pitch))))
+   '(org-verbatim              ((t (:inherit fixed-pitch)))))
+
+  (defun variable-pitch-company-settings ()
+    (when (featurep 'company)
+      (setq-local company-idle-delay nil)))
+
+  (add-hook 'variable-pitch-mode-hook 'variable-pitch-company-settings)
+  :bind (:map cr-toggle-map ("p" . variable-pitch-mode)))
+
 (use-package ffap
   :straight (:type built-in)
   :bind ("M-g f" . find-file-at-point))
@@ -776,24 +807,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package markdown-mode
   :mode ("\\.md\\'" "\\.markdown\\'")
   :custom (markdown-fontify-code-blocks-natively t))
-
-(use-package mixed-pitch
-  :diminish
-  :config
-  (defun mixed-pitch-company-settings ()
-    (when (featurep 'company)
-      (setq-local company-idle-delay nil)))
-
-  (add-hook 'mixed-pitch-mode-hook 'mixed-pitch-company-settings)
-
-  (defun mixed-pitch-avoid-org-agenda-files ()
-    (unless (and (string= major-mode "org-mode")
-                 (member buffer-file-name org-agenda-files))
-      (mixed-pitch-mode)))
-  :hook
-  (markdown-mode-hook . mixed-pitch-mode)
-  (org-mode-hook . mixed-pitch-avoid-org-agenda-files)
-  :bind (:map cr-toggle-map ("p" . mixed-pitch-mode)))
 
 (use-package nginx-mode)
 
