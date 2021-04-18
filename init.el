@@ -553,6 +553,14 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
       (setq-local company-idle-delay nil)))
 
   (add-hook 'variable-pitch-mode-hook 'variable-pitch-company-settings)
+
+  (defun variable-pitch-mode-avoid-org-agenda-files ()
+    (unless (or (and (member buffer-file-name (org-agenda-files))
+                     (not (string-match ".*journal.*.org$" buffer-file-name)))
+                (string-match ".*.org_archive$" buffer-file-name))
+      (variable-pitch-mode 1)))
+
+  :hook (org-mode-hook . variable-pitch-mode-avoid-org-agenda-files)
   :bind (:map cr-toggle-map ("p" . variable-pitch-mode)))
 
 (use-package ffap
