@@ -33,7 +33,8 @@
  '(straight-use-package-by-default t)
  '(straight-cache-autoloads t)
  '(straight-current-profile nil)
- '(straight-vc-git-default-clone-depth 1))
+ '(straight-vc-git-default-clone-depth 1)
+ '(straight-check-for-modifications '(check-on-save find-when-checking)))
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
