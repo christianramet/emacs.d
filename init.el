@@ -480,6 +480,44 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
   (add-hook 'emacs-lisp-mode-hook 'cr-emacs-lisp-settings))
 
+(use-package emacs
+  :commands hide-mode-line-mode
+  :config
+  (defvar hide-mode-line-mode-hook nil)
+  (define-minor-mode hide-mode-line-mode
+    "Toggle the hide-mode-line mode."
+    :init-value nil
+    :global nil
+    (run-hooks 'hide-mode-line-hook)
+    (if hide-mode-line-mode
+        (setq-local mode-line-format nil)
+      (kill-local-variable 'mode-line-format))
+    (force-mode-line-update)))
+
+(use-package emacs
+  :straight olivetti
+  :straight (hide-mode-line :type built-in)
+  :commands focus-mode
+  :config
+  (defvar focus-mode-hook nil)
+  (define-minor-mode focus-mode
+    "Toggle the focus mode."
+    :init-value nil
+    :global nil
+    (run-hooks 'focus-mode-hook)
+    (if focus-mode
+        (progn
+          (unless (derived-mode-p 'prog-mode)
+            (hide-mode-line-mode 1))
+          (olivetti-mode 1)
+          (setq olivetti-window-snapshot (current-window-configuration))
+          (delete-other-windows))
+      (progn
+        (hide-mode-line-mode -1)
+        (set-window-configuration olivetti-window-snapshot)
+        (olivetti-mode -1))))
+  :bind* ("M-O" . focus-mode))
+
 (use-package eshell
   :straight (:type built-in)
   :commands (eshell eshell-command)
@@ -861,21 +899,7 @@ remain in fixed pitch for the tags to be aligned."
   :custom
   (olivetti-body-width 0.5)
   (olivetti-minimum-body-width fill-column)
-  :config
-  (defun olivetti-one-window-toggle ()
-    "Olivetti focus on the current window, and revert the
-window configuration when called again."
-    (interactive)
-    (if olivetti-mode
-        (progn
-          (olivetti-mode -1)
-          (set-window-configuration olivetti-window-snapshot))
-      (progn
-        (setq olivetti-window-snapshot (current-window-configuration))
-        (delete-other-windows)
-        (olivetti-mode 1))))
-  :bind (:map cr-toggle-map ("o" . olivetti-mode))
-  :bind* ("M-O" . olivetti-one-window-toggle))
+  :bind (:map cr-toggle-map ("o" . olivetti-mode)))
 
 (use-package org
   :commands (org-agenda org-capture)
