@@ -599,9 +599,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (if buffer-face-mode
         (setq-local company-idle-delay nil
                     cursor-type 'bar)
-      (setq-local
-        company-idle-delay (default-value 'company-idle-delay)
-        cursor-type (default-value 'cursor-type))))
+      (progn
+        (kill-local-variable 'company-idle-delay)
+        (kill-local-variable 'cursor-type))))
 
   (add-hook 'buffer-face-mode-hook 'variable-pitch-settings)
 
