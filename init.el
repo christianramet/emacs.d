@@ -931,7 +931,6 @@ remain in fixed pitch for the tags to be aligned."
   (org-hide-emphasis-markers t)
   (org-hide-leading-stars t)
   (org-imenu-depth 3)
-  (org-indent-indentation-per-level 1)
   (org-link-file-path-type 'adaptive)
   (org-log-done 'time)
   (org-log-into-drawer t)
@@ -1026,6 +1025,7 @@ remain in fixed pitch for the tags to be aligned."
   :straight nil
   :after org
   :diminish
+  :custom (org-indent-indentation-per-level 1)
   :hook (org-mode-hook . org-indent-mode))
 
 (use-package org-noter
