@@ -230,7 +230,7 @@
   :straight (:type built-in)
   :custom
   (browse-url-browser-function
-   '(("\\(youtube\\.com\\)\\|\\(youtu\\.be\\)" . browse-url-youtube-mpv)
+   '(("\\(youtube\\.com/watch\\)\\|\\(youtu\\.be/watch\\)" . browse-url-youtube-mpv)
      ("." . browse-url-default-browser)))
   :config
   (defun browse-url-youtube-mpv (url &rest e)
