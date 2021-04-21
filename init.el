@@ -456,6 +456,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :init
   (require 'cr-private-feeds nil 'noerror)
   :custom
+  (elfeed-search-trailing-width 25)
+  (elfeed-search-title-max-width 50)
   (elfeed-search-filter "@2-weeks-ago +unread ")
   (elfeed-search-date-format '("%m-%d" 5 :left))
   :config
@@ -897,7 +899,7 @@ remain in fixed pitch for the tags to be aligned."
 (use-package olivetti
   :diminish
   :custom
-  (olivetti-body-width 0.5)
+  (olivetti-body-width (+ fill-column 30))
   (olivetti-minimum-body-width fill-column)
   :bind (:map cr-toggle-map ("o" . olivetti-mode)))
 
