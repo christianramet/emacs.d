@@ -456,8 +456,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :init
   (require 'cr-private-feeds nil 'noerror)
   :custom
-  (elfeed-search-trailing-width 25)
-  (elfeed-search-title-max-width 50)
   (elfeed-search-filter "@2-weeks-ago +unread ")
   (elfeed-search-date-format '("%m-%d" 5 :left))
   :config
@@ -518,6 +516,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
         (set-window-configuration focus-mode-window-snapshot)
         (olivetti-mode -1)))
     (run-hooks 'cr/focus-mode-hook))
+  :hook (elfeed-show-mode-hook . cr/focus-mode)
   :bind* ("M-O" . cr/focus-mode))
 
 (use-package eshell
