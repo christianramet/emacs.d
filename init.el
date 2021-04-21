@@ -510,11 +510,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
           (unless (derived-mode-p 'prog-mode)
             (cr/hide-mode-line-mode 1))
           (olivetti-mode 1)
-          (setq olivetti-window-snapshot (current-window-configuration))
+          (setq focus-mode-window-snapshot (current-window-configuration))
           (delete-other-windows))
       (progn
         (cr/hide-mode-line-mode -1)
-        (set-window-configuration olivetti-window-snapshot)
+        (set-window-configuration focus-mode-window-snapshot)
         (olivetti-mode -1))))
   :bind* ("M-O" . cr/focus-mode))
 
