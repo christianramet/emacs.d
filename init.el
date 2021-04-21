@@ -747,6 +747,7 @@ remain in fixed pitch for the tags to be aligned."
   :hook ((text-mode-hook
           prog-mode-hook
           dired-mode-hook
+          elfeed-show-mode-hook
           occur-mode-hook
           org-agenda-mode-hook
           display-time-world-mode-hook) . hl-line-mode)
