@@ -458,6 +458,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (elfeed-search-filter "@2-weeks-ago +unread ")
   (elfeed-search-date-format '("%m-%d" 5 :left))
+  (elfeed-search-title-max-width 100)
   :config
   (defun cr-elfeed-show-settings ()
     (setq-local shr-width fill-column)
