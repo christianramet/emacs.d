@@ -949,7 +949,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-startup-folded t)
   (org-use-speed-commands t)
   :config
-  (require 'cr-private-org nil 'noerror)
+  (require 'cr-private-org-gtd nil 'noerror)
   (with-eval-after-load 'ox (require 'ox-md nil 'noerror))
   (require 'ob-async nil 'noerror)
   (require 'ox-reveal nil 'noerror)
