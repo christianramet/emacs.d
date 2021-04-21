@@ -488,15 +488,15 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     "Toggle the hide-mode-line mode."
     :init-value nil
     :global nil
-    (run-hooks 'cr/hide-mode-line-hook)
     (if cr/hide-mode-line-mode
         (setq-local mode-line-format nil)
       (kill-local-variable 'mode-line-format))
-    (force-mode-line-update)))
+    (force-mode-line-update)
+    (run-hooks 'cr/hide-mode-line-hook)))
 
 (use-package emacs
+  :if (fboundp 'cr/hide-mode-line-mode)
   :straight olivetti
-  :straight (hide-mode-line :type built-in)
   :commands cr/focus-mode
   :config
   (defvar cr/focus-mode-hook nil)
@@ -504,7 +504,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     "Toggle the focus mode."
     :init-value nil
     :global nil
-    (run-hooks 'cr/focus-mode-hook)
     (if cr/focus-mode
         (progn
           (unless (derived-mode-p 'prog-mode)
@@ -515,7 +514,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
       (progn
         (cr/hide-mode-line-mode -1)
         (set-window-configuration focus-mode-window-snapshot)
-        (olivetti-mode -1))))
+        (olivetti-mode -1)))
+    (run-hooks 'cr/focus-mode-hook))
   :bind* ("M-O" . cr/focus-mode))
 
 (use-package eshell
