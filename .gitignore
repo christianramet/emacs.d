@@ -1,5 +1,7 @@
 custom.el
 /elpa
+/lsp-cache/
 /var
 /straight/*
 !/straight/versions
+

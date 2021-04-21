@@ -838,6 +838,7 @@ remain in fixed pitch for the tags to be aligned."
   :commands (lsp lsp-deferred)
   :custom
   (lsp-auto-configure t)
+  (lsp-auto-guess-root t)
   (lsp-headerline-breadcrumb-enable nil)
   (lsp-idle-delay 0.5)
   (lsp-keymap-prefix "C-c u")
@@ -851,6 +852,13 @@ remain in fixed pitch for the tags to be aligned."
 (use-package lsp-mode
   :if (executable-find "gopls")
   :hook (go-mode-hook . lsp-deferred))
+
+(use-package lsp-mode
+  :if (executable-find "npm")
+  :hook ((dockerfile-mode-hook
+          html-mode-hook
+          php-mode-hook
+          sh-mode-hook) . lsp-deferred))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
@@ -1095,6 +1103,8 @@ remain in fixed pitch for the tags to be aligned."
   (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
   (define-key pdf-view-mode-map (kbd "d") 'pdf-annot-delete))
 
+(use-package php-mode :mode ("\\.php\\'"))
+
 (use-package proced
   :straight (:type built-in)
   :custom
@@ -1131,6 +1141,8 @@ remain in fixed pitch for the tags to be aligned."
     (message "Projectile refresh: done"))
   :bind-keymap ("C-c p" . projectile-command-map)
   :bind (:map projectile-command-map ("." . cr-projectile-refresh)))
+
+(use-package python-mode)
 
 (use-package recentf
   :straight (:type built-in)
@@ -1341,8 +1353,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   (wdired-create-parent-directories t))
 
 (use-package web-mode
-  :commands web-mode
-  :mode ("\\.php\\'"))
+  :commands web-mode)
 
 (use-package winner
   :straight (:type built-in)
