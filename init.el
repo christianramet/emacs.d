@@ -388,6 +388,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (dired-recursive-deletes 'top)
   (delete-by-moving-to-trash t)
   (dired-listing-switches "-lahv")
+  (dired-guess-shell-alist-user '(("" "xdg-open")))
   :config
   (put 'dired-find-alternate-file 'disabled nil)
 
