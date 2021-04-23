@@ -1056,6 +1056,14 @@ remain in fixed pitch for the tags to be aligned."
 (use-package org-ql
   :bind (:map cr-search-map ("o" . org-ql-search)))
 
+(use-package outline
+  :straight (:type built-in)
+  :config
+  (use-package outline-magic
+    :bind (:map outline-minor-mode-map ("<C-tab>" . outline-cycle)))
+  :hook (emacs-lisp-mode-hook . outline-minor-mode)
+  :bind (:map cr-toggle-map ("o" . outline-minor-mode)))
+
 (use-package ox-reveal
   :after org
   :custom (org-reveal-root "~/js/reveal.js"))
