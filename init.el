@@ -292,6 +292,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("C-c j" . counsel-git-grep)
          ("C-c k" . counsel-rg)
          ("C-c m" . counsel-mark-ring)
+         ("C-c o" . counsel-outline)
          ([remap jump-to-register]   . counsel-register)
          (:map cr-toggle-map
                ("T" . counsel-load-theme))
@@ -1057,12 +1058,12 @@ remain in fixed pitch for the tags to be aligned."
   :bind (:map cr-search-map ("o" . org-ql-search)))
 
 (use-package outline
-  :diminish outline-minor-mode
   :straight (:type built-in)
+  :diminish outline-minor-mode
   :config
   (use-package outline-magic
     :bind (:map outline-minor-mode-map ("<C-tab>" . outline-cycle)))
-  :hook (emacs-lisp-mode-hook . outline-minor-mode)
+  :hook (prog-mode-hook . outline-minor-mode)
   :bind (:map cr-toggle-map ("o" . outline-minor-mode)))
 
 (use-package ox-reveal
