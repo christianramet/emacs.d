@@ -303,24 +303,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map cr-git-map
                ("l" . counsel-git-log))))
 
-(use-package cr-themes
-  :straight nil
-  :demand
-  :custom
-  (cr-themes-light 'modus-operandi)
-  (cr-themes-dark 'modus-vivendi)
-  (cr-themes-default cr-themes-light)
-  :bind (:map cr-toggle-map ("t" . cr-themes-toggle))
-  :config
-  (use-package modus-themes
-    :init
-    (custom-set-variables
-     '(modus-themes-scale-headings t)
-     '(modus-themes-slanted-constructs t)
-     '(modus-themes-bold-constructs t)
-     '(modus-themes-org-blocks 'rainbow))
-    (modus-themes-load-themes))
-  (load-theme cr-themes-default t))
+(use-package cr-focus-mode
+  :straight olivetti
+  :commands cr-focus-mode
+  :bind* ("M-O" . cr-focus-mode))
 
 (use-package cr-functions
   :straight nil
@@ -353,12 +339,35 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                ("H" . cr-grep-app-search)
                ("w" . cr-duckduckgo-search))))
 
+(use-package cr-hide-mode-line-mode
+  :straight nil
+  :commands cr-hide-mode-line-mode)
+
 (use-package cr-open-external
   :straight nil
   :bind ((:map cr-file-map
                ("x" . cr-open-file-or-directory-in-external-app))
          (:map dired-mode-map
                ("M-RET" . cr-open-file-or-directory-in-external-app))))
+
+(use-package cr-themes
+  :straight nil
+  :demand
+  :custom
+  (cr-themes-light 'modus-operandi)
+  (cr-themes-dark 'modus-vivendi)
+  (cr-themes-default cr-themes-light)
+  :bind (:map cr-toggle-map ("t" . cr-themes-toggle))
+  :config
+  (use-package modus-themes
+    :init
+    (custom-set-variables
+     '(modus-themes-scale-headings t)
+     '(modus-themes-slanted-constructs t)
+     '(modus-themes-bold-constructs t)
+     '(modus-themes-org-blocks 'rainbow))
+    (modus-themes-load-themes))
+  (load-theme cr-themes-default t))
 
 (use-package css-mode :mode "\\.css\\'")
 
@@ -459,6 +468,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (elfeed-search-filter "@2-weeks-ago +unread ")
   (elfeed-search-date-format '("%m-%d" 5 :left))
   (elfeed-search-title-max-width 100)
+  (elfeed-show-entry-switch 'display-buffer)
   :config
   (defun cr-elfeed-show-settings ()
     (setq-local shr-width fill-column)
@@ -480,45 +490,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (defun cr-emacs-lisp-settings ()
     (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
   (add-hook 'emacs-lisp-mode-hook 'cr-emacs-lisp-settings))
-
-(use-package emacs
-  :commands cr/hide-mode-line-mode
-  :config
-  (defvar cr/hide-mode-line-mode-hook nil)
-  (define-minor-mode cr/hide-mode-line-mode
-    "Toggle the hide-mode-line mode."
-    :init-value nil
-    :global nil
-    (if cr/hide-mode-line-mode
-        (setq-local mode-line-format nil)
-      (kill-local-variable 'mode-line-format))
-    (force-mode-line-update)
-    (run-hooks 'cr/hide-mode-line-hook)))
-
-(use-package emacs
-  :if (fboundp 'cr/hide-mode-line-mode)
-  :straight olivetti
-  :commands cr/focus-mode
-  :config
-  (defvar cr/focus-mode-hook nil)
-  (define-minor-mode cr/focus-mode
-    "Toggle the focus mode."
-    :init-value nil
-    :global nil
-    (if cr/focus-mode
-        (progn
-          (unless (derived-mode-p 'prog-mode)
-            (cr/hide-mode-line-mode 1))
-          (olivetti-mode 1)
-          (setq focus-mode-window-snapshot (current-window-configuration))
-          (delete-other-windows))
-      (progn
-        (cr/hide-mode-line-mode -1)
-        (set-window-configuration focus-mode-window-snapshot)
-        (olivetti-mode -1)))
-    (run-hooks 'cr/focus-mode-hook))
-  :hook (elfeed-show-mode-hook . cr/focus-mode)
-  :bind* ("M-O" . cr/focus-mode))
 
 (use-package eshell
   :straight (:type built-in)
@@ -642,39 +613,39 @@ remain in fixed pitch for the tags to be aligned."
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil)
   :config
-  (defvar cr/ispell-lang-en "english")
-  (defvar cr/ispell-lang-fr "francais")
-  (defvar cr/ispell-lang-both (concat cr/ispell-lang-en "," cr/ispell-lang-fr))
+  (defvar cr-ispell-lang-en "english")
+  (defvar cr-ispell-lang-fr "francais")
+  (defvar cr-ispell-lang-both (concat cr-ispell-lang-en "," cr-ispell-lang-fr))
 
-  (defun cr/hunspell-mutli-ready-p ()
+  (defun cr-hunspell-mutli-ready-p ()
     (and (executable-find "hunspell")
-         (member (list cr/ispell-lang-en) ispell-hunspell-dictionary-alist)
-         (member (list cr/ispell-lang-fr) ispell-hunspell-dictionary-alist)))
+         (member (list cr-ispell-lang-en) ispell-hunspell-dictionary-alist)
+         (member (list cr-ispell-lang-fr) ispell-hunspell-dictionary-alist)))
 
-  (if (cr/hunspell-mutli-ready-p)
+  (if (cr-hunspell-mutli-ready-p)
       (progn
         (setq ispell-program-name "hunspell")
-        (setq ispell-dictionary cr/ispell-lang-both)
+        (setq ispell-dictionary cr-ispell-lang-both)
         (ispell-set-spellchecker-params)
-        (ispell-hunspell-add-multi-dic cr/ispell-lang-both))
-    (setq ispell-dictionary cr/ispell-lang-en))
+        (ispell-hunspell-add-multi-dic cr-ispell-lang-both))
+    (setq ispell-dictionary cr-ispell-lang-en))
 
-  (defun cr/ispell-set-FR ()
+  (defun cr-ispell-set-FR ()
     (interactive)
-    (ispell-change-dictionary cr/ispell-lang-fr))
+    (ispell-change-dictionary cr-ispell-lang-fr))
 
-  (defun cr/ispell-set-EN ()
+  (defun cr-ispell-set-EN ()
     (interactive)
-    (ispell-change-dictionary cr/ispell-lang-en))
+    (ispell-change-dictionary cr-ispell-lang-en))
 
-  (defun cr/ispell-set-MULTI ()
+  (defun cr-ispell-set-MULTI ()
     (interactive)
-    (if (cr/hunspell-mutli-ready-p)
-        (progn (ispell-hunspell-add-multi-dic cr/ispell-lang-both)
-               (ispell-change-dictionary cr/ispell-lang-both))
+    (if (cr-hunspell-mutli-ready-p)
+        (progn (ispell-hunspell-add-multi-dic cr-ispell-lang-both)
+               (ispell-change-dictionary cr-ispell-lang-both))
       (message "Hunspell or some dictionaries are not available.")))
 
-  (defun cr/save-word-to-pdict ()
+  (defun cr-save-word-to-pdict ()
     "Save word at point to the personal dictionary"
     (interactive)
     (let ((current-location (point))
@@ -690,11 +661,11 @@ remain in fixed pitch for the tags to be aligned."
          (:map cr-spell-map
                ("b" . flyspell-buffer)
                ("d" . ispell-change-dictionary)
-               ("e" . cr/ispell-set-EN)
-               ("f" . cr/ispell-set-FR)
-               ("m" . cr/ispell-set-MULTI)
+               ("e" . cr-ispell-set-EN)
+               ("f" . cr-ispell-set-FR)
+               ("m" . cr-ispell-set-MULTI)
                ("r" . flyspell-region)
-               ("s" . cr/save-word-to-pdict)
+               ("s" . cr-save-word-to-pdict)
                ("z" . flyspell-correct-wrapper))))
 
 (use-package flyspell-correct-ivy
