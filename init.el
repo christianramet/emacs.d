@@ -1057,6 +1057,7 @@ remain in fixed pitch for the tags to be aligned."
   :bind (:map cr-search-map ("o" . org-ql-search)))
 
 (use-package outline
+  :diminish outline-minor-mode
   :straight (:type built-in)
   :config
   (use-package outline-magic
