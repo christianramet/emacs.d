@@ -892,7 +892,7 @@ remain in fixed pitch for the tags to be aligned."
   :custom
   (olivetti-body-width (+ fill-column 30))
   (olivetti-minimum-body-width fill-column)
-  :bind (:map cr-toggle-map ("o" . olivetti-mode)))
+  :bind (:map cr-toggle-map ("O" . olivetti-mode)))
 
 (use-package org
   :commands (org-agenda org-capture)
