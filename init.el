@@ -1,14 +1,14 @@
-;;;* System tuning
+;;; System tuning
 (setq gc-cons-threshold (* 20 1024 1024)
       read-process-output-max (* 3 1024 1024))
 
-;;;* Variables
+;;; Variables and constants
 (setq default-directory "~/")
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
 (defconst system-is-windows-p (eq system-type 'windows-nt))
 
-;;;* Path
+;;; Path
 (defconst cr-user-emacs-directory-lisp
   (expand-file-name "lisp" user-emacs-directory)
   "My Emacs configuration base directory.")
@@ -17,11 +17,11 @@
   (normal-top-level-add-to-load-path '("."))
   (normal-top-level-add-subdirs-to-load-path))
 
-;;;* Modules
+;;; Modules
 (when init-file-debug (require 'cr-debug))
 (require 'cr-private-vars nil 'noerror)
 
-;;;* Bootstrap `straight' and `use-package'
+;;; Bootstrap `straight' and `use-package'
 (custom-set-variables
  '(load-prefer-newer t)
  '(package-enable-at-startup nil)
@@ -54,7 +54,7 @@
   (straight-use-package 'use-package)
   (require 'use-package))
 
-;;;* Early packages
+;;; Early packages
 (straight-use-package 'org)
 
 (use-package exec-path-from-shell
@@ -71,7 +71,7 @@
   (auto-save-file-name-transforms
    `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
-;;;* Better defaults
+;;; Better defaults
 (prefer-coding-system 'utf-8)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -143,7 +143,7 @@
    '(mac-right-option-modifier 'none)
    '(ns-right-alternate-modifier 'none)))
 
-;;;* Personal prefix maps key bindings
+;;; Personal prefix maps key bindings
 (define-prefix-command 'cr-app-map)
 (define-prefix-command 'cr-buffer-map)
 (define-prefix-command 'cr-emacs-map)
@@ -168,7 +168,7 @@
            ("C-c x" . cr-text-map)
            ("C-c z" . cr-spell-map))
 
-;;;* Packages
+;;; Packages
 (use-package ace-link
   :hook (after-init-hook . ace-link-setup-default)
   :bind ("M-g o" . ace-link))
