@@ -1083,12 +1083,12 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package pdf-tools
   :magic ("%PDF" . pdf-view-mode)
+  :init (pdf-tools-install t t t)
   :custom
   (pdf-view-use-scaling t)
   (TeX-view-program-selection '((output-pdf "pdf-tools")))
   (TeX-view-program-list '(("pdf-tools" "TeX-pdf-tools-sync-view")))
   :config
-  (pdf-tools-install :no-query t)
   (setq-default pdf-view-display-size 'fit-page)
   (add-hook 'pdf-view-mode-hook 'pdf-annot-minor-mode)
   (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)

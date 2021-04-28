@@ -10,6 +10,6 @@ get-keys:
 	gpg --homedir elpa/gnupg --keyserver keys.gnupg.net --recv-keys 066DAFCB81E42C40
 
 init:
-	emacs -Q -l init.el --batch --eval "(let ((confirm-kill-emacs nil)) (save-buffers-kill-emacs))"
+	emacs -Q -l init.el --batch --eval "(let ((confirm-kill-emacs nil) (confirm-kill-processes nil)) (save-buffers-kill-emacs))"
 
 reinstall: clean init
