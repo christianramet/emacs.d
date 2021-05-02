@@ -1268,6 +1268,7 @@ remain in fixed pitch for the tags to be aligned."
                ("S" . smartparens-strict-mode))))
 
 (use-package so-long
+  :if (>= emacs-major-version 27)
   :straight (:type built-in)
   :hook (after-init-hook . global-so-long-mode))
 
