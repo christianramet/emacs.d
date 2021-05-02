@@ -939,6 +939,8 @@ remain in fixed pitch for the tags to be aligned."
   (require 'ob-async nil 'noerror)
   (require 'ox-reveal nil 'noerror)
 
+  (setq system-time-locale "C") ;; Format day values using system language
+
   (add-to-list 'org-speed-commands-user '("N" call-interactively 'org-metadown))
   (add-to-list 'org-speed-commands-user '("P" call-interactively 'org-metaup))
   (add-to-list 'org-speed-commands-user '("d" call-interactively 'org-deadline))
