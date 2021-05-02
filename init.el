@@ -608,44 +608,34 @@ remain in fixed pitch for the tags to be aligned."
               ("F" . global-flycheck-mode)))
 
 (use-package flyspell
-  :if (or (executable-find "hunspell") (executable-find "ispell"))
+  :if (executable-find "hunspell")
   :diminish
+  :init
+  (defvar cr-ispell-lang1 "english")
+  (defvar cr-ispell-lang2 "francais")
+  (defvar cr-ispell-lang-multi (concat cr-ispell-lang1 "," cr-ispell-lang2))
   :custom
+  (ispell-program-name "hunspell")
   (ispell-silently-savep t)
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil)
   :config
-  (defvar cr-ispell-lang-en "english")
-  (defvar cr-ispell-lang-fr "francais")
-  (defvar cr-ispell-lang-both (concat cr-ispell-lang-en "," cr-ispell-lang-fr))
+  (setq ispell-dictionary cr-ispell-lang-multi)
+  (ispell-set-spellchecker-params)
+  (ispell-hunspell-add-multi-dic cr-ispell-lang-multi)
 
-  (defun cr-hunspell-mutli-ready-p ()
-    (and (executable-find "hunspell")
-         (member (list cr-ispell-lang-en) ispell-hunspell-dictionary-alist)
-         (member (list cr-ispell-lang-fr) ispell-hunspell-dictionary-alist)))
-
-  (if (cr-hunspell-mutli-ready-p)
-      (progn
-        (setq ispell-program-name "hunspell")
-        (setq ispell-dictionary cr-ispell-lang-both)
-        (ispell-set-spellchecker-params)
-        (ispell-hunspell-add-multi-dic cr-ispell-lang-both))
-    (setq ispell-dictionary cr-ispell-lang-en))
-
-  (defun cr-ispell-set-FR ()
+  (defun cr-ispell-set-lang1 ()
     (interactive)
-    (ispell-change-dictionary cr-ispell-lang-fr))
+    (ispell-change-dictionary cr-ispell-lang1))
 
-  (defun cr-ispell-set-EN ()
+  (defun cr-ispell-set-lang2 ()
     (interactive)
-    (ispell-change-dictionary cr-ispell-lang-en))
+    (ispell-change-dictionary cr-ispell-lang2))
 
   (defun cr-ispell-set-MULTI ()
     (interactive)
-    (if (cr-hunspell-mutli-ready-p)
-        (progn (ispell-hunspell-add-multi-dic cr-ispell-lang-both)
-               (ispell-change-dictionary cr-ispell-lang-both))
-      (message "Hunspell or some dictionaries are not available.")))
+    (ispell-hunspell-add-multi-dic cr-ispell-lang-multi)
+    (ispell-change-dictionary cr-ispell-lang-multi))
 
   (defun cr-save-word-to-pdict ()
     "Save word at point to the personal dictionary"
@@ -661,10 +651,10 @@ remain in fixed pitch for the tags to be aligned."
          (prog-mode-hook . flyspell-prog-mode))
   :bind ((:map cr-toggle-map ("z" . flyspell-mode))
          (:map cr-spell-map
+               ("1" . cr-ispell-set-lang1)
+               ("2" . cr-ispell-set-lang2)
                ("b" . flyspell-buffer)
                ("d" . ispell-change-dictionary)
-               ("e" . cr-ispell-set-EN)
-               ("f" . cr-ispell-set-FR)
                ("m" . cr-ispell-set-MULTI)
                ("r" . flyspell-region)
                ("s" . cr-save-word-to-pdict)
