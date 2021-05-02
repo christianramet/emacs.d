@@ -608,17 +608,39 @@ remain in fixed pitch for the tags to be aligned."
               ("F" . global-flycheck-mode)))
 
 (use-package flyspell
-  :if (executable-find "hunspell")
   :diminish
+  :custom
+  (ispell-silently-savep t)
+  (flyspell-issue-welcome-flag nil)
+  (flyspell-issue-message-flag nil)
+  :config
+  (defun cr-save-word-to-pdict ()
+    "Save word at point to the personal dictionary"
+    (interactive)
+    (let ((current-location (point))
+          (word (flyspell-get-word)))
+      (when (consp word)
+        (flyspell-do-correct 'save nil (car word)
+                             current-location (cadr word) (caddr word)
+                             current-location))))
+
+  :hook ((org-mode-hook . flyspell-mode)
+         (prog-mode-hook . flyspell-prog-mode))
+  :bind ((:map cr-toggle-map ("z" . flyspell-mode))
+         (:map cr-spell-map
+               ("b" . flyspell-buffer)
+               ("d" . ispell-change-dictionary)
+               ("r" . flyspell-region)
+               ("s" . cr-save-word-to-pdict)
+               ("z" . flyspell-correct-wrapper))))
+
+(use-package flyspell
+  :if (executable-find "hunspell")
   :init
   (defvar cr-ispell-lang1 "english")
   (defvar cr-ispell-lang2 "francais")
   (defvar cr-ispell-lang-multi (concat cr-ispell-lang1 "," cr-ispell-lang2))
-  :custom
-  (ispell-program-name "hunspell")
-  (ispell-silently-savep t)
-  (flyspell-issue-welcome-flag nil)
-  (flyspell-issue-message-flag nil)
+  :custom (ispell-program-name "hunspell")
   :config
   (setq ispell-dictionary cr-ispell-lang-multi)
   (ispell-set-spellchecker-params)
@@ -637,28 +659,10 @@ remain in fixed pitch for the tags to be aligned."
     (ispell-hunspell-add-multi-dic cr-ispell-lang-multi)
     (ispell-change-dictionary cr-ispell-lang-multi))
 
-  (defun cr-save-word-to-pdict ()
-    "Save word at point to the personal dictionary"
-    (interactive)
-    (let ((current-location (point))
-          (word (flyspell-get-word)))
-      (when (consp word)
-        (flyspell-do-correct 'save nil (car word)
-                             current-location (cadr word) (caddr word)
-                             current-location))))
-
-  :hook ((org-mode-hook . flyspell-mode)
-         (prog-mode-hook . flyspell-prog-mode))
-  :bind ((:map cr-toggle-map ("z" . flyspell-mode))
-         (:map cr-spell-map
-               ("1" . cr-ispell-set-lang1)
-               ("2" . cr-ispell-set-lang2)
-               ("b" . flyspell-buffer)
-               ("d" . ispell-change-dictionary)
-               ("m" . cr-ispell-set-MULTI)
-               ("r" . flyspell-region)
-               ("s" . cr-save-word-to-pdict)
-               ("z" . flyspell-correct-wrapper))))
+  :bind (:map cr-spell-map
+              ("1" . cr-ispell-set-lang1)
+              ("2" . cr-ispell-set-lang2)
+              ("m" . cr-ispell-set-MULTI)))
 
 (use-package flyspell-correct-ivy
   :after (flyspell ivy)
