@@ -872,12 +872,12 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package nov
   :commands nov-mode
-  :custom (nov-text-width 80)
+  :custom (nov-text-width 70)
   :config
   (defun cr-nov-settings ()
     (face-remap-add-relative 'variable-pitch :height 1.3)
     (setq-local left-margin-width 2)
-    (setq-local line-spacing 0.4)
+    (setq-local line-spacing 0.2)
     (hl-line-mode 1))
   (add-hook 'nov-mode-hook 'cr-nov-settings)
   :mode ("\\.\\(epub\\|mobi\\)\\'" . nov-mode)
