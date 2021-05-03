@@ -1023,7 +1023,7 @@ remain in fixed pitch for the tags to be aligned."
   :commands org-noter
   :custom
   (org-noter-default-notes-file-names '("notes.org" "main.org"))
-  (org-noter-notes-search-path '("~/d/org/notes/"))
+  (org-noter-notes-search-path '("~/nextcloud/org/notes/"))
   (org-noter-always-create-frame nil)
   (org-noter-auto-save-last-location t)
   :bind ("C-c w n" . org-noter))
