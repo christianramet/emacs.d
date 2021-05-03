@@ -733,6 +733,8 @@ remain in fixed pitch for the tags to be aligned."
               ("h" . hl-line-mode)
               ("H" . global-hl-line-mode)))
 
+(use-package htmlize)
+
 (use-package ibuffer
   :straight (:type built-in)
   :config (add-hook 'ibuffer-mode-hook 'hl-line-mode)
