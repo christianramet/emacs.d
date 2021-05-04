@@ -1008,7 +1008,7 @@ remain in fixed pitch for the tags to be aligned."
 (use-package org-download
   :after org
   :custom
-  (org-download-method 'directory) ;; org-download-delete bug with 'attach
+  (org-download-method 'attach) ;; org-download-delete bug with 'attach
   (org-download-image-org-width 400)
   :bind (:map cr-notes-map
               ("y" . org-download-yank)
