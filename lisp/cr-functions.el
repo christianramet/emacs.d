@@ -229,4 +229,13 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
         (replace-match (downcase (match-string-no-properties 1)) :fixedcase nil nil 1))
       (message "Lower-cased %d matches" count))))
 
+(defun cr-wkhtmltopdf (&optional url)
+  "Produce a pdf from the URL at point and ask where to save it.
+Requires wkhtmltopdf"
+  (interactive)
+  (let ((url (or url (thing-at-point-url-at-point)
+                 (user-error "No URL at point")))
+        (filename (read-file-name "Save as:" nil nil)))
+    (async-shell-command (format "wkhtmltopdf %s %s " url filename))))
+
 (provide 'cr-functions)
