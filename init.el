@@ -611,6 +611,7 @@ remain in fixed pitch for the tags to be aligned."
   :diminish
   :custom
   (ispell-silently-savep t)
+  (ispell-personal-dictionary "~/nextcloud/resources/dictionary")
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil)
   :config
