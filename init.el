@@ -1026,7 +1026,7 @@ remain in fixed pitch for the tags to be aligned."
   :after (:any org pdf-view)
   :commands org-noter
   :custom
-  (org-noter-notes-search-path '("~/nextcloud/org/notes/"))
+  (org-noter-notes-search-path (list (expand-file-name "notes/" org-directory)))
   (org-noter-default-notes-file-names '("notes.org" "main.org"))
   (org-noter-auto-save-last-location t)
   (org-noter-always-create-frame nil)
