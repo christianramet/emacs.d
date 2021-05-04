@@ -256,9 +256,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (calendar-weekend-days '(6 0))
   (calendar-week-start-day 1)
-  :config
-  (when (require 'french-holidays nil 'noerror)
-    (customize-set-variable 'calendar-holidays holiday-french-holidays))
   :bind (:map cr-app-map ("!" . calendar)))
 
 (use-package company
