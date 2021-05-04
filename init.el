@@ -811,7 +811,8 @@ remain in fixed pitch for the tags to be aligned."
            "~/opt/languagetool.org/languagetool-commandline.jar"))
 
 (use-package lorem-ipsum
-  :config (setq-default lorem-ipsum-sentence-separator " "))
+  :config (setq-default lorem-ipsum-sentence-separator " ")
+  :bind (:map cr-text-map ("l" . lorem-ipsum-insert-paragraphs)))
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
