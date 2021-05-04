@@ -1126,6 +1126,9 @@ remain in fixed pitch for the tags to be aligned."
   (projectile-indexing-method 'alien)
   (projectile-mode-line nil)
   (projectile-switch-project-action 'projectile-dired)
+  (projectile-project-search-path
+   (list "~" "~/git" "~/tmp"
+         (expand-file-name "straight/repos" user-emacs-directory)))
   :config
   (projectile-mode 1)
   (defun cr-projectile-refresh ()
