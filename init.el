@@ -1036,17 +1036,18 @@ remain in fixed pitch for the tags to be aligned."
 (use-package org-roam
   :if (executable-find "sqlite3")
   :straight (:host github :repo "org-roam/org-roam" :branch "v2")
+  ;; https://org-roam.discourse.group/t/org-roam-major-redesign/1198/99
   :custom
+  (org-roam-directory (file-truename "~/nextcloud/org/zet/"))
   (org-roam-db-gc-threshold (* 100 1024 1024))
-  ;; (org-id-link-to-org-use-id t)
+  ;; (org-id-link-to-org-use-id t) ;; not mentioned in the doc (yet?)
   :config
   (org-roam-setup)
-  ;; https://org-roam.discourse.group/t/org-roam-major-redesign/1198/99
-  ;; https://github.com/jethrokuan/dots/blob/master/.doom.d/config.el#L326
   (setq org-roam-mode-sections
         (list #'org-roam-backlinks-insert-section
               #'org-roam-reflinks-insert-section
-              #'org-roam-unlinked-references-insert-section))
+              ;; #'org-roam-unlinked-references-insert-section ;; slow (cf doc)
+              ))
   :bind (:map cr-notes-map
               ("b" . org-roam-buffer)
               ("f" . org-roam-node-find)
