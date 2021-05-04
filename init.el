@@ -1039,7 +1039,7 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:host github :repo "org-roam/org-roam" :branch "v2")
   ;; https://org-roam.discourse.group/t/org-roam-major-redesign/1198/99
   :custom
-  (org-roam-directory (file-truename "~/nextcloud/org/zet/"))
+  (org-roam-directory (file-truename (expand-file-name "zet/" org-directory)))
   (org-roam-db-gc-threshold (* 100 1024 1024))
   ;; (org-id-link-to-org-use-id t) ;; not mentioned in the doc (yet?)
   :config
