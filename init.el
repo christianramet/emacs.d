@@ -728,7 +728,8 @@ remain in fixed pitch for the tags to be aligned."
           elfeed-show-mode-hook
           occur-mode-hook
           org-agenda-mode-hook
-          display-time-world-mode-hook) . hl-line-mode)
+          display-time-world-mode-hook
+          profiler-report-mode-hook) . hl-line-mode)
   :bind (:map cr-toggle-map
               ("h" . hl-line-mode)
               ("H" . global-hl-line-mode)))
