@@ -233,7 +233,7 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
   "Produce a pdf from the URL at point and ask where to save it.
 Requires wkhtmltopdf"
   (interactive)
-  (if (not (executable-find "wkhtmltopdf"))
+  (unless (executable-find "wkhtmltopdf")
       (user-error "Cannot find wkhtmltopdf binary in $PATH"))
   (let ((url (or url (thing-at-point-url-at-point)
                  (user-error "No URL at point")))
