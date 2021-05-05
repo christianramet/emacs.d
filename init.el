@@ -1171,6 +1171,14 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package rg
   :if (executable-find "rg")
+  :config
+  (rg-define-search rg-org
+    :query ask
+    :format regexp
+    :files "org"
+    :dir "~/"
+    :flags ("--ignore-case")
+    :menu ("Custom" "o" "Org"))
   :bind (:map cr-search-map ("g" . rg-menu)))
 
 (use-package rust-mode)
