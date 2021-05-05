@@ -103,7 +103,8 @@
      ("y" "Year"
       ((agenda ""
                ((org-agenda-span 'year)
-                (org-agenda-start-day "-1w"))))
+                (org-agenda-start-day "-1w")
+                (org-agenda-use-time-grid nil))))
       ((org-agenda-category-filter-preset '("-tickler")))
       ("agenda-year.html" "agenda-year.pdf"))
 
