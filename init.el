@@ -352,11 +352,22 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight nil
   :demand
   :custom
-  (cr-themes-light 'modus-operandi)
-  (cr-themes-dark 'modus-vivendi)
+  (cr-themes-light 'doom-one-light)
+  (cr-themes-dark 'doom-one)
   (cr-themes-default cr-themes-light)
-  :bind (:map cr-toggle-map ("t" . cr-themes-toggle))
   :config
+  (use-package doom-themes
+    :custom
+    (doom-themes-enable-bold t)
+    (doom-themes-enable-italic t)
+    :config (doom-themes-org-config))
+
+  (use-package leuven-theme
+    :custom
+    (leuven-scale-outline-headlines t)
+    (leuven-scale-org-agenda-structure nil)
+    (leuven-scale-volatile-highlight t))
+
   (use-package modus-themes
     :init
     (custom-set-variables
@@ -365,7 +376,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
      '(modus-themes-bold-constructs t)
      '(modus-themes-org-blocks 'rainbow))
     (modus-themes-load-themes))
-  (load-theme cr-themes-default t))
+
+  (load-theme cr-themes-default t)
+  :bind (:map cr-toggle-map ("t" . cr-themes-toggle)))
 
 (use-package css-mode :mode "\\.css\\'")
 
