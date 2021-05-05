@@ -145,7 +145,7 @@ recent than the last export."
   (let ((default-directory (cr-org-expand "exports"))
         (last-export-time-file ".last-export-time"))
     (when (catch 'require-update
-      (dolist (agenda-file org-agenda-files)
+      (dolist (agenda-file (org-agenda-files))
         (when (file-newer-than-file-p agenda-file last-export-time-file)
           (throw 'require-update t))))
       (progn
