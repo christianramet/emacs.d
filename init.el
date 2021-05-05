@@ -3,7 +3,8 @@
       read-process-output-max (* 3 1024 1024))
 
 ;;; Variables and constants
-(setq default-directory "~/")
+(setq default-directory "~/"
+      cr-org-directory "~/nextcloud/org")
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
 (defconst system-is-windows-p (eq system-type 'windows-nt))

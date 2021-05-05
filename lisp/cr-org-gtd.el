@@ -5,7 +5,7 @@
   (expand-file-name file org-directory))
 
 (custom-set-variables
- '(org-directory "~/nextcloud/org/")
+ '(org-directory cr-org-directory)
 
  '(org-agenda-files (list (cr-org-expand "journal.org")
                           (cr-org-expand "todos.org")
