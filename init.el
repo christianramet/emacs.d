@@ -1062,13 +1062,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-roam-directory (file-truename (expand-file-name "zet/" org-directory)))
   (org-roam-db-gc-threshold (* 100 1024 1024))
   ;; (org-id-link-to-org-use-id t) ;; not mentioned in the doc (yet?)
-  :config
-  (org-roam-setup)
-  (setq org-roam-mode-sections
-        (list #'org-roam-backlinks-insert-section
-              #'org-roam-reflinks-insert-section
-              ;; #'org-roam-unlinked-references-insert-section ;; slow (cf doc)
-              ))
+  :config (org-roam-setup)
   :bind (:map cr-notes-map
               ("b" . org-roam-buffer)
               ("f" . org-roam-node-find)
