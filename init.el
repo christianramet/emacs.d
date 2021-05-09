@@ -453,6 +453,13 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package dockerfile-mode :mode ("Dockerfile\\'"))
 
+(use-package doom-modeline
+  :custom
+  (doom-modeline-icon nil)
+  (doom-modeline-height 1) ;; Requires `doom-modeline-icon' set to nil.
+  (doom-modeline-buffer-encoding nil)
+  :hook (after-init-hook . doom-modeline-mode))
+
 (use-package doom-sudo-utils
   :straight nil
   :bind (:map cr-file-map
