@@ -1080,6 +1080,7 @@ remain in fixed pitch for the tags to be aligned."
               ("t" . org-roam-buffer-toggle)))
 
 (use-package org-ql
+  :custom (org-ql-search-directories-files-recursive t)
   :bind (:map cr-search-map ("o" . org-ql-search)))
 
 (use-package outline
