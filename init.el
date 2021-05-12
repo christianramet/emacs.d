@@ -977,15 +977,7 @@ remain in fixed pitch for the tags to be aligned."
   (require 'ob-async nil 'noerror)
   (require 'ox-reveal nil 'noerror)
 
-  (setq system-time-locale "C") ;; Format day values using system language
-
-  (add-to-list 'org-speed-commands-user '("N" call-interactively 'org-metadown))
-  (add-to-list 'org-speed-commands-user '("P" call-interactively 'org-metaup))
-  (add-to-list 'org-speed-commands-user '("d" call-interactively 'org-deadline))
-  (add-to-list 'org-speed-commands-user '("s" call-interactively 'org-schedule))
-  (add-to-list 'org-speed-commands-user '("q" call-interactively 'org-set-tags-command))
-  (add-to-list 'org-speed-commands-user '("w" call-interactively 'cr-org-refile-in-current-buffer))
-  (add-to-list 'org-speed-commands-user '("W" call-interactively 'cr-org-refile-in-any-buffer))
+  (setq system-time-locale "C")
 
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -1013,6 +1005,9 @@ remain in fixed pitch for the tags to be aligned."
           (mapcar (lambda (buffer)
                     (buffer-file-name buffer))
                   (org-buffer-list 'files t))))
+
+  (add-to-list 'org-speed-commands '("w" call-interactively 'cr-org-refile-in-current-buffer))
+  (add-to-list 'org-speed-commands '("W" call-interactively 'cr-org-refile-in-any-buffer))
 
   (defun cr-org-pretty-symbols ()
     (push '("#+begin_src"      . ?↦) prettify-symbols-alist)
