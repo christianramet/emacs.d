@@ -478,6 +478,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (ediff-window-setup-function 'ediff-setup-windows-plain)
   (ediff-split-window-function 'split-window-horizontally)
+  :config
+  (with-eval-after-load 'outline
+    (add-hook 'ediff-prepare-buffer-hook #'outline-show-all))
+  (with-eval-after-load 'org
+    (add-hook 'ediff-prepare-buffer-hook #'org-show-all))
   :bind (:map cr-buffer-map
               ("d" . ediff-buffers)
               ("D" . ediff-show-registry)))
