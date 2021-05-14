@@ -954,6 +954,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-clock-in-switch-to-state nil)
   (org-clock-persist t)
   (org-clock-report-include-clocking-task t)
+  (org-clock-sound t)
   (org-confirm-babel-evaluate nil)
   (org-ctrl-k-protect-subtree t)
   (org-deadline-warning-days 14)
