@@ -359,8 +359,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight nil
   :demand
   :custom
-  (cr-themes-light 'doom-solarized-light)
-  (cr-themes-dark 'doom-solarized-dark)
+  (cr-themes-light 'modus-operandi)
+  (cr-themes-dark 'modus-vivendi)
   (cr-themes-default cr-themes-light)
   :config
   (use-package doom-themes
