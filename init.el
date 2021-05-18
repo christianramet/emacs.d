@@ -519,9 +519,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map elfeed-search-mode-map ("a" . elfeed-search-show-entry))
          (:map elfeed-show-mode-map
                ("n" . next-line)
-               ("p" . previous-line)
-               ("[" . elfeed-show-prev)
-               ("]" . elfeed-show-next))))
+               ("p" . previous-line))))
 
 (use-package elisp-mode
   :straight (:type built-in)
