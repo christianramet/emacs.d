@@ -192,6 +192,7 @@
               ("A" . align-regexp)))
 
 (use-package all-the-icons
+  :disabled
   :if (display-graphic-p)
   :init
   (unless (member "all-the-icons" (font-family-list))
@@ -364,6 +365,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (cr-themes-default cr-themes-light)
   :config
   (use-package doom-themes
+    :disabled
     :custom
     (doom-themes-enable-bold t)
     (doom-themes-enable-italic t)
@@ -460,6 +462,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package dockerfile-mode :mode ("Dockerfile\\'"))
 
 (use-package doom-modeline
+  :disabled
   :custom
   (doom-modeline-icon nil)
   (doom-modeline-height 1) ;; Combine with `doom-modeline-icon' as nil.
