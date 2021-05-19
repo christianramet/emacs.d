@@ -1144,10 +1144,7 @@ remain in fixed pitch for the tags to be aligned."
     (setq-local indicate-empty-lines t))
   (add-hook 'prog-mode-hook 'cr-prog-mode-settings))
 
-(use-package project)
-
 (use-package projectile
-  :disabled
   :diminish
   :defer 10
   :commands (projectile-find-file
