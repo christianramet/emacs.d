@@ -1181,7 +1181,8 @@ remain in fixed pitch for the tags to be aligned."
   (add-to-list 'recentf-exclude "COMMIT_MSG")
   (add-to-list 'recentf-exclude "COMMIT_EDITMSG")
   (with-eval-after-load 'no-littering
-    (add-to-list 'recentf-exclude no-littering-var-directory)))
+    (add-to-list 'recentf-exclude no-littering-var-directory)
+    (add-to-list 'recentf-exclude no-littering-etc-directory)))
 
 (use-package replace
   :straight (:type built-in)
