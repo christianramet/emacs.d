@@ -383,7 +383,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
      '(modus-themes-scale-headings t)
      '(modus-themes-slanted-constructs t)
      '(modus-themes-bold-constructs t)
-     '(modus-themes-org-blocks 'rainbow))
+     '(modus-themes-org-blocks 'tinted-background)
+     '(modus-themes-variable-pitch-ui t))
     (modus-themes-load-themes))
 
   (load-theme cr-themes-default t)
