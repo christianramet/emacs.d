@@ -1141,7 +1141,8 @@ remain in fixed pitch for the tags to be aligned."
   :custom (prettify-symbols-unprettify-at-point 'right-edge)
   :config
   (defun cr-prog-mode-settings ()
-    (setq-local indicate-empty-lines t))
+    (setq-local indicate-empty-lines t)
+    (setq-local indicate-buffer-boundaries t))
   (add-hook 'prog-mode-hook 'cr-prog-mode-settings))
 
 (use-package projectile
