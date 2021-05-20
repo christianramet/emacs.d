@@ -1175,11 +1175,12 @@ remain in fixed pitch for the tags to be aligned."
   :demand
   :commands recentf-mode
   :custom
-  (recentf-max-saved-items 50)
+  (recentf-max-saved-items 100)
   (recentf-keep '(file-remote-p file-readable-p))
   :config
   (add-to-list 'recentf-exclude "COMMIT_MSG")
   (add-to-list 'recentf-exclude "COMMIT_EDITMSG")
+  (add-to-list 'recentf-exclude "^/\\(?:ssh\\|su\\|sudo\\)?:")
   (with-eval-after-load 'no-littering
     (add-to-list 'recentf-exclude no-littering-var-directory)
     (add-to-list 'recentf-exclude no-littering-etc-directory)))
