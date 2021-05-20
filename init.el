@@ -91,9 +91,6 @@
                         (right-fringe . 8)))
 
 (custom-set-variables
- '(initial-major-mode 'lisp-interaction-mode)
- '(initial-scratch-message nil)
- '(inhibit-startup-screen t)
  '(disabled-command-function nil)
  '(ring-bell-function 'ignore)
  '(sentence-end-double-space nil)
@@ -1330,6 +1327,13 @@ remain in fixed pitch for the tags to be aligned."
   :bind ((:map cr-app-map ("S" . sql-connect))))
 
 (use-package ssh-config-mode)
+
+(use-package startup
+  :straight (:type built-in)
+  :custom
+  (initial-major-mode 'lisp-interaction-mode)
+  (initial-scratch-message nil)
+  (inhibit-startup-screen t))
 
 (use-package swiper
   :after counsel
