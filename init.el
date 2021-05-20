@@ -1240,9 +1240,7 @@ remain in fixed pitch for the tags to be aligned."
 (use-package server
   :straight (:type built-in)
   :demand
-  :config
-  (unless (server-running-p)
-	(server-start)))
+  :config (unless (server-running-p)(server-start)))
 
 (use-package simple
   :straight (:type built-in)
