@@ -408,6 +408,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (deft-use-filename-as-title t)
   :bind (:map cr-notes-map ("d" . deft)))
 
+(use-package dictionary
+   :bind (:map cr-search-map ("d" . dictionary-search)))
+
 (use-package diff
   :straight (:type built-in)
   :bind (:map cr-file-map ("d" . diff-buffer-with-file)))
