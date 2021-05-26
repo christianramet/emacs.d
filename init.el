@@ -4,7 +4,8 @@
 
 ;;; Variables and constants
 (setq default-directory "~/")
-(defconst cr-org-directory "~/nextcloud/org")
+(defconst cr-data-directory "~/nextcloud")
+(defconst cr-org-directory (expand-file-name "org" cr-data-directory))
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
 (defconst system-is-windows-p (eq system-type 'windows-nt))
@@ -954,6 +955,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-confirm-babel-evaluate nil)
   (org-ctrl-k-protect-subtree t)
   (org-deadline-warning-days 14)
+  (org-directory cr-org-directory)
   (org-ellipsis " ▼")
   (org-fontify-done-headline t)
   (org-hide-emphasis-markers t)

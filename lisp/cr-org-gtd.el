@@ -5,8 +5,6 @@
   (expand-file-name file org-directory))
 
 (custom-set-variables
- '(org-directory cr-org-directory)
-
  '(org-agenda-files (list (cr-org-expand "journal.org")
                           (cr-org-expand "todos.org")
                           (cr-org-expand "work-todos.org")))
