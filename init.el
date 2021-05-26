@@ -409,7 +409,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map cr-notes-map ("d" . deft)))
 
 (use-package dictionary
-   :bind (:map cr-search-map ("d" . dictionary-search)))
+  :bind (:map cr-search-map ("d" . dictionary-search)))
 
 (use-package diff
   :straight (:type built-in)
