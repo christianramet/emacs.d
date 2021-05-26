@@ -520,9 +520,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (elfeed-show-entry-switch 'display-buffer)
   :config
   (defun cr-elfeed-show-settings ()
-    (setq-local shr-width fill-column)
-    (setq-local shr-max-image-proportion 0.7)
-    (setq-local line-spacing 0.2))
+    (setq-local shr-width fill-column
+                shr-max-image-proportion 0.7
+                line-spacing 0.2))
   :hook (elfeed-show-mode-hook . cr-elfeed-show-settings)
   :bind ((:map cr-app-map ("f" . elfeed))
          (:map elfeed-search-mode-map ("a" . elfeed-search-show-entry))
@@ -920,8 +920,7 @@ remain in fixed pitch for the tags to be aligned."
     (face-remap-add-relative 'variable-pitch
                              :family "Georgia"
                              :height 1.0)
-    (setq-local left-margin-width 2
-                line-spacing 0.2)
+    (setq-local line-spacing 0.2)
     (hl-line-mode 1))
   (add-hook 'nov-mode-hook 'cr-nov-settings)
   :mode ("\\.\\(epub\\|mobi\\)\\'" . nov-mode)
@@ -1150,8 +1149,8 @@ remain in fixed pitch for the tags to be aligned."
   :custom (prettify-symbols-unprettify-at-point 'right-edge)
   :config
   (defun cr-prog-mode-settings ()
-    (setq-local indicate-empty-lines t)
-    (setq-local indicate-buffer-boundaries t))
+    (setq-local indicate-empty-lines t
+                indicate-buffer-boundaries t))
   (add-hook 'prog-mode-hook 'cr-prog-mode-settings))
 
 (use-package projectile
