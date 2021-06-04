@@ -169,8 +169,7 @@
 
 ;;; Packages
 (use-package ace-link
-  :hook (after-init-hook . ace-link-setup-default)
-  :bind ("M-g o" . ace-link))
+  :hook (after-init-hook . ace-link-setup-default))
 
 (use-package ag :if (executable-find "ag"))
 
