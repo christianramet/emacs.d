@@ -1376,6 +1376,9 @@ remain in fixed pitch for the tags to be aligned."
   (tramp-shell-prompt-pattern
    "\\(?:^\\|\r\\)[^]#$%>\n]*#?[]#$%>].* *\\(^[\\[[0-9;]*[a-zA-Z] *\\)*"))
 
+(use-package unfill
+  :bind ([remap fill-paragraph] . 'unfill-toggle))
+
 (use-package url-vars
   :straight (:type built-in)
   :custom (url-privacy-level 'high))
