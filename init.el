@@ -866,14 +866,19 @@ remain in fixed pitch for the tags to be aligned."
   :custom
   (lsp-auto-configure t)
   (lsp-auto-guess-root t)
-  (lsp-headerline-breadcrumb-enable nil)
-  (lsp-idle-delay 0.5)
   (lsp-keymap-prefix "C-c u")
+  (lsp-idle-delay 0.5)
+  (lsp-headerline-breadcrumb-enable nil)
+  (lsp-enable-indentation nil)
+  (lsp-enable-on-type-formatting nil)
+  (lsp-modeline-code-actions-enable nil)
+  (lsp-modeline-diagnostics-enable nil)
   :hook (lsp-mode-hook . lsp-enable-which-key-integration)
   :bind (:map cr-toggle-map ("u" . lsp)))
 
 (use-package lsp-mode
   :if (executable-find "clang")
+  :custom (lsp-clients-clangd-args '("--header-insertion=never"))
   :hook (c-mode-common-hook . lsp-deferred))
 
 (use-package lsp-mode
