@@ -1,3 +1,3 @@
 [submodule "lisp/private"]
 	path = lisp/private
-	url = git@gitlab.com:christianramet/emacs-config-private.git
+	url = git@github.com:christianramet/emacs.d-private.git
