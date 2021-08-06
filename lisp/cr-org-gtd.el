@@ -151,6 +151,6 @@ recent than the last export."
         (org-store-agenda-views)
         (f-touch last-export-time-file)))))
 
-(run-with-idle-timer 180 t 'cr-org-store-agenda-views)
+;; (run-with-idle-timer 180 t 'cr-org-store-agenda-views)
 
 (provide 'cr-org-gtd)
