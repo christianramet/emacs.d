@@ -1026,8 +1026,8 @@ remain in fixed pitch for the tags to be aligned."
                     (buffer-file-name buffer))
                   (org-buffer-list 'files t))))
 
-  (add-to-list 'org-speed-commands '("w" call-interactively 'cr-org-refile-in-current-buffer))
-  (add-to-list 'org-speed-commands '("W" call-interactively 'cr-org-refile-in-any-buffer))
+  (add-to-list 'org-speed-commands-user '("w" call-interactively 'cr-org-refile-in-current-buffer))
+  (add-to-list 'org-speed-commands-user '("W" call-interactively 'cr-org-refile-in-any-buffer))
 
   (defun cr-org-pretty-symbols ()
     (push '("#+begin_src"      . ?↦) prettify-symbols-alist)
