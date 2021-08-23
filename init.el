@@ -1084,13 +1084,12 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package org-roam
   :if (executable-find "sqlite3")
-  :straight (:host github :repo "org-roam/org-roam" :branch "v2")
-  ;; https://org-roam.discourse.group/t/org-roam-major-redesign/1198/99
   :custom
+  (org-roam-v2-ack t)
   (org-roam-directory (file-truename (expand-file-name "zet/" org-directory)))
   (org-roam-db-gc-threshold (* 100 1024 1024))
-  ;; (org-id-link-to-org-use-id t) ;; not mentioned in the doc (yet?)
-  :config (org-roam-setup)
+  (org-id-link-to-org-use-id t)
+  :config (org-roam-db-autosync-enable)
   :bind (:map cr-notes-map
               ("b" . org-roam-buffer)
               ("f" . org-roam-node-find)
