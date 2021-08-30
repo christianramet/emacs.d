@@ -263,14 +263,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (calendar-week-start-day 1)
   :bind (:map cr-app-map ("!" . calendar)))
 
-(use-package calibredb
-  :init (defvar calibredb-root-dir (expand-file-name "media/books" cr-data-directory))
-  :custom (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
-  :config
-  (define-key calibredb-search-mode-map "n" 'next-line)
-  (define-key calibredb-search-mode-map "p" 'previous-line)
-  :bind (:map cr-app-map ("b" . calibredb)))
-
 (use-package company
   :commands (company-mode company-indent-or-complete-common)
   :demand
