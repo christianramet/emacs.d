@@ -7,6 +7,7 @@
 (custom-set-variables
  '(org-agenda-files (list (cr-org-expand "journal.org")
                           (cr-org-expand "todos.org")
+                          (cr-org-expand "calendar.org")
                           (cr-org-expand "work-todos.org")))
 
  '(org-agenda-text-search-extra-files
@@ -18,6 +19,7 @@
  '(org-refile-targets
    `((nil                                :maxlevel . 5)
      (,(cr-org-expand "inbox.org")       :level    . 0)
+     (,(cr-org-expand "calendar.org")    :level    . 1)
      (,(cr-org-expand "someday.org")     :maxlevel . 1)
      (,(cr-org-expand "todos.org")       :maxlevel . 2)
      (,(cr-org-expand "todos-work.org")  :maxlevel . 2)))
@@ -33,6 +35,11 @@
       "* Meeting with %? :meeting:"
       :empty-lines 1
       :clock-in t)
+
+     ("e" "Event" entry
+      (file+headline "calendar.org" "Events")
+      "* %i%?\n"
+      :empty-lines 1)
 
      ("j" "Journal" entry
       (file+olp+datetree "journal.org")
