@@ -3,7 +3,7 @@
 
 (defvar cr-focus-mode-hook nil)
 (define-minor-mode cr-focus-mode
-  "Toggle the focus mode."
+  "Toggle focus mode."
   :init-value nil
   :global nil
   (if cr-focus-mode
