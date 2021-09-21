@@ -1076,8 +1076,8 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package org-roam
   :if (executable-find "sqlite3")
+  :init (setq org-roam-v2-ack t)
   :custom
-  (org-roam-v2-ack t)
   (org-roam-directory (file-truename (expand-file-name "zet/" org-directory)))
   (org-roam-db-gc-threshold (* 100 1024 1024))
   (org-id-link-to-org-use-id t)
