@@ -1057,7 +1057,7 @@ remain in fixed pitch for the tags to be aligned."
   :hook ((org-mode-hook dired-mode-hook) . org-download-enable))
 
 (use-package org-indent
-  :straight nil
+  :straight (:type built-in)
   :after org
   :diminish
   :custom (org-indent-indentation-per-level 1)
