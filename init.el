@@ -169,6 +169,7 @@
 
 ;;; Packages
 (use-package ace-link
+  :disabled
   :hook (after-init-hook . ace-link-setup-default))
 
 (use-package ag :if (executable-find "ag"))
@@ -447,6 +448,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (define-key dired-mode-map (kbd "e") 'ediff-files))
 
 (use-package dired-x
+  :disabled
   :straight (:type built-in)
   :demand
   :after dired)
@@ -456,6 +458,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map cr-toggle-map ("l" . display-line-numbers-mode)))
 
 (use-package docker
+  :disabled
   :commands docker
   :bind (:map cr-app-map ("d" . docker)))
 
@@ -500,6 +503,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :hook ((emacs-lisp-mode-hook c-mode-common) . eldoc-mode))
 
 (use-package electric-pair
+  :disabled
   :straight (:type built-in)
   :bind (:map cr-toggle-map ("e" . electric-pair-local-mode)))
 
@@ -1104,6 +1108,7 @@ remain in fixed pitch for the tags to be aligned."
   :bind (:map cr-toggle-map ("o" . outline-minor-mode)))
 
 (use-package ox-reveal
+  :disabled
   :after org
   :custom (org-reveal-root "~/js/reveal.js"))
 
