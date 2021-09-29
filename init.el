@@ -1048,13 +1048,15 @@ remain in fixed pitch for the tags to be aligned."
 (use-package org-cliplink
   :after org
   :commands (org-cliplink org-cliplink-capture)
-  :bind (:map org-mode-map ("C-c C-S-L" . org-cliplink)))
+  :bind (:map cr-notes-map ("l" . org-cliplink)))
 
 (use-package org-download
   :after org
   :custom
-  (org-download-method 'attach) ;; org-download-delete bug with 'attach
+  (org-download-method 'directory) ;; org-download-delete does not work with 'attach
+  (org-download-image-dir "images")
   (org-download-image-org-width 400)
+  (org-download-heading-lvl nil)
   :bind (:map cr-notes-map
               ("y" . org-download-yank)
               ("Y" . org-download-screenshot))
