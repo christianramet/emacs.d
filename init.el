@@ -448,7 +448,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (define-key dired-mode-map (kbd "e") 'ediff-files))
 
 (use-package dired-x
-  :disabled
   :straight (:type built-in)
   :demand
   :after dired)
