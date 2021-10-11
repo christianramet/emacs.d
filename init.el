@@ -1455,3 +1455,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :commands (yas-expand company-yasnippet)
   :diminish yas-minor-mode
   :hook (after-init-hook . yas-global-mode))
+
+(use-package elpher
+  :bind (:map cr-app-map ("g" . elpher)))
+
