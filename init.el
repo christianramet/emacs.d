@@ -1208,7 +1208,8 @@ remain in fixed pitch for the tags to be aligned."
   (add-to-list 'recentf-exclude "^/\\(?:ssh\\|su\\|sudo\\)?:")
   (with-eval-after-load 'no-littering
     (add-to-list 'recentf-exclude no-littering-var-directory)
-    (add-to-list 'recentf-exclude no-littering-etc-directory)))
+    (add-to-list 'recentf-exclude no-littering-etc-directory))
+  :hook (after-init-hook . recentf-mode))
 
 (use-package replace
   :straight (:type built-in)
