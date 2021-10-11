@@ -1403,6 +1403,7 @@ remain in fixed pitch for the tags to be aligned."
   :commands vterm
   :config
   (defun cr-vterm-yank-pop ()
+    (require 'counsel)
     "Call my version of vterm-yank-pop and insert into vterm.
 Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
     (interactive)
