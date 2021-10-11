@@ -287,6 +287,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map cr-file-map ("m" . compile)))
 
 (use-package counsel
+  :disabled
   :after ivy
   :diminish
   :custom (counsel-grep-base-command "grep -i -E -n -e %s %s")
@@ -712,6 +713,7 @@ remain in fixed pitch for the tags to be aligned."
               ("m" . cr-ispell-set-MULTI)))
 
 (use-package flyspell-correct-ivy
+  :disabled
   :after (flyspell ivy)
   :config (setq flyspell-correct-interface 'flyspell-correct-ivy))
 
@@ -756,6 +758,7 @@ remain in fixed pitch for the tags to be aligned."
   :bind (:map cr-git-map ("t" . git-timemachine)))
 
 (use-package helpful
+  :disabled
   :after counsel
   :commands (helpful-callable
              helpful-variable)
@@ -802,6 +805,7 @@ remain in fixed pitch for the tags to be aligned."
               ("C-<" . indent-rigidly-left-to-tab-stop)))
 
 (use-package ivy
+  :disabled
   :demand
   :diminish
   :custom
@@ -820,9 +824,11 @@ remain in fixed pitch for the tags to be aligned."
   :bind ("C-c r" . ivy-resume))
 
 (use-package ivy-pass
+  :disabled
   :bind (:map cr-app-map ("p" . ivy-pass)))
 
 (use-package ivy-rich
+  :disabled
   :after ivy
   :custom
   (ivy-rich-parse-remote-buffer nil)
@@ -1354,6 +1360,7 @@ remain in fixed pitch for the tags to be aligned."
   (inhibit-startup-screen t))
 
 (use-package swiper
+  :disabled
   :after counsel
   :bind (:map cr-search-map
               ("a" . swiper-all)
@@ -1406,6 +1413,7 @@ remain in fixed pitch for the tags to be aligned."
     "Call my version of vterm-yank-pop and insert into vterm.
 Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
     (interactive)
+    (require 'counsel)
     (let ((inhibit-read-only t))
       (vterm-send-string (counsel-yank-pop))))
   :bind ((:map cr-app-map ("v" . vterm))
@@ -1459,3 +1467,5 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 (use-package elpher
   :bind (:map cr-app-map ("g" . elpher)))
 
+(use-package selectrum
+  :hook (after-init-hook . selectrum-mode))
