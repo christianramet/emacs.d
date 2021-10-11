@@ -1199,8 +1199,6 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package recentf
   :straight (:type built-in)
-  :demand
-  :commands recentf-mode
   :custom
   (recentf-max-saved-items 100)
   (recentf-keep '(file-remote-p file-readable-p))
