@@ -1474,13 +1474,14 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :hook (after-init-hook . marginalia-mode))
 
 (use-package consult
-  :bind (("M-y" . consult-yank-pop)
+  :bind (([remap switch-to-buffer] . consult-buffer)
+         ([remap jump-to-register] . consult-register)
+         ("M-y" . consult-yank-pop)
          ("C-c i" . consult-imenu)
          ("C-c j" . consult-git-grep)
          ("C-c k" . consult-ripgrep)
          ("C-c m" . consult-global-mark)
          ("C-c o" . consult-outline)
-         ([remap jump-to-register] . consult-register)
          (:map cr-app-map ("m" . consult-man))
          (:map cr-toggle-map ("T" . consult-theme))
          (:map cr-search-map
