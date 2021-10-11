@@ -1217,8 +1217,8 @@ remain in fixed pitch for the tags to be aligned."
                ("n" . next-line)
                ("p" . previous-line))
          (:map cr-text-map
-               ("f" . flush-lines)
-               ("k" . keep-lines)
+               ;; ("f" . flush-lines)
+               ;; ("k" . keep-lines)
                ("r" . query-replace)
                ("R" . query-replace-regexp))))
 
@@ -1475,7 +1475,10 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 
 (use-package consult
   :bind (([remap switch-to-buffer] . consult-buffer)
+         ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
+         ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
          ([remap jump-to-register] . consult-register)
+         ([remap bookmark-jump] . consult-bookmark)
          ("M-y" . consult-yank-pop)
          ("C-c i" . consult-imenu)
          ("C-c j" . consult-git-grep)
@@ -1483,7 +1486,10 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
          ("C-c m" . consult-global-mark)
          ("C-c o" . consult-outline)
          (:map cr-app-map ("m" . consult-man))
-         (:map cr-toggle-map ("T" . consult-theme))
          (:map cr-search-map
                ("l" . consult-line)
-               ("L" . consult-locate))))
+               ("L" . consult-locate))
+         (:map cr-toggle-map ("T" . consult-theme))
+         (:map cr-text-map
+               ("f" . consult-focus-lines)
+               ("k" . consult-keep-lines))))
