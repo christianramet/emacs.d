@@ -1452,10 +1452,6 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :straight (:type built-in)
   :bind ("M-o" . other-window))
 
-(use-package woman
-  :if (not system-is-osx-p)
-  :bind (:map cr-app-map ("m" . woman)))
-
 (use-package ws-butler
   :diminish
   :hook (prog-mode-hook . ws-butler-mode))
@@ -1471,9 +1467,23 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :bind ("C-c r" . selectrum-repeat)
   :hook (after-init-hook . selectrum-mode))
 
+(use-package selectrum-prescient
+  :hook (after-init-hook . selectrum-prescient-mode))
+
 (use-package marginalia
   :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle))
   :hook (after-init-hook . marginalia-mode))
 
-(use-package imenu
-  :bind ("C-c i" . imenu))
+(use-package consult
+  :bind (("M-y" . consult-yank-pop)
+         ("C-c i" . consult-imenu)
+         ("C-c j" . consult-git-grep)
+         ("C-c k" . consult-ripgrep)
+         ("C-c m" . consult-global-mark)
+         ("C-c o" . consult-outline)
+         ([remap jump-to-register] . consult-register)
+         (:map cr-app-map ("m" . consult-man))
+         (:map cr-toggle-map ("T" . consult-theme))
+         (:map cr-search-map
+               ("l" . consult-line)
+               ("L" . consult-locate))))
