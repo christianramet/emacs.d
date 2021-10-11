@@ -540,6 +540,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
   (add-hook 'emacs-lisp-mode-hook 'cr-emacs-lisp-settings))
 
+(use-package elpher
+  :bind (:map cr-app-map ("g" . elpher)))
+
 (use-package eshell
   :straight (:type built-in)
   :commands (eshell eshell-command)
@@ -1464,8 +1467,13 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :diminish yas-minor-mode
   :hook (after-init-hook . yas-global-mode))
 
-(use-package elpher
-  :bind (:map cr-app-map ("g" . elpher)))
-
 (use-package selectrum
+  :bind ("C-c r" . selectrum-repeat)
   :hook (after-init-hook . selectrum-mode))
+
+(use-package marginalia
+  :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle))
+  :hook (after-init-hook . marginalia-mode))
+
+(use-package imenu
+  :bind ("C-c i" . imenu))
