@@ -1393,6 +1393,9 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :hook (after-init-hook . marginalia-mode))
 
 (use-package consult
+  :config
+  (with-eval-after-load 'projectile
+    (setq consult-project-root-function #'projectile-project-root))
   :bind (([remap switch-to-buffer] . consult-buffer)
          ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
          ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
