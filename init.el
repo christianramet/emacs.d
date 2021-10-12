@@ -286,28 +286,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight (:type built-in)
   :bind (:map cr-file-map ("m" . compile)))
 
-(use-package counsel
-  :disabled
-  :after ivy
-  :diminish
-  :custom (counsel-grep-base-command "grep -i -E -n -e %s %s")
-  :hook (after-init-hook . counsel-mode)
-  :bind (("C-c i" . counsel-imenu)
-         ("C-c j" . counsel-git-grep)
-         ("C-c k" . counsel-rg)
-         ("C-c m" . counsel-mark-ring)
-         ("C-c o" . counsel-outline)
-         ([remap jump-to-register]   . counsel-register)
-         (:map cr-toggle-map
-               ("T" . counsel-load-theme))
-         (:map cr-search-map
-               ("f" . counsel-file-jump)
-               ("l" . counsel-locate)
-               ("r" . counsel-recoll)
-               ("z" . counsel-fzf))
-         (:map cr-git-map
-               ("l" . counsel-git-log))))
-
 (use-package cr-focus-mode
   :straight olivetti
   :commands cr-focus-mode
@@ -715,11 +693,6 @@ remain in fixed pitch for the tags to be aligned."
               ("2" . cr-ispell-set-lang2)
               ("m" . cr-ispell-set-MULTI)))
 
-(use-package flyspell-correct-ivy
-  :disabled
-  :after (flyspell ivy)
-  :config (setq flyspell-correct-interface 'flyspell-correct-ivy))
-
 (use-package follow
   :straight (:type built-in)
   :bind (:map cr-toggle-map ("=" . follow-delete-other-windows-and-split)))
@@ -760,17 +733,6 @@ remain in fixed pitch for the tags to be aligned."
 (use-package git-timemachine
   :bind (:map cr-git-map ("t" . git-timemachine)))
 
-(use-package helpful
-  :disabled
-  :after counsel
-  :commands (helpful-callable
-             helpful-variable)
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
-  :bind (("C-h k" . helpful-key)
-         ("C-h ." . helpful-at-point)))
-
 (use-package hl-line
   :straight (:type built-in)
   :hook ((text-mode-hook
@@ -806,41 +768,6 @@ remain in fixed pitch for the tags to be aligned."
               ("<" . indent-rigidly-left)
               ("C->" . indent-rigidly-right-to-tab-stop)
               ("C-<" . indent-rigidly-left-to-tab-stop)))
-
-(use-package ivy
-  :disabled
-  :demand
-  :diminish
-  :custom
-  (ivy-initial-inputs-alist nil)
-  (ivy-count-format "(%d/%d) ")
-  (ivy-use-selectable-prompt t)
-  (ivy-use-virtual-buffers t)
-  (ivy-virtual-abbreviate 'full)
-  (ivy-wrap nil)
-  :config
-  ;; https://github.com/abo-abo/swiper/issues/2681 (waiting for resolution)
-  (with-eval-after-load 'grep
-    (define-key ivy-occur-grep-mode-map (kbd "n") 'next-error)
-    (define-key ivy-occur-grep-mode-map (kbd "p") 'previous-error))
-  :hook (after-init-hook . ivy-mode)
-  :bind ("C-c r" . ivy-resume))
-
-(use-package ivy-pass
-  :disabled
-  :bind (:map cr-app-map ("p" . ivy-pass)))
-
-(use-package ivy-rich
-  :disabled
-  :after ivy
-  :custom
-  (ivy-rich-parse-remote-buffer nil)
-  (ivy-rich-parse-remote-file-path nil)
-  (ivy-rich-project-root-cache-mode +1)
-  :config (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
-  :hook
-  (after-init-hook . ivy-rich-mode)
-  (ivy-rich-mode-hook . ivy-rich-project-root-cache-mode ))
 
 (use-package kubernetes
   :if (executable-find "kubectl")
@@ -1360,14 +1287,6 @@ remain in fixed pitch for the tags to be aligned."
   (initial-major-mode 'lisp-interaction-mode)
   (initial-scratch-message nil)
   (inhibit-startup-screen t))
-
-(use-package swiper
-  :disabled
-  :after counsel
-  :bind (:map cr-search-map
-              ("a" . swiper-all)
-              ("s" . swiper-isearch)
-              ("." . swiper-isearch-thing-at-point)))
 
 (use-package terraform-mode :mode "\.tf\\'")
 
