@@ -389,10 +389,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight (:type built-in)
   :bind (:map cr-file-map ("d" . diff-buffer-with-file)))
 
-(use-package dimmer
-  :config (dimmer-configure-which-key)
-  :hook (after-init-hook . dimmer-mode))
-
 (use-package dired
   :straight (:type built-in)
   :custom
