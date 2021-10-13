@@ -1391,29 +1391,45 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :hook (after-init-hook . selectrum-prescient-mode))
 
 (use-package marginalia
-  :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle))
   :hook (after-init-hook . marginalia-mode))
 
 (use-package consult
+  :custom (consult-locate-args "locate --ignore-case --regex")
   :config
+  (consult-customize
+   consult-buffer consult-buffer-other-window consult-ripgrep
+   :preview-key (kbd "M-."))
   (with-eval-after-load 'projectile
-    (setq consult-project-root-function #'projectile-project-root))
+    (customize-set-variable
+     'consult-project-root-function #'projectile-project-root))
   :bind (([remap switch-to-buffer] . consult-buffer)
          ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
          ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
          ([remap jump-to-register] . consult-register)
-         ([remap bookmark-jump] . consult-bookmark)
+         ([remap apropos-command] . consult-apropos)
+         ([remap goto-line] . consult-goto-line)
          ("M-y" . consult-yank-pop)
          ("C-c i" . consult-imenu)
+         ("C-c I" . consult-imenu-multi)
          ("C-c j" . consult-git-grep)
          ("C-c k" . consult-ripgrep)
-         ("C-c m" . consult-global-mark)
          ("C-c o" . consult-outline)
+         ("C-c SPC" . consult-bookmark)
+         ("M-g m" . consult-mark)
+         ("M-g M" . consult-global-mark)
+         ("M-s O" . consult-multi-occur)
          (:map cr-app-map ("m" . consult-man))
-         (:map cr-search-map
-               ("l" . consult-line)
-               ("L" . consult-locate))
-         (:map cr-toggle-map ("T" . consult-theme))
-         (:map cr-text-map
-               ("f" . consult-focus-lines)
-               ("k" . consult-keep-lines))))
+         (:map cr-search-map (("f" . consult-find)
+                              ("l" . consult-locate)
+                              ("s" . consult-line)
+                              ("a" . consult-line-multi)))
+         (:map cr-text-map (("f" . consult-focus-lines)
+                            ("k" . consult-keep-lines)))
+         (:map cr-toggle-map ("T" . consult-theme))))
+
+(use-package consult
+  :after org
+  :bind (:map org-mode-map ("C-c o" . consult-org-heading)))
+
+(use-package consult-recoll
+  :bind (:map cr-search-map ("r" . consult-recoll)))
