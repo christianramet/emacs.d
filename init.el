@@ -655,8 +655,10 @@ remain in fixed pitch for the tags to be aligned."
 
   :hook ((org-mode-hook . flyspell-mode)
          (prog-mode-hook . flyspell-prog-mode))
-  :bind ((:map cr-toggle-map ("z" . flyspell-mode))
+  :bind ((:map flyspell-mode-map ("C-." . nil))
+         (:map cr-toggle-map ("z" . flyspell-mode))
          (:map cr-spell-map
+               ("." . flyspell-auto-correct-word)
                ("b" . flyspell-buffer)
                ("d" . ispell-change-dictionary)
                ("r" . flyspell-region)
