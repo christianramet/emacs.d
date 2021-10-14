@@ -720,14 +720,17 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package langtool
   :custom
+  (langtool-language-tool-jar
+   (shell-command-to-string
+    "echo -n $(locate languagetool-commandline.jar | sort -r | head -1)"))
   (langtool-default-language 'auto)
   (langtool-disabled-rules '("DASH_RULE" "WHITESPACE_RULE" "EN_UNPAIRED_BRACKETS"
                              "COMMA_PARENTHESIS_WHITESPACE" "EN_QUOTES"
                              "MORFOLOGIK_RULE_EN_GB" "MORFOLOGIK_RULE_US"))
   :bind (:map cr-grammar-map
               ("v" . langtool-check)
-              ("b" . langtool-correct-buffer)
-              ("d" . langtool-switch-default-language)
+              ("c" . langtool-correct-buffer)
+              ("l" . langtool-switch-default-language)
               ("n" . langtool-goto-next-error)
               ("p" . langtool-goto-previous-error)
               ("q" . langtool-check-done)))
