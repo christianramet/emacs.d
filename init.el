@@ -1254,18 +1254,7 @@ remain in fixed pitch for the tags to be aligned."
   :commands vterm
   :init (setq vterm-always-compile-module t)
   :custom (vterm-max-scrollback (* 20 1000))
-  :config
-  (defun cr-vterm-counsel-yank-pop ()
-    (require 'counsel)
-    "Call my version of vterm-yank-pop and insert into vterm.
-Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
-    (interactive)
-    (require 'counsel)
-    (let ((inhibit-read-only t))
-      (vterm-send-string (counsel-yank-pop))))
-  :bind ((:map cr-app-map ("v" . vterm))
-         ;; (:map vterm-mode-map ("M-y" . cr-vterm-counsel-yank-pop))
-         ))
+  :bind (:map cr-app-map ("v" . vterm)))
 
 (use-package wdired
   :straight (:type built-in)
