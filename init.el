@@ -1316,7 +1316,8 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :hook (after-init-hook . selectrum-mode))
 
 (use-package selectrum-prescient
-  :hook (after-init-hook . selectrum-prescient-mode))
+  :hook ((after-init-hook . selectrum-prescient-mode)
+         (after-init-hook . prescient-persist-mode)))
 
 (use-package marginalia
   :hook (after-init-hook . marginalia-mode))
