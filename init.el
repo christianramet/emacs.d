@@ -269,6 +269,45 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight (:type built-in)
   :bind (:map cr-file-map ("m" . compile)))
 
+(use-package consult
+  :after selectrum
+  :custom (consult-locate-args "locate --ignore-case --regex")
+  :config
+  (with-eval-after-load 'projectile
+    (customize-set-variable
+     'consult-project-root-function #'projectile-project-root))
+  :bind (([remap switch-to-buffer] . consult-buffer)
+         ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
+         ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
+         ([remap jump-to-register] . consult-register)
+         ([remap apropos-command] . consult-apropos)
+         ([remap goto-line] . consult-goto-line)
+         ([remap yank-pop] . consult-yank-pop)
+         ("C-c i" . consult-imenu)
+         ("C-c I" . consult-imenu-multi)
+         ("C-c j" . consult-git-grep)
+         ("C-c k" . consult-ripgrep)
+         ("C-c o" . consult-outline)
+         ("C-c SPC" . consult-bookmark)
+         ("M-g m" . consult-mark)
+         ("M-g M" . consult-global-mark)
+         ("M-s l" . consult-line)
+         ("M-s L" . consult-line-multi)
+         ("M-s O" . consult-multi-occur)
+         (:map cr-app-map ("m" . consult-man))
+         (:map cr-search-map (("f" . consult-find)
+                              ("l" . consult-locate)))
+         (:map cr-text-map (("f" . consult-focus-lines)
+                            ("k" . consult-keep-lines)))
+         (:map cr-toggle-map ("T" . consult-theme))))
+
+(use-package consult
+  :after org
+  :bind (:map org-mode-map ("C-c o" . consult-org-heading)))
+
+(use-package consult-recoll
+  :bind (:map cr-search-map ("r" . consult-recoll)))
+
 (use-package cr-focus-mode
   :straight olivetti
   :commands cr-focus-mode
@@ -791,6 +830,9 @@ remain in fixed pitch for the tags to be aligned."
   :mode ("\\.md\\'" "\\.markdown\\'")
   :custom (markdown-fontify-code-blocks-natively t))
 
+(use-package marginalia
+  :hook (after-init-hook . marginalia-mode))
+
 (use-package nginx-mode)
 
 (use-package nov
@@ -1121,6 +1163,14 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :hook (after-init-hook . save-place-mode))
 
+(use-package selectrum
+  :bind ("C-c r" . selectrum-repeat)
+  :hook (after-init-hook . selectrum-mode))
+
+(use-package selectrum-prescient
+  :hook ((after-init-hook . selectrum-prescient-mode)
+         (after-init-hook . prescient-persist-mode)))
+
 (use-package server
   :straight (:type built-in)
   :demand
@@ -1297,52 +1347,3 @@ remain in fixed pitch for the tags to be aligned."
   :commands (yas-expand company-yasnippet)
   :diminish yas-minor-mode
   :hook (after-init-hook . yas-global-mode))
-
-(use-package selectrum
-  :bind ("C-c r" . selectrum-repeat)
-  :hook (after-init-hook . selectrum-mode))
-
-(use-package selectrum-prescient
-  :hook ((after-init-hook . selectrum-prescient-mode)
-         (after-init-hook . prescient-persist-mode)))
-
-(use-package marginalia
-  :hook (after-init-hook . marginalia-mode))
-
-(use-package consult
-  :custom (consult-locate-args "locate --ignore-case --regex")
-  :config
-  (with-eval-after-load 'projectile
-    (customize-set-variable
-     'consult-project-root-function #'projectile-project-root))
-  :bind (([remap switch-to-buffer] . consult-buffer)
-         ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
-         ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
-         ([remap jump-to-register] . consult-register)
-         ([remap apropos-command] . consult-apropos)
-         ([remap goto-line] . consult-goto-line)
-         ([remap yank-pop] . consult-yank-pop)
-         ("C-c i" . consult-imenu)
-         ("C-c I" . consult-imenu-multi)
-         ("C-c j" . consult-git-grep)
-         ("C-c k" . consult-ripgrep)
-         ("C-c o" . consult-outline)
-         ("C-c SPC" . consult-bookmark)
-         ("M-g m" . consult-mark)
-         ("M-g M" . consult-global-mark)
-         ("M-s l" . consult-line)
-         ("M-s L" . consult-line-multi)
-         ("M-s O" . consult-multi-occur)
-         (:map cr-app-map ("m" . consult-man))
-         (:map cr-search-map (("f" . consult-find)
-                              ("l" . consult-locate)))
-         (:map cr-text-map (("f" . consult-focus-lines)
-                            ("k" . consult-keep-lines)))
-         (:map cr-toggle-map ("T" . consult-theme))))
-
-(use-package consult
-  :after org
-  :bind (:map org-mode-map ("C-c o" . consult-org-heading)))
-
-(use-package consult-recoll
-  :bind (:map cr-search-map ("r" . consult-recoll)))
