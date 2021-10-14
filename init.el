@@ -168,10 +168,6 @@
            ("C-c z" . cr-spell-map))
 
 ;;; Packages
-(use-package ace-link
-  :disabled
-  :hook (after-init-hook . ace-link-setup-default))
-
 (use-package ag :if (executable-find "ag"))
 
 (use-package align
@@ -188,13 +184,6 @@
   :bind (:map cr-text-map
               ("a" . align-code)
               ("A" . align-regexp)))
-
-(use-package all-the-icons
-  :disabled
-  :if (display-graphic-p)
-  :init
-  (unless (member "all-the-icons" (font-family-list))
-    (all-the-icons-install-fonts t)))
 
 (use-package async
   :diminish dired-async-mode
@@ -225,12 +214,6 @@
   (avy-all-windows t)
   (avy-all-windows-alt nil)
   :bind* ("C-'" . avy-goto-char-timer))
-
-(use-package battery
-  :straight (:type built-in)
-  :commands (battery display-battery-mode)
-  :custom (battery-mode-line-limit 85)
-  :bind (:map cr-toggle-map ("b" . display-battery-mode)))
 
 (use-package browse-url
   :straight (:type built-in)
@@ -341,19 +324,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (cr-themes-dark 'modus-vivendi)
   (cr-themes-default cr-themes-light)
   :config
-  (use-package doom-themes
-    :disabled
-    :custom
-    (doom-themes-enable-bold t)
-    (doom-themes-enable-italic t)
-    :config (doom-themes-org-config))
-
-  (use-package leuven-theme
-    :custom
-    (leuven-scale-outline-headlines t)
-    (leuven-scale-org-agenda-structure nil)
-    (leuven-scale-volatile-highlight t))
-
   (use-package modus-themes
     :init
     (custom-set-variables
@@ -435,20 +405,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight (:type built-in)
   :bind (:map cr-toggle-map ("l" . display-line-numbers-mode)))
 
-(use-package docker
-  :disabled
-  :commands docker
-  :bind (:map cr-app-map ("d" . docker)))
-
 (use-package dockerfile-mode :mode ("Dockerfile\\'"))
-
-(use-package doom-modeline
-  :disabled
-  :custom
-  (doom-modeline-icon nil)
-  (doom-modeline-height 1) ;; Combine with `doom-modeline-icon' as nil.
-  (doom-modeline-buffer-encoding nil)
-  :hook (after-init-hook . doom-modeline-mode))
 
 (use-package doom-sudo-utils
   :straight nil
@@ -479,11 +436,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (setq eldoc-idle-delay 0.5)
   (global-eldoc-mode -1)
   :hook ((emacs-lisp-mode-hook c-mode-common) . eldoc-mode))
-
-(use-package electric-pair
-  :disabled
-  :straight (:type built-in)
-  :bind (:map cr-toggle-map ("e" . electric-pair-local-mode)))
 
 (use-package elfeed
   :commands elfeed
@@ -700,11 +652,6 @@ remain in fixed pitch for the tags to be aligned."
   :after magit
   :commands forge-pull-notifications)
 
-(use-package frame
-  :straight (:type built-in)
-  :hook (after-init-hook . blink-cursor-mode)
-  :bind (:map cr-toggle-map ("RET" . toggle-frame-fullscreen)))
-
 (use-package go-mode :mode "\\.go\\'")
 
 (use-package gitattributes-mode)
@@ -784,15 +731,6 @@ remain in fixed pitch for the tags to be aligned."
               ("n" . langtool-goto-next-error)
               ("p" . langtool-goto-previous-error)
               ("q" . langtool-check-done)))
-
-(use-package langtool
-  :if (string= (system-name) "t460")
-  :custom (langtool-language-tool-jar
-           "~/opt/languagetool.org/languagetool-commandline.jar"))
-
-(use-package lorem-ipsum
-  :config (setq-default lorem-ipsum-sentence-separator " ")
-  :bind (:map cr-text-map ("l" . lorem-ipsum-insert-paragraphs)))
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
@@ -1033,11 +971,6 @@ remain in fixed pitch for the tags to be aligned."
               ("r" . org-roam-node-random)
               ("t" . org-roam-buffer-toggle)))
 
-(use-package org-ql
-  :disabled
-  :custom (org-ql-search-directories-files-recursive t)
-  :bind (:map cr-search-map ("o" . org-ql-search)))
-
 (use-package outline
   :straight (:type built-in)
   :diminish outline-minor-mode
@@ -1046,11 +979,6 @@ remain in fixed pitch for the tags to be aligned."
     :bind (:map outline-minor-mode-map ("<C-tab>" . outline-cycle)))
   :hook (prog-mode-hook . outline-minor-mode)
   :bind (:map cr-toggle-map ("o" . outline-minor-mode)))
-
-(use-package ox-reveal
-  :disabled
-  :after org
-  :custom (org-reveal-root "~/js/reveal.js"))
 
 (use-package pass
   :custom (pass-show-keybindings nil)
