@@ -1334,7 +1334,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
          ([remap jump-to-register] . consult-register)
          ([remap apropos-command] . consult-apropos)
          ([remap goto-line] . consult-goto-line)
-         ("M-y" . consult-yank-pop)
+         ([remap yank-pop] . consult-yank-pop)
          ("C-c i" . consult-imenu)
          ("C-c I" . consult-imenu-multi)
          ("C-c j" . consult-git-grep)
