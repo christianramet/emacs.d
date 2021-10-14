@@ -1394,7 +1394,7 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
   :custom (consult-locate-args "locate --ignore-case --regex")
   :config
   (consult-customize
-   consult-buffer consult-buffer-other-window consult-ripgrep
+   consult-buffer consult-buffer-other-window consult-buffer-other-frame
    :preview-key (kbd "M-."))
   (with-eval-after-load 'projectile
     (customize-set-variable
@@ -1414,12 +1414,12 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
          ("C-c SPC" . consult-bookmark)
          ("M-g m" . consult-mark)
          ("M-g M" . consult-global-mark)
+         ("M-s l" . consult-line)
+         ("M-s L" . consult-line-multi)
          ("M-s O" . consult-multi-occur)
          (:map cr-app-map ("m" . consult-man))
          (:map cr-search-map (("f" . consult-find)
-                              ("l" . consult-locate)
-                              ("s" . consult-line)
-                              ("a" . consult-line-multi)))
+                              ("l" . consult-locate)))
          (:map cr-text-map (("f" . consult-focus-lines)
                             ("k" . consult-keep-lines)))
          (:map cr-toggle-map ("T" . consult-theme))))
