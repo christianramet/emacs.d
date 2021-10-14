@@ -1393,9 +1393,6 @@ Source: https://github.com/rlister/emacs.d/blob/master/lisp/vterm-cfg.el"
 (use-package consult
   :custom (consult-locate-args "locate --ignore-case --regex")
   :config
-  (consult-customize
-   consult-buffer consult-buffer-other-window consult-buffer-other-frame
-   :preview-key (kbd "M-."))
   (with-eval-after-load 'projectile
     (customize-set-variable
      'consult-project-root-function #'projectile-project-root))
