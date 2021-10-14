@@ -1245,7 +1245,8 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package url-vars
   :straight (:type built-in)
-  :custom (url-privacy-level 'high))
+  :custom (url-privacy-level 'high)
+  :config  (url-setup-privacy-info))
 
 (use-package vlf
   :init (require 'vlf-setup))
