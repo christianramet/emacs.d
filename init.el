@@ -1247,9 +1247,6 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :custom (url-privacy-level 'high))
 
-(use-package visual-regexp
-  :bind ([remap query-replace-regexp] . 'vr/replace))
-
 (use-package vlf
   :init (require 'vlf-setup))
 
