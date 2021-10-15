@@ -1147,16 +1147,13 @@ remain in fixed pitch for the tags to be aligned."
   (history-length 1000)
   (history-delete-duplicates t)
   (savehist-save-minibuffer-history t)
-  (savehist-additional-variables
-   '(Info-history-list
-     kill-ring
-     kmacro-ring
-     last-kbd-macro
-     regexp-search-ring
-     register-alist
-     search-ring
-     shell-command-history
-     compilation-command))
+  :config
+  (add-to-list 'savehist-additional-variables 'kill-ring)
+  (add-to-list 'savehist-additional-variables 'kmacro-ring)
+  (add-to-list 'savehist-additional-variables 'last-kbd-macro)
+  (add-to-list 'savehist-additional-variables 'regexp-search-ring)
+  (add-to-list 'savehist-additional-variables 'register-alist)
+  (add-to-list 'savehist-additional-variables 'compilation-command)
   :hook (after-init-hook . savehist-mode))
 
 (use-package saveplace
