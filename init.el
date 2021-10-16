@@ -828,7 +828,6 @@ remain in fixed pitch for the tags to be aligned."
               ("p" . magit-pull-from-upstream)))
 
 (use-package man
-  :if system-is-osx-p
   :bind (:map cr-app-map ("m" . man)))
 
 (use-package markdown-mode
