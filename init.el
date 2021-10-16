@@ -342,8 +342,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                ("w" . cr-duckduckgo-search))))
 
 (use-package cr-hide-mode-line-mode
-  :straight nil
-  :commands cr-hide-mode-line-mode)
+  :straight nil)
 
 (use-package cr-open-external
   :straight nil
