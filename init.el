@@ -247,7 +247,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map cr-app-map ("!" . calendar)))
 
 (use-package company
-  :demand
   :diminish
   :custom
   (company-idle-delay 0.5)
