@@ -1309,9 +1309,6 @@ remain in fixed pitch for the tags to be aligned."
   (wdired-allow-to-redirect-links t)
   (wdired-create-parent-directories t))
 
-(use-package web-mode
-  :commands web-mode)
-
 (use-package winner
   :straight (:type built-in)
   :hook (after-init-hook . winner-mode)
