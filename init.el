@@ -467,15 +467,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package eldoc
   :straight (:type built-in)
-  :diminish
-  :commands (eldoc-mode global-eldoc-mode)
-  :config
-  (setq eldoc-idle-delay 0.5)
-  (global-eldoc-mode -1)
-  :hook ((emacs-lisp-mode-hook c-mode-common) . eldoc-mode))
+  :diminish)
 
 (use-package elfeed
-  :commands elfeed
   :init
   (require 'cr-private-feeds nil 'noerror)
   :custom
