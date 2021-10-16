@@ -262,12 +262,15 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map company-active-map ("M-/" . company-other-backend))
          (:map cr-toggle-map ("c" . company-mode))))
 
+(use-package company-prescient
+  :after (company prescient)
+  :hook (company-mode-hook . company-prescient-mode))
+
 (use-package compile
   :straight (:type built-in)
   :bind (:map cr-file-map ("m" . compile)))
 
 (use-package consult
-  :after selectrum
   :custom (consult-locate-args "locate --ignore-case --regex")
   :config
   (with-eval-after-load 'projectile
@@ -1028,6 +1031,8 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package php-mode :mode ("\\.php\\'"))
 
+(use-package prescient :hook (after-init-hook . prescient-persist-mode))
+
 (use-package proced
   :straight (:type built-in)
   :custom
@@ -1134,12 +1139,11 @@ remain in fixed pitch for the tags to be aligned."
   :hook (after-init-hook . save-place-mode))
 
 (use-package selectrum
-  :bind ("C-c r" . selectrum-repeat)
-  :hook (after-init-hook . selectrum-mode))
+  :hook (after-init-hook . selectrum-mode)
+  :bind ("C-c r" . selectrum-repeat))
 
 (use-package selectrum-prescient
-  :hook ((after-init-hook . selectrum-prescient-mode)
-         (after-init-hook . prescient-persist-mode)))
+  :hook (selectrum-mode-hook . selectrum-prescient-mode))
 
 (use-package server
   :straight (:type built-in)
