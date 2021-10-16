@@ -1109,10 +1109,11 @@ remain in fixed pitch for the tags to be aligned."
     :query ask
     :format regexp
     :files "org"
-    :dir "~/"
+    :dir cr-org-directory
     :flags ("--ignore-case")
     :menu ("Custom" "o" "Org"))
-  :bind (:map cr-search-map ("g" . rg-menu)))
+  :bind ((:map cr-search-map ("g" . rg-menu))
+         (:map cr-notes-map ("g" . rg-org))))
 
 (use-package rust-mode)
 
