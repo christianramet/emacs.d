@@ -1016,11 +1016,11 @@ remain in fixed pitch for the tags to be aligned."
 (use-package outline
   :straight (:type built-in)
   :diminish outline-minor-mode
-  :config
-  (use-package outline-magic
-    :bind (:map outline-minor-mode-map ("<C-tab>" . outline-cycle)))
   :hook (prog-mode-hook . outline-minor-mode)
   :bind (:map cr-toggle-map ("o" . outline-minor-mode)))
+
+(use-package outline-magic
+  :bind (:map outline-minor-mode-map ("<C-tab>" . outline-cycle)))
 
 (use-package pass
   :custom (pass-show-keybindings nil)
