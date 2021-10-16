@@ -341,6 +341,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                ("H" . cr-grep-app-search)
                ("w" . cr-duckduckgo-search))))
 
+(use-package cr-hide-mode-line-mode
+  :straight nil
+  :commands cr-hide-mode-line-mode)
+
 (use-package cr-open-external
   :straight nil
   :bind ((:map cr-file-map
