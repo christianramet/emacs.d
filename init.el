@@ -172,7 +172,6 @@
 
 (use-package align
   :straight (:type built-in)
-  :commands (align align-regexp)
   :preface
   (defun align-code (beg end &optional arg)
     (interactive "rP")
@@ -248,7 +247,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map cr-app-map ("!" . calendar)))
 
 (use-package company
-  :commands (company-mode company-indent-or-complete-common)
   :demand
   :diminish
   :custom
@@ -310,7 +308,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package cr-focus-mode
   :straight olivetti
-  :commands cr-focus-mode
   :bind* ("M-O" . cr-focus-mode))
 
 (use-package cr-functions
@@ -500,7 +497,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package elisp-mode
   :straight (:type built-in)
-  :commands emacs-lisp-mode
   :config
   (defun cr-emacs-lisp-settings ()
     (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
@@ -511,7 +507,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package eshell
   :straight (:type built-in)
-  :commands (eshell eshell-command)
   :custom
   (eshell-ls-use-colors t)
   (eshell-history-size 1024)
@@ -616,8 +611,6 @@ remain in fixed pitch for the tags to be aligned."
   :bind ("M-g f" . find-file-at-point))
 
 (use-package flycheck
-  :commands (flycheck-mode global-flycheck-mode)
-  :custom (flycheck-idle-change-delay 0.5)
   :hook (prog-mode-hook . flycheck-mode)
   :bind (:map cr-toggle-map
               ("f" . flycheck-mode)
@@ -702,7 +695,6 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package git-gutter
   :diminish
-  :commands git-gutter-mode
   :bind ((:map cr-toggle-map
                ("g" . git-gutter-mode))
          (:map cr-git-map
@@ -743,7 +735,6 @@ remain in fixed pitch for the tags to be aligned."
                ("a" . ibuffer-visit-buffer))))
 
 (use-package iedit
-  :commands iedit-mode
   :bind ("M-i" . iedit-mode))
 
 (use-package indent
@@ -776,7 +767,6 @@ remain in fixed pitch for the tags to be aligned."
               ("q" . langtool-check-done)))
 
 (use-package lsp-mode
-  :commands (lsp lsp-deferred)
   :custom
   (lsp-auto-configure t)
   (lsp-auto-guess-root t)
@@ -807,7 +797,6 @@ remain in fixed pitch for the tags to be aligned."
           sh-mode-hook) . lsp-deferred))
 
 (use-package lsp-ui
-  :commands lsp-ui-mode
   :custom
   (lsp-ui-doc-enable nil)
   (lsp-ui-imenu-enable t)
@@ -815,7 +804,6 @@ remain in fixed pitch for the tags to be aligned."
   (lsp-ui-sideline-enable nil))
 
 (use-package magit
-  :commands magit-status
   :bind (:map cr-git-map
               ("b" . magit-branch-checkout)
               ("B" . magit-blame)
@@ -1256,7 +1244,6 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package time
   :straight (:type built-in)
-  :commands (display-time-world display-time-mode)
   :custom
   (display-time-24hr-format t)
   (display-time-default-load-average nil)
@@ -1287,7 +1274,6 @@ remain in fixed pitch for the tags to be aligned."
   :init (require 'vlf-setup))
 
 (use-package vterm
-  :commands vterm
   :init (setq vterm-always-compile-module t)
   :custom (vterm-max-scrollback (* 20 1000))
   :bind (:map cr-app-map ("v" . vterm)))
@@ -1326,6 +1312,5 @@ remain in fixed pitch for the tags to be aligned."
 (use-package yaml-mode :mode ("\\.ya?ml\\'"))
 
 (use-package yasnippet
-  :commands (yas-expand company-yasnippet)
   :diminish yas-minor-mode
   :hook (after-init-hook . yas-global-mode))
