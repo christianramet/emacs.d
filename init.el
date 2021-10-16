@@ -355,6 +355,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map dired-mode-map
                ("M-RET" . cr-open-file-or-directory-in-external-app))))
 
+(use-package cr-org-gtd
+  :straight nil
+  :after org
+  :demand)
+
 (use-package cr-themes
   :straight nil
   :demand
@@ -852,7 +857,8 @@ remain in fixed pitch for the tags to be aligned."
               ("p" . previous-line)))
 
 (use-package ob-async
-  :after org)
+  :after org
+  :demand)
 
 (use-package olivetti
   :diminish
@@ -862,7 +868,6 @@ remain in fixed pitch for the tags to be aligned."
   :bind (:map cr-toggle-map ("O" . olivetti-mode)))
 
 (use-package org
-  :commands (org-agenda org-capture)
   :custom
   (org-adapt-indentation nil)
   (org-agenda-follow-indirect nil)
@@ -908,10 +913,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-startup-folded t)
   (org-use-speed-commands t)
   :config
-  (require 'cr-org-gtd nil 'noerror)
   (with-eval-after-load 'ox (require 'ox-md nil 'noerror))
-  (require 'ob-async nil 'noerror)
-  (require 'ox-reveal nil 'noerror)
 
   (setq system-time-locale "C")
 
@@ -966,8 +968,6 @@ remain in fixed pitch for the tags to be aligned."
          ("C-c C-x C-q" . org-clock-cancel)))
 
 (use-package org-cliplink
-  :after org
-  :commands (org-cliplink org-cliplink-capture)
   :bind (:map cr-notes-map ("l" . org-cliplink)))
 
 (use-package org-download
@@ -984,14 +984,12 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package org-indent
   :straight (:type built-in)
-  :after org
   :diminish
   :custom (org-indent-indentation-per-level 1)
   :hook (org-mode-hook . org-indent-mode))
 
 (use-package org-noter
   :after (:any org pdf-view)
-  :commands org-noter
   :custom
   (org-noter-notes-search-path (list (expand-file-name "notes/" org-directory)))
   (org-noter-default-notes-file-names '("notes.org" "main.org"))
