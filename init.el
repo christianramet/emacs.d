@@ -29,7 +29,6 @@
  '(package-enable-at-startup nil)
  '(use-package-always-defer t)
  '(use-package-always-ensure nil)
- '(use-package-hook-name-suffix nil)
  '(use-package-enable-imenu-support t)
  '(use-package-expand-minimally t)
  '(straight-use-package-by-default t)
@@ -61,7 +60,7 @@
 
 (use-package exec-path-from-shell
   :if (or (daemonp) (display-graphic-p))
-  :hook (after-init-hook . exec-path-from-shell-initialize))
+  :hook (after-init . exec-path-from-shell-initialize))
 
 (use-package diminish :demand)
 
@@ -185,12 +184,12 @@
 
 (use-package async
   :diminish dired-async-mode
-  :hook (dired-mode-hook . dired-async-mode))
+  :hook (dired-mode . dired-async-mode))
 
 (use-package auth-source-pass
   :if (executable-find "pass")
   :straight (:type built-in)
-  :hook (after-init-hook . auth-source-pass-enable))
+  :hook (after-init . auth-source-pass-enable))
 
 (use-package autorevert
   :straight (:type built-in)
@@ -198,7 +197,7 @@
   :custom
   (auto-revert-avoid-polling t)
   (revert-without-query (list "."))
-  :hook (after-init-hook . global-auto-revert-mode)
+  :hook (after-init . global-auto-revert-mode)
   :bind ((:map cr-buffer-map ("g". revert-buffer))
          (:map cr-toggle-map
                ("a" . auto-revert-mode)
@@ -255,7 +254,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
      (company-dabbrev-code company-gtags company-etags company-keywords)
      company-files
      company-dabbrev))
-  :hook (after-init-hook . global-company-mode)
+  :hook (after-init . global-company-mode)
   :bind (("M-/"   . company-complete)
          ("C-c y" . company-yasnippet)
          (:map company-active-map ("M-/" . company-other-backend))
@@ -263,7 +262,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package company-prescient
   :after (:all company prescient)
-  :hook (company-mode-hook . company-prescient-mode))
+  :hook (company-mode . company-prescient-mode))
 
 (use-package compile
   :straight (:type built-in)
@@ -486,7 +485,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (setq-local shr-width fill-column
                 shr-max-image-proportion 0.7
                 line-spacing 0.2))
-  :hook (elfeed-show-mode-hook . cr-elfeed-show-settings)
+  :hook (elfeed-show-mode . cr-elfeed-show-settings)
   :bind ((:map cr-app-map ("f" . elfeed))
          (:map elfeed-search-mode-map ("a" . elfeed-search-show-entry))
          (:map elfeed-show-mode-map
@@ -609,7 +608,7 @@ remain in fixed pitch for the tags to be aligned."
   :bind ("M-g f" . find-file-at-point))
 
 (use-package flycheck
-  :hook (prog-mode-hook . flycheck-mode)
+  :hook (prog-mode . flycheck-mode)
   :bind (:map cr-toggle-map
               ("f" . flycheck-mode)
               ("F" . global-flycheck-mode)))
@@ -632,7 +631,7 @@ remain in fixed pitch for the tags to be aligned."
                              current-location (cadr word) (caddr word)
                              current-location))))
 
-  :hook ((org-mode-hook . flyspell-mode)
+  :hook ((org-mode . flyspell-mode)
          (prog-mode-hook . flyspell-prog-mode))
   :bind ((:map flyspell-mode-map ("C-." . nil))
          (:map cr-toggle-map ("z" . flyspell-mode))
@@ -710,7 +709,7 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package hl-line
   :straight (:type built-in)
-  :hook ((text-mode-hook
+  :hook ((text-mode
           prog-mode-hook
           dired-mode-hook
           elfeed-show-mode-hook
@@ -775,21 +774,21 @@ remain in fixed pitch for the tags to be aligned."
   (lsp-enable-on-type-formatting nil)
   (lsp-modeline-code-actions-enable nil)
   (lsp-modeline-diagnostics-enable nil)
-  :hook (lsp-mode-hook . lsp-enable-which-key-integration)
+  :hook (lsp-mode . lsp-enable-which-key-integration)
   :bind (:map cr-toggle-map ("u" . lsp)))
 
 (use-package lsp-mode
   :if (executable-find "clang")
   :custom (lsp-clients-clangd-args '("--header-insertion=never"))
-  :hook (c-mode-common-hook . lsp-deferred))
+  :hook (c-mode-common . lsp-deferred))
 
 (use-package lsp-mode
   :if (executable-find "gopls")
-  :hook (go-mode-hook . lsp-deferred))
+  :hook (go-mode . lsp-deferred))
 
 (use-package lsp-mode
   :if (executable-find "npm")
-  :hook ((dockerfile-mode-hook
+  :hook ((dockerfile-mode
           html-mode-hook
           php-mode-hook
           sh-mode-hook) . lsp-deferred))
@@ -817,7 +816,7 @@ remain in fixed pitch for the tags to be aligned."
   :custom (markdown-fontify-code-blocks-natively t))
 
 (use-package marginalia
-  :hook (after-init-hook . marginalia-mode))
+  :hook (after-init . marginalia-mode))
 
 (use-package nginx-mode)
 
@@ -960,13 +959,13 @@ remain in fixed pitch for the tags to be aligned."
   :bind (:map cr-notes-map
               ("y" . org-download-yank)
               ("Y" . org-download-screenshot))
-  :hook ((org-mode-hook dired-mode-hook) . org-download-enable))
+  :hook ((org-mode dired-mode) . org-download-enable))
 
 (use-package org-indent
   :straight (:type built-in)
   :diminish
   :custom (org-indent-indentation-per-level 1)
-  :hook (org-mode-hook . org-indent-mode))
+  :hook (org-mode . org-indent-mode))
 
 (use-package org-noter
   :after (:any org pdf-view)
@@ -997,7 +996,7 @@ remain in fixed pitch for the tags to be aligned."
 (use-package outline
   :straight (:type built-in)
   :diminish outline-minor-mode
-  :hook (prog-mode-hook . outline-minor-mode)
+  :hook (prog-mode . outline-minor-mode)
   :bind (:map cr-toggle-map ("o" . outline-minor-mode)))
 
 (use-package outline-magic
@@ -1030,7 +1029,7 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package php-mode :mode ("\\.php\\'"))
 
-(use-package prescient :hook (after-init-hook . prescient-persist-mode))
+(use-package prescient :hook (after-init . prescient-persist-mode))
 
 (use-package proced
   :straight (:type built-in)
@@ -1084,7 +1083,7 @@ remain in fixed pitch for the tags to be aligned."
   (with-eval-after-load 'no-littering
     (add-to-list 'recentf-exclude no-littering-var-directory)
     (add-to-list 'recentf-exclude no-littering-etc-directory))
-  :hook (after-init-hook . recentf-mode))
+  :hook (after-init . recentf-mode))
 
 (use-package replace
   :straight (:type built-in)
@@ -1131,18 +1130,18 @@ remain in fixed pitch for the tags to be aligned."
   (add-to-list 'savehist-additional-variables 'regexp-search-ring)
   (add-to-list 'savehist-additional-variables 'register-alist)
   (add-to-list 'savehist-additional-variables 'compilation-command)
-  :hook (after-init-hook . savehist-mode))
+  :hook (after-init . savehist-mode))
 
 (use-package saveplace
   :straight (:type built-in)
-  :hook (after-init-hook . save-place-mode))
+  :hook (after-init . save-place-mode))
 
 (use-package selectrum
-  :hook (after-init-hook . selectrum-mode)
+  :hook (after-init . selectrum-mode)
   :bind ("C-c r" . selectrum-repeat))
 
 (use-package selectrum-prescient
-  :hook (selectrum-mode-hook . selectrum-prescient-mode))
+  :hook (selectrum-mode . selectrum-prescient-mode))
 
 (use-package server
   :straight (:type built-in)
@@ -1181,7 +1180,7 @@ remain in fixed pitch for the tags to be aligned."
     (electric-pair-mode -1)
     (show-smartparens-mode 1))
   (add-hook 'smartparens-mode-hook 'cr-smartparens-settings)
-  :hook (prog-mode-hook . smartparens-mode)
+  :hook (prog-mode . smartparens-mode)
   :bind ((:map smartparens-mode-map
                ([remap forward-sexp]   . sp-forward-sexp)
                ([remap backward-sexp]  . sp-backward-sexp)
@@ -1215,7 +1214,7 @@ remain in fixed pitch for the tags to be aligned."
 (use-package so-long
   :if (>= emacs-major-version 27)
   :straight (:type built-in)
-  :hook (after-init-hook . global-so-long-mode))
+  :hook (after-init . global-so-long-mode))
 
 (use-package sort
   :straight (:type built-in)
@@ -1286,13 +1285,13 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package winner
   :straight (:type built-in)
-  :hook (after-init-hook . winner-mode)
+  :hook (after-init . winner-mode)
   :bind (("C-x u" . winner-undo)
          ("C-x U" . winner-redo)))
 
 (use-package which-key
   :diminish
-  :hook (after-init-hook . which-key-mode)
+  :hook (after-init . which-key-mode)
   :bind (:map cr-toggle-map ("?" . which-key-mode)))
 
 (use-package whitespace
@@ -1305,10 +1304,10 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package ws-butler
   :diminish
-  :hook (prog-mode-hook . ws-butler-mode))
+  :hook (prog-mode . ws-butler-mode))
 
 (use-package yaml-mode :mode ("\\.ya?ml\\'"))
 
 (use-package yasnippet
   :diminish yas-minor-mode
-  :hook (after-init-hook . yas-global-mode))
+  :hook (after-init . yas-global-mode))
