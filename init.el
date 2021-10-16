@@ -840,7 +840,6 @@ remain in fixed pitch for the tags to be aligned."
 (use-package nginx-mode)
 
 (use-package nov
-  :commands nov-mode
   :custom (nov-text-width 70)
   :config
   (defun cr-nov-settings ()
@@ -1069,9 +1068,6 @@ remain in fixed pitch for the tags to be aligned."
 (use-package projectile
   :diminish
   :defer 10
-  :commands (projectile-find-file
-             projectile-ripgrep
-             projectile-switch-project)
   :custom
   (projectile-enable-caching nil)
   (projectile-indexing-method 'alien)
@@ -1196,7 +1192,6 @@ remain in fixed pitch for the tags to be aligned."
           markdown-mode-hook) . auto-fill-mode))
 
 (use-package smartparens
-  :commands (smartparens-mode smartparens-scrict-mode)
   :diminish
   :config
   (require 'smartparens-config)
