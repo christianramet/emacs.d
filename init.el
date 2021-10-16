@@ -263,7 +263,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map cr-toggle-map ("c" . company-mode))))
 
 (use-package company-prescient
-  :after (company prescient)
+  :after (:all company prescient)
   :hook (company-mode-hook . company-prescient-mode))
 
 (use-package compile
@@ -440,8 +440,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package dired-x
   :straight (:type built-in)
-  :demand
-  :after dired)
+  :after dired
+  :demand)
 
 (use-package display-line-numbers
   :straight (:type built-in)
