@@ -499,6 +499,15 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
   (add-hook 'emacs-lisp-mode-hook 'cr-emacs-lisp-settings))
 
+(use-package embark
+  :bind (("C-." . embark-act)
+         ("M-." . embark-dwim)
+         ("C-h B" . embark-bindings)))
+
+(use-package embark-consult
+  :after (embark consult)
+  :demand)
+
 (use-package eshell
   :straight (:type built-in)
   :custom
