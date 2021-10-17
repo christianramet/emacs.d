@@ -1176,8 +1176,8 @@ remain in fixed pitch for the tags to be aligned."
                ("V" . toggle-truncate-lines)
                ("q" . auto-fill-mode)))
   :hook
-  ((org-mode-hook markdown-mode-hook) . visual-line-mode)
-  ((org-mode-hook markdown-mode-hook) . auto-fill-mode))
+  ((org-mode markdown-mode) . visual-line-mode)
+  ((org-mode markdown-mode) . auto-fill-mode))
 
 (use-package smartparens
   :diminish
