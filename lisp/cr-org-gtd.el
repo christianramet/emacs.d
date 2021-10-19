@@ -5,9 +5,10 @@
   (expand-file-name file org-directory))
 
 (custom-set-variables
- '(org-agenda-files (list (cr-org-expand "journal.org")
+ '(org-agenda-files (list (cr-org-expand "calendar.org")
+                          (cr-org-expand "journal.org")
                           (cr-org-expand "todos.org")
-                          (cr-org-expand "calendar.org")
+                          (cr-org-expand "work-journal.org")
                           (cr-org-expand "work-todos.org")))
 
  '(org-agenda-text-search-extra-files
@@ -43,6 +44,11 @@
 
      ("j" "Journal" entry
       (file+olp+datetree "journal.org")
+      "* %?\n%U\n"
+      :empty-lines 1)
+
+     ("w" "Work journal" entry
+      (file+olp+datetree "work-journal.org")
       "* %?\n%U\n"
       :empty-lines 1)
 
