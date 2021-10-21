@@ -1031,7 +1031,11 @@ remain in fixed pitch for the tags to be aligned."
   (add-hook 'pdf-view-mode-hook 'pdf-annot-minor-mode)
   (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
   (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
-  (define-key pdf-view-mode-map (kbd "d") 'pdf-annot-delete))
+  (define-key pdf-view-mode-map (kbd "d") 'pdf-annot-delete)
+  (define-key pdf-view-mode-map (kbd "n") 'pdf-view-next-line-or-next-page)
+  (define-key pdf-view-mode-map (kbd "p") 'pdf-view-previous-line-or-previous-page)
+  (define-key pdf-view-mode-map (kbd "M-n") 'pdf-view-next-page-command)
+  (define-key pdf-view-mode-map (kbd "M-p") 'pdf-view-previous-page-command))
 
 (use-package php-mode :mode ("\\.php\\'"))
 
