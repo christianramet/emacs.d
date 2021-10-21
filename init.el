@@ -212,6 +212,14 @@
   (avy-all-windows-alt nil)
   :bind* ("C-'" . avy-goto-char-timer))
 
+(use-package bibtex
+  :config
+  (defun cr-bibtex-settings ()
+    ;; Fix for bibtex-mode initialization
+    ;; https://emacs.stackexchange.com/questions/46691/initialization-of-bibtex-package
+    (bibtex-set-dialect 'biblatex))
+  :hook (bibtex-mode . cr-bibtex-settings))
+
 (use-package browse-url
   :straight (:type built-in)
   :custom
