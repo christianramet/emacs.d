@@ -1064,8 +1064,7 @@ remain in fixed pitch for the tags to be aligned."
                 indicate-buffer-boundaries t))
   (add-hook 'prog-mode-hook 'cr-prog-mode-settings))
 
-(use-package project
-  :bind-keymap ("C-c p" . project-prefix-map))
+(use-package project)
 
 (use-package python-mode)
 
