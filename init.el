@@ -277,11 +277,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map cr-file-map ("m" . compile)))
 
 (use-package consult
-  :custom (consult-locate-args "locate --ignore-case --regex")
-  :config
-  (with-eval-after-load 'projectile
-    (customize-set-variable
-     'consult-project-root-function #'projectile-project-root))
+  :custom
+  (consult-locate-args "locate --ignore-case --regex")
+  (consult-project-root-function #'vc-root-dir)
   :bind (([remap apropos-command] . consult-apropos)
          ([remap bookmark-jump] . consult-bookmark)
          ([remap goto-line] . consult-goto-line)
@@ -1066,26 +1064,8 @@ remain in fixed pitch for the tags to be aligned."
                 indicate-buffer-boundaries t))
   (add-hook 'prog-mode-hook 'cr-prog-mode-settings))
 
-(use-package projectile
-  :diminish
-  :defer 10
-  :custom
-  (projectile-enable-caching nil)
-  (projectile-indexing-method 'alien)
-  (projectile-mode-line nil)
-  (projectile-switch-project-action 'projectile-dired)
-  (projectile-project-search-path
-   (list "~" "~/git"
-         (expand-file-name "straight/repos" user-emacs-directory)))
-  :config
-  (projectile-mode 1)
-  (defun cr-projectile-refresh ()
-    (interactive)
-    (projectile-cleanup-known-projects)
-    (projectile-discover-projects-in-search-path)
-    (message "Projectile refresh: done"))
-  :bind-keymap ("C-c p" . projectile-command-map)
-  :bind (:map projectile-command-map ("." . cr-projectile-refresh)))
+(use-package project
+  :bind-keymap ("C-c p" . project-prefix-map))
 
 (use-package python-mode)
 
