@@ -6,6 +6,8 @@
 (setq default-directory "~/")
 (defconst cr-data-directory "~/nextcloud")
 (defconst cr-org-directory (expand-file-name "org" cr-data-directory))
+(defconst cr-org-bibliography
+  (directory-files (expand-file-name "bibliography" cr-org-directory) t ".*.bib"))
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
 (defconst system-is-windows-p (eq system-type 'windows-nt))
