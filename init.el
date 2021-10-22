@@ -901,7 +901,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-src-preserve-indentation t)
   (org-src-tab-acts-natively t)
   (org-src-window-setup 'current-window)
-  (org-startup-folded t)
+  (org-startup-folded nil)
   (org-use-speed-commands t)
   :config
   (with-eval-after-load 'ox (require 'ox-md nil 'noerror))
