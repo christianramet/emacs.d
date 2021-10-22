@@ -613,8 +613,8 @@ remain in fixed pitch for the tags to be aligned."
         (variable-pitch-mode 1))))
 
   :hook
-  (markdown-mode-hook . variable-pitch-mode)
-  (org-mode-hook . variable-pitch-mode-avoid-org-agenda-files)
+  (markdown-mode . variable-pitch-mode)
+  (org-mode . variable-pitch-mode-avoid-org-agenda-files)
   :bind (:map cr-toggle-map ("p" . variable-pitch-mode)))
 
 (use-package ffap
@@ -646,7 +646,7 @@ remain in fixed pitch for the tags to be aligned."
                              current-location))))
 
   :hook ((org-mode . flyspell-mode)
-         (prog-mode-hook . flyspell-prog-mode))
+         (prog-mode . flyspell-prog-mode))
   :bind ((:map flyspell-mode-map ("C-." . nil))
          (:map cr-toggle-map ("z" . flyspell-mode))
          (:map cr-spell-map
@@ -724,13 +724,13 @@ remain in fixed pitch for the tags to be aligned."
 (use-package hl-line
   :straight (:type built-in)
   :hook ((text-mode
-          prog-mode-hook
-          dired-mode-hook
-          elfeed-show-mode-hook
-          occur-mode-hook
-          org-agenda-mode-hook
-          display-time-world-mode-hook
-          profiler-report-mode-hook) . hl-line-mode)
+          prog-mode
+          dired-mode
+          elfeed-show-mode
+          occur-mode
+          org-agenda-mode
+          display-time-world-mode
+          profiler-report-mode) . hl-line-mode)
   :bind (:map cr-toggle-map
               ("h" . hl-line-mode)
               ("H" . global-hl-line-mode)))
@@ -803,9 +803,9 @@ remain in fixed pitch for the tags to be aligned."
 (use-package lsp-mode
   :if (executable-find "npm")
   :hook ((dockerfile-mode
-          html-mode-hook
-          php-mode-hook
-          sh-mode-hook) . lsp-deferred))
+          html-mode
+          php-mode
+          sh-mode) . lsp-deferred))
 
 (use-package lsp-ui
   :custom
