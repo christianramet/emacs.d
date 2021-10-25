@@ -871,8 +871,8 @@ remain in fixed pitch for the tags to be aligned."
   :demand
   :custom
   (bibtex-actions-bibliography cr-bibliography)
-  (bibtex-actions-library-paths cr-library)
-  (bibtex-actions-notes-paths cr-notes)
+  (bibtex-actions-library-paths (list cr-library))
+  (bibtex-actions-notes-paths (list cr-notes))
   (org-cite-global-bibliography cr-bibliography)
   (org-cite-insert-processor 'oc-bibtex-actions)
   (org-cite-follow-processor 'oc-bibtex-actions)
