@@ -6,8 +6,10 @@
 (setq default-directory "~/")
 (defconst cr-data-directory "~/nextcloud")
 (defconst cr-org-directory (expand-file-name "org" cr-data-directory))
-(defconst cr-org-bibliography
+(defconst cr-bibliography
   (directory-files (expand-file-name "bibliography" cr-org-directory) t ".*.bib"))
+(defconst cr-library (expand-file-name "library" cr-org-directory))
+(defconst cr-notes (expand-file-name "notes" cr-org-directory))
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
 (defconst system-is-windows-p (eq system-type 'windows-nt))
@@ -852,6 +854,28 @@ remain in fixed pitch for the tags to be aligned."
 (use-package ob-async
   :after org
   :demand)
+
+(use-package oc-bibtex-actions
+  :straight bibtex-completion
+  :straight bibtex-actions
+  :straight citeproc
+  :after (:any org markdown-mode latex-mode python-mode rst-mode)
+  :demand
+  :custom
+  (bibtex-actions-bibliography cr-bibliography)
+  (bibtex-actions-library-paths cr-library)
+  (bibtex-actions-notes-paths cr-notes)
+  (org-cite-global-bibliography cr-bibliography)
+  (org-cite-insert-processor 'oc-bibtex-actions)
+  (org-cite-follow-processor 'oc-bibtex-actions)
+  (org-cite-activate-processor 'oc-bibtex-actions)
+  :config
+  (with-eval-after-load 'org (require 'oc))
+  (setq bibtex-completion-format-citation-functions
+        (assq-delete-all 'org-mode bibtex-completion-format-citation-functions))
+  (add-to-list 'bibtex-completion-format-citation-functions
+               '(org-mode . bibtex-completion-format-citation-org-cite))
+  :bind (:map cr-notes-map ("c" . bibtex-actions-insert-citation)))
 
 (use-package olivetti
   :diminish
