@@ -284,6 +284,14 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (consult-locate-args "locate --ignore-case --regex")
   (consult-project-root-function #'vc-root-dir)
+  :init
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
+  :config
+  (consult-customize
+   consult-theme
+   :preview-key '(:debounce 0.2 any))
   :bind (([remap apropos-command] . consult-apropos)
          ([remap bookmark-jump] . consult-bookmark)
          ([remap goto-line] . consult-goto-line)
