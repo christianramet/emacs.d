@@ -863,9 +863,9 @@ remain in fixed pitch for the tags to be aligned."
   :after org
   :demand)
 
-(use-package oc-bibtex-actions
-  :straight bibtex-completion
+(use-package bibtex-actions
   :straight bibtex-actions
+  :straight bibtex-completion
   :straight citeproc
   :after (:any org markdown-mode latex-mode python-mode rst-mode)
   :demand
@@ -878,11 +878,13 @@ remain in fixed pitch for the tags to be aligned."
   (org-cite-follow-processor 'oc-bibtex-actions)
   (org-cite-activate-processor 'oc-bibtex-actions)
   :config
-  (with-eval-after-load 'org (require 'oc))
-  (setq bibtex-completion-format-citation-functions
-        (assq-delete-all 'org-mode bibtex-completion-format-citation-functions))
-  (add-to-list 'bibtex-completion-format-citation-functions
-               '(org-mode . bibtex-completion-format-citation-org-cite))
+  (with-eval-after-load 'org
+    (require 'oc)
+    (require 'oc-bibtex-actions)
+    (setq bibtex-completion-format-citation-functions
+          (assq-delete-all 'org-mode bibtex-completion-format-citation-functions))
+    (add-to-list 'bibtex-completion-format-citation-functions
+                 '(org-mode . bibtex-completion-format-citation-org-cite)))
   :bind (:map cr-notes-map ("c" . bibtex-actions-insert-citation)))
 
 (use-package olivetti
