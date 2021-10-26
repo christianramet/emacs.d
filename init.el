@@ -224,6 +224,28 @@
     (bibtex-set-dialect 'biblatex))
   :hook (bibtex-mode . cr-bibtex-settings))
 
+(use-package bibtex-actions
+  :straight bibtex-actions
+  :straight bibtex-completion
+  :straight citeproc
+  :after (:any org markdown-mode latex-mode python-mode rst-mode)
+  :demand
+  :custom
+  (bibtex-actions-bibliography cr-bibliography)
+  (bibtex-actions-library-paths (list cr-library))
+  (bibtex-actions-notes-paths (list cr-notes))
+  (org-cite-global-bibliography cr-bibliography)
+  (org-cite-insert-processor 'oc-bibtex-actions)
+  (org-cite-follow-processor 'oc-bibtex-actions)
+  (org-cite-activate-processor 'oc-bibtex-actions)
+  :config
+  (with-eval-after-load 'org
+    (require 'oc)
+    (require 'oc-bibtex-actions))
+  (setf (alist-get'org-mode bibtex-completion-format-citation-functions)
+        'bibtex-completion-format-citation-org-cite)
+  :bind (:map cr-notes-map ("c" . bibtex-actions-insert-citation)))
+
 (use-package browse-url
   :straight (:type built-in)
   :custom
@@ -862,30 +884,6 @@ remain in fixed pitch for the tags to be aligned."
 (use-package ob-async
   :after org
   :demand)
-
-(use-package bibtex-actions
-  :straight bibtex-actions
-  :straight bibtex-completion
-  :straight citeproc
-  :after (:any org markdown-mode latex-mode python-mode rst-mode)
-  :demand
-  :custom
-  (bibtex-actions-bibliography cr-bibliography)
-  (bibtex-actions-library-paths (list cr-library))
-  (bibtex-actions-notes-paths (list cr-notes))
-  (org-cite-global-bibliography cr-bibliography)
-  (org-cite-insert-processor 'oc-bibtex-actions)
-  (org-cite-follow-processor 'oc-bibtex-actions)
-  (org-cite-activate-processor 'oc-bibtex-actions)
-  :config
-  (with-eval-after-load 'org
-    (require 'oc)
-    (require 'oc-bibtex-actions)
-    (setq bibtex-completion-format-citation-functions
-          (assq-delete-all 'org-mode bibtex-completion-format-citation-functions))
-    (add-to-list 'bibtex-completion-format-citation-functions
-                 '(org-mode . bibtex-completion-format-citation-org-cite)))
-  :bind (:map cr-notes-map ("c" . bibtex-actions-insert-citation)))
 
 (use-package olivetti
   :diminish
