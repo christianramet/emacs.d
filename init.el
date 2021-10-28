@@ -24,7 +24,7 @@
   (normal-top-level-add-subdirs-to-load-path))
 
 ;;; Modules
-(when init-file-debug (require 'cr-debug))
+(when init-file-debug (require 'cr-debug nil 'noerror))
 (require 'cr-private-vars nil 'noerror)
 
 ;;; Bootstrap `straight' and `use-package'
