@@ -1,15 +1,16 @@
 ;;; System tuning
 (setq gc-cons-threshold (* 20 1024 1024)
       read-process-output-max (* 3 1024 1024))
+(defun native-comp-available-p () 'nil) ;; temp fix for org-roam
 
 ;;; Variables and constants
 (setq default-directory "~/")
-(defconst cr-data-directory "~/nextcloud")
-(defconst cr-org-directory (expand-file-name "org" cr-data-directory))
+(defconst cr-data-dir "~/nextcloud")
+(defconst cr-org-dir (expand-file-name "org" cr-data-dir))
+(defconst cr-zet-dir (expand-file-name "zet" cr-org-dir))
 (defconst cr-bibliography
-  (directory-files (expand-file-name "bibliography" cr-org-directory) t ".*.bib"))
-(defconst cr-library (expand-file-name "library" cr-org-directory))
-(defconst cr-notes (expand-file-name "notes" cr-org-directory))
+  (directory-files (expand-file-name "bibliography" cr-org-dir) t ".*.bib"))
+(defconst cr-library (expand-file-name "library" cr-org-dir))
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
 (defconst system-is-windows-p (eq system-type 'windows-nt))
@@ -231,9 +232,12 @@
   :after (:any org markdown-mode latex-mode python-mode rst-mode)
   :demand
   :custom
+  (bibtex-completion-bibliography cr-bibliography)
   (bibtex-actions-bibliography cr-bibliography)
   (bibtex-actions-library-paths (list cr-library))
-  (bibtex-actions-notes-paths (list cr-notes))
+  (bibtex-actions-notes-paths (list cr-zet-dir))
+  (bibtex-actions-default-action 'bibtex-actions-open-notes)
+  (bibtex-actions-file-note-org-include '(org-id org-roam-ref))
   (org-cite-global-bibliography cr-bibliography)
   (org-cite-insert-processor 'oc-bibtex-actions)
   (org-cite-follow-processor 'oc-bibtex-actions)
@@ -425,7 +429,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package deft
   :custom
-  (deft-directory cr-org-directory)
+  (deft-directory cr-org-dir)
   (deft-recursive t)
   (deft-extensions '("org" "md" "txt"))
   (deft-default-extension "org")
@@ -913,7 +917,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-confirm-babel-evaluate nil)
   (org-ctrl-k-protect-subtree t)
   (org-deadline-warning-days 14)
-  (org-directory cr-org-directory)
+  (org-directory cr-org-dir)
   (org-ellipsis " ▼")
   (org-fontify-done-headline t)
   (org-hide-emphasis-markers t)
@@ -1136,7 +1140,7 @@ remain in fixed pitch for the tags to be aligned."
     :query ask
     :format regexp
     :files "org"
-    :dir cr-org-directory
+    :dir cr-org-dir
     :flags ("--ignore-case")
     :menu ("Custom" "o" "Org"))
   :bind ((:map cr-search-map ("g" . rg-menu))
