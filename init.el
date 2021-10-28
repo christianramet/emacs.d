@@ -730,12 +730,6 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package go-mode :mode "\\.go\\'")
 
-(use-package gitattributes-mode)
-
-(use-package gitconfig-mode)
-
-(use-package gitignore-mode)
-
 (use-package git-gutter
   :diminish
   :bind ((:map cr-toggle-map
@@ -749,6 +743,8 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package git-link
   :bind (:map cr-git-map ("y" . git-link)))
+
+(use-package git-modes)
 
 (use-package git-timemachine
   :bind (:map cr-git-map ("t" . git-timemachine)))
