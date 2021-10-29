@@ -228,7 +228,6 @@
 (use-package bibtex-actions
   :straight bibtex-actions
   :straight bibtex-completion
-  :straight citeproc
   :after (:any org markdown-mode latex-mode python-mode rst-mode)
   :demand
   :custom
