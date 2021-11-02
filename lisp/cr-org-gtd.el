@@ -42,6 +42,11 @@
       "* %i%?\n"
       :empty-lines 1)
 
+     ("b" "Bookmark" entry
+      (file "bookmarks.org")
+      "* %?\n%u\n%x\n"
+      :empty-lines 1)
+
      ("j" "Journal" entry
       (file+olp+datetree "journal.org")
       "* %?\n%U\n"
