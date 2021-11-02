@@ -904,6 +904,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-agenda-tags-todo-honor-ignore-options t)
   (org-agenda-todo-ignore-scheduled 'future)
   (org-agenda-window-setup 'current-window)
+  (org-attach-dir-relative t)
   (org-blank-before-new-entry '((heading . auto) (plain-list-item . auto)))
   (org-catch-invisible-edits 'show)
   (org-clock-continuously nil)
