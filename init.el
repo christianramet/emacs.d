@@ -8,10 +8,10 @@
 (defconst cr-data-dir "~/nextcloud")
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
 (defconst cr-notes-dir (expand-file-name "notes" cr-org-dir))
+(defconst cr-library (expand-file-name "library" cr-org-dir))
 (defconst cr-zet-dir (expand-file-name "zet" cr-org-dir))
 (defconst cr-bibliography
   (directory-files (expand-file-name "bibliography" cr-org-dir) t ".*.bib"))
-(defconst cr-library (expand-file-name "library" cr-org-dir))
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
 (defconst system-is-windows-p (eq system-type 'windows-nt))
@@ -227,30 +227,33 @@
     (bibtex-set-dialect 'biblatex))
   :hook (bibtex-mode . cr-bibtex-settings))
 
-(use-package bibtex-actions
-  :straight bibtex-actions
-  :straight bibtex-completion
+(use-package bibtex-completion
+  :custom
+  (bibtex-completion-bibliography cr-bibliography)
+  (bibtex-completion-library-path cr-library)
+  (bibtex-completion-notes-path cr-notes-dir)
+  ;; (bibtex-completion-pdf-field "file")
+  ;; (bibtex-completion-pdf-extension '(".pdf" ".epub" ".jpg" ".png"))
+  :config (setf (alist-get'org-mode bibtex-completion-format-citation-functions)
+                'bibtex-completion-format-citation-org-cite))
+
+(use-package citar
   :after (:any org markdown-mode latex-mode python-mode rst-mode)
   :demand
   :custom
-  (bibtex-completion-bibliography cr-bibliography)
-  (bibtex-actions-bibliography cr-bibliography)
-  (bibtex-actions-library-paths (list cr-library))
-  (bibtex-actions-notes-paths (list cr-zet-dir))
-  (bibtex-actions-default-action 'bibtex-actions-open-notes)
-  (bibtex-actions-file-note-org-include '(org-id org-roam-ref))
-  (bibtex-actions-file-open-prompt t)
+  (citar-bibliography cr-bibliography)
+  (citar-library-paths (list cr-library))
+  (citar-notes-paths (list cr-notes-dir)) ;; https://github.com/bdarcus/citar/issues/358
+  (citar-file-variable "file")
+  (citar-file-extensions '(".pdf" ".org" ".md" ".epub" ".jpg" ".png" ))
+  (citar-default-action 'citar-open-notes)
+  ;; (citar-file-note-org-include '(org-id org-roam-ref))
+  (citar-actions-file-open-prompt t)
   (org-cite-global-bibliography cr-bibliography)
-  (org-cite-insert-processor 'oc-bibtex-actions)
-  (org-cite-follow-processor 'oc-bibtex-actions)
-  (org-cite-activate-processor 'oc-bibtex-actions)
-  :config
-  (with-eval-after-load 'org
-    (require 'oc)
-    (require 'oc-bibtex-actions))
-  (setf (alist-get'org-mode bibtex-completion-format-citation-functions)
-        'bibtex-completion-format-citation-org-cite)
-  :bind (:map cr-notes-map ("c" . bibtex-actions-insert-citation)))
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  :bind (:map cr-notes-map ("c" . citar-insert-citation)))
 
 (use-package browse-url
   :straight (:type built-in)
