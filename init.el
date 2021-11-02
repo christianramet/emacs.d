@@ -460,7 +460,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (defvar cr-dired-sort-base "-lahv")
   (defun cr-dired-sort-by-dir ()
     (interactive)
-    ;; Note: default ls from MacOS does not have this option (use ls from coreutils)
     (dired-sort-other (concat cr-dired-sort-base " --group-directories-first")))
   (defun cr-dired-sort-by-name ()
     (interactive)
