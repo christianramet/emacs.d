@@ -249,10 +249,12 @@
   (citar-default-action 'citar-open-notes)
   ;; (citar-file-note-org-include '(org-id org-roam-ref))
   (citar-actions-file-open-prompt t)
-  (org-cite-global-bibliography cr-bibliography)
-  (org-cite-insert-processor 'citar)
-  (org-cite-follow-processor 'citar)
-  (org-cite-activate-processor 'citar)
+  :config
+  (with-eval-after-load 'org
+    (custom-set-variables '(org-cite-global-bibliography cr-bibliography)
+                          '(org-cite-insert-processor 'citar)
+                          '(org-cite-follow-processor 'citar)
+                          '(org-cite-activate-processor 'citar)))
   :bind (:map cr-notes-map ("c" . citar-insert-citation)))
 
 (use-package browse-url
