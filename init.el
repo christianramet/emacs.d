@@ -239,6 +239,7 @@
   (bibtex-actions-notes-paths (list cr-zet-dir))
   (bibtex-actions-default-action 'bibtex-actions-open-notes)
   (bibtex-actions-file-note-org-include '(org-id org-roam-ref))
+  (bibtex-actions-file-open-prompt t)
   (org-cite-global-bibliography cr-bibliography)
   (org-cite-insert-processor 'oc-bibtex-actions)
   (org-cite-follow-processor 'oc-bibtex-actions)
