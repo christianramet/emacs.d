@@ -481,6 +481,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (define-key dired-mode-map (kbd "[") 'dired-up-directory)
   (define-key dired-mode-map (kbd "e") 'ediff-files))
 
+(use-package dired
+  :if (string= system-type "gnu/linux")
+  :custom (dired-listing-switches "-lahv --group-directories-first"))
+
 (use-package dired-x
   :straight (:type built-in)
   :after dired
