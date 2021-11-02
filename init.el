@@ -219,6 +219,7 @@
   :bind* ("C-'" . avy-goto-char-timer))
 
 (use-package bibtex
+  :straight (:type built-in)
   :config
   (defun cr-bibtex-settings ()
     ;; Fix for bibtex-mode initialization
