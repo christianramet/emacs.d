@@ -458,9 +458,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (put 'dired-find-alternate-file 'disabled nil)
 
   (defvar cr-dired-sort-base "-lahv")
-  (defun cr-dired-sort-by-dir ()
-    (interactive)
-    (dired-sort-other (concat cr-dired-sort-base " --group-directories-first")))
   (defun cr-dired-sort-by-name ()
     (interactive)
     (dired-sort-other (concat cr-dired-sort-base "")))
@@ -471,6 +468,12 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (interactive)
     (dired-sort-other (concat cr-dired-sort-base " -t")))
 
+  (when system-is-linux-p
+    (customize-set-variable 'dired-listing-switches "-lahv --group-directories-first")
+    (defun cr-dired-sort-by-dir ()
+      (interactive)
+      (dired-sort-other (concat cr-dired-sort-base " --group-directories-first"))))
+
   (define-prefix-command 'cr-dired-sort-map)
   (define-key cr-dired-sort-map (kbd "d") 'cr-dired-sort-by-dir)
   (define-key cr-dired-sort-map (kbd "n") 'cr-dired-sort-by-name)
@@ -480,10 +483,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (define-key dired-mode-map (kbd "s") 'cr-dired-sort-map)
   (define-key dired-mode-map (kbd "[") 'dired-up-directory)
   (define-key dired-mode-map (kbd "e") 'ediff-files))
-
-(use-package dired
-  :if (string= system-type "gnu/linux")
-  :custom (dired-listing-switches "-lahv --group-directories-first"))
 
 (use-package dired-x
   :straight (:type built-in)
