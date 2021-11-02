@@ -7,6 +7,7 @@
 (setq default-directory "~/")
 (defconst cr-data-dir "~/nextcloud")
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
+(defconst cr-notes-dir (expand-file-name "notes" cr-org-dir))
 (defconst cr-zet-dir (expand-file-name "zet" cr-org-dir))
 (defconst cr-bibliography
   (directory-files (expand-file-name "bibliography" cr-org-dir) t ".*.bib"))
@@ -1016,20 +1017,19 @@ remain in fixed pitch for the tags to be aligned."
 (use-package org-noter
   :after (:any org pdf-view)
   :custom
-  (org-noter-notes-search-path (list (expand-file-name "notes/" org-directory)))
+  (org-noter-notes-search-path (list cr-notes-dir))
   (org-noter-default-notes-file-names '("notes.org" "main.org"))
   (org-noter-auto-save-last-location t)
   (org-noter-always-create-frame nil)
-  (org-noter-kill-frame-at-session-end nil)
   :bind ("C-c w n" . org-noter))
 
 (use-package org-roam
   :if (executable-find "sqlite3")
   :init (setq org-roam-v2-ack t)
   :custom
-  (org-roam-directory (file-truename (expand-file-name "zet/" org-directory)))
+  (org-roam-directory cr-zet-dir)
   (org-roam-db-gc-threshold (* 100 1024 1024))
-  (org-id-link-to-org-use-id t)
+  (org-roam-completion-everywhere t)
   :config (org-roam-db-autosync-enable)
   :bind (:map cr-notes-map
               ("b" . org-roam-buffer)
