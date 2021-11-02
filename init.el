@@ -228,12 +228,14 @@
   :hook (bibtex-mode . cr-bibtex-settings))
 
 (use-package bibtex-completion
+  :disabled
+  ;; TODO: remove this package once `citar' no longer depends on it.
   :custom
   (bibtex-completion-bibliography cr-bibliography)
   (bibtex-completion-library-path cr-library)
   (bibtex-completion-notes-path cr-notes-dir)
-  ;; (bibtex-completion-pdf-field "file")
-  ;; (bibtex-completion-pdf-extension '(".pdf" ".epub" ".jpg" ".png"))
+  (bibtex-completion-pdf-field "file")
+  (bibtex-completion-pdf-extension '(".pdf" ".org" ".md" ".epub" ".jpg" ".png"))
   :config (setf (alist-get'org-mode bibtex-completion-format-citation-functions)
                 'bibtex-completion-format-citation-org-cite))
 
