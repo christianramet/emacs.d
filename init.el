@@ -798,10 +798,6 @@ remain in fixed pitch for the tags to be aligned."
               ("C->" . indent-rigidly-right-to-tab-stop)
               ("C-<" . indent-rigidly-left-to-tab-stop)))
 
-(use-package kubernetes
-  :if (executable-find "kubectl")
-  :bind (:map cr-app-map ("k" . kubernetes-overview)))
-
 (use-package langtool
   :custom
   (langtool-language-tool-jar
