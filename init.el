@@ -1336,6 +1336,13 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :bind (:map cr-toggle-map ("SPC" . whitespace-mode)))
 
+(use-package windmove
+  :straight (:type built-in)
+  :bind (("C-c H" . windmove-swap-states-left)
+         ("C-c J" . windmove-swap-states-down)
+         ("C-c K" . windmove-swap-states-up)
+         ("C-c L" . windmove-swap-states-right)))
+
 (use-package window
   :straight (:type built-in)
   :bind ("M-o" . other-window))
