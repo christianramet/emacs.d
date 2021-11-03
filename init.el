@@ -1106,7 +1106,10 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package project)
 
-(use-package python-mode)
+(use-package python-mode
+  :custom
+  (python-indent-guess-indent-offset t)
+  (python-indent-guess-indent-offset-verbose nil))
 
 (use-package recentf
   :straight (:type built-in)
