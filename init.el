@@ -325,8 +325,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   :config
   (consult-customize
-   consult-theme
-   :preview-key '(:debounce 0.2 any))
+   consult-bookmark consult-buffer consult-ripgrep consult-theme
+   :preview-key '(:debounce 0.5 any))
   :bind (([remap apropos-command] . consult-apropos)
          ([remap bookmark-jump] . consult-bookmark)
          ([remap goto-line] . consult-goto-line)
