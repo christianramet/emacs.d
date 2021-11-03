@@ -90,7 +90,7 @@
        (stuck "")
        (todo "TODO|WAITING"))
       ((org-agenda-tag-filter '("-@work")))
-      ("agenda-week.pdf"))
+      ("exports/agenda-week.pdf"))
 
      ("w" "Work"
       ((agenda "")
@@ -122,11 +122,11 @@
                 (org-agenda-start-day "-1w")
                 (org-agenda-use-time-grid nil))))
       ((org-agenda-category-filter-preset '("-tickler")))
-      ("agenda-year.pdf"))
+      ("exports/agenda-year.pdf"))
 
      ("g" . "GTD contexts")
      ("gh" "@Home"    tags-todo "@home")
-     ("ge" "@Errands" tags-todo "@errands" nil ("agenda-errands.pdf"))
+     ("ge" "@Errands" tags-todo "@errands" nil ("exports/agenda-errands.pdf"))
      ("go" "@Offline" tags-todo "@offline")
      ("gw" "@Work"    tags-todo "@work")))
 
@@ -159,12 +159,12 @@
 recent than the last export."
   (interactive)
   (require 'f)
-  (let ((default-directory (cr-org-expand "exports"))
-        (last-export-time-file ".last-export-time"))
+  (let ((default-directory org-directory)
+        (last-export-time-file "exports/.last-export-time"))
     (when (catch 'require-update
-      (dolist (agenda-file (org-agenda-files))
-        (when (file-newer-than-file-p agenda-file last-export-time-file)
-          (throw 'require-update t))))
+            (dolist (agenda-file (org-agenda-files))
+              (when (file-newer-than-file-p agenda-file last-export-time-file)
+                (throw 'require-update t))))
       (progn
         (org-store-agenda-views)
         (f-touch last-export-time-file)))))
