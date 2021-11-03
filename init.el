@@ -8,7 +8,7 @@
 (defconst cr-data-dir "~/nextcloud")
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
 (defconst cr-notes-dir (expand-file-name "notes" cr-org-dir))
-(defconst cr-library (expand-file-name "library" cr-org-dir))
+(defconst cr-library (expand-file-name "library" cr-data-dir))
 (defconst cr-zet-dir (expand-file-name "zet" cr-org-dir))
 (defconst cr-bibliography
   (directory-files (expand-file-name "bibliography" cr-org-dir) t ".*.bib"))
