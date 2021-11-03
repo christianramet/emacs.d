@@ -1,7 +1,9 @@
 ;;; System tuning
 (setq gc-cons-threshold (* 20 1024 1024)
       read-process-output-max (* 3 1024 1024))
-(defun native-comp-available-p () 'nil) ;; temp fix for org-roam
+(defun native-comp-available-p ()
+  "Temporary function declaration for `org-roam'."
+  'nil)
 
 ;;; Variables and constants
 (setq default-directory "~/")
@@ -340,6 +342,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("C-c j" . consult-git-grep)
          ("C-c k" . consult-ripgrep)
          ("C-c o" . consult-outline)
+         ("M-g e" . consult-flymake)
          ("M-g m" . consult-mark)
          ("M-g M" . consult-global-mark)
          ("M-s l" . consult-line)
@@ -547,13 +550,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                ("n" . next-line)
                ("p" . previous-line))))
 
-(use-package elisp-mode
-  :straight (:type built-in)
-  :config
-  (defun cr-emacs-lisp-settings ()
-    (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
-  (add-hook 'emacs-lisp-mode-hook 'cr-emacs-lisp-settings))
-
 (use-package embark
   :bind (("C-." . embark-act)
          ("M-." . embark-dwim)
@@ -668,11 +664,11 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :bind ("M-g f" . find-file-at-point))
 
-(use-package flycheck
-  :hook (prog-mode . flycheck-mode)
-  :bind (:map cr-toggle-map
-              ("f" . flycheck-mode)
-              ("F" . global-flycheck-mode)))
+(use-package flymake
+  :straight (:type built-in)
+  :hook (prog-mode . flymake-mode)
+  :bind (("C-c !" . flymake-show-diagnostics-buffer)
+         :map cr-toggle-map ("f" . flymake-mode)))
 
 (use-package flyspell
   :diminish
@@ -1356,3 +1352,6 @@ remain in fixed pitch for the tags to be aligned."
 (use-package yasnippet
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
+
+(provide 'init)
+;;; init.el ends here
