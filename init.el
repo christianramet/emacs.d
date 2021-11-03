@@ -174,6 +174,10 @@
            ("C-c z" . cr-spell-map))
 
 ;;; Packages
+(use-package abbrev
+  :straight (:type built-in)
+  :diminish)
+
 (use-package ag :if (executable-find "ag"))
 
 (use-package align
@@ -1350,6 +1354,7 @@ remain in fixed pitch for the tags to be aligned."
 (use-package yaml-mode :mode ("\\.ya?ml\\'"))
 
 (use-package yasnippet
+  ;; TODO: replace with abbrev
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
 
