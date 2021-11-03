@@ -1,9 +1,6 @@
 ;;; System tuning
 (setq gc-cons-threshold (* 20 1024 1024)
       read-process-output-max (* 3 1024 1024))
-(defun native-comp-available-p ()
-  "Temporary function declaration for `org-roam'."
-  'nil)
 
 ;;; Variables and constants
 (setq default-directory "~/")
@@ -1028,22 +1025,6 @@ remain in fixed pitch for the tags to be aligned."
   (org-noter-auto-save-last-location t)
   (org-noter-always-create-frame nil)
   :bind ("C-c w n" . org-noter))
-
-(use-package org-roam
-  :if (executable-find "sqlite3")
-  :init (setq org-roam-v2-ack t)
-  :custom
-  (org-roam-directory cr-zet-dir)
-  (org-roam-db-gc-threshold (* 100 1024 1024))
-  (org-roam-completion-everywhere t)
-  :config (org-roam-db-autosync-enable)
-  :bind (:map cr-notes-map
-              ("b" . org-roam-buffer)
-              ("f" . org-roam-node-find)
-              ("i" . org-roam-node-insert)
-              ("n" . org-roam-capture)
-              ("r" . org-roam-node-random)
-              ("t" . org-roam-buffer-toggle)))
 
 (use-package outline
   :straight (:type built-in)
