@@ -527,9 +527,13 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
               ("d" . ediff-buffers)
               ("D" . ediff-show-registry)))
 
-(use-package eldoc
-  :straight (:type built-in)
-  :diminish)
+(use-package eglot
+  :straight eglot
+  :straight project
+  :straight xref
+  :straight eldoc)
+
+(use-package eldoc :diminish)
 
 (use-package elfeed
   :init
@@ -811,43 +815,6 @@ remain in fixed pitch for the tags to be aligned."
               ("n" . langtool-goto-next-error)
               ("p" . langtool-goto-previous-error)
               ("q" . langtool-check-done)))
-
-(use-package lsp-mode
-  :custom
-  (lsp-auto-configure t)
-  (lsp-auto-guess-root t)
-  (lsp-keymap-prefix "C-c u")
-  (lsp-idle-delay 0.5)
-  (lsp-headerline-breadcrumb-enable nil)
-  (lsp-enable-indentation nil)
-  (lsp-enable-on-type-formatting nil)
-  (lsp-modeline-code-actions-enable nil)
-  (lsp-modeline-diagnostics-enable nil)
-  :hook (lsp-mode . lsp-enable-which-key-integration)
-  :bind (:map cr-toggle-map ("u" . lsp)))
-
-(use-package lsp-mode
-  :if (executable-find "clang")
-  :custom (lsp-clients-clangd-args '("--header-insertion=never"))
-  :hook (c-mode-common . lsp-deferred))
-
-(use-package lsp-mode
-  :if (executable-find "gopls")
-  :hook (go-mode . lsp-deferred))
-
-(use-package lsp-mode
-  :if (executable-find "npm")
-  :hook ((dockerfile-mode
-          html-mode
-          php-mode
-          sh-mode) . lsp-deferred))
-
-(use-package lsp-ui
-  :custom
-  (lsp-ui-doc-enable nil)
-  (lsp-ui-imenu-enable t)
-  (lsp-ui-peek-enable nil)
-  (lsp-ui-sideline-enable nil))
 
 (use-package magit
   :bind (:map cr-git-map
