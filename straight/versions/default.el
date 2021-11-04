@@ -16,7 +16,7 @@
  ("dockerfile-mode" . "5db94549ce8b000ae35adf511c820ad228178052")
  ("eglot" . "9665359bb6bfb6a96b0c3b307d4abea9fcbff7a5")
  ("el-get" . "960f3fb962c35d3196bab20b2a3f6d6228119277")
- ("eldoc" . "f03074fbaa99d5bcd3375c75231c8caa5ce6ff51")
+ ("eldoc" . "f03074fbaa99d5bcd3375c75231c8caa5ce6ff51") ;; pinned
  ("elfeed" . "162d7d545ed41c27967d108c04aa31f5a61c8e16")
  ("emacs-async" . "5d365ffc6a2c2041657eaa5d762c395ea748c8d7")
  ("emacs-hcl-mode" . "e4d9eef631e8a386341ae8f94f7c2579586e65b5")

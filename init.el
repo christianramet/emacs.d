@@ -1306,6 +1306,3 @@ remain in fixed pitch for the tags to be aligned."
   ;; TODO: replace with abbrev
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
-
-(provide 'init)
-;;; init.el ends here
