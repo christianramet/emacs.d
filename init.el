@@ -670,7 +670,6 @@ remain in fixed pitch for the tags to be aligned."
   :bind ("M-g f" . find-file-at-point))
 
 (use-package flymake
-  :straight (:type built-in)
   :hook (prog-mode . flymake-mode)
   :bind (("C-c !" . flymake-show-buffer-diagnostics)
          :map cr-toggle-map ("f" . flymake-mode)))
