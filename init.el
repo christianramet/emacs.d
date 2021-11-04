@@ -526,11 +526,15 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
               ("d" . ediff-buffers)
               ("D" . ediff-show-registry)))
 
+(use-package eglot)
+
 (use-package eglot
-  :straight eglot
-  :straight project
-  :straight xref
-  :straight eldoc)
+  :if (executable-find "gopls")
+  :hook (go-mode . eglot-ensure))
+
+(use-package eglot
+  :if (or (executable-find "pylsp") ((executable-find "pyls")))
+  :hook (python-mode . eglot-ensure))
 
 (use-package eldoc :diminish)
 
