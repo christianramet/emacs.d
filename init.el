@@ -853,7 +853,7 @@ remain in fixed pitch for the tags to be aligned."
   :custom
   (olivetti-body-width (+ fill-column 30))
   (olivetti-minimum-body-width fill-column)
-  :bind (:map cr-toggle-map ("O" . olivetti-mode)))
+  :bind (:map cr-toggle-map ("o" . olivetti-mode)))
 
 (use-package org
   :custom
@@ -990,7 +990,7 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :diminish outline-minor-mode
   :hook (prog-mode . outline-minor-mode)
-  :bind (:map cr-toggle-map ("o" . outline-minor-mode)))
+  :bind (:map cr-toggle-map ("O" . outline-minor-mode)))
 
 (use-package outline-magic
   :bind (:map outline-minor-mode-map ("<C-tab>" . outline-cycle)))
