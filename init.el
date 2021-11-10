@@ -792,6 +792,8 @@ remain in fixed pitch for the tags to be aligned."
               ("C->" . indent-rigidly-right-to-tab-stop)
               ("C-<" . indent-rigidly-left-to-tab-stop)))
 
+(use-package json-mode)
+
 (use-package langtool
   :custom
   (langtool-language-tool-jar
@@ -900,6 +902,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-src-tab-acts-natively t)
   (org-src-window-setup 'current-window)
   (org-startup-folded nil)
+  (org-startup-with-inline-images t)
   (org-use-speed-commands t)
   :config
   (with-eval-after-load 'ox (require 'ox-md nil 'noerror))
