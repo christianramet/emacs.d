@@ -2,9 +2,15 @@
 (require 'cr-hide-mode-line-mode)
 
 (defvar cr-focus-mode-hook nil)
+
 (define-minor-mode cr-focus-mode
   "Toggle focus mode."
   :init-value nil
+  :keymap (let ((map (make-sparse-keymap)))
+            ;; Exit cr-focus-mode when splitting window
+            (define-key map [remap split-window-below] 'cr-focus-mode)
+            (define-key map [remap command split-window-right] 'cr-focus-mode)
+            map)
   :global nil
   (if cr-focus-mode
       (progn
