@@ -1048,7 +1048,10 @@ remain in fixed pitch for the tags to be aligned."
                 indicate-buffer-boundaries t))
   (add-hook 'prog-mode-hook 'cr-prog-mode-settings))
 
-(use-package project)
+(use-package project
+  :bind (:map project-prefix-map
+              ("=" . project-remember-projects-under)
+              ("-" . project-forget-project)))
 
 (use-package python-mode
   :custom
