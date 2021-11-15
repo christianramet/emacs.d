@@ -13,7 +13,6 @@
 ;; Homepage: ${7:homepage}
 ;; Keywords: ${8:keywords}
 
-${9:
 ;; This file is not part of GNU Emacs
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -28,7 +27,6 @@ ${9:
 
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
-}
 
 ;;; Commentary:
 

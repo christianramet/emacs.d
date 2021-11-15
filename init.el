@@ -1304,6 +1304,5 @@ remain in fixed pitch for the tags to be aligned."
 (use-package yaml-mode :mode ("\\.ya?ml\\'"))
 
 (use-package yasnippet
-  ;; TODO: replace with abbrev
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
