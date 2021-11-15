@@ -3,8 +3,8 @@ alias dnf {dnf -q $*}
 alias ff {find-file $1}
 alias find-empty-dirs {find $1 -depth -empty -type d}
 alias ll ls -lah
-alias psbycpu ps -Ao user,uid,pid,pcpu,pmem,start,time,comm --sort=-pcpu
-alias psbymem ps -Ao user,uid,pid,pcpu,pmem,start,time,comm --sort=-pmem
+alias pscpu ps -Ao user,uid,pid,pcpu,pmem,start,time,comm --sort=-pcpu
+alias psmem ps -Ao user,uid,pid,pcpu,pmem,start,time,comm --sort=-pmem
 alias pwgen-paranoid pwgen -scny 24 1
 alias pwgen-simple pwgen -scn 8 1
 alias pwgen-strong pwgen -scn 20 1
