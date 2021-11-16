@@ -811,6 +811,9 @@ remain in fixed pitch for the tags to be aligned."
               ("p" . langtool-goto-previous-error)
               ("q" . langtool-check-done)))
 
+(use-package ledger-mode
+  :if (executable-find "ledger"))
+
 (use-package magit
   :bind (:map cr-git-map
               ("b" . magit-branch-checkout)
