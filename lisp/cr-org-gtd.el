@@ -1,5 +1,6 @@
 (require 'org)
 (require 'org-agenda)
+(require 'f)
 
 (defun cr-org-expand (file)
   (expand-file-name file org-directory))

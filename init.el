@@ -61,6 +61,7 @@
 
 ;;; Early packages
 (straight-use-package 'org)
+(straight-use-package 'f)
 
 (use-package exec-path-from-shell
   :if (or (daemonp) (display-graphic-p))
