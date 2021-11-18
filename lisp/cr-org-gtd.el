@@ -90,7 +90,7 @@
        (stuck "")
        (todo "TODO|WAITING"))
       ((org-agenda-tag-filter '("-@work")))
-      ("agenda-week.pdf"))
+      (,(cr-org-expand "exports/agenda-week.pdf")))
 
      ("w" "Work"
       ((agenda "")
@@ -122,11 +122,11 @@
                 (org-agenda-start-day "-1w")
                 (org-agenda-use-time-grid nil))))
       ((org-agenda-category-filter-preset '("-tickler")))
-      ("agenda-year.pdf"))
+      (,(cr-org-expand "exports/agenda-year.pdf")))
 
      ("g" . "GTD contexts")
      ("gh" "@Home"    tags-todo "@home")
-     ("ge" "@Errands" tags-todo "@errands" nil ("agenda-errands.pdf"))
+     ("ge" "@Errands" tags-todo "@errands" nil (,(cr-org-expand "exports/agenda-errands.pdf")))
      ("go" "@Offline" tags-todo "@offline")
      ("gw" "@Work"    tags-todo "@work")))
 
