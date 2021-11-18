@@ -9,8 +9,7 @@
 (defconst cr-notes-dir (expand-file-name "notes" cr-org-dir))
 (defconst cr-library (expand-file-name "library" cr-data-dir))
 (defconst cr-zet-dir (expand-file-name "zet" cr-org-dir))
-(defconst cr-bibliography
-  (directory-files (expand-file-name "bibliography" cr-org-dir) t ".*.bib"))
+(defconst cr-bibliography (expand-file-name "bibliography" cr-org-dir))
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
 (defconst system-is-windows-p (eq system-type 'windows-nt))
@@ -225,7 +224,7 @@
   :disabled
   ;; TODO: remove this package once `citar' no longer depends on it.
   :custom
-  (bibtex-completion-bibliography cr-bibliography)
+  (bibtex-completion-bibliography (directory-files cr-bibliography t ".*.bib"))
   (bibtex-completion-library-path cr-library)
   (bibtex-completion-notes-path cr-notes-dir)
   (bibtex-completion-pdf-field "file")
@@ -237,7 +236,7 @@
   :after (:any org markdown-mode latex-mode python-mode rst-mode)
   :demand
   :custom
-  (citar-bibliography cr-bibliography)
+  (citar-bibliography (directory-files cr-bibliography t ".*.bib"))
   (citar-library-paths (list cr-library))
   (citar-notes-paths (list cr-notes-dir)) ;; https://github.com/bdarcus/citar/issues/358
   (citar-file-variable "file")
@@ -247,7 +246,7 @@
   (citar-actions-file-open-prompt t)
   :config
   (with-eval-after-load 'org
-    (custom-set-variables '(org-cite-global-bibliography cr-bibliography)
+    (custom-set-variables '(org-cite-global-bibliography (directory-files cr-bibliography t ".*.bib"))
                           '(org-cite-insert-processor 'citar)
                           '(org-cite-follow-processor 'citar)
                           '(org-cite-activate-processor 'citar)))
