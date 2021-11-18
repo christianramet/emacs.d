@@ -524,7 +524,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :hook (go-mode . eglot-ensure))
 
 (use-package eglot
-  :if (or (executable-find "pylsp") ((executable-find "pyls")))
+  :if (or (executable-find "pylsp") (executable-find "pyls"))
   :hook (python-mode . eglot-ensure))
 
 (use-package eldoc :diminish)
