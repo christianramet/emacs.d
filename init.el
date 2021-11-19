@@ -150,7 +150,6 @@
 (define-prefix-command 'cr-emacs-map)
 (define-prefix-command 'cr-file-map)
 (define-prefix-command 'cr-git-map)
-(define-prefix-command 'cr-grammar-map)
 (define-prefix-command 'cr-notes-map)
 (define-prefix-command 'cr-search-map)
 (define-prefix-command 'cr-text-map)
@@ -165,7 +164,6 @@
            ("C-c n" . cr-notes-map)
            ("C-c s" . cr-search-map)
            ("C-c t" . cr-toggle-map)
-           ("C-c v" . cr-grammar-map)
            ("C-c x" . cr-text-map)
            ("C-c z" . cr-spell-map))
 
@@ -793,23 +791,6 @@ remain in fixed pitch for the tags to be aligned."
               ("C-<" . indent-rigidly-left-to-tab-stop)))
 
 (use-package json-mode)
-
-(use-package languagetool
-  :custom
-  (languagetool-language-tool-jar
-   (shell-command-to-string
-    "echo -n $(locate languagetool-commandline.jar | sort -r | head -1)"))
-  (languagetool-default-language 'auto)
-  (languagetool-disabled-rules '("DASH_RULE" "WHITESPACE_RULE" "EN_UNPAIRED_BRACKETS"
-                             "COMMA_PARENTHESIS_WHITESPACE" "EN_QUOTES"
-                             "MORFOLOGIK_RULE_EN_GB" "MORFOLOGIK_RULE_US"))
-  :bind (:map cr-grammar-map
-              ("v" . languagetool-check)
-              ("c" . languagetool-correct-buffer)
-              ("l" . languagetool-switch-default-language)
-              ("n" . languagetool-goto-next-error)
-              ("p" . languagetool-goto-previous-error)
-              ("q" . languagetool-check-done)))
 
 (use-package ledger-mode
   :if (executable-find "ledger"))
