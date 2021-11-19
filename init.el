@@ -794,22 +794,22 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package json-mode)
 
-(use-package langtool
+(use-package languagetool
   :custom
-  (langtool-language-tool-jar
+  (languagetool-language-tool-jar
    (shell-command-to-string
     "echo -n $(locate languagetool-commandline.jar | sort -r | head -1)"))
-  (langtool-default-language 'auto)
-  (langtool-disabled-rules '("DASH_RULE" "WHITESPACE_RULE" "EN_UNPAIRED_BRACKETS"
+  (languagetool-default-language 'auto)
+  (languagetool-disabled-rules '("DASH_RULE" "WHITESPACE_RULE" "EN_UNPAIRED_BRACKETS"
                              "COMMA_PARENTHESIS_WHITESPACE" "EN_QUOTES"
                              "MORFOLOGIK_RULE_EN_GB" "MORFOLOGIK_RULE_US"))
   :bind (:map cr-grammar-map
-              ("v" . langtool-check)
-              ("c" . langtool-correct-buffer)
-              ("l" . langtool-switch-default-language)
-              ("n" . langtool-goto-next-error)
-              ("p" . langtool-goto-previous-error)
-              ("q" . langtool-check-done)))
+              ("v" . languagetool-check)
+              ("c" . languagetool-correct-buffer)
+              ("l" . languagetool-switch-default-language)
+              ("n" . languagetool-goto-next-error)
+              ("p" . languagetool-goto-previous-error)
+              ("q" . languagetool-check-done)))
 
 (use-package ledger-mode
   :if (executable-find "ledger"))
