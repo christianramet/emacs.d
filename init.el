@@ -734,6 +734,10 @@ remain in fixed pitch for the tags to be aligned."
   :after magit
   :commands forge-pull-notifications)
 
+(use-package frame
+  :straight (:type built-in)
+  :config (set-frame-font "DejaVu Sans Mono-11" nil t))
+
 (use-package go-mode :mode "\\.go\\'")
 
 (use-package git-gutter
