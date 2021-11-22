@@ -1037,6 +1037,8 @@ remain in fixed pitch for the tags to be aligned."
   (add-hook 'prog-mode-hook 'cr-prog-mode-settings))
 
 (use-package project
+  :config
+  (add-to-list 'project-switch-commands '(?m "Magit" magit-status) t)
   :bind (:map project-prefix-map
               ("=" . project-remember-projects-under)
               ("-" . project-forget-project)))
