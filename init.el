@@ -1043,6 +1043,18 @@ remain in fixed pitch for the tags to be aligned."
               ("=" . project-remember-projects-under)
               ("-" . project-forget-project)))
 
+(use-package pulse
+  :straight (:type built-in)
+  :demand
+  :config
+  (defun pulse-line (&rest _)
+    "Pulse the current line."
+    (pulse-momentary-highlight-one-line (point)))
+
+  (dolist (command '(scroll-up-command scroll-down-command
+                                       recenter-top-bottom other-window))
+    (advice-add command :after #'pulse-line)))
+
 (use-package python-mode
   :custom
   (python-indent-guess-indent-offset t)
