@@ -220,38 +220,6 @@
   (avy-all-windows-alt nil)
   :bind* ("C-'" . avy-goto-char-timer))
 
-(use-package bibtex-completion
-  :disabled
-  ;; TODO: remove this package once `citar' no longer depends on it.
-  :custom
-  (bibtex-completion-bibliography (directory-files cr-bibliography t ".*.bib"))
-  (bibtex-completion-library-path cr-library)
-  (bibtex-completion-notes-path cr-notes-dir)
-  (bibtex-completion-pdf-field "file")
-  (bibtex-completion-pdf-extension '(".pdf" ".org" ".md" ".epub" ".jpg" ".png"))
-  :config (setf (alist-get'org-mode bibtex-completion-format-citation-functions)
-                'bibtex-completion-format-citation-org-cite))
-
-(use-package citar
-  :after (:any org markdown-mode latex-mode python-mode rst-mode)
-  :demand
-  :custom
-  (citar-bibliography (directory-files cr-bibliography t ".*.bib"))
-  (citar-library-paths (list cr-library))
-  (citar-notes-paths (list cr-notes-dir)) ;; https://github.com/bdarcus/citar/issues/358
-  (citar-file-variable "file")
-  (citar-file-extensions '(".pdf" ".org" ".md" ".epub" ".jpg" ".png" ))
-  (citar-default-action 'citar-open-notes)
-  ;; (citar-file-note-org-include '(org-id org-roam-ref))
-  (citar-actions-file-open-prompt t)
-  :config
-  (with-eval-after-load 'org
-    (custom-set-variables '(org-cite-global-bibliography (directory-files cr-bibliography t ".*.bib"))
-                          '(org-cite-insert-processor 'citar)
-                          '(org-cite-follow-processor 'citar)
-                          '(org-cite-activate-processor 'citar)))
-  :bind (:map cr-notes-map ("c" . citar-insert-citation)))
-
 (use-package browse-url
   :straight (:type built-in)
   :custom
@@ -895,6 +863,10 @@ remain in fixed pitch for the tags to be aligned."
   (org-startup-with-inline-images t)
   (org-use-speed-commands t)
   :config
+  (if (file-directory-p cr-bibliography)
+      (customize-set-variable
+       'org-cite-global-bibliography (directory-files cr-bibliography t ".*.bib")))
+
   (with-eval-after-load 'ox (require 'ox-md nil 'noerror))
 
   (setq system-time-locale "C")
