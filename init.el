@@ -288,6 +288,20 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (consult-customize
    consult-bookmark consult-buffer consult-ripgrep consult-theme
    :preview-key '(:debounce 0.5 any))
+
+  (defvar consult--source-vterm
+    `(:name     "vterm"
+      :narrow   ?v
+      :category buffer
+      :face     consult-buffer
+      :history  buffer-name-history
+      :action   ,#'consult--buffer-action
+      :items ,(lambda () (consult--buffer-query :mode 'vterm-mode
+                                                :as #'buffer-name)))
+    "vterm candidate source for `consult-buffer'.")
+
+  (add-to-list 'consult-buffer-sources 'consult--source-vterm 'append)
+
   :bind (([remap apropos-command] . consult-apropos)
          ([remap bookmark-jump] . consult-bookmark)
          ([remap goto-line] . consult-goto-line)
