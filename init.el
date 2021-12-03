@@ -9,7 +9,7 @@
 (defconst cr-notes-dir (expand-file-name "notes" cr-org-dir))
 (defconst cr-library (expand-file-name "library" cr-data-dir))
 (defconst cr-zet-dir (expand-file-name "zet" cr-org-dir))
-(defconst cr-bibliography (expand-file-name "bibliography" cr-org-dir))
+(defconst cr-bibliography (expand-file-name "bibliography" cr-data-dir))
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
 (defconst system-is-windows-p (eq system-type 'windows-nt))
