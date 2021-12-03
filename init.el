@@ -1204,7 +1204,7 @@ remain in fixed pitch for the tags to be aligned."
   (defun cr-isql-config ()
     (setq-local truncate-lines t))
   (add-hook 'sql-interactive-mode-hook 'cr-isql-config)
-  :bind ((:map cr-app-map ("S" . sql-connect))))
+  :bind ((:map cr-app-map ("s" . sql-connect))))
 
 (use-package ssh-config-mode)
 
