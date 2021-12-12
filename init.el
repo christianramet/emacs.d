@@ -719,8 +719,9 @@ remain in fixed pitch for the tags to be aligned."
   :commands forge-pull-notifications)
 
 (use-package frame
-  :straight (:type built-in)
-  :config (set-frame-font "DejaVu Sans Mono-11" nil t))
+ :if system-is-linux-p
+ :straight (:type built-in)
+ :config (set-frame-font "DejaVu Sans Mono-11" nil t))
 
 (use-package go-mode :mode "\\.go\\'")
 
