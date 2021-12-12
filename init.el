@@ -86,13 +86,6 @@
               indent-tabs-mode nil
               tab-width 4)
 
-(customize-set-variable
- 'default-frame-alist '((menu-bar-lines . 0)
-                        (tool-bar-lines . 0)
-                        (vertical-scroll-bars . nil)
-                        (left-fringe . 8)
-                        (right-fringe . 8)))
-
 (custom-set-variables
  '(disabled-command-function nil)
  '(ring-bell-function 'ignore)
@@ -719,9 +712,13 @@ remain in fixed pitch for the tags to be aligned."
   :commands forge-pull-notifications)
 
 (use-package frame
- :if system-is-linux-p
- :straight (:type built-in)
- :config (set-frame-font "DejaVu Sans Mono-11" nil t))
+  :straight (:type built-in)
+  :custom (default-frame-alist
+            '((menu-bar-lines . 0)
+              (tool-bar-lines . 0)
+              (vertical-scroll-bars . nil)
+              (left-fringe . 8)
+              (right-fringe . 8))))
 
 (use-package go-mode :mode "\\.go\\'")
 
