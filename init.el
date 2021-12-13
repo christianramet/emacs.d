@@ -126,19 +126,11 @@
  '(mouse-wheel-progressive-speed t)
  '(next-screen-context-lines 5))
 
-;; (when system-is-osx-p
-;;   (custom-set-variables
-;;    '(mac-option-modifier 'meta)
-;;    '(mac-command-modifier 'none)
-;;    '(mac-right-option-modifier 'none)))
-
 (when system-is-osx-p
   (custom-set-variables
-   '(mac-pass-command-to-system nil)
-   '(mac-pass-control-to-system t)
-   '(mac-command-modifier 'meta)
-   '(mac-option-modifier '(:function alt :mouse alt))
-   '(mac-right-option-modifier 'left)))
+   '(mac-option-modifier 'meta)
+   '(mac-command-modifier 'none)
+   '(mac-right-option-modifier 'none)))
 
 ;;; Personal prefix maps key bindings
 (define-prefix-command 'cr-app-map)
