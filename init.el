@@ -425,10 +425,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (delete-by-moving-to-trash t)
   (dired-listing-switches "-lahv")
   :config
-  (if system-is-linux-p
-      (customize-set-variable 'dired-guess-shell-alist-user '(("" "xdg-open"))))
-  (if system-is-osx-p
-      (customize-set-variable 'dired-guess-shell-alist-user '(("" "open"))))
+  (when system-is-linux-p
+    (customize-set-variable 'dired-guess-shell-alist-user '(("" "xdg-open"))))
+  (when system-is-osx-p
+    (customize-set-variable 'dired-guess-shell-alist-user '(("" "open"))))
 
   (defvar cr-dired-sort-base "-lahv")
   (defun cr-dired-sort-by-name ()
@@ -448,7 +448,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
       (dired-sort-other (concat cr-dired-sort-base " --group-directories-first"))))
 
   (define-prefix-command 'cr-dired-sort-map)
-  (define-key cr-dired-sort-map (kbd "d") 'cr-dired-sort-by-dir)
+  (when system-is-linux-p (define-key cr-dired-sort-map (kbd "d") 'cr-dired-sort-by-dir))
   (define-key cr-dired-sort-map (kbd "n") 'cr-dired-sort-by-name)
   (define-key cr-dired-sort-map (kbd "t") 'cr-dired-sort-by-time)
   (define-key cr-dired-sort-map (kbd "s") 'cr-dired-sort-by-size)
