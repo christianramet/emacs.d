@@ -5,3 +5,4 @@ custom.el
 /straight/*
 !/straight/versions
 
+/.DS_Store
