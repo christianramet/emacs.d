@@ -429,9 +429,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (dired-recursive-deletes 'top)
   (delete-by-moving-to-trash t)
   (dired-listing-switches "-lahv")
-  (dired-guess-shell-alist-user '(("" "xdg-open")))
   :config
-  (put 'dired-find-alternate-file 'disabled nil)
+  (if system-is-linux-p
+      (customize-set-variable 'dired-guess-shell-alist-user '(("" "xdg-open"))))
+  (if system-is-osx-p
+      (customize-set-variable 'dired-guess-shell-alist-user '(("" "open"))))
 
   (defvar cr-dired-sort-base "-lahv")
   (defun cr-dired-sort-by-name ()
