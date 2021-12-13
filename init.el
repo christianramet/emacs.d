@@ -715,7 +715,8 @@ remain in fixed pitch for the tags to be aligned."
               (tool-bar-lines . 0)
               (vertical-scroll-bars . nil)
               (left-fringe . 8)
-              (right-fringe . 8))))
+              (right-fringe . 8)))
+  :bind (:map cr-toggle-map ("SPC" . toggle-frame-fullscreen)))
 
 (use-package go-mode :mode "\\.go\\'")
 
