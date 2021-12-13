@@ -128,14 +128,9 @@
 
 (when system-is-osx-p
   (custom-set-variables
-   '(ns-use-proxy-icon nil)
-   '(ns-use-native-fullscreen t)
    '(mac-option-modifier 'meta)
-   '(ns-alternate-modifier 'meta)
    '(mac-command-modifier 'none)
-   '(ns-command-modifier 'none)
-   '(mac-right-option-modifier 'none)
-   '(ns-right-alternate-modifier 'none)))
+   '(mac-right-option-modifier 'none)))
 
 ;;; Personal prefix maps key bindings
 (define-prefix-command 'cr-app-map)
