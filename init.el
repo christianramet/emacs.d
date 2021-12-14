@@ -716,6 +716,7 @@ remain in fixed pitch for the tags to be aligned."
               (vertical-scroll-bars . nil)
               (left-fringe . 8)
               (right-fringe . 8)))
+  :config (when system-is-linux-p (set-frame-font "DejaVu Sans Mono-11" nil t))
   :bind (:map cr-toggle-map ("RET" . toggle-frame-fullscreen)))
 
 (use-package go-mode :mode "\\.go\\'")
