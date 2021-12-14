@@ -1294,3 +1294,6 @@ remain in fixed pitch for the tags to be aligned."
 (use-package yasnippet
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
+
+(provide 'init)
+;;; init.el ends here
