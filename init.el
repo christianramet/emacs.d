@@ -719,7 +719,9 @@ remain in fixed pitch for the tags to be aligned."
   :config (when system-is-linux-p (set-frame-font "DejaVu Sans Mono-11" nil t))
   :bind (:map cr-toggle-map ("RET" . toggle-frame-fullscreen)))
 
-(use-package go-mode :mode "\\.go\\'")
+(use-package go-mode
+  :mode "\\.go\\'"
+  :config (add-hook 'before-save-hook 'gofmt-before-save))
 
 (use-package git-gutter
   :diminish
