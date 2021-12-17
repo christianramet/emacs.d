@@ -5,6 +5,7 @@
 ;;; Variables and constants
 (setq default-directory "~/")
 (defconst cr-data-dir "~/nextcloud")
+(defconst cr-git-dir "~/git")
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
 (defconst cr-notes-dir (expand-file-name "notes" cr-org-dir))
 (defconst cr-library (expand-file-name "library" cr-data-dir))
@@ -1037,6 +1038,8 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package project
   :config
+  (project-forget-zombie-projects)
+  (project-remember-projects-under cr-git-dir)
   (add-to-list 'project-switch-commands '(?m "Magit" magit-status) t)
   :bind (:map project-prefix-map
               ("=" . project-remember-projects-under)
