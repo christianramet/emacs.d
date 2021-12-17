@@ -569,6 +569,19 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight (:type built-in)
   :bind (:map cr-app-map ("w" . eww)))
 
+(use-package faces
+  :straight (:type built-in)
+  :config
+  (when system-is-linux-p
+    (set-face-attribute 'default nil :font "DejaVu Sans Mono-11")
+    (set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono-11")
+    (set-face-attribute 'variable-pitch nil :font "DejaVu Sans-11")
+    (set-frame-font "DejaVu Sans Mono-11" nil t))
+  (when system-is-osx-p
+    (set-face-attribute 'default nil :font "Monaco-12")
+    (set-face-attribute 'fixed-pitch nil :font "Monaco-12")
+    (set-face-attribute 'variable-pitch nil :font "Helvetica-13")))
+
 (use-package face-remap
   :straight (:type built-in)
   :diminish buffer-face-mode
@@ -716,7 +729,6 @@ remain in fixed pitch for the tags to be aligned."
               (vertical-scroll-bars . nil)
               (left-fringe . 8)
               (right-fringe . 8)))
-  :config (when system-is-linux-p (set-frame-font "DejaVu Sans Mono-11" nil t))
   :bind (:map cr-toggle-map ("RET" . toggle-frame-fullscreen)))
 
 (use-package go-mode
