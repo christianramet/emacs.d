@@ -4,13 +4,13 @@
 
 ;;; Variables and constants
 (setq default-directory "~/")
-(defconst cr-data-dir "~/nextcloud")
+(defconst cr-data-dir "~/Nextcloud")
 (defconst cr-git-dir "~/git")
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
 (defconst cr-notes-dir (expand-file-name "notes" cr-org-dir))
 (defconst cr-library (expand-file-name "library" cr-data-dir))
 (defconst cr-zet-dir (expand-file-name "zet" cr-org-dir))
-(defconst cr-bibliography (expand-file-name "bibliography" cr-data-dir))
+(defconst cr-bibliography (expand-file-name "bibliography" cr-library))
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
 (defconst system-is-windows-p (eq system-type 'windows-nt))
