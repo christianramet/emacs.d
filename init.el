@@ -722,7 +722,15 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package follow
   :straight (:type built-in)
-  :bind (:map cr-toggle-map ("=" . follow-delete-other-windows-and-split)))
+  :config
+  (require 'winner)
+  (defun cr-follow-mode-toggle ()
+    (interactive)
+    (if follow-mode
+        (progn (winner-undo)
+               (follow-mode -1))
+      (follow-delete-other-windows-and-split)))
+  :bind (:map cr-toggle-map ("=" . cr-follow-mode-toggle)))
 
 (use-package forge
   :after magit
