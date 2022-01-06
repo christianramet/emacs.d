@@ -251,7 +251,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :diminish
   :custom
   (company-idle-delay 0.5)
-  (company-minimu-prefix-length 3)
+  (company-minimum-prefix-length 3)
   (company-backends
    '(company-capf
      (company-dabbrev-code company-gtags company-etags company-keywords)
