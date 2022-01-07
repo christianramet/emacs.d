@@ -1009,7 +1009,7 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :demand
   :custom
-  (password-cache 5)
+  (password-cache t)
   (password-cache-expiry 600))
 
 (use-package pdf-tools
