@@ -657,8 +657,7 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package flymake
   :hook (prog-mode . flymake-mode)
-  :bind (("C-c !" . flymake-show-buffer-diagnostics)
-         :map cr-toggle-map ("f" . flymake-mode)))
+  :bind (:map cr-toggle-map ("f" . flymake-mode)))
 
 (use-package flyspell
   :diminish
