@@ -530,7 +530,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package embark
   :bind (("C-." . embark-act)
-         ;; ("M-." . embark-dwim)
          ("C-h B" . embark-bindings)))
 
 (use-package embark-consult
@@ -678,7 +677,6 @@ remain in fixed pitch for the tags to be aligned."
                              current-location))))
 
   :hook (org-mode . flyspell-mode)
-  ;; :hook (prog-mode . flyspell-prog-mode)
   :bind ((:map flyspell-mode-map ("C-." . nil))
          (:map cr-toggle-map ("z" . flyspell-mode))
          (:map cr-spell-map
