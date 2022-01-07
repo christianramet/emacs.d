@@ -724,10 +724,6 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :bind (:map cr-toggle-map ("=" . follow-delete-other-windows-and-split)))
 
-(use-package forge
-  :after magit
-  :commands forge-pull-notifications)
-
 (use-package frame
   :straight (:type built-in)
   :custom (default-frame-alist
