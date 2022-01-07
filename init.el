@@ -1097,8 +1097,8 @@ remain in fixed pitch for the tags to be aligned."
                ("n" . next-line)
                ("p" . previous-line))
          (:map cr-text-map
-               ;; ("f" . flush-lines)
-               ;; ("k" . keep-lines)
+               ("F" . flush-lines)
+               ("K" . keep-lines)
                ("r" . query-replace)
                ("R" . query-replace-regexp))))
 
