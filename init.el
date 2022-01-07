@@ -1263,14 +1263,6 @@ remain in fixed pitch for the tags to be aligned."
   :bind* ("M-[" . vterm)
   :bind (:map cr-app-map ("v" . vterm)))
 
-(use-package wdired
-  :straight (:type built-in)
-  :after dired
-  :custom
-  (wdired-allow-to-change-permissions t)
-  (wdired-allow-to-redirect-links t)
-  (wdired-create-parent-directories t))
-
 (use-package winner
   :straight (:type built-in)
   :hook (after-init . winner-mode)
