@@ -829,10 +829,6 @@ remain in fixed pitch for the tags to be aligned."
               ("n" . next-line)
               ("p" . previous-line)))
 
-(use-package ob-async
-  :after org
-  :demand)
-
 (use-package olivetti
   :diminish
   :custom
