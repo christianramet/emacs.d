@@ -130,8 +130,8 @@
 (when system-is-osx-p
   (custom-set-variables
    '(mac-option-modifier 'meta)
-   '(mac-command-modifier 'none)
-   '(mac-right-option-modifier 'none)))
+   '(mac-command-modifier nil)
+   '(mac-right-option-modifier nil)))
 
 ;;; Personal prefix maps key bindings
 (define-prefix-command 'cr-app-map)
