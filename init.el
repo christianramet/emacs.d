@@ -795,7 +795,7 @@ remain in fixed pitch for the tags to be aligned."
                ("a" . ibuffer-visit-buffer))))
 
 (use-package iedit
-  :bind ("M-i" . iedit-mode))
+  :bind ("C-c SPC" . iedit-mode))
 
 (use-package indent
   :straight (:type built-in)
@@ -1280,8 +1280,8 @@ remain in fixed pitch for the tags to be aligned."
 (use-package vterm
   :init (setq vterm-always-compile-module t)
   :custom (vterm-max-scrollback (* 20 1000))
-  :bind* ("M-[" . vterm)
-  :bind (:map cr-app-map ("v" . vterm)))
+  :bind (("M-i" . vterm)
+         (:map cr-app-map ("v" . vterm))))
 
 (use-package wdired
   :straight (:type built-in)
@@ -1315,7 +1315,9 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package window
   :straight (:type built-in)
-  :bind ("M-o" . other-window))
+  :bind (("M-o" . other-window)
+         ("M-[" . previous-buffer)
+         ("M-]" . next-buffer)))
 
 (use-package ws-butler
   :diminish
