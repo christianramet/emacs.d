@@ -1247,8 +1247,6 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :bind (:map cr-emacs-map ("l" . list-timers)))
 
-(use-package toml-mode)
-
 (use-package unfill
   :bind ([remap fill-paragraph] . 'unfill-toggle))
 
