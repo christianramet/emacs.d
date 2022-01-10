@@ -348,7 +348,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight nil
   :demand
   :bind (([remap kill-region] . cr-backward-kill-word-or-region)
-         ("M-]" . cr-switch-to-last-buffer)
          (:map cr-buffer-map
                ("n" . cr-new-empty-buffer)
                ("r" . cr-rename-buffer)
