@@ -1249,12 +1249,6 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package toml-mode)
 
-(use-package tramp
-  :straight (:type built-in)
-  :custom
-  (tramp-shell-prompt-pattern
-   "\\(?:^\\|\r\\)[^]#$%>\n]*#?[]#$%>].* *\\(^[\\[[0-9;]*[a-zA-Z] *\\)*"))
-
 (use-package unfill
   :bind ([remap fill-paragraph] . 'unfill-toggle))
 
