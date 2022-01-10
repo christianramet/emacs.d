@@ -844,13 +844,14 @@ remain in fixed pitch for the tags to be aligned."
 (use-package nginx-mode)
 
 (use-package nov
-  :custom (nov-text-width 70)
+  :custom (nov-text-width 80)
   :config
   (defun cr-nov-settings ()
     (face-remap-add-relative 'variable-pitch
                              :family "Georgia"
-                             :height 1.0)
-    (setq-local line-spacing 0.2)
+                             :height 1.2)
+    (setq-local line-spacing 0.5
+                left-margin 10)
     (hl-line-mode 1))
   (add-hook 'nov-mode-hook 'cr-nov-settings)
   :mode ("\\.\\(epub\\|mobi\\)\\'" . nov-mode)
