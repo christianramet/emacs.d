@@ -757,6 +757,7 @@ remain in fixed pitch for the tags to be aligned."
               (vertical-scroll-bars . nil)
               (left-fringe . 8)
               (right-fringe . 8)))
+  :config (blink-cursor-mode -1)
   :bind (:map cr-toggle-map ("RET" . toggle-frame-fullscreen)))
 
 (use-package go-mode
