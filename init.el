@@ -140,7 +140,6 @@
 (define-prefix-command 'cr-file-map)
 (define-prefix-command 'cr-git-map)
 (define-prefix-command 'cr-notes-map)
-(define-prefix-command 'cr-search-map)
 (define-prefix-command 'cr-text-map)
 (define-prefix-command 'cr-toggle-map)
 (define-prefix-command 'cr-spell-map)
@@ -151,7 +150,6 @@
            ("C-c f" . cr-file-map)
            ("C-c g" . cr-git-map)
            ("C-c n" . cr-notes-map)
-           ("C-c s" . cr-search-map)
            ("C-c t" . cr-toggle-map)
            ("C-c x" . cr-text-map)
            ("C-c z" . cr-spell-map))
@@ -328,9 +326,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
          ("M-s O" . consult-multi-occur)
+         ("M-s SPC"   . consult-find)
+         ("M-s M-SPC" . consult-locate)
          (:map cr-app-map ("m" . consult-man))
-         (:map cr-search-map (("f" . consult-find)
-                              ("l" . consult-locate)))
          (:map cr-text-map (("f" . consult-focus-lines)
                             ("k" . consult-keep-lines)))
          (:map cr-toggle-map ("T" . consult-theme))))
@@ -340,7 +338,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map org-mode-map ("C-c o" . consult-org-heading)))
 
 (use-package consult-recoll
-  :bind (:map cr-search-map ("r" . consult-recoll)))
+  :bind ("M-s r" . consult-recoll))
 
 (use-package cr-focus-mode
   :straight olivetti
@@ -372,10 +370,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                ("q" . cr-emacs-quit)
                ("r" . cr-reload-emacs)
                ("t" . cr-test-emacs-config))
-         (:map cr-search-map
-               ("h" . cr-github-search)
-               ("H" . cr-grep-app-search)
-               ("w" . cr-duckduckgo-search))))
+         ("M-s M-g" . cr-github-search)
+         ("M-s M-G" . cr-grep-app-search)
+         ("M-s M-b" . cr-duckduckgo-search)))
 
 (use-package cr-hide-mode-line-mode
   :straight nil)
@@ -429,7 +426,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map cr-notes-map ("d" . deft)))
 
 (use-package dictionary
-  :bind (:map cr-search-map ("d" . dictionary-search)))
+  :bind ("M-s d" . dictionary-search))
 
 (use-package diff
   :straight (:type built-in)
@@ -1133,7 +1130,7 @@ remain in fixed pitch for the tags to be aligned."
     :dir cr-org-dir
     :flags ("--ignore-case")
     :menu ("Custom" "o" "Org"))
-  :bind ((:map cr-search-map ("g" . rg-menu))
+  :bind (("C-c s" . rg-menu)
          (:map cr-notes-map ("g" . rg-org))))
 
 (use-package rust-mode)
