@@ -1224,7 +1224,7 @@ remain in fixed pitch for the tags to be aligned."
   (initial-scratch-message nil)
   (inhibit-startup-screen t))
 
-(use-package terraform-mode :mode "\.tf\\'")
+(use-package terraform-mode)
 
 (use-package time
   :straight (:type built-in)
