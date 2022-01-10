@@ -898,6 +898,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-deadline-warning-days 14)
   (org-directory cr-org-dir)
   (org-ellipsis " ▼")
+  (org-export-with-broken-links 'mark)
   (org-fontify-done-headline t)
   (org-hide-emphasis-markers t)
   (org-hide-leading-stars t)
