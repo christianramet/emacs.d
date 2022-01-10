@@ -687,8 +687,8 @@ remain in fixed pitch for the tags to be aligned."
                              current-location (cadr word) (caddr word)
                              current-location))))
 
-  :hook (org-mode . flyspell-mode)
-  ;; :hook (prog-mode . flyspell-prog-mode)
+  :hook (text-mode . flyspell-mode)
+  :hook (prog-mode . flyspell-prog-mode)
   :bind ((:map flyspell-mode-map ("C-." . nil))
          (:map cr-toggle-map ("z" . flyspell-mode))
          (:map cr-spell-map
