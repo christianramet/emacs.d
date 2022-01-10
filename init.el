@@ -374,14 +374,15 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("M-s M-b" . cr-duckduckgo-search)))
 
 (use-package cr-hide-mode-line-mode
-  :straight nil)
+  :straight nil
+  :bind (:map cr-toggle-map ("m" . cr-hide-mode-line-mode)))
 
 (use-package cr-open-external
   :straight nil
   :bind ((:map cr-file-map
                ("x" . cr-open-file-or-directory-in-external-app))
          (:map dired-mode-map
-               ("M-RET" . cr-open-file-or-directory-in-external-app))))
+               ("C-RET" . cr-open-file-or-directory-in-external-app))))
 
 (use-package cr-org-gtd
   :straight nil
