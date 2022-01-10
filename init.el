@@ -540,7 +540,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package embark
   :bind (("C-." . embark-act)
-         ;; ("M-." . embark-dwim)
          ("C-h B" . embark-bindings)))
 
 (use-package embark-consult
@@ -667,8 +666,7 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package flymake
   :hook (prog-mode . flymake-mode)
-  :bind (("C-c !" . flymake-show-buffer-diagnostics)
-         :map cr-toggle-map ("f" . flymake-mode)))
+  :bind (:map cr-toggle-map ("f" . flymake-mode)))
 
 (use-package flyspell
   :diminish
@@ -741,10 +739,6 @@ remain in fixed pitch for the tags to be aligned."
                (follow-mode -1))
       (follow-delete-other-windows-and-split)))
   :bind (:map cr-toggle-map ("=" . cr-follow-mode-toggle)))
-
-(use-package forge
-  :after magit
-  :commands forge-pull-notifications)
 
 (use-package frame
   :straight (:type built-in)
@@ -855,10 +849,6 @@ remain in fixed pitch for the tags to be aligned."
   :bind (:map nov-mode-map
               ("n" . next-line)
               ("p" . previous-line)))
-
-(use-package ob-async
-  :after org
-  :demand)
 
 (use-package olivetti
   :diminish
@@ -1256,7 +1246,7 @@ remain in fixed pitch for the tags to be aligned."
   (initial-scratch-message nil)
   (inhibit-startup-screen t))
 
-(use-package terraform-mode :mode "\.tf\\'")
+(use-package terraform-mode)
 
 (use-package time
   :straight (:type built-in)
@@ -1269,14 +1259,6 @@ remain in fixed pitch for the tags to be aligned."
 (use-package timer-list
   :straight (:type built-in)
   :bind (:map cr-emacs-map ("l" . list-timers)))
-
-(use-package toml-mode)
-
-(use-package tramp
-  :straight (:type built-in)
-  :custom
-  (tramp-shell-prompt-pattern
-   "\\(?:^\\|\r\\)[^]#$%>\n]*#?[]#$%>].* *\\(^[\\[[0-9;]*[a-zA-Z] *\\)*"))
 
 (use-package unfill
   :bind ([remap fill-paragraph] . 'unfill-toggle))
@@ -1294,14 +1276,6 @@ remain in fixed pitch for the tags to be aligned."
   :custom (vterm-max-scrollback (* 20 1000))
   :bind (("M-i" . vterm)
          (:map cr-app-map ("v" . vterm))))
-
-(use-package wdired
-  :straight (:type built-in)
-  :after dired
-  :custom
-  (wdired-allow-to-change-permissions t)
-  (wdired-allow-to-redirect-links t)
-  (wdired-create-parent-directories t))
 
 (use-package winner
   :straight (:type built-in)
