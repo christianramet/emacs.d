@@ -130,8 +130,8 @@
 (when system-is-osx-p
   (custom-set-variables
    '(mac-option-modifier 'meta)
-   '(mac-command-modifier 'none)
-   '(mac-right-option-modifier 'none)))
+   '(mac-command-modifier nil)
+   '(mac-right-option-modifier nil)))
 
 ;;; Personal prefix maps key bindings
 (define-prefix-command 'cr-app-map)
@@ -251,7 +251,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :diminish
   :custom
   (company-idle-delay 0.5)
-  (company-minimu-prefix-length 3)
+  (company-minimum-prefix-length 3)
   (company-backends
    '(company-capf
      (company-dabbrev-code company-gtags company-etags company-keywords)
@@ -496,7 +496,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
               ("d" . ediff-buffers)
               ("D" . ediff-show-registry)))
 
-(use-package eglot)
+(use-package eglot
+  :bind (:map cr-toggle-map ("e" . eglot)))
 
 (use-package eglot
   :if (executable-find "gopls")
@@ -584,9 +585,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (set-face-attribute 'variable-pitch nil :font "DejaVu Sans-11")
     (set-frame-font "DejaVu Sans Mono-11" nil t))
   (when system-is-osx-p
-    (set-face-attribute 'default nil :font "Monaco-12")
-    (set-face-attribute 'fixed-pitch nil :font "Monaco-12")
-    (set-face-attribute 'variable-pitch nil :font "Helvetica-14")))
+    (set-face-attribute 'default nil :font "Monaco-13")
+    (set-face-attribute 'fixed-pitch nil :font "Monaco-13")
+    (set-face-attribute 'variable-pitch nil :font "Helvetica-15")))
 
 (use-package face-remap
   :straight (:type built-in)
@@ -719,7 +720,15 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package follow
   :straight (:type built-in)
-  :bind (:map cr-toggle-map ("=" . follow-delete-other-windows-and-split)))
+  :config
+  (require 'winner)
+  (defun cr-follow-mode-toggle ()
+    (interactive)
+    (if follow-mode
+        (progn (winner-undo)
+               (follow-mode -1))
+      (follow-delete-other-windows-and-split)))
+  :bind (:map cr-toggle-map ("=" . cr-follow-mode-toggle)))
 
 (use-package frame
   :straight (:type built-in)
@@ -779,7 +788,7 @@ remain in fixed pitch for the tags to be aligned."
                ("a" . ibuffer-visit-buffer))))
 
 (use-package iedit
-  :bind ("M-i" . iedit-mode))
+  :bind ("C-c SPC" . iedit-mode))
 
 (use-package indent
   :straight (:type built-in)
@@ -989,7 +998,7 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :demand
   :custom
-  (password-cache 5)
+  (password-cache t)
   (password-cache-expiry 600))
 
 (use-package pdf-tools
@@ -1077,8 +1086,8 @@ remain in fixed pitch for the tags to be aligned."
                ("n" . next-line)
                ("p" . previous-line))
          (:map cr-text-map
-               ;; ("f" . flush-lines)
-               ;; ("k" . keep-lines)
+               ("F" . flush-lines)
+               ("K" . keep-lines)
                ("r" . query-replace)
                ("R" . query-replace-regexp))))
 
@@ -1260,8 +1269,8 @@ remain in fixed pitch for the tags to be aligned."
 (use-package vterm
   :init (setq vterm-always-compile-module t)
   :custom (vterm-max-scrollback (* 20 1000))
-  :bind* ("M-[" . vterm)
-  :bind (:map cr-app-map ("v" . vterm)))
+  :bind (("M-i" . vterm)
+         (:map cr-app-map ("v" . vterm))))
 
 (use-package winner
   :straight (:type built-in)
@@ -1287,7 +1296,9 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package window
   :straight (:type built-in)
-  :bind ("M-o" . other-window))
+  :bind (("M-o" . other-window)
+         ("M-[" . previous-buffer)
+         ("M-]" . next-buffer)))
 
 (use-package ws-butler
   :diminish

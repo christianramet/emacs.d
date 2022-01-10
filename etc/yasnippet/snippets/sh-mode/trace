@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: trace
+# key: t
+# --
+echo "$1=$$1"
