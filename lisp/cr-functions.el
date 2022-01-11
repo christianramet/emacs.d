@@ -198,7 +198,7 @@ Source: `windower.el' by Ambrevar."
     (switch-to-buffer (other-buffer (current-buffer) 1))))
 
 (defun cr-comment-dwim ()
-  "Comments or uncomments the current line or region."
+  "Comment or uncomment the current line or region."
   (interactive)
   (if (region-active-p)
       (comment-or-uncomment-region (region-beginning) (region-end))
