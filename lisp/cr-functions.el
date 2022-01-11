@@ -1,7 +1,5 @@
 (defun cr-backward-kill-word-or-region (&optional arg)
-  "Calls `kill-region' when a region is active and
-`backward-kill-word' otherwise. ARG is passed to
-`backward-kill-word' if no region is active."
+  "Call `kill-region' when a region is active and `backward-kill-word' otherwise. ARG is passed to `backward-kill-word' if no region is active."
   (interactive "p")
   (if (region-active-p)
       (call-interactively #'kill-region)
@@ -13,14 +11,13 @@
   (switch-to-buffer "*scratch*"))
 
 (defun cr-new-empty-buffer ()
-  "Create a new buffer called untitled(<n>)"
+  "Create a new buffer called untitled(<n>)."
   (interactive)
   (let ((newbuf (generate-new-buffer-name "untitled")))
     (switch-to-buffer newbuf)))
 
 (defun cr-rename-buffer (new-buffer-name)
-  "Prompts for a new buffer name using the current buffer name as
-initial value."
+  "Prompt for a `NEW-BUFFER-NAME' using the current buffer name as initial value."
   (interactive
    (let ((current-buffer-name (buffer-name)))
      (list (read-string "Rename buffer (to new name): "
@@ -61,7 +58,7 @@ Source: spacemacs"
     (copy-file (buffer-file-name) dest 1)))
 
 (defun cr-delete-current-buffer-file ()
-  "Removes file connected to current buffer and kills buffer.
+  "Remove file connected to current buffer and kill buffer.
 Source: Spacemacs"
   (interactive)
   (let ((filename (buffer-file-name))
@@ -88,23 +85,22 @@ Source: Spacemacs"
   (message (kill-new (buffer-file-name))))
 
 (defun cr-flush-blank-lines (start end)
-  "Delete all blank lines, for the current region, or buffer if nothing is selected"
+  "Delete all blank lines, for the current region using `START' and `END' as markers, or buffer if nothing is selected."
   (interactive "r")
   (flush-lines "^\\s-*$" start end nil))
 
 (defun cr-collapse-blank-lines (start end)
-  "Collapse all blank lines into one, for the current region, or buffer if nothing is selected"
+  "Collapse all blank lines into one, for the current region using `START' and `END' as markers, or buffer if nothing is selected."
   (interactive "r")
   (replace-regexp "^\n\\{2,\\}" "\n" nil start end))
 
-(defun cr-uniquify-lines (beg end)
-  "Delete duplicate consecutive lines in region."
+(defun cr-uniquify-lines (start end)
+  "Delete duplicate consecutive lines in region using `START' and `END' as markers."
   (interactive "r")
-  (shell-command-on-region beg end "uniq" nil t))
+  (shell-command-on-region start end "uniq" nil t))
 
 (defun cr-reload-emacs ()
-  "Reload the main emacs configuration file. Compatible with
-chemacs."
+  "Reload the main Emacs configuration file. Compatible with chemacs."
   (interactive)
   (if (boundp 'chemacs-emacs-profiles)
       (load-file (expand-file-name "init.el" user-emacs-directory))
@@ -116,7 +112,7 @@ chemacs."
   (find-file user-init-file))
 
 (defun cr-test-emacs-config ()
-  "Test if emacs starts correctly. Source: Abo-Abo"
+  "Test if Emacs start correctly. Source: Abo-Abo."
   (interactive)
   (require 'async)
   (async-start
@@ -138,13 +134,13 @@ chemacs."
         (search-backward "ERROR!")))))
 
 (defun cr-emacs-quit ()
-  "Save buffers, Quit, and Shutdown (kill) server"
+  "Save buffers, Quit, and Shutdown (kill) server."
   (interactive)
   (save-some-buffers)
   (kill-emacs))
 
 (defun cr-github-search ()
-  "GitHub Search a query or region if any."
+  "Use GitHub search engine with a query formed from the region if any."
   (interactive)
   (require 's)
   (browse-url
@@ -156,7 +152,7 @@ chemacs."
     "&type=Code")))
 
 (defun cr-duckduckgo-search ()
-  "DuckDuckGO a query or region if any."
+  "Use the DuckDuckGo search engine with a query formed from the region if any."
   (interactive)
   (require 's)
   (browse-url
@@ -167,7 +163,7 @@ chemacs."
       (read-string "Query: ")))))
 
 (defun cr-grep-app-search ()
-  "grep.app a query or region if any."
+  "Use the grep.app search engine with a query formed from the region if any."
   (interactive)
   (require 's)
   (browse-url
@@ -241,3 +237,4 @@ Requires wkhtmltopdf"
     (async-shell-command (format "wkhtmltopdf %s %s " url filename))))
 
 (provide 'cr-functions)
+;;; cr-functions ends here
