@@ -26,7 +26,7 @@
 
 (defun cr-rename-current-buffer-file ()
   "Renames current buffer and file it is visiting.
-Source: spacemacs"
+Source: Spacemacs"
   (interactive)
   (let* ((name (buffer-name))
          (filename (buffer-file-name)))
