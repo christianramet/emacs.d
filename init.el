@@ -1296,13 +1296,14 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package windmove
   :straight (:type built-in)
-  :bind (("C-c H" . windmove-swap-states-left)
-         ("C-c J" . windmove-swap-states-down)
-         ("C-c K" . windmove-swap-states-up)
-         ("C-c L" . windmove-swap-states-right)))
+  :bind (("C-c C-h" . windmove-swap-states-left)
+         ("C-c C-j" . windmove-swap-states-down)
+         ("C-c C-k" . windmove-swap-states-up)
+         ("C-c C-l" . windmove-swap-states-right)))
 
 (use-package window
   :straight (:type built-in)
+  :custom (switch-to-prev-buffer-skip 'visible)
   :bind (("M-o" . other-window)
          ("M-[" . previous-buffer)
          ("M-]" . next-buffer)))
