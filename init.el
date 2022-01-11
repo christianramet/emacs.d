@@ -522,10 +522,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :init
   (require 'cr-private-feeds nil 'noerror)
   :custom
-  (elfeed-search-filter "@2-weeks-ago +unread ")
+  (elfeed-search-filter "@2-weeks-ago +unread")
   (elfeed-search-date-format '("%m-%d" 5 :left))
   (elfeed-search-title-max-width 100)
-  (elfeed-show-entry-switch 'display-buffer)
+  (elfeed-show-entry-switch #'switch-to-buffer)
   :config
   (defun cr-elfeed-show-settings ()
     (setq-local shr-width fill-column
@@ -536,7 +536,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map elfeed-search-mode-map ("a" . elfeed-search-show-entry))
          (:map elfeed-show-mode-map
                ("n" . next-line)
-               ("p" . previous-line))))
+               ("p" . previous-line)
+               ("]" . elfeed-show-next)
+               ("[" . elfeed-show-prev))))
 
 (use-package embark
   :bind (("C-." . embark-act)
