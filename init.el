@@ -1304,8 +1304,8 @@ remain in fixed pitch for the tags to be aligned."
 (use-package window
   :straight (:type built-in)
   :custom (switch-to-prev-buffer-skip 'visible)
-  :bind (("M-o" . other-window)
-         ("M-[" . previous-buffer)
+  :bind* ("M-o" . other-window)
+  :bind (("M-[" . previous-buffer)
          ("M-]" . next-buffer)))
 
 (use-package ws-butler
