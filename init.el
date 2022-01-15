@@ -674,7 +674,7 @@ remain in fixed pitch for the tags to be aligned."
   :diminish
   :custom
   (ispell-silently-savep t)
-  (ispell-personal-dictionary (expand-file-name "ressources/dictionary" cr-data-dir))
+  (ispell-personal-dictionary (expand-file-name "resources/dictionary" cr-data-dir))
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil)
   :config
