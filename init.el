@@ -382,7 +382,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind ((:map cr-file-map
                ("x" . cr-open-file-or-directory-in-external-app))
          (:map dired-mode-map
-               ("C-RET" . cr-open-file-or-directory-in-external-app))))
+               ("<C-return>" . cr-open-file-or-directory-in-external-app))))
 
 (use-package cr-org-gtd
   :straight nil
