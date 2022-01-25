@@ -397,6 +397,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (cr-themes-dark 'modus-vivendi)
   (cr-themes-default cr-themes-light)
   :config
+
   (use-package modus-themes
     :init
     (custom-set-variables
