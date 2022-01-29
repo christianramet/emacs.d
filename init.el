@@ -417,15 +417,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom (csv-separators '("," ";" "|" " "))
   :config (add-hook 'csv-mode-hook 'csv-header-line))
 
-(use-package deft
-  :custom
-  (deft-directory cr-org-dir)
-  (deft-recursive t)
-  (deft-extensions '("org" "md" "txt"))
-  (deft-default-extension "org")
-  (deft-use-filename-as-title t)
-  :bind (:map cr-notes-map ("d" . deft)))
-
 (use-package dictionary
   :bind ("M-s d" . dictionary-search))
 
