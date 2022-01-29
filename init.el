@@ -590,7 +590,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (when system-is-osx-p
     (set-face-attribute 'default nil :font "Monaco-13")
     (set-face-attribute 'fixed-pitch nil :font "Monaco-13")
-    (set-face-attribute 'variable-pitch nil :font "Helvetica-15")))
+    (set-face-attribute 'variable-pitch nil :font "Helvetica-16")))
 
 (use-package face-remap
   :straight (:type built-in)
