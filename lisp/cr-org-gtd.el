@@ -50,7 +50,7 @@
 
      ("j" "Journal" entry
       (file+olp+datetree "journal.org")
-      "* %?\n%U\n"
+      "* %^{prompt|journal-entry}\n%U\n%?"
       :empty-lines 1)
 
      ("w" "Work journal" entry
