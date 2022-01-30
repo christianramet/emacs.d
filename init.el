@@ -834,7 +834,7 @@ remain in fixed pitch for the tags to be aligned."
   (defun cr-nov-settings ()
     (face-remap-add-relative 'variable-pitch
                              :family "Georgia"
-                             :height 1.2)
+                             :height 1.0)
     (setq-local line-spacing 0.5
                 left-margin 10)
     (hl-line-mode 1))
