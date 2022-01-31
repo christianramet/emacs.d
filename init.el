@@ -139,7 +139,7 @@
 (define-prefix-command 'cr-emacs-map)
 (define-prefix-command 'cr-file-map)
 (define-prefix-command 'cr-git-map)
-(define-prefix-command 'cr-notes-map)
+(define-prefix-command 'cr-org-map)
 (define-prefix-command 'cr-text-map)
 (define-prefix-command 'cr-toggle-map)
 (define-prefix-command 'cr-spell-map)
@@ -149,7 +149,7 @@
            ("C-c e" . cr-emacs-map)
            ("C-c f" . cr-file-map)
            ("C-c g" . cr-git-map)
-           ("C-c n" . cr-notes-map)
+           ("C-c o" . cr-org-map)
            ("C-c t" . cr-toggle-map)
            ("C-c x" . cr-text-map)
            ("C-c z" . cr-spell-map))
@@ -282,6 +282,13 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
    consult-bookmark consult-buffer consult-ripgrep consult-theme
    :preview-key '(:debounce 0.5 any))
 
+  (defun consult-org-rg ()
+    "Ripgrep into org-directory"
+    (interactive)
+    (require 'org)
+    (let ((default-directory org-directory))
+      (consult-ripgrep)))
+
     (defvar consult--source-eshell
     `(:name     "eshell"
       :narrow   ?e
@@ -319,7 +326,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("C-c I" . consult-imenu-multi)
          ("C-c j" . consult-git-grep)
          ("C-c k" . consult-ripgrep)
-         ("C-c o" . consult-outline)
+         ("C-c O" . consult-outline)
          ("M-g e" . consult-flymake)
          ("M-g m" . consult-mark)
          ("M-g k" . consult-global-mark)
@@ -328,14 +335,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("M-s O" . consult-multi-occur)
          ("M-s SPC"   . consult-find)
          ("M-s M-SPC" . consult-locate)
+         (:map cr-org-map ("r" . consult-org-rg))
          (:map cr-app-map ("m" . consult-man))
          (:map cr-text-map (("f" . consult-focus-lines)
                             ("k" . consult-keep-lines)))
          (:map cr-toggle-map ("T" . consult-theme))))
-
-(use-package consult
-  :after org
-  :bind (:map org-mode-map ("C-c o" . consult-org-heading)))
 
 (use-package consult-recoll
   :bind ("M-s r" . consult-recoll))
@@ -953,22 +957,25 @@ remain in fixed pitch for the tags to be aligned."
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          ("C-c l" . org-store-link)
-         ("C-c C-x C-o" . org-clock-out)
-         ("C-c C-x C-x" . org-clock-in-last)
-         ("C-c C-x C-j" . org-clock-goto)
-         ("C-c C-x C-q" . org-clock-cancel)))
+         (:map cr-org-map
+               ("i" . org-clock-in)
+               ("o" . org-clock-out)
+               ("j" . org-clock-goto)
+               ("l" . org-clock-in-last)
+               ("q" . org-clock-cancel))))
 
 (use-package org-cliplink
-  :bind (:map cr-notes-map ("l" . org-cliplink)))
+  :bind (:map cr-org-map ("u" . org-cliplink)))
 
 (use-package org-download
   :after org
+  :if system-is-linux-p
   :custom
   (org-download-method 'directory) ;; org-download-delete does not work with 'attach
   (org-download-image-dir "images")
   (org-download-image-org-width 400)
   (org-download-heading-lvl nil)
-  :bind (:map cr-notes-map
+  :bind (:map cr-org-map
               ("y" . org-download-yank)
               ("Y" . org-download-screenshot))
   :hook ((org-mode dired-mode) . org-download-enable))
@@ -1114,8 +1121,7 @@ remain in fixed pitch for the tags to be aligned."
     :dir cr-org-dir
     :flags ("--ignore-case")
     :menu ("Custom" "o" "Org"))
-  :bind (("C-c s" . rg-menu)
-         (:map cr-notes-map ("g" . rg-org))))
+  :bind ("C-c s" . rg-menu))
 
 (use-package rust-mode)
 
