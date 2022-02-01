@@ -397,10 +397,14 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight nil
   :demand
   :custom
-  (cr-themes-light 'modus-operandi)
-  (cr-themes-dark 'modus-vivendi)
+  (cr-themes-light 'leuven)
+  (cr-themes-dark 'leuven-dark)
   (cr-themes-default cr-themes-light)
   :config
+  (use-package leuven-theme
+    :custom
+    (leuven-scale-outline-headlines nil)
+    (leuven-scale-org-agenda-structure nil))
 
   (use-package modus-themes
     :init
