@@ -6,8 +6,11 @@
   (expand-file-name file org-directory))
 
 (custom-set-variables
+ '(org-agenda-todo-ignore-scheduled 'future)
+
  '(org-agenda-files (list (cr-org-expand "calendar.org")
                           (cr-org-expand "journal.org")
+                          (cr-org-expand "tickler.org")
                           (cr-org-expand "todos.org")
                           (cr-org-expand "work-journal.org")
                           (cr-org-expand "work-todos.org")))
@@ -19,12 +22,13 @@
           (cr-org-expand "someday.org"))))
 
  '(org-refile-targets
-   `((nil                                :maxlevel . 5)
+   `((nil                                :maxlevel . 3)
      (,(cr-org-expand "inbox.org")       :level    . 0)
      (,(cr-org-expand "calendar.org")    :level    . 1)
      (,(cr-org-expand "someday.org")     :maxlevel . 1)
-     (,(cr-org-expand "todos.org")       :maxlevel . 2)
-     (,(cr-org-expand "todos-work.org")  :maxlevel . 2)))
+     (,(cr-org-expand "tickler.org")     :maxlevel . 0)
+     (,(cr-org-expand "todos.org")       :maxlevel . 1)
+     (,(cr-org-expand "todos-work.org")  :maxlevel . 1)))
 
  '(org-capture-templates
    '(("i" "Inbox" entry

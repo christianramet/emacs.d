@@ -1,0 +1,73 @@
+#+title: My libraries
+
+* ORG-GTD
+
+** Files
+Composed of 4 main files:
+- inbox.org
+- calendar.org
+- todos.org
+- someday.org
+
+=inbox.org= is the single point of entry for most things (except captured events).
+This file should be processed everyday (can be multiple times a day), and its
+content either deleted, or filled in an appropriate section.
+
+=todos.org= is the main GTD file, containing tasks and projects.
+
+=calendar.org= contains appointment and events that will happen at a precise time.
+I shall use active time stamps only, as those should not appear in the todo list
+since I cannot act on them by anticipation. This is basically an agenda, but the
+term is already confusing with all the Org terminology, so I decided to call it
+a calendar, even tho it is an agenda by definition.
+
+=someday.org= contains tasks that have no priority at the moment, but could be
+interesting to do some time in the future. I just do not want to have this list
+in my face everyday.
+
+** Scheduled items
+
+I do not want scheduled items to appears in the todo list as I will take care of
+them at the appropriate time.
+
+Therefore I set =org-agenda-todo-ignore-scheduled= variable to =future=
+
+** Repeating occurrences of events
+
+I privilege cloned tasks (with time shift) over repeating one:
+- easy management of exceptions
+- better visibility for logs
+- addition of notes for particular occurrences of an event
+- recommended by Karl Voit
+
+: (org-clone-subtree-with-time-shift)  
+
+Source: [[https://karl-voit.at/2017/01/15/org-clone-subtree-with-time-shift/][UOMF: Recurring Events with Org Mode]]
+
+** Scheduling vs active time stamp
+
+#+begin_quote
+Important: Scheduling an item in Org mode should not be understood in the same way that we understand scheduling a meeting. Setting a date for a meeting is just a simple appointment, you should mark this entry with a simple plain timestamp, to get this item shown on the date where it applies. This is a frequent misunderstanding by Org users. In Org mode, scheduling means setting a date when you want to start working on an action item.
+#+end_quote
+
+Source: [[https://orgmode.org/manual/Deadlines-and-scheduling.html][orgmode.org]]
+
+** Identifying stuck projects
+
+To identify stuck projects, I first need to define what a project looks like in
+Org. I decided to go with the =:project:= tag for various reasons (that I need to
+remember).
+
+Therefore, a stuck project, is a heading with a =:project:= tag and no TODO
+children.
+
+#+begin_src emacs-lisp
+(setq org-tags-exclude-from-inheritance '("project")
+      org-stuck-projects '("project" ("TODO" "WAITING") nil "")))
+#+end_src
+
+From here, the =stuck= option can be used in agenda views.
+
+** Ressources
+
+[[https://orgmode.org/worg/org-faq.html][Org-mode Frequently Asked Questions]]
