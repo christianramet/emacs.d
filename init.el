@@ -397,10 +397,16 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight nil
   :demand
   :custom
-  (cr-themes-light 'leuven)
-  (cr-themes-dark 'leuven-dark)
+  (cr-themes-light 'doom-one-light)
+  (cr-themes-dark 'doom-one)
   (cr-themes-default cr-themes-light)
   :config
+  (use-package doom-themes
+    :custom
+    (doom-themes-enable-bold t)
+    (doom-themes-enable-italic t)
+    :config (doom-themes-org-config))
+
   (use-package leuven-theme
     :custom
     (leuven-scale-outline-headlines nil)
