@@ -26,7 +26,7 @@
      (,(cr-org-expand "inbox.org")       :level    . 0)
      (,(cr-org-expand "calendar.org")    :level    . 1)
      (,(cr-org-expand "someday.org")     :maxlevel . 1)
-     (,(cr-org-expand "tickler.org")     :maxlevel . 0)
+     (,(cr-org-expand "tickler.org")     :level    . 0)
      (,(cr-org-expand "todos.org")       :maxlevel . 1)
      (,(cr-org-expand "todos-work.org")  :maxlevel . 1)))
 
