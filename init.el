@@ -65,7 +65,7 @@
 
 (use-package exec-path-from-shell
   :if (or (daemonp) (display-graphic-p))
-  :hook (after-init . exec-path-from-shell-initialize))
+  :config (exec-path-from-shell-initialize))
 
 (use-package diminish :demand)
 
@@ -707,6 +707,7 @@ remain in fixed pitch for the tags to be aligned."
                ("z" . flyspell-correct-wrapper))))
 
 (use-package flyspell
+  :after exec-path-from-shell
   :if (executable-find "hunspell")
   :init
   (defvar cr-ispell-lang1 "english")
