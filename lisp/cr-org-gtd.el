@@ -26,7 +26,7 @@
      (,(cr-org-expand "inbox.org")       :level    . 0)
      (,(cr-org-expand "calendar.org")    :level    . 1)
      (,(cr-org-expand "someday.org")     :maxlevel . 1)
-     (,(cr-org-expand "tickler.org")     :maxlevel . 0)
+     (,(cr-org-expand "tickler.org")     :level    . 0)
      (,(cr-org-expand "todos.org")       :maxlevel . 1)
      (,(cr-org-expand "todos-work.org")  :maxlevel . 1)))
 
@@ -160,8 +160,7 @@
  '(org-stuck-projects '("project" ("TODO" "WAITING") nil "")))
 
 (defun cr-org-store-agenda-views ()
-  "Export the agenda views, only if org-agenda-files are more
-recent than the last export."
+  "Export the agenda views, only if variable `org-agenda-files' contain files that are more recent than the last export."
   (interactive)
   (require 'f)
   (let ((default-directory (expand-file-name "exports" org-directory))
@@ -177,3 +176,4 @@ recent than the last export."
 (run-with-idle-timer 180 t 'cr-org-store-agenda-views)
 
 (provide 'cr-org-gtd)
+;;; cr-org-gtd.el ends here

@@ -352,6 +352,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight nil
   :demand
   :bind (([remap kill-region] . cr-backward-kill-word-or-region)
+         ("M-s M-g" . cr-github-search)
+         ("M-s M-G" . cr-grep-app-search)
+         ("M-s M-b" . cr-duckduckgo-search)
          (:map cr-buffer-map
                ("n" . cr-new-empty-buffer)
                ("r" . cr-rename-buffer)
@@ -372,10 +375,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                ("e" . cr-edit-emacs-init-config)
                ("q" . cr-emacs-quit)
                ("r" . cr-reload-emacs)
-               ("t" . cr-test-emacs-config))
-         ("M-s M-g" . cr-github-search)
-         ("M-s M-G" . cr-grep-app-search)
-         ("M-s M-b" . cr-duckduckgo-search)))
+               ("t" . cr-test-emacs-config))))
 
 (use-package cr-hide-mode-line-mode
   :straight nil
