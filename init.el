@@ -218,6 +218,10 @@
   :custom (battery-mode-line-limit 85)
   :bind (:map cr-toggle-map ("b" . display-battery-mode)))
 
+(use-package bookmark
+  :straight (:type built-in)
+  :custom (bookmark-save-flag 1))
+
 (use-package browse-url
   :straight (:type built-in)
   :custom
