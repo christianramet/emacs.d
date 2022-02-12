@@ -719,6 +719,7 @@ remain in fixed pitch for the tags to be aligned."
   :after exec-path-from-shell
   :if (executable-find "hunspell")
   :init
+  (setenv "LANG" "en_US.UTF-8")
   (defvar cr-ispell-lang1 "english")
   (defvar cr-ispell-lang2 "francais")
   (defvar cr-ispell-lang-multi (concat cr-ispell-lang1 "," cr-ispell-lang2))
