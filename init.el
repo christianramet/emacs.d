@@ -64,6 +64,7 @@
 (straight-use-package 'f)
 
 (use-package exec-path-from-shell
+  :demand
   :if (or (daemonp) (display-graphic-p))
   :config (exec-path-from-shell-initialize))
 
