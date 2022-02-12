@@ -154,6 +154,11 @@
            ("C-c x" . cr-text-map)
            ("C-c z" . cr-spell-map))
 
+;;; Dynamic behaviors
+(when (display-graphic-p)
+  (toggle-frame-maximized)
+  (split-window-right))
+
 ;;; Packages
 (use-package abbrev
   :straight (:type built-in)
