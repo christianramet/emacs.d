@@ -407,8 +407,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight nil
   :demand
   :custom
-  (cr-themes-light 'doom-one-light)
-  (cr-themes-dark 'doom-one)
+  (cr-themes-light 'modus-operandi)
+  (cr-themes-dark 'modus-vivendi)
   (cr-themes-default cr-themes-light)
   :config
   (use-package doom-themes
@@ -425,12 +425,25 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (use-package modus-themes
     :init
     (custom-set-variables
-     '(modus-themes-scale-headings t)
-     '(modus-themes-slanted-constructs t)
+     '(modus-themes-inhibit-reload t)
      '(modus-themes-bold-constructs t)
-     '(modus-themes-org-blocks 'tinted-background))
+     '(modus-themes-mixed-fonts t)
+     '(modus-themes-subtle-line-numbers t)
+     '(modus-themes-fringes nil)
+     '(modus-themes-italic-constructs t)
+     '(modus-themes-mode-line '(accented borderless))
+     '(modus-themes-lang-checkers '(straight-underline faint))
+     '(modus-themes-markup '(background italic bold, intense))
+     '(modus-themes-syntax nil)
+     '(modus-themes-hl-line '(accented))
+     '(modus-themes-paren-match nil)
+     '(modus-themes-links '(neutral-underline background))
+     '(modus-themes-prompts nil)
+     '(modus-themes-completions nil)
+     '(modus-themes-region '(bg-only no-extend))
+     '(modus-themes-diffs 'desaturated)
+     '(modus-themes-org-blocks 'gray-background))
     (modus-themes-load-themes))
-
   (load-theme cr-themes-default t)
   :bind (:map cr-toggle-map ("t" . cr-themes-toggle)))
 
