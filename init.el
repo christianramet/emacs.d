@@ -1298,6 +1298,7 @@ remain in fixed pitch for the tags to be aligned."
   :init (setq vterm-always-compile-module t)
   :custom (vterm-max-scrollback (* 20 1000))
   :bind (("M-i" . vterm)
+         (:map vterm-mode-map ("M-i" . nil))
          (:map cr-app-map ("v" . vterm))))
 
 (use-package winner
