@@ -407,8 +407,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight nil
   :demand
   :custom
-  (cr-themes-light 'doom-one-light)
-  (cr-themes-dark 'doom-one)
+  (cr-themes-light 'modus-operandi)
+  (cr-themes-dark 'modus-vivendi)
   (cr-themes-default cr-themes-light)
   :config
   (use-package doom-themes
@@ -425,12 +425,25 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (use-package modus-themes
     :init
     (custom-set-variables
-     '(modus-themes-scale-headings t)
-     '(modus-themes-slanted-constructs t)
+     '(modus-themes-inhibit-reload t)
      '(modus-themes-bold-constructs t)
-     '(modus-themes-org-blocks 'tinted-background))
+     '(modus-themes-mixed-fonts t)
+     '(modus-themes-subtle-line-numbers t)
+     '(modus-themes-fringes nil)
+     '(modus-themes-italic-constructs t)
+     '(modus-themes-mode-line '(accented borderless))
+     '(modus-themes-lang-checkers '(straight-underline faint))
+     '(modus-themes-markup '(background italic bold, intense))
+     '(modus-themes-syntax nil)
+     '(modus-themes-hl-line '(accented))
+     '(modus-themes-paren-match nil)
+     '(modus-themes-links '(neutral-underline background))
+     '(modus-themes-prompts nil)
+     '(modus-themes-completions nil)
+     '(modus-themes-region '(bg-only no-extend))
+     '(modus-themes-diffs 'desaturated)
+     '(modus-themes-org-blocks 'gray-background))
     (modus-themes-load-themes))
-
   (load-theme cr-themes-default t)
   :bind (:map cr-toggle-map ("t" . cr-themes-toggle)))
 
@@ -689,8 +702,6 @@ remain in fixed pitch for the tags to be aligned."
 (use-package flyspell
   :diminish
   :custom
-  (ispell-silently-savep t)
-  (ispell-personal-dictionary (expand-file-name "resources/dictionary" cr-data-dir))
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil)
   :config
@@ -704,49 +715,19 @@ remain in fixed pitch for the tags to be aligned."
                              current-location (cadr word) (caddr word)
                              current-location))))
 
-  :hook (text-mode . flyspell-mode)
-  :hook (prog-mode . flyspell-prog-mode)
-  :bind ((:map flyspell-mode-map ("C-." . nil))
-         (:map cr-toggle-map ("z" . flyspell-mode))
+  (defun cr-flyspell-mode ()
+    (interactive)
+    (if (derived-mode-p 'prog-mode)
+        (flyspell-prog-mode)
+      (flyspell-mode)))
+  :bind ((:map flyspell-mode-map
+               ("C-." . nil)
+               ("C-;" . flyspell-auto-correct-previous-word))
+         (:map cr-toggle-map ("z" . cr-flyspell-mode))
          (:map cr-spell-map
                ("." . flyspell-auto-correct-word)
                ("b" . flyspell-buffer)
-               ("d" . ispell-change-dictionary)
-               ("r" . flyspell-region)
-               ("s" . cr-save-word-to-pdict)
-               ("z" . flyspell-correct-wrapper))))
-
-(use-package flyspell
-  :after exec-path-from-shell
-  :if (executable-find "hunspell")
-  :init
-  (setenv "LANG" "en_US.UTF-8")
-  (defvar cr-ispell-lang1 "english")
-  (defvar cr-ispell-lang2 "francais")
-  (defvar cr-ispell-lang-multi (concat cr-ispell-lang1 "," cr-ispell-lang2))
-  :custom (ispell-program-name "hunspell")
-  :config
-  (setq ispell-dictionary cr-ispell-lang-multi)
-  (ispell-set-spellchecker-params)
-  (ispell-hunspell-add-multi-dic cr-ispell-lang-multi)
-
-  (defun cr-ispell-set-lang1 ()
-    (interactive)
-    (ispell-change-dictionary cr-ispell-lang1))
-
-  (defun cr-ispell-set-lang2 ()
-    (interactive)
-    (ispell-change-dictionary cr-ispell-lang2))
-
-  (defun cr-ispell-set-MULTI ()
-    (interactive)
-    (ispell-hunspell-add-multi-dic cr-ispell-lang-multi)
-    (ispell-change-dictionary cr-ispell-lang-multi))
-
-  :bind (:map cr-spell-map
-              ("1" . cr-ispell-set-lang1)
-              ("2" . cr-ispell-set-lang2)
-              ("m" . cr-ispell-set-MULTI)))
+               ("s" . cr-save-word-to-pdict))))
 
 (use-package follow
   :straight (:type built-in)
@@ -830,6 +811,42 @@ remain in fixed pitch for the tags to be aligned."
               ("<" . indent-rigidly-left)
               ("C->" . indent-rigidly-right-to-tab-stop)
               ("C-<" . indent-rigidly-left-to-tab-stop)))
+
+(use-package ispell
+  :after exec-path-from-shell
+  :if (executable-find "hunspell")
+  :init
+  (setenv "LANG" "en_US.UTF-8")
+  (defvar cr-ispell-lang1 "francais")
+  (defvar cr-ispell-lang2 "english")
+  (defvar cr-ispell-lang-multi (concat cr-ispell-lang1 "," cr-ispell-lang2))
+  :custom
+  (ispell-program-name "hunspell")
+  (ispell-silently-savep t)
+  (ispell-personal-dictionary (expand-file-name "resources/dictionary" cr-data-dir))
+  :config
+  (setq ispell-dictionary cr-ispell-lang-multi)
+  (ispell-set-spellchecker-params)
+  (ispell-hunspell-add-multi-dic cr-ispell-lang-multi)
+
+  (defun cr-ispell-set-lang1 ()
+    (interactive)
+    (ispell-change-dictionary cr-ispell-lang1))
+
+  (defun cr-ispell-set-lang2 ()
+    (interactive)
+    (ispell-change-dictionary cr-ispell-lang2))
+
+  (defun cr-ispell-set-MULTI ()
+    (interactive)
+    (ispell-hunspell-add-multi-dic cr-ispell-lang-multi)
+    (ispell-change-dictionary cr-ispell-lang-multi))
+
+  :bind (:map cr-spell-map
+              ("1" . cr-ispell-set-lang1)
+              ("2" . cr-ispell-set-lang2)
+              ("m" . cr-ispell-set-MULTI)
+              ("r" . ispell-region)))
 
 (use-package json-mode)
 
