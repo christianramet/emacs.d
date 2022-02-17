@@ -1315,6 +1315,7 @@ remain in fixed pitch for the tags to be aligned."
   :init (require 'vlf-setup))
 
 (use-package vterm
+  :after exec-path-from-shell
   :init (setq vterm-always-compile-module t)
   :custom (vterm-max-scrollback (* 20 1000))
   :bind (("M-i" . vterm)
