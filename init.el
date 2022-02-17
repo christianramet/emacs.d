@@ -412,12 +412,14 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (cr-themes-default cr-themes-light)
   :config
   (use-package doom-themes
+    :disabled
     :custom
     (doom-themes-enable-bold t)
     (doom-themes-enable-italic t)
     :config (doom-themes-org-config))
 
   (use-package leuven-theme
+    :disabled
     :custom
     (leuven-scale-outline-headlines nil)
     (leuven-scale-org-agenda-structure nil))
@@ -432,17 +434,18 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
      '(modus-themes-fringes nil)
      '(modus-themes-italic-constructs t)
      '(modus-themes-mode-line '(accented borderless))
-     '(modus-themes-lang-checkers '(straight-underline faint))
      '(modus-themes-markup '(background italic bold, intense))
+     '(modus-themes-region '(bg-only))
+     '(modus-themes-org-blocks 'gray-background)
+     '(modus-themes-lang-checkers nil)
      '(modus-themes-syntax nil)
-     '(modus-themes-hl-line '(accented))
+     '(modus-themes-hl-line nil)
      '(modus-themes-paren-match nil)
-     '(modus-themes-links '(neutral-underline background))
+     '(modus-themes-links nil)
      '(modus-themes-prompts nil)
      '(modus-themes-completions nil)
-     '(modus-themes-region '(bg-only no-extend))
-     '(modus-themes-diffs 'desaturated)
-     '(modus-themes-org-blocks 'gray-background))
+     '(modus-themes-diffs nil)))
+
     (modus-themes-load-themes))
   (load-theme cr-themes-default t)
   :bind (:map cr-toggle-map ("t" . cr-themes-toggle)))
