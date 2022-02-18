@@ -446,7 +446,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
      '(modus-themes-completions nil)
      '(modus-themes-diffs nil)))
 
-    (modus-themes-load-themes))
+  (modus-themes-load-themes)
   (load-theme cr-themes-default t)
   :bind (:map cr-toggle-map ("t" . cr-themes-toggle)))
 
