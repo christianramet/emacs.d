@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;;; System tuning
 (setq gc-cons-threshold (* 20 1024 1024)
       read-process-output-max (* 3 1024 1024))
@@ -503,7 +505,29 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
   (define-key dired-mode-map (kbd "s") 'cr-dired-sort-map)
   (define-key dired-mode-map (kbd "[") 'dired-up-directory)
-  (define-key dired-mode-map (kbd "e") 'ediff-files))
+
+  (defun cr-ediff-marked-files ()
+    "Source: https://oremacs.com/2017/03/18/dired-ediff/"
+    (interactive)
+    (let ((files (dired-get-marked-files))
+          (wnd (current-window-configuration)))
+      (if (<= (length files) 2)
+          (let ((file1 (car files))
+                (file2 (if (cdr files)
+                           (cadr files)
+                         (read-file-name
+                          "file: "
+                          (dired-dwim-target-directory)))))
+            (if (file-newer-than-file-p file1 file2)
+                (ediff-files file2 file1)
+              (ediff-files file1 file2))
+            (add-hook 'ediff-after-quit-hook-internal
+                      (lambda ()
+                        (setq ediff-after-quit-hook-internal nil)
+                        (set-window-configuration wnd))))
+        (error "No more than 2 files should be marked"))))
+
+  (define-key dired-mode-map (kbd "e") 'cr-ediff-marked-files))
 
 (use-package dired-x
   :straight (:type built-in)
