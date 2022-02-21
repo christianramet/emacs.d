@@ -906,7 +906,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-agenda-log-mode-items '(closed clock))
   (org-agenda-restore-windows-after-quit t)
   (org-agenda-show-outline-path nil)
-  (org-agenda-skip-deadline-if-done nil)
+  (org-agenda-skip-deadline-if-done t)
   (org-agenda-skip-deadline-prewarning-if-scheduled nil)
   (org-agenda-skip-scheduled-if-done nil)
   (org-agenda-tags-todo-honor-ignore-options t)
