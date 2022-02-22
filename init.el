@@ -436,7 +436,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
      '(modus-themes-fringes nil)
      '(modus-themes-italic-constructs t)
      '(modus-themes-mode-line '(accented borderless))
-     '(modus-themes-markup '(background italic bold, intense))
+     '(modus-themes-markup '(background italic bold))
      '(modus-themes-region '(bg-only))
      '(modus-themes-org-blocks 'gray-background)
      '(modus-themes-lang-checkers nil)
