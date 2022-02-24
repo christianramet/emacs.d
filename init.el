@@ -715,7 +715,7 @@ remain in fixed pitch for the tags to be aligned."
 
   :hook
   (markdown-mode . variable-pitch-mode)
-  (org-mode . variable-pitch-mode-avoid-org-agenda-files)
+  ;; (org-mode . variable-pitch-mode-avoid-org-agenda-files)
   :bind (:map cr-toggle-map ("p" . variable-pitch-mode)))
 
 (use-package ffap
