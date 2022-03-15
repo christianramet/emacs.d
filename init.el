@@ -1130,7 +1130,7 @@ remain in fixed pitch for the tags to be aligned."
               ("=" . project-remember-projects-under)
               ("-" . project-forget-project)))
 
-(use-package pulse
+(use-package pulse ;; TODO: replace with pulsar.el once released
   :straight (:type built-in)
   :demand
   :config
