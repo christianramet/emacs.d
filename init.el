@@ -1220,6 +1220,7 @@ remain in fixed pitch for the tags to be aligned."
   :hook (selectrum-mode . selectrum-prescient-mode))
 
 (use-package server
+  :disabled
   :straight (:type built-in)
   :demand
   :config (unless (server-running-p)(server-start)))
