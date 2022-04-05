@@ -598,6 +598,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package embark
   :bind (("C-." . embark-act)
+         ("M-." . embark-dwim)
          ("C-h B" . embark-bindings)))
 
 (use-package embark-consult
