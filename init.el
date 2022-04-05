@@ -972,10 +972,6 @@ remain in fixed pitch for the tags to be aligned."
   (org-startup-with-inline-images t)
   (org-use-speed-commands t)
   :config
-  (if (file-directory-p cr-bibliography)
-      (customize-set-variable
-       'org-cite-global-bibliography (directory-files cr-bibliography t ".*.bib")))
-
   (with-eval-after-load 'ox (require 'ox-md nil 'noerror))
 
   (setq system-time-locale "C")
@@ -1387,6 +1383,37 @@ remain in fixed pitch for the tags to be aligned."
 (use-package yasnippet
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
+
+(use-package citar
+  :bind (("C-c ." . citar-insert-citation)
+         :map minibuffer-local-map
+         ("M-b" . citar-insert-preset))
+  :custom
+  (citar-bibliography '("~/bib/references.bib")))
+
+(use-package bibtex
+  :straight (:type built-in)
+  :config
+  (defun cr-bibtex-settings ()
+    ;; Fix for bibtex-mode initialization
+    ;; https://emacs.stackexchange.com/questions/46691/initialization-of-bibtex-package
+    (bibtex-set-dialect 'BibTeX))
+  :hook (bibtex-mode . cr-bibtex-settings))
+
+(use-package citar
+  :custom
+  (citar-bibliography (directory-files cr-bibliography t ".*.bib"))
+  ;; (citar-library-paths (list cr-bibliography)) ;; all in one dir ?
+  (citar-notes-paths (list cr-notes-dir))
+  (citar-file-note-extensions '("org" "md" "txt")))
+
+(use-package citar
+  :after org
+  :custom
+  (org-cite-global-bibliography citar-bibliography)
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar))
 
 (provide 'init)
 ;;; init.el ends here
