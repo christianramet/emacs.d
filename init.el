@@ -460,7 +460,12 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :config (add-hook 'csv-mode-hook 'csv-header-line))
 
 (use-package dictionary
+  :if (not system-is-osx-p)
   :bind ("M-s d" . dictionary-search))
+
+(use-package osx-dictionary
+  :if system-is-osx-p
+  :bind ("M-s d" . osx-dictionary-search-word-at-point))
 
 (use-package diff
   :straight (:type built-in)
