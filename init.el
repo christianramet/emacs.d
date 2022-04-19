@@ -577,6 +577,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :if (or (executable-find "pylsp") (executable-find "pyls"))
   :hook (python-mode . eglot-ensure))
 
+(use-package eglot
+  :if (executable-find "yaml-language-server")
+  :hook (yaml-mode . eglot-ensure))
+
 (use-package eldoc :diminish)
 
 (use-package elfeed
