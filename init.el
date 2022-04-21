@@ -566,20 +566,20 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
               ("d" . ediff-buffers)
               ("D" . ediff-show-registry)))
 
-(use-package eglot
-  :bind (:map cr-toggle-map ("e" . eglot)))
+;; (use-package eglot
+;;   :bind (:map cr-toggle-map ("e" . eglot)))
 
-(use-package eglot
-  :if (executable-find "gopls")
-  :hook (go-mode . eglot-ensure))
+;; (use-package eglot
+;;   :if (executable-find "gopls")
+;;   :hook (go-mode . eglot-ensure))
 
-(use-package eglot
-  :if (or (executable-find "pylsp") (executable-find "pyls"))
-  :hook (python-mode . eglot-ensure))
+;; (use-package eglot
+;;   :if (or (executable-find "pylsp") (executable-find "pyls"))
+;;   :hook (python-mode . eglot-ensure))
 
-(use-package eglot
-  :if (executable-find "yaml-language-server")
-  :hook (yaml-mode . eglot-ensure))
+;; (use-package eglot
+;;   :if (executable-find "yaml-language-server")
+;;   :hook (yaml-mode . eglot-ensure))
 
 (use-package eldoc :diminish)
 
@@ -732,9 +732,9 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :bind ("M-g f" . find-file-at-point))
 
-(use-package flymake
-  :hook (prog-mode . flymake-mode)
-  :bind (:map cr-toggle-map ("f" . flymake-mode)))
+;; (use-package flymake
+;;   :hook (prog-mode . flymake-mode)
+;;   :bind (:map cr-toggle-map ("f" . flymake-mode)))
 
 (use-package flyspell
   :diminish
@@ -1394,11 +1394,8 @@ remain in fixed pitch for the tags to be aligned."
   :hook (after-init . yas-global-mode))
 
 (use-package citar
-  :bind (("C-c ." . citar-insert-citation)
-         :map minibuffer-local-map
-         ("M-b" . citar-insert-preset))
-  :custom
-  (citar-bibliography '("~/bib/references.bib")))
+  :bind ("C-c ." . citar-insert-citation)
+  :custom (citar-bibliography '("~/bib/references.bib")))
 
 (use-package bibtex
   :straight (:type built-in)
@@ -1423,6 +1420,21 @@ remain in fixed pitch for the tags to be aligned."
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar))
+
+(use-package lsp-mode
+  :custom
+  (lsp-keymap-prefix "C-c h")
+  (lsp-yaml-schemas
+   '(:kubernetes ["*-k8s.yaml"
+                  "*-k8s.yml"
+                  "/deployments.yaml"]))
+  :hook ((go-mode yaml-mode) . lsp))
+
+(use-package lsp-ui)
+
+(use-package flycheck
+  :hook (prog-mode . flymake-mode)
+  :bind (:map cr-toggle-map ("f" . flycheck-mode)))
 
 (provide 'init)
 ;;; init.el ends here
