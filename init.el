@@ -227,6 +227,15 @@
   :custom (battery-mode-line-limit 85)
   :bind (:map cr-toggle-map ("b" . display-battery-mode)))
 
+(use-package bibtex
+  :straight (:type built-in)
+  :config
+  (defun cr-bibtex-settings ()
+    ;; Fix for bibtex-mode initialization
+    ;; https://emacs.stackexchange.com/questions/46691/initialization-of-bibtex-package
+    (bibtex-set-dialect 'BibTeX))
+  :hook (bibtex-mode . cr-bibtex-settings))
+
 (use-package bookmark
   :straight (:type built-in)
   :custom (bookmark-save-flag 1))
@@ -262,6 +271,22 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (calendar-weekend-days '(6 0))
   (calendar-week-start-day 1)
   :bind (:map cr-app-map ("!" . calendar)))
+
+(use-package citar
+  :custom
+  (citar-bibliography (directory-files cr-bibliography t ".*.bib"))
+  ;; (citar-library-paths (list cr-bibliography)) ;; all in one dir ?
+  (citar-notes-paths (list cr-notes-dir))
+  (citar-file-note-extensions '("org" "md" "txt"))
+  :bind ("C-c ." . citar-insert-citation))
+
+(use-package citar
+  :after org
+  :custom
+  (org-cite-global-bibliography (directory-files cr-bibliography t ".*.bib"))
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar))
 
 (use-package company
   :diminish
@@ -1420,34 +1445,6 @@ remain in fixed pitch for the tags to be aligned."
 (use-package yasnippet
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
-
-(use-package citar
-  :bind ("C-c ." . citar-insert-citation)
-  :custom (citar-bibliography '("~/bib/references.bib")))
-
-(use-package bibtex
-  :straight (:type built-in)
-  :config
-  (defun cr-bibtex-settings ()
-    ;; Fix for bibtex-mode initialization
-    ;; https://emacs.stackexchange.com/questions/46691/initialization-of-bibtex-package
-    (bibtex-set-dialect 'BibTeX))
-  :hook (bibtex-mode . cr-bibtex-settings))
-
-(use-package citar
-  :custom
-  (citar-bibliography (directory-files cr-bibliography t ".*.bib"))
-  ;; (citar-library-paths (list cr-bibliography)) ;; all in one dir ?
-  (citar-notes-paths (list cr-notes-dir))
-  (citar-file-note-extensions '("org" "md" "txt")))
-
-(use-package citar
-  :after org
-  :custom
-  (org-cite-global-bibliography citar-bibliography)
-  (org-cite-insert-processor 'citar)
-  (org-cite-follow-processor 'citar)
-  (org-cite-activate-processor 'citar))
 
 (provide 'init)
 ;;; init.el ends here
