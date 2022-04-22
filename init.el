@@ -1,5 +1,11 @@
+;;; init.el --- My main configuration file
+;;; Commentary:
+;; This package is my main configuration file, built arround use-package.el and
+;; straight.el
+
 ;; -*- lexical-binding: t -*-
 
+;;; Code:
 ;;; System tuning
 (setq gc-cons-threshold (* 20 1024 1024)
       read-process-output-max (* 3 1024 1024))
@@ -566,20 +572,24 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
               ("d" . ediff-buffers)
               ("D" . ediff-show-registry)))
 
-;; (use-package eglot
-;;   :bind (:map cr-toggle-map ("e" . eglot)))
+(use-package eglot
+  :disabled ;; using lsp-mode for now
+  :bind (:map cr-toggle-map ("e" . eglot)))
 
-;; (use-package eglot
-;;   :if (executable-find "gopls")
-;;   :hook (go-mode . eglot-ensure))
+(use-package eglot
+  :disabled
+  :if (executable-find "gopls")
+  :hook (go-mode . eglot-ensure))
 
-;; (use-package eglot
-;;   :if (or (executable-find "pylsp") (executable-find "pyls"))
-;;   :hook (python-mode . eglot-ensure))
+(use-package eglot
+  :disabled
+  :if (or (executable-find "pylsp") (executable-find "pyls"))
+  :hook (python-mode . eglot-ensure))
 
-;; (use-package eglot
-;;   :if (executable-find "yaml-language-server")
-;;   :hook (yaml-mode . eglot-ensure))
+(use-package eglot
+  :disabled
+  :if (executable-find "yaml-language-server")
+  :hook (yaml-mode . eglot-ensure))
 
 (use-package eldoc :diminish)
 
@@ -732,9 +742,14 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :bind ("M-g f" . find-file-at-point))
 
-;; (use-package flymake
-;;   :hook (prog-mode . flymake-mode)
-;;   :bind (:map cr-toggle-map ("f" . flymake-mode)))
+(use-package flycheck
+  :hook (prog-mode . flycheck-mode)
+  :bind (:map cr-toggle-map ("f" . flycheck-mode)))
+
+(use-package flymake
+  :disabled ;; using flycheck for now
+  :hook (prog-mode . flymake-mode)
+  :bind (:map cr-toggle-map ("f" . flymake-mode)))
 
 (use-package flyspell
   :diminish
@@ -889,6 +904,19 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package ledger-mode
   :if (executable-find "ledger"))
+
+(use-package lsp-mode
+  :custom
+  (lsp-auto-configure t)
+  (lsp-keymap-prefix "C-c h")
+  (lsp-yaml-schemas
+   '(:kubernetes ["*-k8s.yaml"
+                  "*-k8s.yml"
+                  "/deployments.yaml"]))
+  :hook ((go-mode python-mode yaml-mode) . lsp)
+  :bind (:map cr-toggle-map ("l" . lsp)))
+
+(use-package lsp-ui)
 
 (use-package magit
   :bind (:map cr-git-map
@@ -1420,21 +1448,6 @@ remain in fixed pitch for the tags to be aligned."
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar))
-
-(use-package lsp-mode
-  :custom
-  (lsp-keymap-prefix "C-c h")
-  (lsp-yaml-schemas
-   '(:kubernetes ["*-k8s.yaml"
-                  "*-k8s.yml"
-                  "/deployments.yaml"]))
-  :hook ((go-mode yaml-mode) . lsp))
-
-(use-package lsp-ui)
-
-(use-package flycheck
-  :hook (prog-mode . flymake-mode)
-  :bind (:map cr-toggle-map ("f" . flycheck-mode)))
 
 (provide 'init)
 ;;; init.el ends here
