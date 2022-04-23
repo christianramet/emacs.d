@@ -238,9 +238,8 @@
 (use-package browse-url
   :straight (:type built-in)
   :custom
-  (browse-url-browser-function
-   '(("\\(youtube\\.com/watch\\)\\|\\(youtu\\.be/watch\\)" . browse-url-youtube-mpv)
-     ("." . browse-url-default-browser)))
+  (browse-url-handlers '(("\\(youtube\\.com/watch\\)\\|\\(youtu\\.be/watch\\)" . browse-url-youtube-mpv)
+                         ("." . browse-url-default-browser)))
   :config
   (defun browse-url-youtube-mpv (url &rest e)
     "Use `mpv' with `youtube-dl' to open URLs, asking for desired quality
