@@ -163,11 +163,6 @@
            ("C-c x" . cr-text-map)
            ("C-c z" . cr-spell-map))
 
-;;; Dynamic behaviors
-(when (display-graphic-p)
-  (toggle-frame-maximized)
-  (split-window-right))
-
 ;;; Packages
 (use-package abbrev
   :straight (:type built-in)
@@ -1462,6 +1457,13 @@ remain in fixed pitch for the tags to be aligned."
 (use-package yasnippet
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
+
+;;; Dynamic behaviors
+(when (display-graphic-p)
+  (toggle-frame-maximized))
+
+(when (require 'treemacs nil 'noerror)
+  (treemacs))
 
 (provide 'init)
 ;;; init.el ends here
