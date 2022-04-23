@@ -831,8 +831,9 @@ remain in fixed pitch for the tags to be aligned."
               (right-fringe . 8)))
   :config (blink-cursor-mode -1)
   :bind (:map cr-toggle-map
-              ("RET" . toggle-frame-maximized)
-              ("M-RET" . toggle-frame-fullscreen)))
+              ("RET" . toggle-frame-fullscreen)
+              ("M-RET" . toggle-frame-maximized))
+  :hook (after-init . toggle-frame-maximized))
 
 (use-package go-mode
   :mode "\\.go\\'"
@@ -1464,13 +1465,6 @@ remain in fixed pitch for the tags to be aligned."
 (use-package yasnippet
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
-
-;;; Dynamic behaviors
-(when (display-graphic-p)
-  (toggle-frame-maximized))
-
-(when (require 'treemacs nil 'noerror)
-  (treemacs))
 
 (provide 'init)
 ;;; init.el ends here
