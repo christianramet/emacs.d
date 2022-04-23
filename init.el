@@ -857,6 +857,12 @@ remain in fixed pitch for the tags to be aligned."
 (use-package git-timemachine
   :bind (:map cr-git-map ("t" . git-timemachine)))
 
+(use-package help
+  :straight (:type built-in)
+  :bind (:map help-mode-map
+              ("n" . next-line)
+              ("p" . previous-line)))
+
 (use-package hl-line
   :straight (:type built-in)
   :hook ((text-mode
