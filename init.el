@@ -1397,6 +1397,7 @@ remain in fixed pitch for the tags to be aligned."
   :bind (:map cr-emacs-map ("l" . list-timers)))
 
 (use-package treemacs
+  :custom (treemacs-is-never-other-window t)
   :bind (("M-0"       . treemacs-select-window)
          ("C-x t 1"   . treemacs-delete-other-windows)
          ("C-x t t"   . treemacs)
