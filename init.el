@@ -1,11 +1,6 @@
 ;;; init.el --- My main configuration file
-;;; Commentary:
-;; This package is my main configuration file, built arround use-package.el and
-;; straight.el
-
 ;; -*- lexical-binding: t -*-
 
-;;; Code:
 ;;; System tuning
 (setq gc-cons-threshold (* 20 1024 1024)
       read-process-output-max (* 3 1024 1024))
@@ -1467,6 +1462,3 @@ remain in fixed pitch for the tags to be aligned."
 (use-package yasnippet
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
-
-(provide 'init)
-;;; init.el ends here
