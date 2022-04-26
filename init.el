@@ -445,8 +445,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (doom-themes-enable-bold t)
     (doom-themes-enable-italic t)
     :config
-    (doom-themes-org-config)
-    (doom-themes-treemacs-config))
+    (with-eval-after-load 'org-mode
+      (doom-themes-enable-org-config))
+    (with-eval-after-load 'treemacs
+      (doom-themes-treemacs-config)))
 
   (use-package leuven-theme
     :disabled
