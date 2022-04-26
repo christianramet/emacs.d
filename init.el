@@ -442,6 +442,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (use-package all-the-icons)
 
   (use-package doom-modeline
+    :custom (doom-modeline-buffer-encoding nil)
     :hook (after-init . doom-modeline-mode))
 
   (use-package doom-themes
