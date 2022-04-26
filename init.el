@@ -772,6 +772,7 @@ remain in fixed pitch for the tags to be aligned."
   :bind ("M-g f" . find-file-at-point))
 
 (use-package flycheck
+  :custom (flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   :hook (prog-mode . flycheck-mode)
   :bind (:map cr-toggle-map ("f" . flycheck-mode)))
 
