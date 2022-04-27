@@ -1406,6 +1406,12 @@ remain in fixed pitch for the tags to be aligned."
          ("C-x t C-t" . treemacs-find-file)
          ("C-x t M-t" . treemacs-find-tag)))
 
+(use-package tree-sitter
+  :straight tree-sitter
+  :straight tree-sitter-langs
+  :hook (tree-sitter-mode . tree-sitter-hl-mode)
+  :hook ((go-mode sh-mode html-mode json-mode python-mode go-mode) . tree-sitter-mode))
+
 (use-package unfill
   :bind ([remap fill-paragraph] . 'unfill-toggle))
 
