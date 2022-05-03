@@ -447,7 +447,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (with-eval-after-load 'org-mode
       (doom-themes-enable-org-config))
     (with-eval-after-load 'treemacs
-      (customize-set-variable 'doom-themes-treemacs-theme 'doom-colors)
+      (custom-set-variables
+       '(doom-themes-treemacs-theme 'doom-colors)
+       '(doom-themes-treemacs-bitmap-indicator-width 8))
       (doom-themes-treemacs-config)))
 
   (load-theme cr-themes-default t)
