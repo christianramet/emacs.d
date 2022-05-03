@@ -83,8 +83,6 @@
 ;;; Better defaults
 (prefer-coding-system 'utf-8)
 
-(defalias 'yes-or-no-p 'y-or-n-p)
-
 (setq-default fill-column 80
               indicate-empty-lines nil
               indicate-buffer-boundaries nil
@@ -99,6 +97,7 @@
  '(create-lockfiles nil)
  '(uniquify-buffer-name-style 'forward)
  '(use-dialog-box nil)
+ '(use-short-answers)
  '(frame-title-format "Emacs")
  '(enable-local-variables nil)
  '(visible-bell nil))
