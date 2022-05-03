@@ -451,36 +451,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
       (customize-set-variable 'doom-themes-treemacs-theme 'doom-colors)
       (doom-themes-treemacs-config)))
 
-  (use-package leuven-theme
-    :disabled
-    :custom
-    (leuven-scale-outline-headlines nil)
-    (leuven-scale-org-agenda-structure nil))
-
-  (use-package modus-themes
-    :disabled
-    :init
-    (custom-set-variables
-     '(modus-themes-inhibit-reload t)
-     '(modus-themes-bold-constructs t)
-     '(modus-themes-mixed-fonts t)
-     '(modus-themes-subtle-line-numbers t)
-     '(modus-themes-fringes nil)
-     '(modus-themes-italic-constructs t)
-     '(modus-themes-mode-line '(accented borderless))
-     '(modus-themes-markup '(background italic bold))
-     '(modus-themes-region '(bg-only))
-     '(modus-themes-org-blocks 'gray-background)
-     '(modus-themes-lang-checkers nil)
-     '(modus-themes-syntax nil)
-     '(modus-themes-hl-line nil)
-     '(modus-themes-paren-match nil)
-     '(modus-themes-links nil)
-     '(modus-themes-prompts nil)
-     '(modus-themes-completions nil)
-     '(modus-themes-diffs nil)))
-
-  ;;(modus-themes-load-themes)
   (load-theme cr-themes-default t)
 
   :bind (:map cr-toggle-map ("t" . cr-themes-toggle)))
@@ -598,25 +568,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map cr-buffer-map
               ("d" . ediff-buffers)
               ("D" . ediff-show-registry)))
-
-(use-package eglot
-  :disabled ;; using lsp-mode for now
-  :bind (:map cr-toggle-map ("e" . eglot)))
-
-(use-package eglot
-  :disabled
-  :if (executable-find "gopls")
-  :hook (go-mode . eglot-ensure))
-
-(use-package eglot
-  :disabled
-  :if (or (executable-find "pylsp") (executable-find "pyls"))
-  :hook (python-mode . eglot-ensure))
-
-(use-package eglot
-  :disabled
-  :if (executable-find "yaml-language-server")
-  :hook (yaml-mode . eglot-ensure))
 
 (use-package eldoc :diminish)
 
@@ -773,11 +724,6 @@ remain in fixed pitch for the tags to be aligned."
   :custom (flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   :hook (prog-mode . flycheck-mode)
   :bind (:map cr-toggle-map ("f" . flycheck-mode)))
-
-(use-package flymake
-  :disabled ;; using flycheck for now
-  :hook (prog-mode . flymake-mode)
-  :bind (:map cr-toggle-map ("f" . flymake-mode)))
 
 (use-package flyspell
   :diminish
