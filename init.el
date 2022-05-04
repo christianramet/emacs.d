@@ -97,7 +97,7 @@
  '(create-lockfiles nil)
  '(uniquify-buffer-name-style 'forward)
  '(use-dialog-box nil)
- '(use-short-answers)
+ '(use-short-answers t)
  '(frame-title-format "Emacs")
  '(enable-local-variables nil)
  '(visible-bell nil))
