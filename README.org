@@ -5,9 +5,8 @@ This repository contains my personal Emacs configuration.
 * Technical choices
 
 - no literate configuration
-- =use-package.el=[fn:1]
-- =straight.el=[fn:2]
-- =ivy= and =counsel=[fn:3]
+- =use-package.el=[fn:1] along with =straight.el=[fn:2] for package management
+- =consult=, =embark=, =marginalia= and =embark= [fn:3] for completion
 - respects the Emacs reserved keys[fn:4] for the user as much as possible
 - single /huge/ init file
 - hooks defined preferably in the most commons/general packages
@@ -38,9 +37,15 @@ I went through many configuration paradigms, in the following order:
   (Abo-Abo), and Ambrevar's configuration[fn:8], using the built-in =package.el=,
   with =evil= bindings, and then back to classic bindings,
 - A =use-package= + =straight=[fn:2] configuration, centered on a single init file.
+- A completion engine revolving arround =helm=, and then =ivy=.
 
 And every combination in-between which are not worth mentioning as they were
 either small iterations, or short lived.
+
+[2022-05-03 Tue]
+In the previous weeks/months, the following changes happened:
+- from =ivy= to consult[fn:3] and its other related packages,
+- from =eglot=[fn:9] to =lsp=[fn:10]
 
 * Footnotes
 
@@ -48,7 +53,7 @@ either small iterations, or short lived.
 
 [fn:2] https://github.com/raxod502/straight.el
 
-[fn:3] https://github.com/abo-abo/swiper
+[fn:3] https://github.com/minad/consult
 
 [fn:4] https://www.masteringemacs.org/article/mastering-key-bindings-emacs
 
@@ -59,3 +64,7 @@ either small iterations, or short lived.
 [fn:7] https://github.com/abo-abo/oremacs
 
 [fn:8] https://gitlab.com/ambrevar/dotfiles
+
+[fn:9] https://github.com/joaotavora/eglot
+
+[fn:10]https://emacs-lsp.github.io/lsp-mode/

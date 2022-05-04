@@ -443,7 +443,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (with-eval-after-load 'org-mode
       (doom-themes-enable-org-config))
     (with-eval-after-load 'treemacs
-      (customize-set-variable 'doom-themes-treemacs-theme 'doom-colors)
+      (custom-set-variables
+       '(doom-themes-treemacs-theme 'doom-colors)
+       '(doom-themes-treemacs-bitmap-indicator-width 8))
       (doom-themes-treemacs-config)))
 
   (load-theme cr-themes-default t)
@@ -1252,6 +1254,7 @@ remain in fixed pitch for the tags to be aligned."
          ([remap downcase-word]   . downcase-dwim)
          ([remap capitalize-word] . capitalize-dwim)
          ([remap zap-to-char]     . zap-up-to-char)
+         ("M-X" . execute-extended-command-for-buffer)
          (:map cr-emacs-map  ("x" . list-processes))
          (:map cr-text-map   ("d" . delete-trailing-whitespace))
          (:map cr-toggle-map
