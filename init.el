@@ -1204,6 +1204,13 @@ remain in fixed pitch for the tags to be aligned."
     :dir cr-org-dir
     :flags ("--ignore-case")
     :menu ("Custom" "o" "Org"))
+  (rg-define-search rg-org-all
+    :query ask
+    :format regexp
+    :files "org"
+    :dir "~/"
+    :flags ("--ignore-case")
+    :menu ("Custom" "O" "Org"))
   :bind ("C-c s" . rg-menu))
 
 (use-package rust-mode)
