@@ -1078,6 +1078,20 @@ remain in fixed pitch for the tags to be aligned."
   (org-noter-always-create-frame nil)
   :bind ("C-c w n" . org-noter))
 
+(use-package osm
+  :bind (("C-c m h" . osm-home)
+         ("C-c m s" . osm-search)
+         ("C-c m v" . osm-server)
+         ("C-c m t" . osm-goto)
+         ("C-c m x" . osm-gpx-show)
+         ("C-c m j" . osm-bookmark-jump))
+  :custom
+  (osm-server 'default)
+  (osm-copyright nil)
+  :init
+  (with-eval-after-load 'org
+    (require 'osm-ol)))
+
 (use-package outline
   :straight (:type built-in)
   :diminish outline-minor-mode
