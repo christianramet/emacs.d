@@ -744,9 +744,11 @@ remain in fixed pitch for the tags to be aligned."
 
   (defun cr-flyspell-mode ()
     (interactive)
-    (if (derived-mode-p 'prog-mode)
-        (flyspell-prog-mode)
-      (flyspell-mode)))
+    (if flyspell-mode
+        (flyspell-mode-off)
+      (if (derived-mode-p 'prog-mode)
+          (flyspell-prog-mode)
+        (flyspell-mode))))
   :bind ((:map flyspell-mode-map
                ("C-." . nil)
                ("C-;" . flyspell-auto-correct-previous-word))
