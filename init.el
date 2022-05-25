@@ -9,11 +9,15 @@
 (setq default-directory "~/")
 (defconst cr-data-dir "~/Nextcloud")
 (defconst cr-git-dir "~/git")
+
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
 (defconst cr-notes-dir (expand-file-name "notes" cr-org-dir))
-(defconst cr-library (expand-file-name "library" cr-data-dir))
 (defconst cr-zet-dir (expand-file-name "zet" cr-org-dir))
+
+(defconst cr-library (expand-file-name "library" cr-data-dir))
 (defconst cr-bibliography (expand-file-name "bibliography" cr-library))
+(defconst cr-papers (expand-file-name "papers" cr-library))
+
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
 (defconst system-is-windows-p (eq system-type 'windows-nt))
@@ -266,10 +270,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package citar
   :custom
   (citar-bibliography (directory-files cr-bibliography t ".*.bib"))
-  ;; (citar-library-paths (list cr-bibliography)) ;; all in one dir ?
+  (citar-library-paths (list cr-papers))
   (citar-notes-paths (list cr-notes-dir))
-  (citar-file-note-extensions '("org" "md" "txt"))
-  :bind ("C-c ." . citar-insert-citation))
+  (citar-file-note-extensions '("org" "md" "txt")))
 
 (use-package citar
   :after org
