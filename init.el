@@ -272,7 +272,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (citar-bibliography (directory-files cr-bibliography t ".*.bib"))
   (citar-library-paths (list cr-papers))
   (citar-notes-paths (list cr-notes-dir))
-  (citar-file-note-extensions '("org" "md" "txt")))
+  (citar-file-note-extensions '("org" "md" "txt"))
+  :config (citar-filenotify-setup '(LaTeX-mode-hook org-mode-hook)))
 
 (use-package citar
   :after org
