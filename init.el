@@ -896,13 +896,13 @@ remain in fixed pitch for the tags to be aligned."
 (use-package lsp-mode
   :custom
   (lsp-auto-configure t)
-  (lsp-keymap-prefix "C-c h")
+  (lsp-keymap-prefix "C-c ,")
   (lsp-yaml-schemas
    '(:kubernetes ["*-k8s.yaml"
                   "*-k8s.yml"
                   "/deployments.yaml"]))
   :hook ((go-mode python-mode yaml-mode) . lsp)
-  :bind (:map cr-toggle-map ("l" . lsp)))
+  :bind (:map cr-toggle-map ("," . lsp)))
 
 (use-package lsp-ui)
 
