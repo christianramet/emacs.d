@@ -11,8 +11,8 @@
 (defconst cr-git-dir "~/git")
 
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
-(defconst cr-notes-dir (expand-file-name "notes" cr-org-dir))
 (defconst cr-zet-dir (expand-file-name "zet" cr-org-dir))
+(defconst cr-ref-dir (expand-file-name "reference" cr-zet-dir))
 
 (defconst cr-library (expand-file-name "library" cr-data-dir))
 (defconst cr-bibliography (expand-file-name "bibliography" cr-library))
@@ -271,7 +271,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (citar-bibliography (directory-files cr-bibliography t ".*.bib"))
   (citar-library-paths (list cr-papers))
-  (citar-notes-paths (list cr-notes-dir))
+  (citar-notes-paths (list cr-ref-dir))
   (citar-file-note-extensions '("org" "md" "txt"))
   :config (citar-filenotify-setup '(LaTeX-mode-hook org-mode-hook)))
 
