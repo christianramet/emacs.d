@@ -1386,13 +1386,8 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package treemacs
   :custom (treemacs-is-never-other-window t)
-  :bind (("M-0"       . treemacs-select-window)
-         ("C-x t 1"   . treemacs-delete-other-windows)
-         ("C-x t t"   . treemacs)
-         ("C-x t d"   . treemacs-select-directory)
-         ("C-x t B"   . treemacs-bookmark)
-         ("C-x t C-t" . treemacs-find-file)
-         ("C-x t M-t" . treemacs-find-tag)))
+  :bind ((:map cr-toggle-map ("0" . treemacs))
+         ("M-0" . treemacs-select-window)))
 
 (use-package tree-sitter
   :straight tree-sitter
