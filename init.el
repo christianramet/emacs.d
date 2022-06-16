@@ -11,8 +11,8 @@
 (defconst cr-git-dir "~/git")
 
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
-(defconst cr-notes-dir (expand-file-name "notes" cr-org-dir))
 (defconst cr-zet-dir (expand-file-name "zet" cr-org-dir))
+(defconst cr-ref-dir (expand-file-name "reference" cr-zet-dir))
 
 (defconst cr-library (expand-file-name "library" cr-data-dir))
 (defconst cr-bibliography (expand-file-name "bibliography" cr-library))
@@ -271,7 +271,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (citar-bibliography (directory-files cr-bibliography t ".*.bib"))
   (citar-library-paths (list cr-papers))
-  (citar-notes-paths (list cr-notes-dir))
+  (citar-notes-paths (list cr-ref-dir))
   (citar-file-note-extensions '("org" "md" "txt"))
   :config (citar-filenotify-setup '(LaTeX-mode-hook org-mode-hook)))
 
@@ -1090,11 +1090,68 @@ remain in fixed pitch for the tags to be aligned."
   (org-roam-directory cr-zet-dir)
   :config (org-roam-db-autosync-mode)
   :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
+         ("C-c n n" . org-roam-node-find)
          ("C-c n g" . org-roam-graph)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
          ("C-c n r" . org-roam-node-random)))
+
+(use-package org-roam
+  ;; Jethrokuan's workflow
+  ;; https://jethrokuan.github.io/org-roam-guide/
+  :config
+  (setq org-roam-capture-templates
+        '(("m" "main" plain
+           "%?"
+           :if-new (file+head "main/${slug}.org"
+                              "#+title: ${title}\n")
+           :immediate-finish t
+           :unnarrowed t)
+          ("r" "reference" plain "%?"
+           :if-new
+           (file+head "reference/${title}.org" "#+title: ${title}\n")
+           :immediate-finish t
+           :unnarrowed t)
+          ("a" "article" plain "%?"
+           :if-new
+           (file+head "article/${title}.org" "#+title: ${title}\n#+filetags: :article:\n")
+           :immediate-finish t
+           :unnarrowed t)))
+
+  (cl-defmethod org-roam-node-type ((node org-roam-node))
+    "Return the TYPE of NODE."
+    (condition-case nil
+        (file-name-nondirectory
+         (directory-file-name
+          (file-name-directory
+           (file-relative-name (org-roam-node-file node) org-roam-directory))))
+      (error "")))
+
+  (setq org-roam-node-display-template
+        (concat "${type:15} ${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+
+  (defun jetho/org-roam-node-from-cite (keys-entries)
+    (interactive (list (citar-select-ref :multiple nil :rebuild-cache t)))
+    (let ((title (citar--format-entry-no-widths (cdr keys-entries)
+                                                "${author editor} :: ${title}")))
+      (org-roam-capture- :templates
+                         '(("r" "reference" plain "%?" :if-new
+                            (file+head "reference/${citekey}.org"
+                                       ":PROPERTIES:
+:ROAM_REFS: [cite:@${citekey}]
+:END:
+#+title: ${title}\n")
+                            :immediate-finish t
+                            :unnarrowed t))
+                         :info (list :citekey (car keys-entries))
+                         :node (org-roam-node-create :title title)
+                         :props '(:finalize find-file))))
+
+  (defun jethro/tag-new-node-as-draft ()
+    (org-roam-tag-add '("draft")))
+  (add-hook 'org-roam-capture-new-node-hook #'jethro/tag-new-node-as-draft)
+
+  :bind ("C-c n r" . jethro/org-roam-node-from-cite))
 
 (use-package osm
   :bind (("C-c m h" . osm-home)
