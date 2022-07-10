@@ -1086,7 +1086,7 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package org-roam
   :custom
-  (org-id-link-to-org-use-id t)
+  ;; (org-id-link-to-org-use-id t)
   (org-roam-directory cr-zet-dir)
   :config (org-roam-db-autosync-mode)
   :bind (("C-c n l" . org-roam-buffer-toggle)
