@@ -598,6 +598,24 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                ("]" . elfeed-show-next)
                ("[" . elfeed-show-prev))))
 
+(use-package elfeed-tube
+  :after elfeed
+  :demand
+  :config (elfeed-tube-setup)
+  :bind (:map elfeed-show-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)
+         :map elfeed-search-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)))
+
+(use-package elfeed-tube-mpv
+  :after elfeed-tube
+  :demand
+  :bind (:map elfeed-show-mode-map
+              ("C-c C-f" . elfeed-tube-mpv-follow-mode)
+              ("C-c C-w" . elfeed-tube-mpv-where)))
+
 (use-package embark
   :bind (("C-." . embark-act)
          ("M-." . embark-dwim)
