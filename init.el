@@ -238,7 +238,7 @@
 (use-package browse-url
   :straight (:type built-in)
   :custom
-  (browse-url-handlers
+  (browse-url-browser-function
    '(("\\(youtube\\.com/watch\\)\\|\\(youtu\\.be/watch\\)" . browse-url-youtube-mpv)
      ("." . browse-url-default-browser)))
   :config
@@ -597,6 +597,24 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                ("p" . previous-line)
                ("]" . elfeed-show-next)
                ("[" . elfeed-show-prev))))
+
+(use-package elfeed-tube
+  :after elfeed
+  :demand
+  :config (elfeed-tube-setup)
+  :bind (:map elfeed-show-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)
+         :map elfeed-search-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)))
+
+(use-package elfeed-tube-mpv
+  :after elfeed-tube
+  :demand
+  :bind (:map elfeed-show-mode-map
+              ("C-c C-f" . elfeed-tube-mpv-follow-mode)
+              ("C-c C-w" . elfeed-tube-mpv-where)))
 
 (use-package embark
   :bind (("C-." . embark-act)
@@ -1088,70 +1106,19 @@ remain in fixed pitch for the tags to be aligned."
   :custom
   ;; (org-id-link-to-org-use-id t)
   (org-roam-directory cr-zet-dir)
-  :config (org-roam-db-autosync-mode)
+  :config
+  (org-roam-db-autosync-mode)
+  (use-package cr-org-roam
+    :straight nil
+    :demand
+    :after org-roam
+    :bind ("C-c n r" . jethro/org-roam-node-from-cite))
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n n" . org-roam-node-find)
          ("C-c n g" . org-roam-graph)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
-         ("C-c n r" . org-roam-node-random)))
-
-(use-package org-roam
-  ;; Jethrokuan's workflow
-  ;; https://jethrokuan.github.io/org-roam-guide/
-  :config
-  (setq org-roam-capture-templates
-        '(("m" "main" plain
-           "%?"
-           :if-new (file+head "main/${slug}.org"
-                              "#+title: ${title}\n")
-           :immediate-finish t
-           :unnarrowed t)
-          ("r" "reference" plain "%?"
-           :if-new
-           (file+head "reference/${title}.org" "#+title: ${title}\n")
-           :immediate-finish t
-           :unnarrowed t)
-          ("a" "article" plain "%?"
-           :if-new
-           (file+head "article/${title}.org" "#+title: ${title}\n#+filetags: :article:\n")
-           :immediate-finish t
-           :unnarrowed t)))
-
-  (cl-defmethod org-roam-node-type ((node org-roam-node))
-    "Return the TYPE of NODE."
-    (condition-case nil
-        (file-name-nondirectory
-         (directory-file-name
-          (file-name-directory
-           (file-relative-name (org-roam-node-file node) org-roam-directory))))
-      (error "")))
-
-  (setq org-roam-node-display-template
-        (concat "${type:15} ${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-
-  (defun jetho/org-roam-node-from-cite (keys-entries)
-    (interactive (list (citar-select-ref :multiple nil :rebuild-cache t)))
-    (let ((title (citar--format-entry-no-widths (cdr keys-entries)
-                                                "${author editor} :: ${title}")))
-      (org-roam-capture- :templates
-                         '(("r" "reference" plain "%?" :if-new
-                            (file+head "reference/${citekey}.org"
-                                       ":PROPERTIES:
-:ROAM_REFS: [cite:@${citekey}]
-:END:
-#+title: ${title}\n")
-                            :immediate-finish t
-                            :unnarrowed t))
-                         :info (list :citekey (car keys-entries))
-                         :node (org-roam-node-create :title title)
-                         :props '(:finalize find-file))))
-
-  (defun jethro/tag-new-node-as-draft ()
-    (org-roam-tag-add '("draft")))
-  (add-hook 'org-roam-capture-new-node-hook #'jethro/tag-new-node-as-draft)
-
-  :bind ("C-c n r" . jethro/org-roam-node-from-cite))
+         ("C-c n SPC" . org-roam-node-random)))
 
 (use-package osm
   :bind (("C-c m h" . osm-home)
