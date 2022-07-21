@@ -224,11 +224,21 @@
 
 (use-package bibtex
   :straight (:type built-in)
-  :config
+  :custom
+  (bibtex-include-OPTkey nil)
+  (bibtex-autokey-year-length 4)
+  (bibtex-autokey-year-title-separator nil)
+  (bibtex-autokey-titlewords 2)
+  (bibtex-autokey-titleword-length 5)
+  (bibtex-autokey-titlewords-stretch 1)
+    :config
   (defun cr-bibtex-settings ()
     ;; Fix for bibtex-mode initialization
     ;; https://emacs.stackexchange.com/questions/46691/initialization-of-bibtex-package
     (bibtex-set-dialect 'BibTeX))
+
+  (setq bibtex-autokey-titleword-ignore (cl-union bibtex-autokey-titleword-ignore
+                  '("Le" "La" "Un" "Une" "Les" "De" "Des")))
   :hook (bibtex-mode . cr-bibtex-settings))
 
 (use-package bookmark
