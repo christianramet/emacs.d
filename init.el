@@ -27,9 +27,7 @@
   (expand-file-name "lisp" user-emacs-directory)
   "My Emacs configuration base directory.")
 
-(let ((default-directory cr-user-emacs-directory-lisp))
-  (normal-top-level-add-to-load-path '("."))
-  (normal-top-level-add-subdirs-to-load-path))
+(add-to-list 'load-path cr-user-emacs-directory-lisp)
 
 ;;; Modules
 (when init-file-debug (require 'cr-debug nil 'noerror))
