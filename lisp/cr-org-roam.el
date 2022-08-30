@@ -1,5 +1,6 @@
 ;; Based on Jethrokuan's workflow
 ;; https://jethrokuan.github.io/org-roam-guide/
+;; https://github.com/jethrokuan/dots/blob/master/.doom.d/config.el
 
 (require 'org)
 (require 'org-roam)
