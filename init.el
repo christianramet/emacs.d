@@ -565,8 +565,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package dockerfile-mode :mode ("Dockerfile\\'"))
 
 (use-package doom-modeline
-    :custom (doom-modeline-buffer-encoding nil)
-    :hook (after-init . doom-modeline-mode))
+  :custom (doom-modeline-buffer-encoding nil)
+  :hook (after-init . doom-modeline-mode))
 
 (use-package doom-sudo-utils
   :straight nil
@@ -592,8 +592,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package eldoc :diminish)
 
 (use-package elfeed
-  :init
-  (require 'cr-private-feeds nil 'noerror)
+  :init (require 'cr-private-feeds nil 'noerror)
   :custom
   (elfeed-search-filter "@2-weeks-ago +unread")
   (elfeed-search-date-format '("%m-%d" 5 :left))
@@ -1217,7 +1216,7 @@ remain in fixed pitch for the tags to be aligned."
               ("=" . project-remember-projects-under)
               ("-" . project-forget-project)))
 
-(use-package pulse ;; TODO: replace with pulsar.el once released
+(use-package pulse
   :straight (:type built-in)
   :demand
   :config
