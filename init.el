@@ -1312,6 +1312,10 @@ remain in fixed pitch for the tags to be aligned."
   :demand
   :config (unless (server-running-p)(server-start)))
 
+(use-package shell
+  :straight (:type built-in)
+  :bind (:map cr-app-map ("s" . shell)))
+
 (use-package simple
   :straight (:type built-in)
   :diminish (visual-line-mode auto-fill-function)
@@ -1391,7 +1395,7 @@ remain in fixed pitch for the tags to be aligned."
   (defun cr-isql-config ()
     (setq-local truncate-lines t))
   (add-hook 'sql-interactive-mode-hook 'cr-isql-config)
-  :bind ((:map cr-app-map ("s" . sql-connect))))
+  :bind ((:map cr-app-map ("q" . sql-connect))))
 
 (use-package ssh-config-mode)
 
