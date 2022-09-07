@@ -292,6 +292,12 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar))
 
+(use-package citar-embark
+  :demand
+  :after citar embark
+  :no-require
+  :config (citar-embark-mode))
+
 (use-package company
   :diminish
   :custom
