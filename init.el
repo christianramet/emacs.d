@@ -1404,14 +1404,6 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package terraform-mode)
 
-(use-package time
-  :straight (:type built-in)
-  :custom
-  (display-time-24hr-format t)
-  (display-time-default-load-average nil)
-  :bind ((:map cr-toggle-map ("." . display-time-mode))
-         (:map cr-app-map ("." . display-time-world))))
-
 (use-package timer-list
   :straight (:type built-in)
   :bind (:map cr-emacs-map ("l" . list-timers)))
