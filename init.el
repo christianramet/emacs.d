@@ -216,12 +216,6 @@
   (avy-all-windows-alt nil)
   :bind* ("C-'" . avy-goto-char-timer))
 
-(use-package battery
-  :straight (:type built-in)
-  :commands (battery display-battery-mode)
-  :custom (battery-mode-line-limit 85)
-  :bind (:map cr-toggle-map ("b" . display-battery-mode)))
-
 (use-package bibtex
   :straight (:type built-in)
   :custom
