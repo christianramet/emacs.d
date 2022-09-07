@@ -225,7 +225,7 @@
   (bibtex-autokey-titlewords 2)
   (bibtex-autokey-titleword-length 5)
   (bibtex-autokey-titlewords-stretch 1)
-    :config
+  :config
   (defun cr-bibtex-settings ()
     ;; Fix for bibtex-mode initialization
     ;; https://emacs.stackexchange.com/questions/46691/initialization-of-bibtex-package
