@@ -182,8 +182,6 @@
               ("a" . align-code)
               ("A" . align-regexp)))
 
-(use-package all-the-icons)
-
 (use-package apache-mode)
 
 (use-package async
