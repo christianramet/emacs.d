@@ -1397,8 +1397,8 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package treemacs
   :custom (treemacs-is-never-other-window t)
-  :bind ((:map cr-toggle-map ("0" . treemacs))
-         ("M-0" . treemacs-select-window)))
+  :bind (("M-0" . treemacs-select-window)
+         (:map cr-toggle-map ("0" . treemacs))))
 
 (use-package tree-sitter
   :straight tree-sitter
