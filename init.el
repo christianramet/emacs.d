@@ -444,25 +444,12 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :straight nil
   :demand
   :custom
-  (cr-themes-light 'doom-solarized-light)
-  (cr-themes-dark 'doom-solarized-dark)
+  (cr-themes-light 'leuven)
+  (cr-themes-dark 'wombat)
   (cr-themes-default cr-themes-light)
-  :config
-  (use-package doom-themes
-    :custom
-    (doom-themes-enable-bold t)
-    (doom-themes-enable-italic t)
-    :config
-    (with-eval-after-load 'org-mode
-      (doom-themes-enable-org-config))
-    (with-eval-after-load 'treemacs
-      (custom-set-variables
-       '(doom-themes-treemacs-theme 'doom-colors)
-       '(doom-themes-treemacs-bitmap-indicator-width 8))
-      (doom-themes-treemacs-config)))
-
-  (load-theme cr-themes-default t)
-
+  (leuven-scale-outline-headlines nil)
+  (leuven-scale-org-agenda-structure nil)
+  :config (load-theme cr-themes-default t)
   :bind (:map cr-toggle-map ("t" . cr-themes-toggle)))
 
 (use-package css-mode :mode "\\.css\\'")
@@ -557,10 +544,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind (:map cr-toggle-map ("l" . display-line-numbers-mode)))
 
 (use-package dockerfile-mode :mode ("Dockerfile\\'"))
-
-(use-package doom-modeline
-  :custom (doom-modeline-buffer-encoding nil)
-  :hook (after-init . doom-modeline-mode))
 
 (use-package doom-sudo-utils
   :straight nil
