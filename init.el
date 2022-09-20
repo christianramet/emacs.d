@@ -1422,6 +1422,10 @@ remain in fixed pitch for the tags to be aligned."
   :custom (vterm-max-scrollback (* 20 1000))
   :bind (:map cr-app-map ("v" . vterm)))
 
+(use-package warnings
+  :straight (:type built-in)
+  :custom (warning-suppress-types '((comp))))
+
 (use-package winner
   :straight (:type built-in)
   :hook (after-init . winner-mode)
