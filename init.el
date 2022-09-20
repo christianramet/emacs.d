@@ -187,7 +187,6 @@
 (use-package apache-mode)
 
 (use-package async
-  :diminish dired-async-mode
   :hook (dired-mode . dired-async-mode))
 
 (use-package auth-source-pass
