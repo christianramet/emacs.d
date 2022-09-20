@@ -1129,6 +1129,7 @@ remain in fixed pitch for the tags to be aligned."
   :bind (:map cr-toggle-map ("O" . outline-minor-mode)))
 
 (use-package outline-magic
+  :after outline
   :bind (:map outline-minor-mode-map ("<C-tab>" . outline-cycle)))
 
 (use-package pass
