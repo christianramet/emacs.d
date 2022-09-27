@@ -1400,6 +1400,7 @@ remain in fixed pitch for the tags to be aligned."
          (:map cr-toggle-map ("0" . treemacs))))
 
 (use-package tree-sitter
+  :diminish
   :straight tree-sitter
   :straight tree-sitter-langs
   :hook (tree-sitter-mode . tree-sitter-hl-mode)
