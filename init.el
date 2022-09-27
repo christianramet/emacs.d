@@ -239,7 +239,7 @@
 (use-package browse-url
   :straight (:type built-in)
   :custom
-  (browse-url-browser-function
+  (browse-url-handlers
    '(("\\(youtube\\.com/watch\\)\\|\\(youtu\\.be/watch\\)" . browse-url-youtube-mpv)
      ("." . browse-url-default-browser)))
   :config
