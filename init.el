@@ -564,6 +564,18 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
               ("d" . ediff-buffers)
               ("D" . ediff-show-registry)))
 
+(use-package eglot
+  :bind ((:map cr-toggle-map ("," . eglot))
+         (:map eglot-mode-map)
+         ("C-c h =" . eglot-format)
+         ("C-c h a" . eglot-code-actions)
+         ("C-c h i" . eglot-code-action-organize-imports)
+         ("C-c h q" . eglot-code-action-quickfix)
+         ("C-c h r" . eglot-rename)
+         ("C-c h R" . eglot-reconnect)
+         ("C-c h x" . eglot-shutdown)
+         ("C-c h X" . eglot-shutdown-all)))
+
 (use-package eldoc :diminish)
 
 (use-package elfeed
@@ -732,10 +744,12 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :bind ("M-g f" . find-file-at-point))
 
-(use-package flycheck
-  :custom (flycheck-disabled-checkers '(emacs-lisp-checkdoc))
-  :hook (prog-mode . flycheck-mode)
-  :bind (:map cr-toggle-map ("f" . flycheck-mode)))
+(use-package flymake
+  :hook (prog-mode . flymake-mode)
+  :bind ((:map cr-toggle-map ("f" . flymake-mode))
+         (:map flymake-mode-map
+               ("M-n" . flymake-goto-next-error)
+               ("M-p" . flymake-goto-prev-error))))
 
 (use-package flyspell
   :diminish
@@ -899,19 +913,6 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package ledger-mode
   :if (executable-find "ledger"))
-
-(use-package lsp-mode
-  :custom
-  (lsp-auto-configure t)
-  (lsp-keymap-prefix "C-c ,")
-  (lsp-yaml-schemas
-   '(:kubernetes ["*-k8s.yaml"
-                  "*-k8s.yml"
-                  "/deployments.yaml"]))
-  :hook ((go-mode python-mode yaml-mode) . lsp)
-  :bind (:map cr-toggle-map ("," . lsp)))
-
-(use-package lsp-ui)
 
 (use-package magit
   :bind (:map cr-git-map
