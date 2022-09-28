@@ -907,15 +907,17 @@ remain in fixed pitch for the tags to be aligned."
 (use-package lsp-mode
   :custom
   (lsp-auto-configure t)
-  (lsp-keymap-prefix "C-c ,")
+  (lsp-keymap-prefix "C-c .")
+  (lsp-headerline-breadcrumb-enable nil)
   (lsp-yaml-schemas
    '(:kubernetes ["*-k8s.yaml"
                   "*-k8s.yml"
                   "/deployments.yaml"]))
   :hook ((go-mode python-mode yaml-mode) . lsp)
-  :bind (:map cr-toggle-map ("," . lsp)))
+  :hook (lsp-mode . lsp-enable-which-key-integration)
+  :bind (:map cr-toggle-map ("." . lsp)))
 
-(use-package lsp-ui)
+(use-package lsp-treemacs)
 
 (use-package magit
   :bind (:map cr-git-map
