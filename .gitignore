@@ -1,4 +1,5 @@
 custom.el
+/.cache/
 /eln-cache/
 /elpa
 /lsp-cache/
