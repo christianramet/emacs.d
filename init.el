@@ -895,6 +895,10 @@ remain in fixed pitch for the tags to be aligned."
               ("m" . cr-ispell-set-MULTI)
               ("r" . ispell-region)))
 
+(use-package js
+  :straight (:type built-in)
+  :config (define-key js-mode-map (kbd "M-.") nil))
+
 (use-package json-mode)
 
 (use-package ledger-mode
