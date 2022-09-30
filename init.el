@@ -565,16 +565,16 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
               ("D" . ediff-show-registry)))
 
 (use-package eglot
-  :bind ((:map cr-toggle-map ("," . eglot))
+  :bind ((:map cr-toggle-map ("." . eglot))
          (:map eglot-mode-map)
-         ("C-c h =" . eglot-format)
-         ("C-c h a" . eglot-code-actions)
-         ("C-c h i" . eglot-code-action-organize-imports)
-         ("C-c h q" . eglot-code-action-quickfix)
-         ("C-c h r" . eglot-rename)
-         ("C-c h R" . eglot-reconnect)
-         ("C-c h x" . eglot-shutdown)
-         ("C-c h X" . eglot-shutdown-all)))
+         ("C-c . =" . eglot-format)
+         ("C-c . a" . eglot-code-actions)
+         ("C-c . o" . eglot-code-action-organize-imports)
+         ("C-c . q" . eglot-code-action-quickfix)
+         ("C-c . r" . eglot-rename)
+         ("C-c . R" . eglot-reconnect)
+         ("C-c . x" . eglot-shutdown)
+         ("C-c . X" . eglot-shutdown-all)))
 
 (use-package eldoc :diminish)
 
