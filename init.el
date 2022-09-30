@@ -909,6 +909,10 @@ remain in fixed pitch for the tags to be aligned."
               ("m" . cr-ispell-set-MULTI)
               ("r" . ispell-region)))
 
+(use-package js
+  :straight (:type built-in)
+  :config (define-key js-mode-map (kbd "M-.") nil))
+
 (use-package json-mode)
 
 (use-package ledger-mode
@@ -1401,11 +1405,12 @@ remain in fixed pitch for the tags to be aligned."
          (:map cr-toggle-map ("0" . treemacs))))
 
 (use-package tree-sitter
+  :demand
   :diminish
   :straight tree-sitter
   :straight tree-sitter-langs
-  :hook (tree-sitter-mode . tree-sitter-hl-mode)
-  :hook ((go-mode sh-mode html-mode json-mode python-mode go-mode) . tree-sitter-mode))
+  :config (global-tree-sitter-mode)
+  :hook (tree-sitter-mode . tree-sitter-hl-mode))
 
 (use-package unfill
   :bind ([remap fill-paragraph] . 'unfill-toggle))
