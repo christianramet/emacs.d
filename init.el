@@ -310,10 +310,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :after (:all company prescient)
   :hook (company-mode . company-prescient-mode))
 
-(use-package compile
-  :straight (:type built-in)
-  :bind (:map cr-file-map ("m" . compile)))
-
 (use-package consult
   :custom
   (consult-locate-args "locate --ignore-case --regex")
