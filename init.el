@@ -915,7 +915,7 @@ remain in fixed pitch for the tags to be aligned."
   :if (executable-find "ledger"))
 
 (use-package magit
-  :custom (magit-clone-default-directory "~/git/")
+  :custom (magit-clone-default-directory cr-git-dir)
   :bind (:map cr-git-map
               ("b" . magit-branch-checkout)
               ("B" . magit-blame)
