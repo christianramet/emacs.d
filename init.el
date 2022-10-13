@@ -905,10 +905,6 @@ remain in fixed pitch for the tags to be aligned."
               ("m" . cr-ispell-set-MULTI)
               ("r" . ispell-region)))
 
-(use-package js
-  :straight (:type built-in)
-  :config (define-key js-mode-map (kbd "M-.") nil))
-
 (use-package json-mode)
 
 (use-package ledger-mode
@@ -1469,3 +1465,15 @@ remain in fixed pitch for the tags to be aligned."
 (use-package yasnippet
   :diminish yas-minor-mode
   :hook (after-init . yas-global-mode))
+
+;;; JS
+(use-package js
+  :straight (:type built-in)
+  :config (define-key js-mode-map (kbd "M-.") nil))
+
+(use-package typescript-mode
+  :custom (typescript-indent-level 2)
+  :mode "\\.ts\\'")
+
+(use-package rjsx-mode
+  :mode "\\.tsx\\'")
