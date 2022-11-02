@@ -1278,12 +1278,8 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :hook (after-init . save-place-mode))
 
-(use-package selectrum
-  :hook (after-init . selectrum-mode)
-  :bind ("C-c r" . selectrum-repeat))
-
-(use-package selectrum-prescient
-  :hook (selectrum-mode . selectrum-prescient-mode))
+(use-package vertico
+  :hook (after-init . vertico-mode))
 
 (use-package server
   :disabled
