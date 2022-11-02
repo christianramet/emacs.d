@@ -1184,7 +1184,6 @@ remain in fixed pitch for the tags to be aligned."
 (use-package project
   :config
   (project-forget-zombie-projects)
-  (project-remember-projects-under cr-git-dir)
   (add-to-list 'project-switch-commands '(?m "Magit" magit-status) t)
   :bind (:map project-prefix-map
               ("=" . project-remember-projects-under)
