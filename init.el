@@ -7,8 +7,8 @@
 
 ;;; Variables and constants
 (setq default-directory "~/")
-(defconst cr-data-dir "~/Nextcloud")
-(defconst cr-git-dir "~/git")
+(defconst cr-data-dir "~/Nextcloud/")
+(defconst cr-git-dir "~/git/")
 
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
 (defconst cr-zet-dir (expand-file-name "zet" cr-org-dir))
