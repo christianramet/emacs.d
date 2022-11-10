@@ -290,22 +290,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :no-require
   :config (citar-embark-mode))
 
-(use-package company
-  :diminish
-  :custom
-  (company-idle-delay 0.5)
-  (company-minimum-prefix-length 3)
-  (company-backends
-   '(company-capf
-     (company-dabbrev-code company-gtags company-etags company-keywords)
-     company-files
-     company-dabbrev))
-  :hook (after-init . global-company-mode)
-  :bind (("M-/"   . company-complete)
-         ("C-c y" . company-yasnippet)
-         (:map company-active-map ("M-/" . company-other-backend))
-         (:map cr-toggle-map ("c" . company-mode))))
-
 (use-package consult
   :custom
   (consult-locate-args "locate --ignore-case --regex")
@@ -380,6 +364,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package consult-recoll
   :bind ("M-s r" . consult-recoll))
+
+(use-package corfu
+  :init (global-corfu-mode))
 
 (use-package cr-focus-mode
   :straight olivetti
@@ -644,7 +631,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                          eshell-unix))
   :config
   (defun cr-eshell-settings ()
-    (company-mode -1)
     (hl-line-mode -1)
     (setenv "PAGER""cat")
     (with-eval-after-load 'counsel
@@ -709,11 +695,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
   (defun variable-pitch-settings ()
     (if buffer-face-mode
-        (setq-local company-idle-delay nil
-                    cursor-type 'bar)
-      (progn
-        (kill-local-variable 'company-idle-delay)
-        (kill-local-variable 'cursor-type))))
+        (setq-local cursor-type 'bar)
+      (progn (kill-local-variable 'cursor-type))))
 
   (add-hook 'buffer-face-mode-hook 'variable-pitch-settings)
 
