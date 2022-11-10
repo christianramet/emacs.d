@@ -366,7 +366,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind ("M-s r" . consult-recoll))
 
 (use-package corfu
-  :init (global-corfu-mode))
+  :custom (corfu-auto t)
+  :hook (after-init . global-corfu-mode))
 
 (use-package cr-focus-mode
   :straight olivetti
