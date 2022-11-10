@@ -306,10 +306,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map company-active-map ("M-/" . company-other-backend))
          (:map cr-toggle-map ("c" . company-mode))))
 
-(use-package company-prescient
-  :after (:all company prescient)
-  :hook (company-mode . company-prescient-mode))
-
 (use-package consult
   :custom
   (consult-locate-args "locate --ignore-case --regex")
@@ -954,6 +950,11 @@ remain in fixed pitch for the tags to be aligned."
   (olivetti-minimum-body-width fill-column)
   :bind (:map cr-toggle-map ("o" . olivetti-mode)))
 
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
 (use-package org
   :custom
   (org-adapt-indentation nil)
@@ -1161,8 +1162,6 @@ remain in fixed pitch for the tags to be aligned."
   (define-key pdf-view-mode-map (kbd "M-p") 'pdf-view-previous-page-command))
 
 (use-package php-mode :mode ("\\.php\\'"))
-
-(use-package prescient :hook (after-init . prescient-persist-mode))
 
 (use-package proced
   :straight (:type built-in)
