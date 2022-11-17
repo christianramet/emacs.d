@@ -321,6 +321,17 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                                                 :as #'buffer-name)))
     "eshell candidate source for `consult-buffer'.")
 
+    (defvar consult--source-shell
+    `(:name     "shell"
+      :narrow   ?s
+      :category buffer
+      :face     consult-buffer
+      :history  buffer-name-history
+      :action   ,#'consult--buffer-action
+      :items ,(lambda () (consult--buffer-query :mode 'shell-mode
+                                                :as #'buffer-name)))
+    "shell candidate source for `consult-buffer'.")
+
   (defvar consult--source-vterm
     `(:name     "vterm"
       :narrow   ?v
@@ -333,6 +344,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     "vterm candidate source for `consult-buffer'.")
 
   (add-to-list 'consult-buffer-sources 'consult--source-eshell 'append)
+  (add-to-list 'consult-buffer-sources 'consult--source-shell 'append)
   (add-to-list 'consult-buffer-sources 'consult--source-vterm 'append)
 
   :bind (([remap apropos-command] . consult-apropos)
