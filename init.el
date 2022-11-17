@@ -1075,8 +1075,9 @@ remain in fixed pitch for the tags to be aligned."
 (use-package org-indent
   :straight (:type built-in)
   :diminish
-  :custom (org-indent-indentation-per-level 1)
-  :hook (org-mode . org-indent-mode))
+  :custom
+  (org-startup-indented t)
+  (org-indent-indentation-per-level 1))
 
 (use-package org-noter
   :after (:any org pdf-view)
