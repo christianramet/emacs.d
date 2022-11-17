@@ -739,6 +739,27 @@ remain in fixed pitch for the tags to be aligned."
                ("M-n" . flymake-goto-next-error)
                ("M-p" . flymake-goto-prev-error))))
 
+(use-package flymake-languagetool
+  ;; `flymake-languagetool-url' provided in `cr-private vars'
+  :custom (flymake-languagetool-language "fr")
+  :config
+  (push "WHITESPACE_RULE" flymake-languagetool--disabled-rules)
+
+  (defun cr-languagetool-set-lang-en ()
+    (interactive)
+    (setq-local flymake-languagetool-language "en-US")
+    (flymake-languagetool--check-buffer))
+
+  (defun cr-languagetool-set-lang-fr ()
+    (interactive)
+    (setq-local flymake-languagetool-language "fr")
+    (flymake-languagetool--check-buffer))
+
+  :bind (:map flymake-mode-map ("C-;" . flymake-languagetool-correct-dwim))
+  :hook ((text-mode       . flymake-languagetool-load)
+         (org-mode        . flymake-languagetool-load)
+         (markdown-mode   . flymake-languagetool-load)))
+
 (use-package flyspell
   :diminish
   :custom
