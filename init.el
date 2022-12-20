@@ -743,7 +743,7 @@ remain in fixed pitch for the tags to be aligned."
   ;; `flymake-languagetool-url' provided in `cr-private vars'
   :custom (flymake-languagetool-language "fr")
   :config
-  (push "WHITESPACE_RULE" flymake-languagetool--disabled-rules)
+  (push "WHITESPACE_RULE" flymake-languagetool-disabled-rules)
 
   (defun cr-languagetool-set-lang-en ()
     (interactive)
