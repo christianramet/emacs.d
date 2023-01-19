@@ -1141,16 +1141,6 @@ remain in fixed pitch for the tags to be aligned."
   (with-eval-after-load 'org
     (require 'osm-ol)))
 
-(use-package outline
-  :straight (:type built-in)
-  :diminish outline-minor-mode
-  :hook (prog-mode . outline-minor-mode)
-  :bind (:map cr-toggle-map ("O" . outline-minor-mode)))
-
-(use-package outline-magic
-  :after outline
-  :bind (:map outline-minor-mode-map ("<C-tab>" . outline-cycle)))
-
 (use-package pass
   :custom (pass-show-keybindings nil)
   :bind (:map cr-app-map ("P" . pass)))
