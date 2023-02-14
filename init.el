@@ -732,7 +732,7 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :bind ("M-g f" . find-file-at-point))
 
-(use-package flymake
+(use-package flymake ;; flycheck built-in alternative
   :hook (prog-mode . flymake-mode)
   :bind ((:map cr-toggle-map ("f" . flymake-mode))
          (:map flymake-mode-map
@@ -740,7 +740,9 @@ remain in fixed pitch for the tags to be aligned."
                ("M-p" . flymake-goto-prev-error))))
 
 (use-package flymake-languagetool
-  ;; `flymake-languagetool-url' provided in `cr-private vars'
+  ;; Enhances `flymake' to handle grammar errors. Do not confuse with `flyspell'
+  ;; wich only uses the dictionary. Note that `flymake-languagetool-url' is
+  ;; provided by `cr-private vars'
   :custom (flymake-languagetool-language "fr")
   :config
   (push "WHITESPACE_RULE" flymake-languagetool-disabled-rules)
