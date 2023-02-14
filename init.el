@@ -950,10 +950,11 @@ remain in fixed pitch for the tags to be aligned."
   (defun cr-nov-settings ()
     (face-remap-add-relative 'variable-pitch
                              :family "Georgia"
-                             :height 1.0)
+                             :height 1.2)
     (setq-local line-spacing 0.5
                 left-margin 10)
-    (hl-line-mode 1))
+    (hl-line-mode 1)
+    (nov-render-document))
   (add-hook 'nov-mode-hook 'cr-nov-settings)
   :mode ("\\.\\(epub\\|mobi\\)\\'" . nov-mode)
   :bind (:map nov-mode-map
