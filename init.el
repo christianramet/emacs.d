@@ -1401,6 +1401,7 @@ remain in fixed pitch for the tags to be aligned."
          (:map cr-toggle-map ("0" . treemacs))))
 
 (use-package tree-sitter
+  :if (< emacs-major-version 29)
   :demand
   :diminish
   :straight tree-sitter
