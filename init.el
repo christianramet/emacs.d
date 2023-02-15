@@ -954,7 +954,7 @@ remain in fixed pitch for the tags to be aligned."
                              :family "Georgia"
                              :height 1.2)
     (setq-local line-spacing 0.5
-                left-margin 10)
+                left-margin-width 2)
     (hl-line-mode 1)
     (nov-render-document))
   (add-hook 'nov-mode-hook 'cr-nov-settings)
