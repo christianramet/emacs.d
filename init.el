@@ -190,7 +190,7 @@
 (use-package auth-source-pass
   :if (executable-find "pass")
   :straight (:type built-in)
-  :hook (after-init . auth-source-pass-enable))
+  :init (auth-source-pass-enable))
 
 (use-package autorevert
   :straight (:type built-in)
@@ -198,7 +198,7 @@
   :custom
   (auto-revert-avoid-polling t)
   (revert-without-query (list "."))
-  :hook (after-init . global-auto-revert-mode)
+  :init (global-auto-revert-mode)
   :bind ((:map cr-buffer-map ("g". revert-buffer))
          (:map cr-toggle-map
                ("a" . auto-revert-mode)
@@ -379,7 +379,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package corfu
   :custom (corfu-auto t)
-  :hook (after-init . global-corfu-mode))
+  :init (global-corfu-mode))
 
 (use-package cr-focus-mode
   :straight olivetti
@@ -818,7 +818,7 @@ remain in fixed pitch for the tags to be aligned."
   :bind (:map cr-toggle-map
               ("RET" . toggle-frame-fullscreen)
               ("M-RET" . toggle-frame-maximized))
-  :hook (after-init . toggle-frame-maximized))
+  :init (toggle-frame-maximized))
 
 (use-package go-mode
   :mode "\\.go\\'"
@@ -942,7 +942,7 @@ remain in fixed pitch for the tags to be aligned."
   :custom (markdown-fontify-code-blocks-natively t))
 
 (use-package marginalia
-  :hook (after-init . marginalia-mode))
+  :init (marginalia-mode))
 
 (use-package nginx-mode)
 
@@ -1229,7 +1229,7 @@ remain in fixed pitch for the tags to be aligned."
   (with-eval-after-load 'no-littering
     (add-to-list 'recentf-exclude no-littering-var-directory)
     (add-to-list 'recentf-exclude no-littering-etc-directory))
-  :hook (after-init . recentf-mode))
+  :init (recentf-mode))
 
 (use-package replace
   :straight (:type built-in)
@@ -1283,14 +1283,14 @@ remain in fixed pitch for the tags to be aligned."
   (add-to-list 'savehist-additional-variables 'regexp-search-ring)
   (add-to-list 'savehist-additional-variables 'register-alist)
   (add-to-list 'savehist-additional-variables 'compilation-command)
-  :hook (after-init . savehist-mode))
+  :init (savehist-mode))
 
 (use-package saveplace
   :straight (:type built-in)
-  :hook (after-init . save-place-mode))
+  :init (save-place-mode))
 
 (use-package vertico
-  :hook (after-init . vertico-mode))
+  :init (vertico-mode))
 
 (use-package server
   :disabled
@@ -1369,7 +1369,7 @@ remain in fixed pitch for the tags to be aligned."
 (use-package so-long
   :if (>= emacs-major-version 27)
   :straight (:type built-in)
-  :hook (after-init . global-so-long-mode))
+  :init (global-so-long-mode))
 
 (use-package sort
   :straight (:type built-in)
@@ -1435,13 +1435,13 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package winner
   :straight (:type built-in)
-  :hook (after-init . winner-mode)
+  :init (winner-mode)
   :bind (("C-x u" . winner-undo)
          ("C-x U" . winner-redo)))
 
 (use-package which-key
   :diminish
-  :hook (after-init . which-key-mode)
+  :init (which-key-mode)
   :bind (:map cr-toggle-map ("?" . which-key-mode)))
 
 (use-package whitespace
@@ -1471,7 +1471,7 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package yasnippet
   :diminish yas-minor-mode
-  :hook (after-init . yas-global-mode))
+  :init (yas-global-mode))
 
 ;;; JS
 (use-package js
