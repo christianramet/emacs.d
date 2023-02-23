@@ -363,7 +363,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("M-g e" . consult-flymake)
          ("M-g m" . consult-mark)
          ("M-g k" . consult-global-mark)
-         ("M-s a" . consult-org-agenda)
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
          ("M-s O" . consult-multi-occur)
