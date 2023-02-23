@@ -138,6 +138,8 @@
   (custom-set-variables
    '(mac-option-modifier 'meta)
    '(mac-command-modifier nil)
+   ;; disable `mac-right-option-modifier' with external keyboards on MacOS
+   ;; because of a bug: inverted left/right keys
    '(mac-right-option-modifier nil)))
 
 ;;; Personal prefix maps key bindings
