@@ -192,7 +192,7 @@
 (use-package auth-source-pass
   :if (executable-find "pass")
   :straight (:type built-in)
-  :hook (after-init . auth-source-pass-enable))
+  :init (auth-source-pass-enable))
 
 (use-package autorevert
   :straight (:type built-in)
@@ -200,7 +200,7 @@
   :custom
   (auto-revert-avoid-polling t)
   (revert-without-query (list "."))
-  :hook (after-init . global-auto-revert-mode)
+  :init (global-auto-revert-mode)
   :bind ((:map cr-buffer-map ("g". revert-buffer))
          (:map cr-toggle-map
                ("a" . auto-revert-mode)
@@ -299,7 +299,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :init
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
-  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   :config
   (consult-customize
    consult-bookmark consult-buffer consult-ripgrep consult-theme
@@ -323,6 +322,17 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                                                 :as #'buffer-name)))
     "eshell candidate source for `consult-buffer'.")
 
+    (defvar consult--source-shell
+    `(:name     "shell"
+      :narrow   ?s
+      :category buffer
+      :face     consult-buffer
+      :history  buffer-name-history
+      :action   ,#'consult--buffer-action
+      :items ,(lambda () (consult--buffer-query :mode 'shell-mode
+                                                :as #'buffer-name)))
+    "shell candidate source for `consult-buffer'.")
+
   (defvar consult--source-vterm
     `(:name     "vterm"
       :narrow   ?v
@@ -335,10 +345,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     "vterm candidate source for `consult-buffer'.")
 
   (add-to-list 'consult-buffer-sources 'consult--source-eshell 'append)
+  (add-to-list 'consult-buffer-sources 'consult--source-shell 'append)
   (add-to-list 'consult-buffer-sources 'consult--source-vterm 'append)
 
-  :bind (([remap apropos-command] . consult-apropos)
-         ([remap bookmark-jump] . consult-bookmark)
+  :bind (([remap bookmark-jump] . consult-bookmark)
          ([remap goto-line] . consult-goto-line)
          ([remap jump-to-register] . consult-register)
          ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
@@ -353,6 +363,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("M-g e" . consult-flymake)
          ("M-g m" . consult-mark)
          ("M-g k" . consult-global-mark)
+         ("M-s a" . consult-org-agenda)
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
          ("M-s O" . consult-multi-occur)
@@ -369,7 +380,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package corfu
   :custom (corfu-auto t)
-  :hook (after-init . global-corfu-mode))
+  :init (global-corfu-mode))
 
 (use-package cr-focus-mode
   :straight olivetti
@@ -722,12 +733,35 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :bind ("M-g f" . find-file-at-point))
 
-(use-package flymake
+(use-package flymake ;; flycheck built-in alternative
   :hook (prog-mode . flymake-mode)
   :bind ((:map cr-toggle-map ("f" . flymake-mode))
          (:map flymake-mode-map
                ("M-n" . flymake-goto-next-error)
                ("M-p" . flymake-goto-prev-error))))
+
+(use-package flymake-languagetool
+  ;; Enhances `flymake' to handle grammar errors. Do not confuse with `flyspell'
+  ;; wich only uses the dictionary. Note that `flymake-languagetool-url' is
+  ;; provided by `cr-private vars'
+  :custom (flymake-languagetool-language "fr")
+  :config
+  (push "WHITESPACE_RULE" flymake-languagetool-disabled-rules)
+
+  (defun cr-languagetool-set-lang-en ()
+    (interactive)
+    (setq-local flymake-languagetool-language "en-US")
+    (flymake-languagetool--check-buffer))
+
+  (defun cr-languagetool-set-lang-fr ()
+    (interactive)
+    (setq-local flymake-languagetool-language "fr")
+    (flymake-languagetool--check-buffer))
+
+  :bind (:map flymake-mode-map ("C-;" . flymake-languagetool-correct-dwim))
+  :hook ((text-mode       . flymake-languagetool-load)
+         (org-mode        . flymake-languagetool-load)
+         (markdown-mode   . flymake-languagetool-load)))
 
 (use-package flyspell
   :diminish
@@ -785,7 +819,7 @@ remain in fixed pitch for the tags to be aligned."
   :bind (:map cr-toggle-map
               ("RET" . toggle-frame-fullscreen)
               ("M-RET" . toggle-frame-maximized))
-  :hook (after-init . toggle-frame-maximized))
+  :init (toggle-frame-maximized))
 
 (use-package go-mode
   :mode "\\.go\\'"
@@ -909,7 +943,7 @@ remain in fixed pitch for the tags to be aligned."
   :custom (markdown-fontify-code-blocks-natively t))
 
 (use-package marginalia
-  :hook (after-init . marginalia-mode))
+  :init (marginalia-mode))
 
 (use-package nginx-mode)
 
@@ -919,10 +953,11 @@ remain in fixed pitch for the tags to be aligned."
   (defun cr-nov-settings ()
     (face-remap-add-relative 'variable-pitch
                              :family "Georgia"
-                             :height 1.0)
+                             :height 1.2)
     (setq-local line-spacing 0.5
-                left-margin 10)
-    (hl-line-mode 1))
+                left-margin-width 2)
+    (hl-line-mode 1)
+    (nov-render-document))
   (add-hook 'nov-mode-hook 'cr-nov-settings)
   :mode ("\\.\\(epub\\|mobi\\)\\'" . nov-mode)
   :bind (:map nov-mode-map
@@ -939,7 +974,8 @@ remain in fixed pitch for the tags to be aligned."
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles . (partial-completion))))))
 
 (use-package org
   :custom
@@ -1064,8 +1100,9 @@ remain in fixed pitch for the tags to be aligned."
 (use-package org-indent
   :straight (:type built-in)
   :diminish
-  :custom (org-indent-indentation-per-level 1)
-  :hook (org-mode . org-indent-mode))
+  :custom
+  (org-startup-indented t)
+  (org-indent-indentation-per-level 1))
 
 (use-package org-noter
   :after (:any org pdf-view)
@@ -1107,16 +1144,6 @@ remain in fixed pitch for the tags to be aligned."
   :init
   (with-eval-after-load 'org
     (require 'osm-ol)))
-
-(use-package outline
-  :straight (:type built-in)
-  :diminish outline-minor-mode
-  :hook (prog-mode . outline-minor-mode)
-  :bind (:map cr-toggle-map ("O" . outline-minor-mode)))
-
-(use-package outline-magic
-  :after outline
-  :bind (:map outline-minor-mode-map ("<C-tab>" . outline-cycle)))
 
 (use-package pass
   :custom (pass-show-keybindings nil)
@@ -1203,7 +1230,7 @@ remain in fixed pitch for the tags to be aligned."
   (with-eval-after-load 'no-littering
     (add-to-list 'recentf-exclude no-littering-var-directory)
     (add-to-list 'recentf-exclude no-littering-etc-directory))
-  :hook (after-init . recentf-mode))
+  :init (recentf-mode))
 
 (use-package replace
   :straight (:type built-in)
@@ -1257,14 +1284,14 @@ remain in fixed pitch for the tags to be aligned."
   (add-to-list 'savehist-additional-variables 'regexp-search-ring)
   (add-to-list 'savehist-additional-variables 'register-alist)
   (add-to-list 'savehist-additional-variables 'compilation-command)
-  :hook (after-init . savehist-mode))
+  :init (savehist-mode))
 
 (use-package saveplace
   :straight (:type built-in)
-  :hook (after-init . save-place-mode))
+  :init (save-place-mode))
 
 (use-package vertico
-  :hook (after-init . vertico-mode))
+  :init (vertico-mode))
 
 (use-package server
   :disabled
@@ -1343,7 +1370,7 @@ remain in fixed pitch for the tags to be aligned."
 (use-package so-long
   :if (>= emacs-major-version 27)
   :straight (:type built-in)
-  :hook (after-init . global-so-long-mode))
+  :init (global-so-long-mode))
 
 (use-package sort
   :straight (:type built-in)
@@ -1378,6 +1405,7 @@ remain in fixed pitch for the tags to be aligned."
          (:map cr-toggle-map ("0" . treemacs))))
 
 (use-package tree-sitter
+  :if (< emacs-major-version 29)
   :demand
   :diminish
   :straight tree-sitter
@@ -1408,13 +1436,13 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package winner
   :straight (:type built-in)
-  :hook (after-init . winner-mode)
+  :init (winner-mode)
   :bind (("C-x u" . winner-undo)
          ("C-x U" . winner-redo)))
 
 (use-package which-key
   :diminish
-  :hook (after-init . which-key-mode)
+  :init (which-key-mode)
   :bind (:map cr-toggle-map ("?" . which-key-mode)))
 
 (use-package whitespace
@@ -1444,7 +1472,7 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package yasnippet
   :diminish yas-minor-mode
-  :hook (after-init . yas-global-mode))
+  :init (yas-global-mode))
 
 ;;; JS
 (use-package js

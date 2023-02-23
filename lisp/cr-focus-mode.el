@@ -4,7 +4,7 @@
 (defvar cr-focus-mode-hook nil)
 
 (define-minor-mode cr-focus-mode
-  "Toggle focus mode."
+  "Use a wrapper arround `olivetti' to toggle focus mode."
   :init-value nil
   :keymap (let ((map (make-sparse-keymap)))
             ;; Exit cr-focus-mode when splitting window
