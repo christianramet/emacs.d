@@ -297,7 +297,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :init
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
-  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   :config
   (consult-customize
    consult-bookmark consult-buffer consult-ripgrep consult-theme
@@ -347,8 +346,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (add-to-list 'consult-buffer-sources 'consult--source-shell 'append)
   (add-to-list 'consult-buffer-sources 'consult--source-vterm 'append)
 
-  :bind (([remap apropos-command] . consult-apropos)
-         ([remap bookmark-jump] . consult-bookmark)
+  :bind (([remap bookmark-jump] . consult-bookmark)
          ([remap goto-line] . consult-goto-line)
          ([remap jump-to-register] . consult-register)
          ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
@@ -363,6 +361,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("M-g e" . consult-flymake)
          ("M-g m" . consult-mark)
          ("M-g k" . consult-global-mark)
+         ("M-s a" . consult-org-agenda)
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
          ("M-s O" . consult-multi-occur)
