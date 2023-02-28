@@ -1072,13 +1072,7 @@ remain in fixed pitch for the tags to be aligned."
   :mode ("\\.org_archive\\'" . org-mode)
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
-         ("C-c l" . org-store-link)
-         (:map cr-org-map
-               ("i" . org-clock-in)
-               ("o" . org-clock-out)
-               ("j" . org-clock-goto)
-               ("l" . org-clock-in-last)
-               ("q" . org-clock-cancel))))
+         ("C-c l" . org-store-link)))
 
 (use-package org-cliplink
   :bind (:map cr-org-map ("u" . org-cliplink)))
