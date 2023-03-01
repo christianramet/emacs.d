@@ -1105,24 +1105,6 @@ remain in fixed pitch for the tags to be aligned."
   (org-noter-always-create-frame nil)
   :bind ("C-c w n" . org-noter))
 
-(use-package org-roam
-  :custom
-  ;; (org-id-link-to-org-use-id t)
-  (org-roam-directory cr-zet-dir)
-  :config
-  (org-roam-db-autosync-mode)
-  (use-package cr-org-roam
-    :straight nil
-    :demand
-    :after org-roam
-    :bind ("C-c n r" . jethro/org-roam-node-from-cite))
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n n" . org-roam-node-find)
-         ("C-c n g" . org-roam-graph)
-         ("C-c n i" . org-roam-node-insert)
-         ("C-c n c" . org-roam-capture)
-         ("C-c n SPC" . org-roam-node-random)))
-
 (use-package osm
   :bind (("C-c m h" . osm-home)
          ("C-c m s" . osm-search)
