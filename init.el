@@ -277,7 +277,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (citar-bibliography (directory-files cr-bibliography t ".*.bib"))
   (citar-library-paths (list cr-papers))
   (citar-notes-paths (list cr-ref-dir))
-  (citar-file-note-extensions '("org" "md" "txt")))
+  (citar-file-note-extensions '("org" "md" "txt"))
+  :bind (:map cr-note-map ("r" . citar-open)))
 
 (use-package citar
   :after org
@@ -1475,7 +1476,7 @@ remain in fixed pitch for the tags to be aligned."
               ("t" . denote-type)
               ("l" . denote-link)
               ("b" . denote-link-backlinks)
-              ("r" . denote-rename-file))
+              ("R" . denote-rename-file))
   :hook (dired-mode . denote-dired-mode))
 
 (use-package consult-notes
