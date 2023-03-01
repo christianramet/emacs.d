@@ -523,7 +523,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                         (set-window-configuration wnd))))
         (error "No more than 2 files should be marked"))))
 
-  (define-key dired-mode-map (kbd "e") 'cr-ediff-marked-files))
+  (define-key dired-mode-map (kbd "e") 'cr-ediff-marked-files)
+
+  :hook (dired-mode . dired-hide-details-mode))
 
 (use-package dired-x
   :straight (:type built-in)
