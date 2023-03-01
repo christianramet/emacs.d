@@ -1103,7 +1103,7 @@ remain in fixed pitch for the tags to be aligned."
 (use-package org-noter
   :after (:any org pdf-view)
   :custom
-  (org-noter-notes-search-path (list cr-notes-dir))
+  (org-noter-notes-search-path (list cr-ref-dir))
   (org-noter-default-notes-file-names '("notes.org" "main.org"))
   (org-noter-auto-save-last-location t)
   (org-noter-always-create-frame nil)
