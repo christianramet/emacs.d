@@ -11,8 +11,8 @@
 (defconst cr-git-dir "~/git/")
 
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
-(defconst cr-zet-dir (expand-file-name "zet" cr-org-dir))
-(defconst cr-ref-dir (expand-file-name "reference" cr-zet-dir))
+(defconst cr-notes-dir (expand-file-name "notes" cr-org-dir))
+(defconst cr-ref-dir (expand-file-name "ref" cr-org-dir))
 
 (defconst cr-library (expand-file-name "library" cr-data-dir))
 (defconst cr-bibliography (expand-file-name "bibliography" cr-library))
@@ -149,6 +149,7 @@
 (define-prefix-command 'cr-file-map)
 (define-prefix-command 'cr-git-map)
 (define-prefix-command 'cr-org-map)
+(define-prefix-command 'cr-note-map)
 (define-prefix-command 'cr-text-map)
 (define-prefix-command 'cr-toggle-map)
 (define-prefix-command 'cr-spell-map)
@@ -159,6 +160,7 @@
            ("C-c f" . cr-file-map)
            ("C-c g" . cr-git-map)
            ("C-c o" . cr-org-map)
+           ("C-c n" . cr-note-map)
            ("C-c t" . cr-toggle-map)
            ("C-c x" . cr-text-map)
            ("C-c z" . cr-spell-map))
@@ -1459,3 +1461,25 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package rjsx-mode
   :mode "\\.tsx\\'")
+
+;;; Notes
+(use-package denote
+  :custom
+  (denote-directory cr-notes-dir)
+  (denote-file-type 'org)
+  (denote-prompts '(subdirectory title keywords))
+  :bind (:map cr-note-map
+              ("c" . denote)
+              ("t" . denote-type)
+              ("l" . denote-link)
+              ("b" . denote-link-backlinks)
+              ("r" . denote-rename-file))
+  :hook (dired-mode . denote-dired-mode))
+
+(use-package consult-notes
+  :config
+  (when (locate-library "denote")
+    (consult-notes-denote-mode))
+  :bind (:map cr-note-map
+              ("n" . consult-notes)
+              ("s" . consult-notes-search-in-all-notes)))
