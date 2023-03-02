@@ -370,11 +370,19 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("M-s O" . consult-multi-occur)
          ("M-s SPC"   . consult-find)
          ("M-s M-SPC" . consult-locate)
-         (:map cr-org-map ("r" . consult-org-rg))
+         (:map cr-note-map ("SPC" . consult-org-rg))
          (:map cr-app-map ("m" . consult-man))
          (:map cr-text-map (("f" . consult-focus-lines)
                             ("k" . consult-keep-lines)))
          (:map cr-toggle-map ("T" . consult-theme))))
+
+(use-package consult-notes
+  :config
+  (when (locate-library "denote")
+    (consult-notes-denote-mode))
+  :bind (:map cr-note-map
+              ("n" . consult-notes)
+              ("s" . consult-notes-search-in-all-notes)))
 
 (use-package consult-recoll
   :bind ("M-s r" . consult-recoll))
@@ -458,6 +466,19 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package osx-dictionary
   :if system-is-osx-p
   :bind ("M-s d" . osx-dictionary-search-word-at-point))
+
+(use-package denote
+  :custom
+  (denote-directory cr-notes-dir)
+  (denote-file-type 'org)
+  (denote-prompts '(subdirectory title keywords))
+  :bind (:map cr-note-map
+              ("c" . denote)
+              ("t" . denote-type)
+              ("l" . denote-link)
+              ("b" . denote-link-backlinks)
+              ("R" . denote-rename-file))
+  :hook (dired-mode . denote-dired-mode))
 
 (use-package diff
   :straight (:type built-in)
@@ -1465,24 +1486,3 @@ remain in fixed pitch for the tags to be aligned."
 (use-package rjsx-mode
   :mode "\\.tsx\\'")
 
-;;; Notes
-(use-package denote
-  :custom
-  (denote-directory cr-notes-dir)
-  (denote-file-type 'org)
-  (denote-prompts '(subdirectory title keywords))
-  :bind (:map cr-note-map
-              ("c" . denote)
-              ("t" . denote-type)
-              ("l" . denote-link)
-              ("b" . denote-link-backlinks)
-              ("R" . denote-rename-file))
-  :hook (dired-mode . denote-dired-mode))
-
-(use-package consult-notes
-  :config
-  (when (locate-library "denote")
-    (consult-notes-denote-mode))
-  :bind (:map cr-note-map
-              ("n" . consult-notes)
-              ("s" . consult-notes-search-in-all-notes)))
