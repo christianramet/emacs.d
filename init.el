@@ -359,7 +359,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("C-c I" . consult-imenu-multi)
          ("C-c j" . consult-git-grep)
          ("C-c k" . consult-ripgrep)
-         ("C-c O" . consult-outline)
+         ("C-c o" . consult-outline)
          ("M-g e" . consult-flymake)
          ("M-g m" . consult-mark)
          ("M-g k" . consult-global-mark)
