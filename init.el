@@ -1097,37 +1097,12 @@ remain in fixed pitch for the tags to be aligned."
          ("C-c c" . org-capture)
          ("C-c l" . org-store-link)))
 
-(use-package org-cliplink
-  :bind (:map cr-org-map ("u" . org-cliplink)))
-
-(use-package org-download
-  :after org
-  :if system-is-linux-p
-  :custom
-  (org-download-method 'directory) ;; org-download-delete does not work with 'attach
-  (org-download-image-dir "images")
-  (org-download-image-org-width 400)
-  (org-download-heading-lvl nil)
-  :bind (:map cr-org-map
-              ("y" . org-download-yank)
-              ("Y" . org-download-screenshot))
-  :hook ((org-mode dired-mode) . org-download-enable))
-
 (use-package org-indent
   :straight (:type built-in)
   :diminish
   :custom
   (org-startup-indented t)
   (org-indent-indentation-per-level 1))
-
-(use-package org-noter
-  :after (:any org pdf-view)
-  :custom
-  (org-noter-notes-search-path (list cr-ref-dir))
-  (org-noter-default-notes-file-names '("notes.org" "main.org"))
-  (org-noter-auto-save-last-location t)
-  (org-noter-always-create-frame nil)
-  :bind ("C-c w n" . org-noter))
 
 (use-package osm
   :bind (("C-c m h" . osm-home)
