@@ -222,8 +222,7 @@
   (bibtex-autokey-name-length 10)
   (bibtex-autokey-year-length 4)
   (bibtex-autokey-year-title-separator nil)
-  (bibtex-autokey-titlewords 1)
-  (bibtex-autokey-titleword-length 5)
+  (bibtex-autokey-titlewords 2)
   (bibtex-autokey-titlewords-stretch 0)
   :config
   (defun cr-bibtex-settings ()
