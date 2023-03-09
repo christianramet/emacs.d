@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: web
+# key: @web
+# --
+
+@Misc{,
+  author =    {$1},
+  title =     {$2},
+  url = {$3},
+  howpublished = WebPage,
+  year =     $4,
+  note = {Accessed: `(format-time-string "%Y-%m-%d")`}
+}
