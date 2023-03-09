@@ -1401,7 +1401,7 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package warnings
   :straight (:type built-in)
-  :custom (warning-suppress-types '((comp))))
+  :config (add-to-list 'warning-suppress-types '(comp)))
 
 (use-package winner
   :straight (:type built-in)
@@ -1441,7 +1441,10 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package yasnippet
   :diminish yas-minor-mode
-  :init (yas-global-mode))
+  :init (yas-global-mode)
+  :config
+  (add-to-list 'warning-suppress-types '(yasnippet))
+  (add-to-list 'warning-suppress-types '(backquote-change)))
 
 ;;; JS
 (use-package js
