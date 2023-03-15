@@ -361,9 +361,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("C-c j" . consult-git-grep)
          ("C-c k" . consult-ripgrep)
          ("C-c o" . consult-outline)
+         ("C-c r" . consult-history)
          ("M-g e" . consult-flymake)
-         ("M-g m" . consult-mark)
-         ("M-g k" . consult-global-mark)
+         ("M-g SPC" . consult-mark)
+         ("M-g M-SPC" . consult-global-mark)
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
          ("M-s O" . consult-multi-occur)
@@ -669,10 +670,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :config
   (defun cr-eshell-settings ()
     (hl-line-mode -1)
-    (setenv "PAGER""cat")
-    (with-eval-after-load 'counsel
-      (define-key eshell-mode-map (kbd "M-r") 'counsel-esh-history)))
-
+    (setenv "PAGER" "cat"))
   (add-hook 'eshell-mode-hook 'cr-eshell-settings)
   :bind (:map cr-app-map ("e" . eshell)))
 
