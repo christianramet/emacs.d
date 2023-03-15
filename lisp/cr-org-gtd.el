@@ -1,14 +1,13 @@
 (require 'org)
 (require 'org-agenda)
-(require 'f)
 
 (defun cr-org-expand (file)
-  (expand-file-name file org-directory))
+  (expand-file-name file cr-org-dir))
 
 (custom-set-variables
  '(org-agenda-todo-ignore-scheduled 'future)
 
- '(org-agenda-files (list (cr-org-expand "agenda")))
+ '(org-agenda-files (cr-org-expand "agenda"))
 
  '(org-agenda-text-search-extra-files
    (append
@@ -20,10 +19,10 @@
    `((nil                                      :maxlevel . 3)
      (,(cr-org-expand "inbox.org")             :level . 0)
      (,(cr-org-expand "someday.org")           :maxlevel . 1)
-     (,(cr-org-expand "agenda/calendar.org")   :level . 1)
-     (,(cr-org-expand "agenda/tickler.org")    :level . 0)
-     (,(cr-org-expand "agenda/todos.org")      :maxlevel . 1)
-     (,(cr-org-expand "agenda/todos-work.org") :maxlevel . 1)))
+     (,(cr-org-expand "calendar.org")   :level . 1)
+     (,(cr-org-expand "tickler.org")    :level . 0)
+     (,(cr-org-expand "todos.org")      :maxlevel . 1)
+     (,(cr-org-expand "work-todos.org") :maxlevel . 1)))
 
  '(org-capture-templates
    '(("i" "Inbox" entry
@@ -38,7 +37,7 @@
       :clock-in t)
 
      ("e" "Event" entry
-      (file+headline "agenda/calendar.org" "Events")
+      (file+headline "calendar.org" "Events")
       "* %i%?\n"
       :empty-lines 1)
 
@@ -48,33 +47,33 @@
       :empty-lines 1)
 
      ("j" "Journal" entry
-      (file+olp+datetree "agenda/journal.org")
+      (file+olp+datetree "journal.org")
       "* %^{prompt|journal-entry}\n%U\n%?"
       :empty-lines 1)
 
      ("w" "Work journal" entry
-      (file+olp+datetree "agenda/work-journal.org")
+      (file+olp+datetree "work-journal.org")
       "* %?\n%U\n"
       :empty-lines 1)
 
      ("r" "Review templates")
 
      ("rd" "Daily Review" entry
-      (file+olp+datetree "agenda/journal.org")
+      (file+olp+datetree "journal.org")
       (file "templates/daily-review.org")
       :empty-lines 1
       :immediate-finish t
       :jump-to-captured t)
 
      ("rw" "Weekly Review" entry
-      (file+olp+datetree "agenda/journal.org")
+      (file+olp+datetree "journal.org")
       (file "templates/weekly-review.org")
       :empty-lines 1
       :immediate-finish t
       :jump-to-captured t)
 
      ("rm" "Monthly Review" entry
-      (file+olp+datetree "agenda/journal.org")
+      (file+olp+datetree "journal.org")
       (file "templates/monthly-review.org")
       :empty-lines 1
       :immediate-finish t
