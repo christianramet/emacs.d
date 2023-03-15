@@ -224,6 +224,7 @@
   (bibtex-autokey-year-title-separator nil)
   (bibtex-autokey-titlewords 2)
   (bibtex-autokey-titlewords-stretch 0)
+  (bibtex-entry-format '(opts-or-alts required-fields numerical-fields realign last-comma))
   :config
   (defun cr-bibtex-settings ()
     ;; Fix for bibtex-mode initialization
