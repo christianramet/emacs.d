@@ -288,6 +288,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package citar-embark
   :demand
+  :diminish
   :after citar embark
   :no-require
   :config (citar-embark-mode))
