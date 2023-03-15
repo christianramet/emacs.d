@@ -469,7 +469,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :custom
   (denote-directory cr-notes-dir)
   (denote-file-type 'org)
-  (denote-prompts '(subdirectory title keywords))
+  (denote-prompts '(title keywords))
   :bind (:map cr-note-map
               ("c" . denote)
               ("t" . denote-type)
