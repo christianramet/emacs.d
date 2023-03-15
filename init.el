@@ -313,6 +313,12 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (let ((default-directory org-directory))
       (consult-ripgrep)))
 
+    (defun consult-find-home ()
+    "Call `consult-find' using HOME as the `default-directory'"
+    (interactive)
+    (let ((default-directory "~/"))
+      (consult-find)))
+
     (defvar consult--source-eshell
     `(:name     "eshell"
       :narrow   ?e
@@ -370,7 +376,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("M-s L" . consult-line-multi)
          ("M-s O" . consult-multi-occur)
          ("M-s SPC"   . consult-find)
-         ("M-s M-SPC" . consult-locate)
+         ("M-s M-SPC" . consult-find-home)
+         ("M-s /" . consult-locate)
          (:map cr-note-map ("SPC" . consult-org-rg))
          (:map cr-app-map ("m" . consult-man))
          (:map cr-text-map (("f" . consult-focus-lines)
