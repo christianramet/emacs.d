@@ -684,7 +684,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package eww
   :straight (:type built-in)
-  :bind (:map cr-app-map ("w" . eww)))
+  :bind ((:map cr-app-map ("w" . eww))
+         (:map eww-mode-map
+               ("[" . eww-back-url)
+               ("]" . eww-forward-url))))
 
 (use-package faces
   :straight (:type built-in)
