@@ -888,7 +888,8 @@ remain in fixed pitch for the tags to be aligned."
           occur-mode
           org-agenda-mode
           display-time-world-mode
-          profiler-report-mode) . hl-line-mode)
+          profiler-report-mode
+          eww-mode) . hl-line-mode)
   :bind (:map cr-toggle-map
               ("h" . hl-line-mode)
               ("H" . global-hl-line-mode)))
