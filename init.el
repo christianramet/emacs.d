@@ -660,22 +660,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (eshell-destroy-buffer-when-process-dies nil)
   (eshell-visual-commands
    '("crontab" "tmux" "htop" "tail" "vi" "screen" "top" "less" "more"))
-  (eshell-modules-list '(eshell-alias
-                         ;; eshell-banner
-                         eshell-basic
-                         eshell-cmpl
-                         eshell-dirs
-                         eshell-glob
-                         eshell-hist
-                         eshell-ls
-                         eshell-pred
-                         eshell-prompt
-                         eshell-script
-                         eshell-smart
-                         eshell-term
-                         eshell-tramp
-                         eshell-unix))
   :config
+  (delete 'eshell-banner eshell-modules-list)
+  (add-to-list 'eshell-modules-list 'eshell-tramp)
   (defun cr-eshell-settings ()
     (hl-line-mode -1)
     (setenv "PAGER" "cat"))
