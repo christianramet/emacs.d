@@ -277,7 +277,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (citar-library-paths (list cr-papers))
   (citar-notes-paths (list cr-ref-dir))
   (citar-file-note-extensions '("org" "md" "txt"))
-  :bind (:map cr-note-map ("r" . citar-open)))
+  :bind (:map cr-note-map ("c" . citar-open)))
 
 (use-package citar
   :after org
