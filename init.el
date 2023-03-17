@@ -384,14 +384,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                             ("k" . consult-keep-lines)))
          (:map cr-toggle-map ("T" . consult-theme))))
 
-(use-package consult-notes
-  :config
-  (when (locate-library "denote")
-    (consult-notes-denote-mode))
-  :bind (:map cr-note-map
-              ("n" . consult-notes)
-              ("s" . consult-notes-search-in-all-notes)))
-
 (use-package consult-recoll
   :bind ("M-s r" . consult-recoll))
 
@@ -481,7 +473,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (denote-file-type 'org)
   (denote-prompts '(title keywords))
   :bind (:map cr-note-map
-              ("c" . denote)
+              ("n" . denote-open-or-create)
+              ;; ("c" . denote)
               ("t" . denote-type)
               ("l" . denote-link)
               ("b" . denote-link-backlinks)
