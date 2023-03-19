@@ -516,7 +516,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (interactive)
     (dired-sort-other (concat cr-dired-sort-base " -t")))
 
-  (when system-is-linux-p
+  (when (or system-is-linux-p
+            (and (executable-find "gls")
+                 (setq insert-directory-program "gls")))
     (customize-set-variable 'dired-listing-switches "-lahv --group-directories-first")
     (defun cr-dired-sort-by-dir ()
       (interactive)
