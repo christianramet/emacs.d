@@ -395,6 +395,11 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package corfu
   :custom (corfu-auto t)
+  :config
+  (add-hook 'eshell-mode-hook
+            (lambda ()
+              (setq-local corfu-auto nil)
+              (corfu-mode)))
   :init (global-corfu-mode))
 
 (use-package cr-focus-mode
