@@ -7,37 +7,42 @@
 (custom-set-variables
  '(org-agenda-todo-ignore-scheduled 'future)
 
- '(org-agenda-files (cr-org-expand "agenda"))
+ '(org-agenda-files (list (cr-org-expand "gtd/calendar.org")
+                          (cr-org-expand "gtd/journal.org")
+                          (cr-org-expand "gtd/tickler.org")
+                          (cr-org-expand "gtd/todos.org")
+                          (cr-org-expand "gtd/work-journal.org")
+                          (cr-org-expand "gtd/work-todos.org")))
 
  '(org-agenda-text-search-extra-files
    (append
     (list 'agenda-archives
-          (cr-org-expand "inbox.org")
-          (cr-org-expand "someday.org"))))
+          (cr-org-expand "gtd/inbox.org")
+          (cr-org-expand "gtd/someday.org"))))
 
  '(org-refile-targets
    `((nil                                      :maxlevel . 3)
-     (,(cr-org-expand "inbox.org")             :level . 0)
-     (,(cr-org-expand "someday.org")           :maxlevel . 1)
-     (,(cr-org-expand "calendar.org")   :level . 1)
-     (,(cr-org-expand "tickler.org")    :level . 0)
-     (,(cr-org-expand "todos.org")      :maxlevel . 1)
-     (,(cr-org-expand "work-todos.org") :maxlevel . 1)))
+     (,(cr-org-expand "gtd/inbox.org")             :level . 0)
+     (,(cr-org-expand "gtd/someday.org")           :maxlevel . 1)
+     (,(cr-org-expand "gtd/calendar.org")   :level . 1)
+     (,(cr-org-expand "gtd/tickler.org")    :level . 0)
+     (,(cr-org-expand "gtd/todos.org")      :maxlevel . 1)
+     (,(cr-org-expand "gtd/work-todos.org") :maxlevel . 1)))
 
  '(org-capture-templates
    '(("i" "Inbox" entry
-      (file "inbox.org")
+      (file "gtd/inbox.org")
       "* %i%?\n%u\n"
       :empty-lines 1)
 
      ("m" "Meeting" entry
-      (file "inbox.org")
+      (file "gtd/inbox.org")
       "* Meeting with %? :meeting:"
       :empty-lines 1
       :clock-in t)
 
      ("e" "Event" entry
-      (file+headline "calendar.org" "Events")
+      (file+headline "gtd/calendar.org" "Events")
       "* %i%?\n"
       :empty-lines 1)
 
@@ -47,7 +52,7 @@
       :empty-lines 1)
 
      ("j" "Journal" entry
-      (file+olp+datetree "journal.org")
+      (file+olp+datetree "gtd/journal.org")
       "* %^{prompt|journal-entry}\n%U\n%?"
       :empty-lines 1)
 
@@ -59,21 +64,21 @@
      ("r" "Review templates")
 
      ("rd" "Daily Review" entry
-      (file+olp+datetree "journal.org")
+      (file+olp+datetree "gtd/journal.org")
       (file "templates/daily-review.org")
       :empty-lines 1
       :immediate-finish t
       :jump-to-captured t)
 
      ("rw" "Weekly Review" entry
-      (file+olp+datetree "journal.org")
+      (file+olp+datetree "gtd/journal.org")
       (file "templates/weekly-review.org")
       :empty-lines 1
       :immediate-finish t
       :jump-to-captured t)
 
      ("rm" "Monthly Review" entry
-      (file+olp+datetree "journal.org")
+      (file+olp+datetree "gtd/journal.org")
       (file "templates/monthly-review.org")
       :empty-lines 1
       :immediate-finish t
@@ -81,7 +86,7 @@
 
  '(org-agenda-custom-commands
    `(("i" "Inbox" tags "*"
-      ((org-agenda-files (list (cr-org-expand "inbox.org")))))
+      ((org-agenda-files (list (cr-org-expand "gtd/inbox.org")))))
 
      ("p" "Personal"
       ((agenda "")
