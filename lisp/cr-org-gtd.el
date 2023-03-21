@@ -148,6 +148,10 @@
      (:startgroup . nil) ;; Type
      ("project"   . ?p)
      ("meeting"   . ?m)
+     (:endgroup   . nil)
+     (:startgroup . nil) ;; Company
+     ("digi"      . ?d)
+     ("krea"      . ?k)
      (:endgroup   . nil)))
 
  '(org-tags-exclude-from-inheritance '("project"))
