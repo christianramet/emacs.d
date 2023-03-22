@@ -1,33 +1,31 @@
 (require 'org)
 (require 'org-agenda)
 
-(defun cr-org-expand (file)
-  (expand-file-name file cr-org-dir))
+(defun cr-gtd-expand (file)
+  (expand-file-name file cr-gtd-dir))
 
 (custom-set-variables
  '(org-agenda-todo-ignore-scheduled 'future)
 
- '(org-agenda-files (list (cr-org-expand "gtd/calendar.org")
-                          (cr-org-expand "gtd/journal.org")
-                          (cr-org-expand "gtd/tickler.org")
-                          (cr-org-expand "gtd/todos.org")
-                          (cr-org-expand "gtd/work-journal.org")
-                          (cr-org-expand "gtd/work-todos.org")))
+ '(org-agenda-files (list "gtd/calendar.org"
+                          "gtd/journal.org"
+                          "gtd/tickler.org"
+                          "gtd/todos.org"))
 
  '(org-agenda-text-search-extra-files
    (append
     (list 'agenda-archives
-          (cr-org-expand "gtd/inbox.org")
-          (cr-org-expand "gtd/someday.org"))))
+          (cr-gtd-expand "inbox.org")
+          (cr-gtd-expand "someday.org"))))
 
  '(org-refile-targets
-   `((nil                                      :maxlevel . 3)
-     (,(cr-org-expand "gtd/inbox.org")             :level . 0)
-     (,(cr-org-expand "gtd/someday.org")           :maxlevel . 1)
-     (,(cr-org-expand "gtd/calendar.org")   :level . 1)
-     (,(cr-org-expand "gtd/tickler.org")    :level . 0)
-     (,(cr-org-expand "gtd/todos.org")      :maxlevel . 1)
-     (,(cr-org-expand "gtd/work-todos.org") :maxlevel . 1)))
+   `((nil                                :maxlevel . 3)
+     (,(cr-gtd-expand "inbox.org")       :level    . 0)
+     (,(cr-gtd-expand "someday.org")     :maxlevel . 1)
+     (,(cr-gtd-expand "calendar.org")    :level    . 1)
+     (,(cr-gtd-expand "tickler.org")     :level    . 0)
+     (,(cr-gtd-expand "todos.org")       :maxlevel . 1)
+     (,(cr-gtd-expand "work-todos.org")  :maxlevel . 1)))
 
  '(org-capture-templates
    '(("i" "Inbox" entry
@@ -86,7 +84,7 @@
 
  '(org-agenda-custom-commands
    `(("i" "Inbox" tags "*"
-      ((org-agenda-files (list (cr-org-expand "gtd/inbox.org")))))
+      ((org-agenda-files (list (cr-gtd-expand "gtd/inbox.org")))))
 
      ("p" "Personal"
       ((agenda "")
@@ -94,7 +92,7 @@
        (stuck "")
        (todo "TODO|WAITING"))
       ((org-agenda-tag-filter '("-@work")))
-      (,(cr-org-expand "exports/agenda-week.pdf")))
+      (,(cr-gtd-expand "exports/agenda-week.pdf")))
 
      ("w" "Work"
       ((agenda "")
@@ -126,11 +124,11 @@
                 (org-agenda-start-day "-1w")
                 (org-agenda-use-time-grid nil))))
       ((org-agenda-category-filter-preset '("-tickler")))
-      (,(cr-org-expand "exports/agenda-year.pdf")))
+      (,(cr-gtd-expand "exports/agenda-year.pdf")))
 
      ("g" . "GTD contexts")
      ("gh" "@Home"    tags-todo "@home")
-     ("ge" "@Errands" tags-todo "@errands" nil (,(cr-org-expand "exports/agenda-errands.pdf")))
+     ("ge" "@Errands" tags-todo "@errands" nil (,(cr-gtd-expand "exports/agenda-errands.pdf")))
      ("go" "@Offline" tags-todo "@offline")
      ("gw" "@Work"    tags-todo "@work")))
 
@@ -161,6 +159,9 @@
 
  '(org-tags-exclude-from-inheritance '("project"))
  '(org-stuck-projects '("project" ("TODO" "WAITING") nil "")))
+
+(when (and cr-gtd-dir (file-exists-p cr-gtd-dir-work))
+  (add-to-list 'org-agenda-files cr-gtd-dir-work))
 
 (defun cr-org-store-agenda-views ()
   "Export the agenda views, only if variable `org-agenda-files' contain files that are more recent than the last export."
