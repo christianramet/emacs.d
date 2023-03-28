@@ -1451,6 +1451,7 @@ remain in fixed pitch for the tags to be aligned."
 ;;; JS
 (use-package js
   :straight (:type built-in)
+  :custom (js-indent-level 2)
   :config (define-key js-mode-map (kbd "M-.") nil))
 
 (use-package typescript-mode
