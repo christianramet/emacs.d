@@ -312,7 +312,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     "Ripgrep into org-directory"
     (interactive)
     (require 'org)
-    (let ((default-directory org-directory))
+    (let ((default-directory org-directory)
+          (consult-ripgrep-args (concat consult-ripgrep-args " --follow")))
       (consult-ripgrep)))
 
     (defun consult-find-home ()
