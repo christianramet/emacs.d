@@ -475,12 +475,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (denote-file-type 'org)
   (denote-prompts '(title keywords))
   :bind (:map cr-note-map
-              ;; ("n" . denote-open-or-create)
-              ;; ("c" . denote)
               ("t" . denote-type)
               ("l" . denote-link)
               ("b" . denote-link-backlinks)
-              ("R" . denote-rename-file))
+              ("r" . denote-rename-file))
   :hook (dired-mode . denote-dired-mode))
 
 (use-package diff
