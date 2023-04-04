@@ -7,25 +7,12 @@
 (custom-set-variables
  '(org-agenda-todo-ignore-scheduled 'future)
 
- '(org-agenda-files (list "gtd/calendar.org"
-                          "gtd/journal.org"
-                          "gtd/tickler.org"
-                          "gtd/todos.org"))
+ '(org-agenda-files (list cr-gtd-dir))
 
- '(org-agenda-text-search-extra-files
-   (append
-    (list 'agenda-archives
-          (cr-gtd-expand "inbox.org")
-          (cr-gtd-expand "someday.org"))))
+ '(org-agenda-text-search-extra-files '(agenda-archives))
 
- '(org-refile-targets
-   `((nil                                :maxlevel . 3)
-     (,(cr-gtd-expand "inbox.org")       :level    . 0)
-     (,(cr-gtd-expand "someday.org")     :maxlevel . 1)
-     (,(cr-gtd-expand "calendar.org")    :level    . 1)
-     (,(cr-gtd-expand "tickler.org")     :level    . 0)
-     (,(cr-gtd-expand "todos.org")       :maxlevel . 1)
-     (,(cr-gtd-expand "work-todos.org")  :maxlevel . 1)))
+ '(org-refile-targets '((nil :maxlevel . 3)
+                        (org-agenda-files :maxlevel . 1)))
 
  '(org-capture-templates
    '(("i" "Inbox" entry
@@ -55,7 +42,7 @@
       :empty-lines 1)
 
      ("w" "Work journal" entry
-      (file+olp+datetree "work-journal.org")
+      (file+olp+datetree "work/gtd/journal.org")
       "* %?\n%U\n"
       :empty-lines 1)
 
@@ -91,7 +78,8 @@
        (tags "project")
        (stuck "")
        (todo "TODO|WAITING"))
-      ((org-agenda-tag-filter '("-@work")))
+      ((org-agenda-tag-filter '("-@work"))
+       (org-agenda-category-filter-preset '("-someday")))
       (,(cr-gtd-expand "exports/agenda-week.pdf")))
 
      ("w" "Work"
@@ -99,7 +87,8 @@
        (tags "project")
        (stuck "")
        (todo "TODO|WAITING"))
-      ((org-agenda-tag-filter '("+@work"))))
+      ((org-agenda-tag-filter '("+@work"))
+       (org-agenda-category-filter-preset '("-someday"))))
 
      ("r" "Weekly Review"
       ((agenda ""

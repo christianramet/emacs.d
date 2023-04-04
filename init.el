@@ -312,7 +312,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     "Ripgrep into org-directory"
     (interactive)
     (require 'org)
-    (let ((default-directory org-directory))
+    (let ((default-directory org-directory)
+          (consult-ripgrep-args (concat consult-ripgrep-args " --follow")))
       (consult-ripgrep)))
 
     (defun consult-find-home ()
@@ -332,17 +333,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                                                 :as #'buffer-name)))
     "eshell candidate source for `consult-buffer'.")
 
-    (defvar consult--source-shell
-    `(:name     "shell"
-      :narrow   ?s
-      :category buffer
-      :face     consult-buffer
-      :history  buffer-name-history
-      :action   ,#'consult--buffer-action
-      :items ,(lambda () (consult--buffer-query :mode 'shell-mode
-                                                :as #'buffer-name)))
-    "shell candidate source for `consult-buffer'.")
-
   (defvar consult--source-vterm
     `(:name     "vterm"
       :narrow   ?v
@@ -355,7 +345,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     "vterm candidate source for `consult-buffer'.")
 
   (add-to-list 'consult-buffer-sources 'consult--source-eshell 'append)
-  (add-to-list 'consult-buffer-sources 'consult--source-shell 'append)
   (add-to-list 'consult-buffer-sources 'consult--source-vterm 'append)
 
   :bind (([remap bookmark-jump] . consult-bookmark)
@@ -486,12 +475,10 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (denote-file-type 'org)
   (denote-prompts '(title keywords))
   :bind (:map cr-note-map
-              ;; ("n" . denote-open-or-create)
-              ;; ("c" . denote)
               ("t" . denote-type)
               ("l" . denote-link)
               ("b" . denote-link-backlinks)
-              ("R" . denote-rename-file))
+              ("r" . denote-rename-file))
   :hook (dired-mode . denote-dired-mode))
 
 (use-package diff
@@ -1452,6 +1439,7 @@ remain in fixed pitch for the tags to be aligned."
 ;;; JS
 (use-package js
   :straight (:type built-in)
+  :custom (js-indent-level 2)
   :config (define-key js-mode-map (kbd "M-.") nil))
 
 (use-package typescript-mode
