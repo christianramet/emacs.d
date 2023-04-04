@@ -689,15 +689,16 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :config
   (when system-is-linux-p
     (set-face-attribute 'default nil :font "DejaVu Sans Mono-11")
-    (set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono-11")
-    (set-face-attribute 'variable-pitch nil :font "DejaVu Sans-11")
+    (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :height 1.0)
+    (set-face-attribute 'variable-pitch nil :family "DejaVu Sans" :height 1.0)
     (set-frame-font "DejaVu Sans Mono-11" nil t))
   (when system-is-osx-p
-    (set-face-attribute 'default nil :font "Monaco-12")
-    (set-face-attribute 'fixed-pitch nil :font "Monaco-12")
-    (set-face-attribute 'variable-pitch nil :font "Helvetica-14")))
+    (set-face-attribute 'default nil :font "Monaco" :height 120)
+    (set-face-attribute 'fixed-pitch nil :family "Monaco-12" :height 1.0)
+    (set-face-attribute 'variable-pitch nil :family "Helvetica" :height 1.0)))
 
 (use-package face-remap
+  :disabled
   :straight (:type built-in)
   :diminish buffer-face-mode
   :config
@@ -1459,4 +1460,3 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package rjsx-mode
   :mode "\\.tsx\\'")
-
