@@ -7,6 +7,8 @@
 (custom-set-variables
  '(org-agenda-todo-ignore-scheduled 'future)
 
+ '(org-agenda-file-regexp "\\`[^.].*\\.org\\\(\\.gpg\\\)?\\'")
+
  '(org-agenda-files (list cr-gtd-dir))
 
  '(org-agenda-text-search-extra-files '(agenda-archives))
@@ -37,7 +39,7 @@
       :empty-lines 1)
 
      ("j" "Journal" entry
-      (file+olp+datetree "gtd/journal.org")
+      (file+olp+datetree "gtd/journal.org.gpg")
       "* %^{prompt|journal-entry}\n%U\n%?"
       :empty-lines 1)
 
@@ -49,21 +51,21 @@
      ("r" "Review templates")
 
      ("rd" "Daily Review" entry
-      (file+olp+datetree "gtd/journal.org")
+      (file+olp+datetree "gtd/journal.org.gpg")
       (file "templates/daily-review.org")
       :empty-lines 1
       :immediate-finish t
       :jump-to-captured t)
 
      ("rw" "Weekly Review" entry
-      (file+olp+datetree "gtd/journal.org")
+      (file+olp+datetree "gtd/journal.org.gpg")
       (file "templates/weekly-review.org")
       :empty-lines 1
       :immediate-finish t
       :jump-to-captured t)
 
      ("rm" "Monthly Review" entry
-      (file+olp+datetree "gtd/journal.org")
+      (file+olp+datetree "gtd/journal.org.gpg")
       (file "templates/monthly-review.org")
       :empty-lines 1
       :immediate-finish t
