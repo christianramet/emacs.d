@@ -382,14 +382,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
                             ("k" . consult-keep-lines)))
          (:map cr-toggle-map ("T" . consult-theme))))
 
-(use-package consult-notes
-  :disabled
-  :custom
-  (consult-notes-file-dir-sources `(("notes" ?n ,cr-notes-dir)
-                                    ("agenda" ?g ,cr-gtd-dir)))
-  (consult-notes-file-action 'find-file)
-  :bind (:map cr-note-map ("n" . consult-notes)))
-
 (use-package consult-recoll
   :bind ("M-s r" . consult-recoll))
 
@@ -477,19 +469,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package osx-dictionary
   :if system-is-osx-p
   :bind ("M-s d" . osx-dictionary-search-word-at-point))
-
-(use-package denote
-  :disabled
-  :custom
-  (denote-directory cr-notes-dir)
-  (denote-file-type 'org)
-  (denote-prompts '(title keywords))
-  :bind (:map cr-note-map
-              ("t" . denote-type)
-              ("l" . denote-link)
-              ("b" . denote-link-backlinks)
-              ("r" . denote-rename-file))
-  :hook (dired-mode . denote-dired-mode))
 
 (use-package diff
   :straight (:type built-in)
