@@ -328,6 +328,12 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (let ((default-directory cr-notes-dir))
       (consult-find)))
 
+    (defun consult-find-notes-backlinks ()
+      "Call `consult-ripgrep' using `cr-notes-dir' as the `default-directory',
+and the current node ID as the search pattern"
+    (interactive)
+    (consult-ripgrep cr-notes-dir (concat "id:" (org-id-get))))
+
     (defvar consult--source-eshell
     `(:name     "eshell"
       :narrow   ?e
@@ -376,7 +382,8 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("M-s M-SPC" . consult-find-home)
          ("M-s /" . consult-locate)
          (:map cr-note-map (("SPC" . consult-org-rg)
-                            ("n". consult-find-notes)))
+                            ("n" . consult-find-notes)
+                            ("b" . consult-find-notes-backlinks)))
          (:map cr-app-map ("m" . consult-man))
          (:map cr-text-map (("f" . consult-focus-lines)
                             ("k" . consult-keep-lines)))
