@@ -322,6 +322,12 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (let ((default-directory "~/"))
       (consult-find)))
 
+    (defun consult-find-notes ()
+    "Call `consult-find' using `cr-notes-dir' as the `default-directory'"
+    (interactive)
+    (let ((default-directory cr-notes-dir))
+      (consult-find)))
+
     (defvar consult--source-eshell
     `(:name     "eshell"
       :narrow   ?e
@@ -369,16 +375,19 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("M-s SPC"   . consult-find)
          ("M-s M-SPC" . consult-find-home)
          ("M-s /" . consult-locate)
-         (:map cr-note-map ("SPC" . consult-org-rg))
+         (:map cr-note-map (("SPC" . consult-org-rg)
+                            ("n". consult-find-notes)))
          (:map cr-app-map ("m" . consult-man))
          (:map cr-text-map (("f" . consult-focus-lines)
                             ("k" . consult-keep-lines)))
          (:map cr-toggle-map ("T" . consult-theme))))
 
 (use-package consult-notes
-  :config
-  (when (locate-library "denote")
-    (consult-notes-denote-mode))
+  :disabled
+  :custom
+  (consult-notes-file-dir-sources `(("notes" ?n ,cr-notes-dir)
+                                    ("agenda" ?g ,cr-gtd-dir)))
+  (consult-notes-file-action 'find-file)
   :bind (:map cr-note-map ("n" . consult-notes)))
 
 (use-package consult-recoll
@@ -470,6 +479,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :bind ("M-s d" . osx-dictionary-search-word-at-point))
 
 (use-package denote
+  :disabled
   :custom
   (denote-directory cr-notes-dir)
   (denote-file-type 'org)
