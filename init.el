@@ -825,7 +825,8 @@ remain in fixed pitch for the tags to be aligned."
               (tool-bar-lines . 0)
               (vertical-scroll-bars . nil)
               (left-fringe . 8)
-              (right-fringe . 8)))
+              (right-fringe . 8)
+              (ns-transparent-titlebar . t)))
   :config (blink-cursor-mode -1)
   :bind (:map cr-toggle-map
               ("RET" . toggle-frame-fullscreen)
