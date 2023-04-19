@@ -1029,6 +1029,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-fontify-done-headline t)
   (org-hide-emphasis-markers t)
   (org-hide-leading-stars t)
+  (org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
   (org-imenu-depth 3)
   (org-link-file-path-type 'adaptive)
   (org-log-done 'time)
