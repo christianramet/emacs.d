@@ -297,9 +297,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   :config (citar-embark-mode))
 
 (use-package consult
-  :custom
-  (consult-locate-args "locate --ignore-case --regex")
-  (consult-project-root-function #'vc-root-dir)
+  :custom (consult-project-root-function #'vc-root-dir)
   :init
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
@@ -374,6 +372,14 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          (:map cr-text-map (("f" . consult-focus-lines)
                             ("k" . consult-keep-lines)))
          (:map cr-toggle-map ("T" . consult-theme))))
+
+(use-package consult
+  :if system-is-linux-p
+  :custom (consult-locate-args "locate --ignore-case --regex"))
+
+(use-package consult
+  :if system-is-osx-p
+  :custom (consult-locate-args "locate -i"))
 
 (use-package consult-notes
   :config
