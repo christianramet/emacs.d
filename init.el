@@ -320,6 +320,18 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (let ((default-directory "~/"))
       (consult-find)))
 
+    (defun consult-find-notes ()
+    "Call `consult-find' using `cr-notes-dir' as the `default-directory'"
+    (interactive)
+    (let ((default-directory cr-notes-dir))
+      (consult-find)))
+
+    (defun consult-find-notes-backlinks ()
+      "Call `consult-ripgrep' using `cr-notes-dir' as the `default-directory',
+and the current node ID as the search pattern"
+    (interactive)
+    (consult-ripgrep cr-notes-dir (concat "id:" (org-id-get))))
+
     (defvar consult--source-eshell
     `(:name     "eshell"
       :narrow   ?e
@@ -367,7 +379,9 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
          ("M-s SPC"   . consult-find)
          ("M-s M-SPC" . consult-find-home)
          ("M-s /" . consult-locate)
-         (:map cr-note-map ("SPC" . consult-org-rg))
+         (:map cr-note-map (("SPC" . consult-org-rg)
+                            ("n" . consult-find-notes)
+                            ("b" . consult-find-notes-backlinks)))
          (:map cr-app-map ("m" . consult-man))
          (:map cr-text-map (("f" . consult-focus-lines)
                             ("k" . consult-keep-lines)))
@@ -474,18 +488,6 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package osx-dictionary
   :if system-is-osx-p
   :bind ("M-s d" . osx-dictionary-search-word-at-point))
-
-(use-package denote
-  :custom
-  (denote-directory cr-notes-dir)
-  (denote-file-type 'org)
-  (denote-prompts '(title keywords))
-  :bind (:map cr-note-map
-              ("t" . denote-type)
-              ("l" . denote-link)
-              ("b" . denote-link-backlinks)
-              ("r" . denote-rename-file))
-  :hook (dired-mode . denote-dired-mode))
 
 (use-package diff
   :straight (:type built-in)
@@ -835,7 +837,8 @@ remain in fixed pitch for the tags to be aligned."
               (tool-bar-lines . 0)
               (vertical-scroll-bars . nil)
               (left-fringe . 8)
-              (right-fringe . 8)))
+              (right-fringe . 8)
+              (ns-transparent-titlebar . t)))
   :config (blink-cursor-mode -1)
   :bind (:map cr-toggle-map
               ("RET" . toggle-frame-fullscreen)
@@ -1025,6 +1028,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-fontify-done-headline t)
   (org-hide-emphasis-markers t)
   (org-hide-leading-stars t)
+  (org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
   (org-imenu-depth 3)
   (org-link-file-path-type 'adaptive)
   (org-log-done 'time)
