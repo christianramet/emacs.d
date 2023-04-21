@@ -307,14 +307,15 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
    :preview-key '(:debounce 0.5 any))
 
   (defun consult-org-rg ()
-    "Ripgrep into org-directory"
+    "Ripgrep into `org-directory'"
     (interactive)
     (require 'org)
     (let ((default-directory org-directory)
+          ;; follow in case work files are symlinked from somewhere else
           (consult-ripgrep-args (concat consult-ripgrep-args " --follow")))
       (consult-ripgrep)))
 
-    (defun consult-find-home ()
+  (defun consult-find-home ()
     "Call `consult-find' using HOME as the `default-directory'"
     (interactive)
     (let ((default-directory "~/"))
@@ -379,7 +380,7 @@ and the current node ID as the search pattern"
          ("M-s SPC"   . consult-find)
          ("M-s M-SPC" . consult-find-home)
          ("M-s /" . consult-locate)
-         (:map cr-note-map (("SPC" . consult-org-rg)
+         (:map cr-note-map (("r" . consult-org-rg)
                             ("n" . consult-find-notes)
                             ("b" . consult-find-notes-backlinks)))
          (:map cr-app-map ("m" . consult-man))
