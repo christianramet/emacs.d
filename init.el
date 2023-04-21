@@ -840,8 +840,7 @@ remain in fixed pitch for the tags to be aligned."
   :config (blink-cursor-mode -1)
   :bind (:map cr-toggle-map
               ("RET" . toggle-frame-fullscreen)
-              ("M-RET" . toggle-frame-maximized))
-  :init (toggle-frame-maximized))
+              ("M-RET" . toggle-frame-maximized)))
 
 (use-package go-mode
   :mode "\\.go\\'"
