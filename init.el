@@ -687,7 +687,7 @@ and the current node ID as the search pattern"
     (set-frame-font "DejaVu Sans Mono-11" nil t))
   (when system-is-osx-p
     (set-face-attribute 'default nil :font "Monaco" :height 120)
-    (set-face-attribute 'fixed-pitch nil :family "Monaco-12" :height 1.0)
+    (set-face-attribute 'fixed-pitch nil :family "Monaco" :height 1.0)
     (set-face-attribute 'variable-pitch nil :family "Helvetica" :height 1.0)))
 
 (use-package face-remap
