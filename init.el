@@ -395,12 +395,6 @@ and the current node ID as the search pattern"
   :if system-is-osx-p
   :custom (consult-locate-args "locate -i"))
 
-(use-package consult-notes
-  :config
-  (when (locate-library "denote")
-    (consult-notes-denote-mode))
-  :bind (:map cr-note-map ("n" . consult-notes)))
-
 (use-package consult-recoll
   :bind ("M-s r" . consult-recoll))
 
