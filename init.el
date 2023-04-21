@@ -654,6 +654,10 @@ and the current node ID as the search pattern"
   :after (embark consult)
   :demand)
 
+(use-package epg
+  :straight (:type built-in)
+  :custom (epg-pinentry-mode 'loopback))
+
 (use-package eshell
   :straight (:type built-in)
   :custom
