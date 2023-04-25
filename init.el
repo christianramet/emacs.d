@@ -12,13 +12,14 @@
 
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
 (defconst cr-gtd-dir (expand-file-name "gtd" cr-org-dir))
-(defconst cr-gtd-dir-work (expand-file-name "gtd" "~/digidrive/org"))
-(defconst cr-notes-dir cr-org-dir)
 (defconst cr-ref-dir (expand-file-name "ref" cr-org-dir))
-
 (defconst cr-library (expand-file-name "library" cr-data-dir))
 (defconst cr-bibliography (expand-file-name "bibliography" cr-library))
 (defconst cr-papers (expand-file-name "papers" cr-library))
+
+(defconst cr-work-dir "~/digidrive/")
+(defconst cr-org-dir-work (expand-file-name "org" cr-work-dir))
+(defconst cr-gtd-dir-work (expand-file-name "gtd" cr-org-dir-work))
 
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
@@ -321,17 +322,17 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (let ((default-directory "~/"))
       (consult-find)))
 
-    (defun consult-find-notes ()
-    "Call `consult-find' using `cr-notes-dir' as the `default-directory'"
+    (defun consult-find-org ()
+    "Call `consult-find' using `cr-org-dir' as the `default-directory'"
     (interactive)
-    (let ((default-directory cr-notes-dir))
+    (let ((default-directory cr-org-dir))
       (consult-find)))
 
-    (defun consult-find-notes-backlinks ()
-      "Call `consult-ripgrep' using `cr-notes-dir' as the `default-directory',
+    (defun consult-find-org-backlinks ()
+      "Call `consult-ripgrep' using `cr-org-dir' as the `default-directory',
 and the current node ID as the search pattern"
     (interactive)
-    (consult-ripgrep cr-notes-dir (concat "id:" (org-id-get))))
+    (consult-ripgrep cr-org-dir (concat "id:" (org-id-get))))
 
     (defvar consult--source-eshell
     `(:name     "eshell"
@@ -381,8 +382,8 @@ and the current node ID as the search pattern"
          ("M-s M-SPC" . consult-find-home)
          ("M-s /" . consult-locate)
          (:map cr-note-map (("r" . consult-org-rg)
-                            ("n" . consult-find-notes)
-                            ("b" . consult-find-notes-backlinks)))
+                            ("n" . consult-find-org)
+                            ("b" . consult-find-org-backlinks)))
          (:map cr-app-map ("m" . consult-man))
          (:map cr-text-map (("f" . consult-focus-lines)
                             ("k" . consult-keep-lines)))
