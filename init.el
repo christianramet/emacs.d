@@ -458,11 +458,12 @@ and the current node ID as the search pattern"
   :demand)
 
 (use-package cr-themes
-  :straight nil
+  :straight doom-themes
+  :straight modus-themes
   :demand
   :custom
-  (cr-themes-light 'modus-operandi)
-  (cr-themes-dark 'modus-vivendi)
+  (cr-themes-light 'doom-one-light)
+  (cr-themes-dark 'doom-one)
   (cr-themes-default cr-themes-light)
   (leuven-scale-outline-headlines nil)
   (leuven-scale-org-agenda-structure nil)
