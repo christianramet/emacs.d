@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: org-note-header
+# key: h.
+# --
+#+title: ${1:title}
+#+date: `(format-time-string "[%Y-%m-%d %a]")`
+#+filetags: :${2:tag}:
