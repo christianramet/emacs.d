@@ -13,7 +13,7 @@
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
 (defconst cr-gtd-dir (expand-file-name "gtd" cr-org-dir))
 (defconst cr-gtd-dir-work (expand-file-name "gtd" "~/digidrive/org"))
-(defconst cr-notes-dir (expand-file-name "notes" cr-org-dir))
+(defconst cr-notes-dir cr-org-dir)
 (defconst cr-ref-dir (expand-file-name "ref" cr-org-dir))
 
 (defconst cr-library (expand-file-name "library" cr-data-dir))
