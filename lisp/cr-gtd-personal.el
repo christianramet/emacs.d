@@ -61,8 +61,8 @@
 (setq org-agenda-custom-commands
       (append
        org-agenda-custom-commands
-       '(("i" "Inbox" tags "*"
-          ((org-agenda-files (list (cr-gtd-expand "inbox.org")))))
+       `(("i" "Inbox" tags "*"
+          ((org-agenda-files (list ,(cr-gtd-expand "inbox.org")))))
 
          ("p" "Personal"
           ((agenda "")
@@ -70,7 +70,7 @@
            (stuck "")
            (todo "TODO|WAITING"))
           ((org-agenda-tag-filter '("-@work")))
-          ((cr-gtd-expand "exports/agenda-week.pdf")))
+          (,(cr-gtd-expand "exports/agenda-week.pdf")))
 
          ("r" "Weekly Review"
           ((agenda ""
@@ -91,7 +91,7 @@
 
          ("g" . "GTD contexts")
          ("gh" "@Home"    tags-todo "@home")
-         ("ge" "@Errands" tags-todo "@errands" nil((cr-gtd-expand "exports/agenda-errands.pdf")))
+         ("ge" "@Errands" tags-todo "@errands" nil (,(cr-gtd-expand "exports/agenda-errands.pdf")))
          ("go" "@Offline" tags-todo "@offline")
          ("gw" "@Work"    tags-todo "@work"))))
 
