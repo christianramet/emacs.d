@@ -453,11 +453,6 @@ and the current node ID as the search pattern"
          (:map dired-mode-map
                ("<C-return>" . cr-open-file-or-directory-in-external-app))))
 
-(use-package cr-org-gtd
-  :straight nil
-  :after org
-  :demand)
-
 (use-package cr-themes
   :straight doom-themes
   :straight modus-themes
@@ -1004,6 +999,7 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package org
   :custom
+  (org-agenda-file-regexp "\\`[^.].*\\.org\\\(\\.gpg\\\)?\\'")
   (org-agenda-log-mode-items '(closed clock))
   (org-agenda-restore-windows-after-quit t)
   (org-agenda-show-outline-path nil)
@@ -1011,6 +1007,7 @@ remain in fixed pitch for the tags to be aligned."
   (org-agenda-skip-deadline-prewarning-if-scheduled nil)
   (org-agenda-skip-scheduled-if-done nil)
   (org-agenda-tags-todo-honor-ignore-options t)
+  (org-agenda-todo-ignore-scheduled 'future)
   (org-agenda-window-setup 'current-window)
   (org-attach-dir-relative t)
   (org-blank-before-new-entry '((heading . auto) (plain-list-item . auto)))
@@ -1095,6 +1092,48 @@ remain in fixed pitch for the tags to be aligned."
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          ("C-c l" . org-store-link)))
+
+;;; GTD
+(use-package org
+  :custom
+  (org-agenda-custom-commands '())
+  (org-agenda-files '())
+  (org-capture-templates '(("x" "Default inbox" entry
+                            (file "~/inbox.org")
+                            "* %i%?\n%u\n")))
+  (org-tags-exclude-from-inheritance '("project"))
+  (org-stuck-projects '("project" ("TODO" "WAITING") nil ""))
+  (org-todo-keywords
+   '((sequence "TODO(t)" "|" "DONE(d)")
+     (sequence "WAITING(w@/!)" "|" "DELEGATED(g@/!)" "CANCELED(c@/!)")))
+  (org-tag-alist
+   '((:startgroup . nil) ;; Context
+     ("@home"     . ?h)
+     ("@work"     . ?w)
+     ("@errands"  . ?e)
+     ("@offline"  . ?o)
+     (:endgroup   . nil)
+     (:startgroup . nil) ;; Energy
+     ("focus"     . ?f)
+     ("casual"    . ?c)
+     ("fuzzy"     . ?z)
+     (:endgroup   . nil)
+     (:startgroup . nil) ;; Type
+     ("project"   . ?p)
+     ("meeting"   . ?m)
+     (:endgroup   . nil)
+     (:startgroup . nil) ;; Company
+     ("digi"      . ?d)
+     ("krea"      . ?k)
+     (:endgroup   . nil)))
+  (org-agenda-text-search-extra-files '(agenda-archives))
+  (org-refile-targets '((nil :maxlevel . 3)
+                        (org-agenda-files :maxlevel . 1)))
+  :config
+  (when (and cr-gtd-dir (file-exists-p cr-gtd-dir))
+    (require 'cr-gtd-personal))
+  (when (and cr-gtd-dir-work (file-exists-p cr-gtd-dir-work))
+    (require 'cr-gtd-work)))
 
 (use-package org-indent
   :straight (:type built-in)
