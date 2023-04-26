@@ -325,14 +325,16 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (defun consult-find-org ()
     "Call `consult-find' using `cr-org-dir' as the `default-directory'"
     (interactive)
-    (let ((default-directory cr-org-dir))
+    (let ((default-directory org-directory)
+          (consult-find-args "find -L ."))
       (consult-find)))
 
-    (defun consult-find-org-backlinks ()
-      "Call `consult-ripgrep' using `cr-org-dir' as the `default-directory',
+    (defun consult-rg-org-backlinks ()
+      "Call `consult-ripgrep' using current parent directory as the `default-directory',
 and the current node ID as the search pattern"
     (interactive)
-    (consult-ripgrep cr-org-dir (concat "id:" (org-id-get))))
+    (consult-ripgrep (file-name-directory (directory-file-name default-directory))
+                     (concat "id:" (org-id-get))))
 
     (defvar consult--source-eshell
     `(:name     "eshell"
@@ -383,7 +385,7 @@ and the current node ID as the search pattern"
          ("M-s /" . consult-locate)
          (:map cr-note-map (("r" . consult-org-rg)
                             ("n" . consult-find-org)
-                            ("b" . consult-find-org-backlinks)))
+                            ("b" . consult-rg-org-backlinks)))
          (:map cr-app-map ("m" . consult-man))
          (:map cr-text-map (("f" . consult-focus-lines)
                             ("k" . consult-keep-lines)))
