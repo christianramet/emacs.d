@@ -1538,8 +1538,9 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package window
   :straight (:type built-in)
-  :custom (pop-up-frames nil
-           switch-to-prev-buffer-skip 'visible)
+  :custom
+  (pop-up-frames nil)
+  (switch-to-prev-buffer-skip 'visible)
   :bind* ("M-o" . other-window)
   :bind (("M-[" . previous-buffer)
          ("M-]" . next-buffer)))
