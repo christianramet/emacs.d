@@ -317,21 +317,21 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
     (let ((default-directory "~/"))
       (consult-find)))
 
-    (defun consult-find-org ()
+  (defun consult-find-org ()
     "Call `consult-find' in `org-directory''"
     (interactive)
     (let ((default-directory org-directory)
           (consult-find-args "find -L ."))
       (consult-find)))
 
-    (defun consult-rg-org-backlinks ()
-      "Call `consult-ripgrep' using current parent directory as the `default-directory',
+  (defun consult-rg-org-backlinks ()
+    "Call `consult-ripgrep' using current parent directory as the `default-directory',
 and the current node ID as the search pattern"
     (interactive)
     (consult-ripgrep (file-name-directory (directory-file-name default-directory))
                      (concat "id:" (org-id-get))))
 
-    (defvar consult--source-eshell
+  (defvar consult--source-eshell
     `(:name     "eshell"
       :narrow   ?e
       :category buffer
