@@ -6,20 +6,15 @@
       read-process-output-max (* 3 1024 1024))
 
 ;;; Variables and constants
-(setq default-directory "~/")
-(defconst cr-data-dir "~/Nextcloud/")
 (defconst cr-git-dir "~/git/")
 
+(defconst cr-data-dir "~/Nextcloud/")
+(defconst cr-work-dir "~/digidrive/")
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
-(defconst cr-gtd-dir (expand-file-name "gtd" cr-org-dir))
 (defconst cr-ref-dir (expand-file-name "ref" cr-org-dir))
 (defconst cr-library (expand-file-name "library" cr-data-dir))
 (defconst cr-bibliography (expand-file-name "bibliography" cr-library))
 (defconst cr-papers (expand-file-name "papers" cr-library))
-
-(defconst cr-work-dir "~/digidrive/")
-(defconst cr-org-dir-work (expand-file-name "org" cr-work-dir))
-(defconst cr-gtd-dir-work (expand-file-name "gtd" cr-org-dir-work))
 
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
@@ -323,7 +318,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
       (consult-find)))
 
     (defun consult-find-org ()
-    "Call `consult-find' using `cr-org-dir' as the `default-directory'"
+    "Call `consult-find' in `org-directory''"
     (interactive)
     (let ((default-directory org-directory)
           (consult-find-args "find -L ."))
@@ -1001,7 +996,42 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package org
   :custom
+  (org-agenda-custom-commands
+   '(("p" "Personal"
+      ((agenda "")
+       (tags "project")
+       (stuck "")
+       (todo "TODO|WAITING"))
+      ((org-agenda-tag-filter '("-@work"))))
+     ("r" "Weekly Review"
+      ((agenda ""
+               ((org-agenda-span 8)
+                (org-agenda-start-day "-1w")
+                (org-agenda-show-log t)
+                (org-agenda-start-with-log-mode t)
+                (org-agenda-archives-mode t)))
+       (tags "+project/DONE")
+       (tags "-project/+DONE|+DELEGATED|+CANCELED")))
+     ("l" "Log"
+      ((agenda ""
+               ((org-agenda-show-log t)
+                (org-agenda-start-with-log-mode t)
+                (org-agenda-archives-mode t)
+                (org-agenda-include-inactive-timestamps t)))))
+     ("w" "Work"
+      ((agenda "")
+       (tags "project")
+       (stuck "")
+       (todo "TODO|WAITING"))
+      ((org-agenda-tag-filter '("+@work"))))))
+  (org-agenda-text-search-extra-files '(agenda-archives))
   (org-agenda-file-regexp "\\`[^.].*\\.org\\\(\\.gpg\\\)?\\'")
+  (org-agenda-files
+   '("gtd/inbox.org"
+     "gtd/todos.org"
+     "gtd/calendar.org"
+     "gtd/tickler.org"
+     "gtd/journal.org"))
   (org-agenda-log-mode-items '(closed clock))
   (org-agenda-restore-windows-after-quit t)
   (org-agenda-show-outline-path nil)
@@ -1009,10 +1039,41 @@ remain in fixed pitch for the tags to be aligned."
   (org-agenda-skip-deadline-prewarning-if-scheduled nil)
   (org-agenda-skip-scheduled-if-done nil)
   (org-agenda-tags-todo-honor-ignore-options t)
+  (org-agenda-text-search-extra-files '(agenda-archives))
   (org-agenda-todo-ignore-scheduled 'future)
   (org-agenda-window-setup 'current-window)
   (org-attach-dir-relative t)
   (org-blank-before-new-entry '((heading . auto) (plain-list-item . auto)))
+  (org-capture-templates
+   '(("i" "Inbox" entry
+      (file "gtd/inbox.org")
+      "* %i%?\n%u\n")
+     ("m" "Meeting" entry
+      (file "gtd/inbox.org")
+      "* Meeting with %? :meeting:"
+      :clock-in t)
+     ("e" "Event" entry
+      (file+headline "gtd/calendar.org" "Events")
+      "* %i%?\n")
+     ("j" "Journal" entry
+      (file+olp+datetree "gtd/journal.org")
+      "* %^{prompt|journal-entry}\n%U\n%?")
+     ("r" "Review templates")
+     ("rd" "Daily Review" entry
+      (file+olp+datetree "gtd/journal.org")
+      (file "templates/daily-review.org")
+      :immediate-finish t
+      :jump-to-captured t)
+     ("rw" "Weekly Review" entry
+      (file+olp+datetree "gtd/journal.org")
+      (file "templates/weekly-review.org")
+      :immediate-finish t
+      :jump-to-captured t)
+     ("rm" "Monthly Review" entry
+      (file+olp+datetree "gtd/journal.org")
+      (file "templates/monthly-review.org")
+      :immediate-finish t
+      :jump-to-captured t)))
   (org-clock-continuously nil)
   (org-clock-idle-time nil)
   (org-clock-in-resume nil)
@@ -1035,6 +1096,9 @@ remain in fixed pitch for the tags to be aligned."
   (org-log-state-notes-insert-after-drawers nil)
   (org-outline-path-complete-in-steps nil)
   (org-refile-allow-creating-parent-nodes 'confirm)
+  (org-refile-targets '((nil :maxlevel . 3)
+                        (org-agenda-files :maxlevel . 1)
+                        ("someday.org" :maxlevel . 1)))
   (org-refile-use-outline-path 'file)
   (org-show-notification-handler 'message)
   (org-src-fontify-natively t)
@@ -1044,6 +1108,31 @@ remain in fixed pitch for the tags to be aligned."
   (org-startup-folded t)
   (org-startup-with-inline-images t)
   (org-use-speed-commands t)
+  (org-tags-exclude-from-inheritance '("project"))
+  (org-stuck-projects '("project" ("TODO" "WAITING") nil ""))
+  (org-tag-alist
+   '((:startgroup . nil) ;; Context
+     ("@home"     . ?h)
+     ("@work"     . ?w)
+     ("@errands"  . ?e)
+     ("@offline"  . ?o)
+     (:endgroup   . nil)
+     (:startgroup . nil) ;; Energy
+     ("focus"     . ?f)
+     ("casual"    . ?c)
+     ("fuzzy"     . ?z)
+     (:endgroup   . nil)
+     (:startgroup . nil) ;; Type
+     ("project"   . ?p)
+     ("meeting"   . ?m)
+     (:endgroup   . nil)
+     (:startgroup . nil) ;; Company
+     ("digi"      . ?d)
+     ("krea"      . ?k)
+     (:endgroup   . nil)))
+  (org-todo-keywords
+   '((sequence "TODO(t)" "|" "DONE(d)")
+     (sequence "WAITING(w@/!)" "|" "DELEGATED(g@/!)" "CANCELED(c@/!)")))
   :config
   (with-eval-after-load 'ox (require 'ox-md nil 'noerror))
 
@@ -1095,47 +1184,25 @@ remain in fixed pitch for the tags to be aligned."
          ("C-c c" . org-capture)
          ("C-c l" . org-store-link)))
 
-;;; GTD
 (use-package org
-  :custom
-  (org-agenda-custom-commands '())
-  (org-agenda-files '())
-  (org-capture-templates '(("x" "Default inbox" entry
-                            (file "~/inbox.org")
-                            "* %i%?\n%u\n")))
-  (org-tags-exclude-from-inheritance '("project"))
-  (org-stuck-projects '("project" ("TODO" "WAITING") nil ""))
-  (org-todo-keywords
-   '((sequence "TODO(t)" "|" "DONE(d)")
-     (sequence "WAITING(w@/!)" "|" "DELEGATED(g@/!)" "CANCELED(c@/!)")))
-  (org-tag-alist
-   '((:startgroup . nil) ;; Context
-     ("@home"     . ?h)
-     ("@work"     . ?w)
-     ("@errands"  . ?e)
-     ("@offline"  . ?o)
-     (:endgroup   . nil)
-     (:startgroup . nil) ;; Energy
-     ("focus"     . ?f)
-     ("casual"    . ?c)
-     ("fuzzy"     . ?z)
-     (:endgroup   . nil)
-     (:startgroup . nil) ;; Type
-     ("project"   . ?p)
-     ("meeting"   . ?m)
-     (:endgroup   . nil)
-     (:startgroup . nil) ;; Company
-     ("digi"      . ?d)
-     ("krea"      . ?k)
-     (:endgroup   . nil)))
-  (org-agenda-text-search-extra-files '(agenda-archives))
-  (org-refile-targets '((nil :maxlevel . 3)
-                        (org-agenda-files :maxlevel . 1)))
   :config
-  (when (and cr-gtd-dir (file-exists-p cr-gtd-dir))
-    (require 'cr-gtd-personal))
-  (when (and cr-gtd-dir-work (file-exists-p cr-gtd-dir-work))
-    (require 'cr-gtd-work)))
+  (defvar cr-org-contexts `((personal . ,cr-data-dir)
+                            (work     . ,cr-work-dir)))
+  (defun cr--org-context-switch (context)
+    (setq org-directory (expand-file-name "org" (alist-get context cr-org-contexts)))
+    (when (eq major-mode 'org-agenda-mode)
+      (org-agenda-redo-all))
+    (message "Context: %s" context))
+
+  (defun cr-set-org-context-personal ()
+    (interactive)
+    (cr--org-context-switch 'personal))
+  (defun cr-set-org-context-work ()
+    (interactive)
+    (cr--org-context-switch 'work))
+  :bind (:map cr-toggle-map
+              ("p" . cr-set-org-context-personal)
+              ("w" . cr-set-org-context-work)))
 
 (use-package org-indent
   :straight (:type built-in)
@@ -1269,7 +1336,7 @@ remain in fixed pitch for the tags to be aligned."
     :query ask
     :format regexp
     :files "org"
-    :dir cr-org-dir
+    :dir org-directory
     :flags ("--ignore-case")
     :menu ("Custom" "o" "Org"))
   (rg-define-search rg-org-all
