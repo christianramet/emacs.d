@@ -1284,7 +1284,7 @@ paths, so I redefine it here for the someday.org file "
 (use-package project
   :config
   (project-forget-zombie-projects)
-  (add-to-list 'project-switch-commands '(?m "Magit" magit-status) t)
+  (add-to-list 'project-switch-commands '(magit-project-status "Magit" ?m) t)
   :bind (:map project-prefix-map
               ("=" . project-remember-projects-under)
               ("-" . project-forget-project)))
