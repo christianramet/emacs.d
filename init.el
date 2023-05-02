@@ -945,13 +945,7 @@ remain in fixed pitch for the tags to be aligned."
   :if (executable-find "ledger"))
 
 (use-package magit
-  :custom (magit-clone-default-directory cr-git-dir)
-  :bind (:map cr-git-map
-              ("b" . magit-branch-checkout)
-              ("B" . magit-blame)
-              ("c" . magit-clone)
-              ("g" . magit-status)
-              ("p" . magit-pull-from-upstream)))
+  :custom (magit-clone-default-directory cr-git-dir))
 
 (use-package man
   :bind (:map cr-app-map ("m" . man)))
@@ -1025,7 +1019,6 @@ remain in fixed pitch for the tags to be aligned."
        (stuck "")
        (todo "TODO|WAITING"))
       ((org-agenda-tag-filter '("+@work"))))))
-  (org-agenda-text-search-extra-files '(agenda-archives))
   (org-agenda-file-regexp "\\`[^.].*\\.org\\\(\\.gpg\\\)?\\'")
   (org-agenda-files
    '("gtd/inbox.org"
@@ -1040,7 +1033,9 @@ remain in fixed pitch for the tags to be aligned."
   (org-agenda-skip-deadline-prewarning-if-scheduled nil)
   (org-agenda-skip-scheduled-if-done nil)
   (org-agenda-tags-todo-honor-ignore-options t)
-  (org-agenda-text-search-extra-files '(agenda-archives))
+  (org-agenda-text-search-extra-files
+   `(agenda-archives
+     ,(expand-file-name "gtd/someday.org" org-directory)))
   (org-agenda-todo-ignore-scheduled 'future)
   (org-agenda-window-setup 'current-window)
   (org-attach-dir-relative t)
@@ -1187,10 +1182,23 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package org
   :config
-  (defvar cr-org-contexts `((personal . ,cr-data-dir)
-                            (work     . ,cr-work-dir)))
+  (defvar cr-org-contexts
+    `((personal . ,cr-data-dir)
+      (work     . ,cr-work-dir))
+    "Alist of contexts: (NAME . BASE-DIR)")
+
   (defun cr--org-context-switch (context)
-    (setq org-directory (expand-file-name "org" (alist-get context cr-org-contexts)))
+    "Set the `org-directory' according to one of the contexts defined
+by `cr-org-contexts'. Also proceeds to a reload of the agenda if
+it is currently displayed.
+
+Note: `org-agenda-text-search-extra-files' cannot use relative
+paths, so I redefine it here for the someday.org file "
+    (let ((base-dir (alist-get context cr-org-contexts)))
+      (setq org-directory (expand-file-name "org" base-dir))
+      (setq org-agenda-text-search-extra-files
+            `(agenda-archives
+              ,(expand-file-name "org/gtd/someday.org" base-dir))))
     (when (eq major-mode 'org-agenda-mode)
       (org-agenda-redo-all))
     (message "Context: %s" context))
@@ -1277,7 +1285,7 @@ remain in fixed pitch for the tags to be aligned."
 (use-package project
   :config
   (project-forget-zombie-projects)
-  (add-to-list 'project-switch-commands '(?m "Magit" magit-status) t)
+  (add-to-list 'project-switch-commands '(magit-project-status "Magit" ?m) t)
   :bind (:map project-prefix-map
               ("=" . project-remember-projects-under)
               ("-" . project-forget-project)))
