@@ -235,7 +235,9 @@
 
 (use-package bookmark
   :straight (:type built-in)
-  :custom (bookmark-save-flag 1))
+  :custom
+  (bookmark-save-flag 1)
+  (bookmark-set-fringe-mark nil))
 
 (use-package browse-url
   :straight (:type built-in)
