@@ -1182,36 +1182,25 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package org
   :config
-  (defvar cr-org-contexts
-    `((personal . ,cr-data-dir)
-      (work     . ,cr-work-dir))
+  (defvar cr-org-contexts-alist
+    `(("personal" . ,cr-data-dir)
+      ("work"     . ,cr-work-dir))
     "Alist of contexts: (NAME . BASE-DIR)")
 
-  (defun cr--org-context-switch (context)
-    "Set the `org-directory' according to one of the contexts defined
-by `cr-org-contexts'. Also proceeds to a reload of the agenda if
-it is currently displayed.
-
-Note: `org-agenda-text-search-extra-files' cannot use relative
-paths, so I redefine it here for the someday.org file "
-    (let ((base-dir (alist-get context cr-org-contexts)))
-      (setq org-directory (expand-file-name "org" base-dir))
+  (defun cr-switch-context ()
+    (interactive)
+    (let* ((keys (mapcar #'car cr-org-contexts-alist))
+           (prompt (format "Select context:"))
+           (key (completing-read prompt keys))
+           (context-path (cdr (assoc key cr-org-contexts-alist))))
+      (setq org-directory (expand-file-name "org" context-path))
       (setq org-agenda-text-search-extra-files
             `(agenda-archives
-              ,(expand-file-name "org/gtd/someday.org" base-dir))))
-    (when (eq major-mode 'org-agenda-mode)
-      (org-agenda-redo-all))
-    (message "Context: %s" context))
+              ,(expand-file-name "org/gtd/someday.org" context-path)))
+      (when (eq major-mode 'org-agenda-mode)
+        (org-agenda-redo-all))))
 
-  (defun cr-set-org-context-personal ()
-    (interactive)
-    (cr--org-context-switch 'personal))
-  (defun cr-set-org-context-work ()
-    (interactive)
-    (cr--org-context-switch 'work))
-  :bind (:map cr-toggle-map
-              ("p" . cr-set-org-context-personal)
-              ("w" . cr-set-org-context-work)))
+  :bind ("C-c SPC" . cr-switch-context))
 
 (use-package org-indent
   :straight (:type built-in)
