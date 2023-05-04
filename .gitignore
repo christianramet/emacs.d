@@ -6,5 +6,6 @@ custom.el
 /var
 /straight/*
 !/straight/versions
+tramp
 
 /.DS_Store
