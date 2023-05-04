@@ -986,8 +986,8 @@ remain in fixed pitch for the tags to be aligned."
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))
-  (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles . (partial-completion))))))
+  ;; https://github.com/minad/vertico#tramp-hostname-completion-and-wildcard-completion
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package org
   :custom
@@ -1476,6 +1476,14 @@ remain in fixed pitch for the tags to be aligned."
 (use-package timer-list
   :straight (:type built-in)
   :bind (:map cr-emacs-map ("l" . list-timers)))
+
+(use-package tramp
+  :straight (:type built-in)
+  :config
+  (add-to-list 'tramp-completion-function-alist
+               '("ssh"
+                 (tramp-parse-sconfig "~/.ssh/config.d/personal-ssh-config")
+                 (tramp-parse-sconfig "~/.ssh/config.d/digischool-ssh-config"))))
 
 (use-package treemacs
   :custom (treemacs-is-never-other-window t)
