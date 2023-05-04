@@ -1477,14 +1477,6 @@ remain in fixed pitch for the tags to be aligned."
   :straight (:type built-in)
   :bind (:map cr-emacs-map ("l" . list-timers)))
 
-(use-package tramp
-  :straight (:type built-in)
-  :config
-  (add-to-list 'tramp-completion-function-alist
-               '("ssh"
-                 (tramp-parse-sconfig "~/.ssh/config.d/personal-ssh-config")
-                 (tramp-parse-sconfig "~/.ssh/config.d/digischool-ssh-config"))))
-
 (use-package treemacs
   :custom (treemacs-is-never-other-window t)
   :bind (("M-0" . treemacs-select-window)
