@@ -15,6 +15,7 @@
 (defconst cr-library (expand-file-name "library" cr-data-dir))
 (defconst cr-bibliography (expand-file-name "bibliography" cr-library))
 (defconst cr-papers (expand-file-name "papers" cr-library))
+(defconst cr-dictionary (expand-file-name "resources/dictionary" cr-data-dir))
 
 (defconst system-is-osx-p (eq system-type 'darwin))
 (defconst system-is-linux-p (eq system-type 'gnu/linux))
@@ -761,6 +762,7 @@ remain in fixed pitch for the tags to be aligned."
   ;; Enhances `flymake' to handle grammar errors. Do not confuse with `flyspell'
   ;; wich only uses the dictionary. Note that `flymake-languagetool-url' is
   ;; provided by `cr-private vars'
+  :after flymake
   :custom (flymake-languagetool-language "fr")
   :config
   (push "WHITESPACE_RULE" flymake-languagetool-disabled-rules)
@@ -768,20 +770,21 @@ remain in fixed pitch for the tags to be aligned."
   (defun cr-languagetool-set-lang-en ()
     (interactive)
     (setq-local flymake-languagetool-language "en-US")
-    (flymake-languagetool--check-buffer))
+    (flymake-mode-on)
+    (flymake-languagetool-maybe-load))
 
   (defun cr-languagetool-set-lang-fr ()
     (interactive)
     (setq-local flymake-languagetool-language "fr")
-    (flymake-languagetool--check-buffer))
+    (flymake-mode-on)
+    (flymake-languagetool-maybe-load))
 
-  :bind (:map flymake-mode-map ("C-;" . flymake-languagetool-correct-dwim))
-  :hook ((text-mode       . flymake-languagetool-load)
-         (org-mode        . flymake-languagetool-load)
-         (markdown-mode   . flymake-languagetool-load)))
+  :bind ((:map flymake-mode-map ("C-;" . flymake-languagetool-correct-dwim))
+         (:map cr-spell-map
+               ("E" . cr-languagetool-set-lang-en)
+               ("F" . cr-languagetool-set-lang-fr))))
 
 (use-package flyspell
-  :diminish
   :custom
   (flyspell-issue-welcome-flag nil)
   (flyspell-issue-message-flag nil)
@@ -914,7 +917,7 @@ remain in fixed pitch for the tags to be aligned."
   :custom
   (ispell-program-name "hunspell")
   (ispell-silently-savep t)
-  (ispell-personal-dictionary (expand-file-name "resources/dictionary" cr-data-dir))
+  (ispell-personal-dictionary cr-dictionary)
   :config
   (setq ispell-dictionary cr-ispell-lang-multi)
   (ispell-set-spellchecker-params)
@@ -934,8 +937,8 @@ remain in fixed pitch for the tags to be aligned."
     (ispell-change-dictionary cr-ispell-lang-multi))
 
   :bind (:map cr-spell-map
-              ("1" . cr-ispell-set-lang1)
-              ("2" . cr-ispell-set-lang2)
+              ("f" . cr-ispell-set-lang1)
+              ("e" . cr-ispell-set-lang2)
               ("m" . cr-ispell-set-MULTI)
               ("r" . ispell-region)))
 
