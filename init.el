@@ -13,8 +13,6 @@
 (defconst cr-org-dir (expand-file-name "org" cr-data-dir))
 (defconst cr-ref-dir (expand-file-name "ref" cr-org-dir))
 (defconst cr-library (expand-file-name "library" cr-data-dir))
-(defconst cr-bibliography (expand-file-name "bibliography" cr-library))
-(defconst cr-papers (expand-file-name "papers" cr-library))
 (defconst cr-dictionary (expand-file-name "resources/dictionary" cr-data-dir))
 
 (defconst system-is-osx-p (eq system-type 'darwin))
@@ -218,20 +216,15 @@
   :straight (:type built-in)
   :custom
   (bibtex-include-OPTkey nil)
-  (bibtex-autokey-name-length 10)
   (bibtex-autokey-year-length 4)
   (bibtex-autokey-year-title-separator nil)
-  (bibtex-autokey-titlewords 2)
-  (bibtex-autokey-titlewords-stretch 0)
-  (bibtex-entry-format '(opts-or-alts required-fields numerical-fields realign last-comma))
+  (bibtex-entry-format '(opts-or-alts required-fields numerical-fields
+                                      last-comma sort-fields whitespace))
   :config
   (defun cr-bibtex-settings ()
     ;; Fix for bibtex-mode initialization
     ;; https://emacs.stackexchange.com/questions/46691/initialization-of-bibtex-package
     (bibtex-set-dialect 'BibTeX))
-
-  (setq bibtex-autokey-titleword-ignore (cl-union bibtex-autokey-titleword-ignore
-                  '("Le" "La" "Un" "Une" "Les" "De" "Des" "Ne")))
   :hook (bibtex-mode . cr-bibtex-settings))
 
 (use-package bookmark
@@ -274,11 +267,13 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 
 (use-package citar
   :custom
-  (citar-bibliography (directory-files cr-bibliography t ".*.bib"))
-  (citar-library-paths (list cr-papers))
+  (citar-bibliography (directory-files cr-library t ".*.bib"))
+  (citar-library-paths (list cr-library))
   (citar-notes-paths (list cr-ref-dir))
   (citar-file-note-extensions '("org" "md" "txt"))
-  :bind (:map cr-note-map ("c" . citar-open)))
+  :bind (:map cr-note-map
+              ("c" . citar-open)
+              ("F" . citar-add-file-to-library)))
 
 (use-package citar
   :after org
@@ -1211,6 +1206,18 @@ remain in fixed pitch for the tags to be aligned."
   :custom
   (org-startup-indented t)
   (org-indent-indentation-per-level 1))
+
+(use-package org-noter
+  :straight org-noter
+  :straight djvu
+  :after (:any org pdf-view)
+  :custom
+  (org-noter-default-notes-file-names '("notes.org"))
+  (org-noter-notes-search-path (list cr-ref-dir))
+  (org-noter-auto-save-last-location t)
+  (org-noter-always-create-frame nil)
+  (org-noter-separate-notes-from-heading t)
+  :bind ("C-c w n" . org-noter))
 
 (use-package osm
   :bind (("C-c m h" . osm-home)
