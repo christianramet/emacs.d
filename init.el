@@ -218,6 +218,7 @@
   (bibtex-include-OPTkey nil)
   (bibtex-autokey-year-length 4)
   (bibtex-autokey-year-title-separator nil)
+  (bibtex-autokey-titleword-length 10)
   (bibtex-entry-format '(opts-or-alts required-fields numerical-fields
                                       last-comma sort-fields whitespace))
   :config
