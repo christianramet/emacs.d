@@ -318,6 +318,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
   (defun consult-find-org ()
     "Call `consult-find' in `org-directory''"
     (interactive)
+    (require 'org)
     (let ((default-directory org-directory)
           (consult-find-args "find -L ."))
       (consult-find)))
