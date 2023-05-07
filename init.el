@@ -278,7 +278,7 @@ Documentation: https://github.com/ytdl-org/youtube-dl#format-selection"
 (use-package citar
   :after org
   :custom
-  (org-cite-global-bibliography (directory-files cr-bibliography t ".*.bib"))
+  (org-cite-global-bibliography (directory-files cr-library t ".*.bib"))
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar))
