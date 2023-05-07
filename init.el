@@ -449,15 +449,15 @@ and the current node ID as the search pattern"
                ("<C-return>" . cr-open-file-or-directory-in-external-app))))
 
 (use-package cr-themes
-  :straight doom-themes
   :straight modus-themes
   :demand
   :custom
-  (cr-themes-light 'doom-one-light)
-  (cr-themes-dark 'doom-one)
+  (cr-themes-light 'modus-operandi-tinted)
+  (cr-themes-dark 'modus-vivendi-tinted)
   (cr-themes-default cr-themes-light)
   (leuven-scale-outline-headlines nil)
   (leuven-scale-org-agenda-structure nil)
+  (modus-themes-org-blocks 'gray-background)
   :config (load-theme cr-themes-default t)
   :bind (:map cr-toggle-map ("t" . cr-themes-toggle)))
 
