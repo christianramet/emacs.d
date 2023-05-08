@@ -1578,4 +1578,5 @@ remain in fixed pitch for the tags to be aligned."
   :mode "\\.ts\\'")
 
 (use-package rjsx-mode
+  :disabled
   :mode "\\.tsx\\'")
