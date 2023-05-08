@@ -861,6 +861,8 @@ remain in fixed pitch for the tags to be aligned."
 (use-package git-timemachine
   :bind (:map cr-git-map ("t" . git-timemachine)))
 
+(use-package graphql-mode)
+
 (use-package help
   :straight (:type built-in)
   :bind (:map help-mode-map
