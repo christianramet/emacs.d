@@ -78,8 +78,16 @@
   :demand
   :custom
   (custom-file (no-littering-expand-var-file-name "custom.el"))
-  (auto-save-file-name-transforms
-   `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+  :config
+  (setq backup-directory-alist
+        `(("\\`/tmp/" . nil)
+          ("\\`/dev/shm/" . nil)
+          ("." . ,(no-littering-expand-var-file-name "backup/"))))
+  (setq auto-save-file-name-transforms
+        `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'"
+           ,(concat temporary-file-directory "\\2") t)
+          ("\\`\\(/tmp\\|/dev/shm\\)\\([^/]*/\\)*\\(.*\\)\\'" "\\3")
+          (".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 ;;; Better defaults
 (prefer-coding-system 'utf-8)
