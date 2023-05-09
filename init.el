@@ -1301,6 +1301,8 @@ remain in fixed pitch for the tags to be aligned."
               ("=" . project-remember-projects-under)
               ("-" . project-forget-project)))
 
+(use-package protobuf-mode)
+
 (use-package pulse
   :straight (:type built-in)
   :demand
