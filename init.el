@@ -955,7 +955,13 @@ remain in fixed pitch for the tags to be aligned."
   :if (executable-find "ledger"))
 
 (use-package magit
-  :custom (magit-clone-default-directory cr-git-dir))
+  :custom (magit-clone-default-directory cr-git-dir)
+  :config
+  (with-eval-after-load 'project
+    (defun cr-remember-new-project ()
+      (project-remember-projects-under default-directory))
+    (add-hook 'magit-post-clone-hook 'cr-remember-new-project))
+  :bind (:map cr-git-map ("c" . magit-clone)))
 
 (use-package man
   :bind (:map cr-app-map ("m" . man)))
