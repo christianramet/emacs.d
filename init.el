@@ -850,6 +850,12 @@ remain in fixed pitch for the tags to be aligned."
   :mode "\\.go\\'"
   :config (add-hook 'before-save-hook 'gofmt-before-save))
 
+(use-package god-mode
+  :config
+  (with-eval-after-load 'which-key
+    (which-key-enable-god-mode-support))
+   :bind ("C-o" . god-mode-all))
+
 (use-package git-gutter
   :diminish
   :bind ((:map cr-toggle-map
