@@ -854,7 +854,9 @@ remain in fixed pitch for the tags to be aligned."
   :config
   (with-eval-after-load 'which-key
     (which-key-enable-god-mode-support))
-   :bind ("C-o" . god-mode-all))
+  (with-eval-after-load 'treemacs
+    (add-to-list 'god-exempt-major-modes 'treemacs-mode))
+  :bind ("C-o" . god-mode-all))
 
 (use-package git-gutter
   :diminish
