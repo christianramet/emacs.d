@@ -587,7 +587,8 @@ and the current node ID as the search pattern"
     (add-hook 'ediff-prepare-buffer-hook #'org-show-all))
   :bind (:map cr-buffer-map
               ("d" . ediff-buffers)
-              ("D" . ediff-show-registry)))
+              ("D" . ediff-show-registry)
+              ("v" . ediff-revision)))
 
 (use-package eglot
   :bind ((:map cr-toggle-map ("." . eglot))
