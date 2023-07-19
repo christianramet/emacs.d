@@ -856,7 +856,7 @@ remain in fixed pitch for the tags to be aligned."
     (which-key-enable-god-mode-support))
   (with-eval-after-load 'treemacs
     (add-to-list 'god-exempt-major-modes 'treemacs-mode))
-  :bind (("C-o" . god-mode-all)
+  :bind (("C-o" . god-local-mode)
          (:map god-local-mode-map
                ("i" . god-local-mode))))
 
