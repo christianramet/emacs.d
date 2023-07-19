@@ -493,6 +493,7 @@ and the current node ID as the search pattern"
 (use-package dired
   :straight (:type built-in)
   :custom
+  (dired-auto-revert-buffer t)
   (dired-dwim-target t)
   (dired-recursive-copies 'always)
   (dired-recursive-deletes 'top)
