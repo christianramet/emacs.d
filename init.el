@@ -966,7 +966,9 @@ remain in fixed pitch for the tags to be aligned."
   :if (executable-find "ledger"))
 
 (use-package magit
-  :custom (magit-clone-default-directory cr-git-dir)
+  :custom
+  (magit-save-repository-buffers 'dontask)
+  (magit-clone-default-directory cr-git-dir)
   :config
   (with-eval-after-load 'project
     (defun cr-remember-new-project ()
