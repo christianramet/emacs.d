@@ -677,6 +677,18 @@ and the current node ID as the search pattern"
 
 (use-package eww
   :straight (:type built-in)
+  :config
+  (defun eww-toggle-images ()
+    "Toggle whether images are loaded and reload the current page fro cache."
+    (interactive)
+    (setq-local shr-inhibit-images (not shr-inhibit-images))
+    (eww-reload t)
+    (message "Images are now %s"
+             (if shr-inhibit-images "off" "on")))
+
+  (define-key eww-mode-map (kbd "I") #'eww-toggle-images)
+  (define-key eww-link-keymap (kbd "I") #'eww-toggle-images)
+
   :bind ((:map cr-app-map ("w" . eww))
          (:map eww-mode-map
                ("[" . eww-back-url)
