@@ -617,14 +617,24 @@ and the current node ID as the search pattern"
     (setq-local shr-width fill-column
                 shr-max-image-proportion 0.7
                 line-spacing 0.2))
+
+  (defun cr-elfeed-show-in-eww ()
+    "Display the currently shown item in eww.
+Source: https://github.com/iocanel/emacs.d/blob/master/%2Belfeed.el"
+    (interactive)
+    (require 'elfeed-show)
+    (when (elfeed-entry-p elfeed-show-entry)
+      (let ((link (elfeed-entry-link elfeed-show-entry)))
+        (eww link)
+        (rename-buffer (format "*elfeed eww %s*" link)))))
+
   :hook (elfeed-show-mode . cr-elfeed-show-settings)
   :bind ((:map cr-app-map ("f" . elfeed))
          (:map elfeed-search-mode-map ("a" . elfeed-search-show-entry))
          (:map elfeed-show-mode-map
-               ("n" . next-line)
-               ("p" . previous-line)
                ("]" . elfeed-show-next)
-               ("[" . elfeed-show-prev))))
+               ("[" . elfeed-show-prev)
+               ("w" . cr-elfeed-show-in-eww))))
 
 (use-package elfeed-tube
   :after elfeed
