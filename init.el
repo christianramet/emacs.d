@@ -247,7 +247,7 @@
   :custom
   (browse-url-handlers
    '(("\\(youtube\\.com/watch\\)\\|\\(youtu\\.be/watch\\)" . browse-url-youtube-mpv)
-     ("." . browse-url-default-browser)))
+     ("." . eww-browse-url)))
   :config
   (defun browse-url-youtube-mpv (url &rest e)
     "Use `mpv' with `youtube-dl' to open URLs, asking for desired quality
@@ -688,6 +688,10 @@ Source: https://github.com/iocanel/emacs.d/blob/master/%2Belfeed.el"
 (use-package eww
   :straight (:type built-in)
   :config
+  ;; minimal rendering by default
+  (setq-default shr-inhibit-images t)   ; toggle with `I`
+  (setq-default shr-use-fonts t)      ; toggle with `F`
+
   (defun eww-toggle-images ()
     "Toggle whether images are loaded and reload the current page fro cache."
     (interactive)
