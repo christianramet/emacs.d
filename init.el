@@ -1278,6 +1278,7 @@ remain in fixed pitch for the tags to be aligned."
   :bind ("C-c w n" . org-noter))
 
 (use-package osm
+  :disabled
   :bind (("C-c m h" . osm-home)
          ("C-c m s" . osm-search)
          ("C-c m v" . osm-server)
@@ -1599,10 +1600,10 @@ remain in fixed pitch for the tags to be aligned."
 
 (use-package windmove
   :straight (:type built-in)
-  :bind (("C-c C-h" . windmove-swap-states-left)
-         ("C-c C-j" . windmove-swap-states-down)
-         ("C-c C-k" . windmove-swap-states-up)
-         ("C-c C-l" . windmove-swap-states-right)))
+  :bind (("C-c m h" . windmove-swap-states-left)
+         ("C-c m j" . windmove-swap-states-down)
+         ("C-c m k" . windmove-swap-states-up)
+         ("C-c m l" . windmove-swap-states-right)))
 
 (use-package window
   :straight (:type built-in)
