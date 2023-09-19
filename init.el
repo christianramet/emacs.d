@@ -871,8 +871,8 @@ remain in fixed pitch for the tags to be aligned."
               (ns-transparent-titlebar . t)))
   :config (blink-cursor-mode -1)
   :bind (:map cr-toggle-map
-              ("RET" . toggle-frame-fullscreen)
-              ("M-RET" . toggle-frame-maximized)))
+              ("M-RET" . toggle-frame-fullscreen)
+              ("RET" . toggle-frame-maximized)))
 
 (use-package go-mode
   :mode "\\.go\\'"
