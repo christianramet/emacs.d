@@ -1016,7 +1016,9 @@ remain in fixed pitch for the tags to be aligned."
 (use-package nginx-mode)
 
 (use-package nov
-  :custom (nov-text-width 80)
+  :custom
+  (nov-text-width 80)
+  (nov-variable-pitch t)
   :config
   (defun cr-nov-settings ()
     (face-remap-add-relative 'variable-pitch
