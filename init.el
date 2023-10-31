@@ -494,7 +494,7 @@ and the current node ID as the search pattern"
   :straight (:type built-in)
   :custom
   (dired-auto-revert-buffer t)
-  (dired-dwim-target t)
+  ;; (dired-dwim-target t) ;; use M-n when copying during path selection instead
   (dired-recursive-copies 'always)
   (dired-recursive-deletes 'top)
   (delete-by-moving-to-trash t)
