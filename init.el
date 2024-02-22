@@ -603,7 +603,8 @@ and the current node ID as the search pattern"
          ("C-c . x" . eglot-shutdown)
          ("C-c . X" . eglot-shutdown-all)))
 
-(use-package eldoc :diminish)
+(use-package eldoc :diminish
+  :init (global-eldoc-mode))
 
 (use-package elfeed
   :init (require 'cr-private-feeds nil 'noerror)
