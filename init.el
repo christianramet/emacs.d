@@ -1251,13 +1251,15 @@ remain in fixed pitch for the tags to be aligned."
     (let* ((keys (mapcar #'car cr-org-contexts-alist))
            (prompt (format "Select context:"))
            (key (completing-read prompt keys))
+           (context (car (assoc key cr-org-contexts-alist)))
            (context-path (cdr (assoc key cr-org-contexts-alist))))
       (setq org-directory (expand-file-name "org" context-path))
       (setq org-agenda-text-search-extra-files
             `(agenda-archives
               ,(expand-file-name "org/gtd/someday.org" context-path)))
       (when (eq major-mode 'org-agenda-mode)
-        (org-agenda-redo-all))))
+        (org-agenda-redo-all))
+      (message "You're now in %s context" context)))
 
   :bind ("C-c SPC" . cr-switch-context))
 
