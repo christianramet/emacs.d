@@ -1615,9 +1615,9 @@ remain in fixed pitch for the tags to be aligned."
   :custom
   (pop-up-frames nil)
   (switch-to-prev-buffer-skip 'visible)
-  :bind* ("M-o" . other-window)
-  :bind (("M-[" . previous-buffer)
-         ("M-]" . next-buffer)))
+  :bind* (("M-o" . other-window)
+          ("M-[" . previous-buffer)
+          ("M-]" . next-buffer)))
 
 (use-package ws-butler
   :diminish
