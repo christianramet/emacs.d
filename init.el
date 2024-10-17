@@ -1027,7 +1027,6 @@ remain in fixed pitch for the tags to be aligned."
                              :height 1.2)
     (setq-local line-spacing 0.5
                 left-margin-width 2)
-    (hl-line-mode 1)
     (nov-render-document))
   (add-hook 'nov-mode-hook 'cr-nov-settings)
   :mode ("\\.\\(epub\\|mobi\\)\\'" . nov-mode)
