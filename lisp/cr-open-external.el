@@ -2,7 +2,7 @@
 ;; layers/+spacemacs/spacemacs-defaults/funcs.el
 
 (defun cr--open-in-external-app (file-path)
-  "Open `file-path' in external application."
+  "Open `FILE-PATH' in external application."
   (cond
    ((eq system-type 'windows-nt)
     (w32-shell-execute "open" (replace-regexp-in-string "/" "\\\\" file-path)))
