@@ -1,6 +1,9 @@
 ;;; init.el --- My main configuration file
 ;; -*- lexical-binding: t -*-
 
+;;; Code:
+;;; Commentary:
+
 ;;; System tuning
 (setq gc-cons-threshold (* 20 1024 1024)
       read-process-output-max (* 3 1024 1024))
@@ -864,12 +867,12 @@ remain in fixed pitch for the tags to be aligned."
 (use-package frame
   :straight (:type built-in)
   :custom (default-frame-alist
-            '((menu-bar-lines . 0)
-              (tool-bar-lines . 0)
-              (vertical-scroll-bars . nil)
-              (left-fringe . 8)
-              (right-fringe . 8)
-              (ns-transparent-titlebar . t)))
+           '((menu-bar-lines . 0)
+             (tool-bar-lines . 0)
+             (vertical-scroll-bars . nil)
+             (left-fringe . 8)
+             (right-fringe . 8)
+             (ns-transparent-titlebar . t)))
   :config (blink-cursor-mode -1)
   :bind (:map cr-toggle-map
               ("M-RET" . toggle-frame-fullscreen)
@@ -1642,3 +1645,6 @@ remain in fixed pitch for the tags to be aligned."
 (use-package rjsx-mode
   :disabled
   :mode "\\.tsx\\'")
+
+(provide 'init)
+;;; init.el ends here
